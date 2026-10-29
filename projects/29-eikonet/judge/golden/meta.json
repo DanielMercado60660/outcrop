@@ -1,0 +1,387 @@
+{
+  "project": "29-eikonet",
+  "round": 1,
+  "tag": "M",
+  "paths": [
+    "mlx"
+  ],
+  "seed": 29012020,
+  "rng": "numpy.random.PCG64",
+  "reference_dtype": "float64",
+  "api_inputs": "Quantized to float32 before float64 reference evaluation; arrays saved in npz.",
+  "versions": {
+    "python": "3.12.11",
+    "numpy": "2.5.4",
+    "scikit-fmm": "2025.6.23",
+    "torch": "2.15.0",
+    "pytest": "9.2.0",
+    "mlx": "0.32.4",
+    "mlx-metal": "0.32.4"
+  },
+  "oracle": "scikit-fmm.travel_time, order=2, nonperiodic box, phi=1 except one phi=0 source node; T(source)=0",
+  "query_sampling": "Multilinear interpolation at float32-quantized receivers; exact nodes in 2D, <0.1 mm displacement from nodes in 3D.",
+  "dependency_24": "Project 24 has no judge at round 1. Directly using its named scikit-fmm oracle; upstream source/stencil convention requires reconciliation before lock.",
+  "paper": "Smith, Azizzadenesheli, Ross (2020), EikoNet, arXiv:2004.00361; small factored tanh variant, not paper architecture replication.",
+  "training": "Physics-only; 3 fixed sources per medium; 4608 supplied collocation pairs; width 32, 10000 updates max, initial lr 0.001; held-out receivers never passed to train.",
+  "metric": "Pointwise abs(T-Tfmm)/Tfmm, median <=0.01 and proposed p95 <=0.05 separately per source; positive times >300 m away.",
+  "tolerances": {
+    "MEDIAN_TIME_REL": {
+      "value": 0.01,
+      "reason": "Spec: median pointwise travel-time relative error <= 1%, per source and medium."
+    },
+    "P95_TIME_REL": {
+      "value": 0.05,
+      "reason": "Proposed extra guard: 95th percentile <= 5%; PINN approximation, not float32 rounding."
+    },
+    "NETWORK_REL": {
+      "value": 0.0001,
+      "reason": "CAMPAIGN float32 parity <= 1e-4 for fixed smooth network/objective/gradient."
+    },
+    "OBJECTIVE_SQRT_ATOL": {
+      "value": 1e-06,
+      "reason": "Dimensionless RMS residual floor; squaring near-zero float32 residuals destroys relative loss accuracy."
+    },
+    "GRADIENT_FD_REL": {
+      "value": 0.001,
+      "reason": "CAMPAIGN centered finite differences: relative vector L2 error <= 1e-3."
+    },
+    "SOURCE_TIME_ATOL": {
+      "value": 1e-07,
+      "reason": "Seconds; factored travel time vanishes algebraically at the source."
+    },
+    "PARAMETER_FD_STEP": {
+      "value": 0.002,
+      "reason": "Dimensionless, centered h=0.002; float64 truncation audited in the oracle."
+    },
+    "COORDINATE_FD_STEP": {
+      "value": 1.0,
+      "reason": "Metres, centered h=1; small relative to domain, large enough for float32 subtraction."
+    },
+    "FMM_HOMOGENEOUS_MEDIAN_REL": {
+      "value": 0.005,
+      "reason": "Fine-grid FMM sanity only: point-source discretization, far from singularity."
+    },
+    "FMM_HOMOGENEOUS_P95_REL": {
+      "value": 0.01,
+      "reason": "Fine-grid FMM sanity only: 1% tail vs distance/velocity, not a solver parity test."
+    },
+    "ORACLE_FD_REL": {
+      "value": 0.0001,
+      "reason": "Float64 oracle analytic/autodiff derivatives vs centered differences at recorded steps."
+    }
+  },
+  "derivatives": [
+    {
+      "name": "derivatives_2d",
+      "dimension": 2,
+      "pairs": 17,
+      "width": 4,
+      "parameters": 45,
+      "loss": 1.4841014560434331,
+      "parameter_fd_relative_l2": 1.4373759547013571e-05,
+      "float32_parameter_fd_relative_l2": 2.6262781981714472e-05,
+      "coordinate_fd_relative_l2": 1.5683276702848507e-07,
+      "time_range_seconds": [
+        0.42567847857201385,
+        0.779570710550872
+      ]
+    },
+    {
+      "name": "derivatives_3d",
+      "dimension": 3,
+      "pairs": 17,
+      "width": 4,
+      "parameters": 53,
+      "loss": 0.059573284375853464,
+      "parameter_fd_relative_l2": 6.655245734661548e-05,
+      "float32_parameter_fd_relative_l2": 8.159975256717061e-05,
+      "coordinate_fd_relative_l2": 1.4829042550556116e-07,
+      "time_range_seconds": [
+        0.35253944217779,
+        0.5969354114634999
+      ]
+    }
+  ],
+  "travel_cases": [
+    {
+      "name": "homogeneous_2d",
+      "dimension": 2,
+      "oracle_grid_shape": [
+        513,
+        513
+      ],
+      "axis_order": [
+        "x",
+        "z"
+      ],
+      "grid_origin_metres": [
+        -900.0,
+        120.0
+      ],
+      "grid_spacing_metres": 3.90625,
+      "width": 32,
+      "initial_loss": 2.0026996518926716e-32,
+      "collocation_pairs": 4608,
+      "source_cases": [
+        {
+          "source": [
+            -400.0,
+            620.0
+          ],
+          "source_grid_index": [
+            128,
+            128
+          ],
+          "evaluation_pairs": 384,
+          "time_range_seconds": [
+            0.10117617331773579,
+            0.5961414127675957
+          ],
+          "homogeneous_fmm_median_relative_error": 0.000706562719434992,
+          "homogeneous_fmm_p95_relative_error": 0.0021477654904011596,
+          "untrained_baseline_median_relative_error": 0.0007060638363185787
+        },
+        {
+          "source": [
+            600.0,
+            620.0
+          ],
+          "source_grid_index": [
+            384,
+            128
+          ],
+          "evaluation_pairs": 384,
+          "time_range_seconds": [
+            0.10035875477053965,
+            0.5838477055778737
+          ],
+          "homogeneous_fmm_median_relative_error": 0.0007150285647579017,
+          "homogeneous_fmm_p95_relative_error": 0.0022336938622200433,
+          "untrained_baseline_median_relative_error": 0.0007145176602367619
+        },
+        {
+          "source": [
+            100.0,
+            1620.0
+          ],
+          "source_grid_index": [
+            256,
+            384
+          ],
+          "evaluation_pairs": 384,
+          "time_range_seconds": [
+            0.10039626240818145,
+            0.5169008423155517
+          ],
+          "homogeneous_fmm_median_relative_error": 0.0009164108067242965,
+          "homogeneous_fmm_p95_relative_error": 0.00209017177820585,
+          "untrained_baseline_median_relative_error": 0.0009155717639579735
+        }
+      ],
+      "velocity_range_m_per_s": [
+        3000.0,
+        3000.0
+      ],
+      "velocity_formula": "3000"
+    },
+    {
+      "name": "smooth_2d",
+      "dimension": 2,
+      "oracle_grid_shape": [
+        513,
+        513
+      ],
+      "axis_order": [
+        "x",
+        "z"
+      ],
+      "grid_origin_metres": [
+        -900.0,
+        120.0
+      ],
+      "grid_spacing_metres": 3.90625,
+      "width": 32,
+      "initial_loss": 0.044348450159453545,
+      "collocation_pairs": 4608,
+      "source_cases": [
+        {
+          "source": [
+            -400.0,
+            620.0
+          ],
+          "source_grid_index": [
+            128,
+            128
+          ],
+          "evaluation_pairs": 384,
+          "time_range_seconds": [
+            0.10768240677628454,
+            0.6186021693366138
+          ],
+          "homogeneous_fmm_median_relative_error": 0.0007008058839491054,
+          "homogeneous_fmm_p95_relative_error": 0.0022022157544441165,
+          "untrained_baseline_median_relative_error": 0.05392052392443644
+        },
+        {
+          "source": [
+            600.0,
+            620.0
+          ],
+          "source_grid_index": [
+            384,
+            128
+          ],
+          "evaluation_pairs": 384,
+          "time_range_seconds": [
+            0.11263600285476412,
+            0.6411655005017723
+          ],
+          "homogeneous_fmm_median_relative_error": 0.0007002489655375795,
+          "homogeneous_fmm_p95_relative_error": 0.0021317445207611743,
+          "untrained_baseline_median_relative_error": 0.09267777671451735
+        },
+        {
+          "source": [
+            100.0,
+            1620.0
+          ],
+          "source_grid_index": [
+            256,
+            384
+          ],
+          "evaluation_pairs": 384,
+          "time_range_seconds": [
+            0.08968637059691378,
+            0.5419441216284339
+          ],
+          "homogeneous_fmm_median_relative_error": 0.0008894237443951845,
+          "homogeneous_fmm_p95_relative_error": 0.00213692821104494,
+          "untrained_baseline_median_relative_error": 0.06003261862042608
+        }
+      ],
+      "velocity_range_m_per_s": [
+        2477.529728207556,
+        3599.999375212053
+      ],
+      "velocity_formula": "u=(x-origin)/2000; v=2600+1000*u[-1]-550*exp(-sum(((u-center)/0.22)^2)); center=[0.60,0.45]"
+    },
+    {
+      "name": "smooth_3d",
+      "dimension": 3,
+      "oracle_grid_shape": [
+        193,
+        193,
+        193
+      ],
+      "axis_order": [
+        "x",
+        "y",
+        "z"
+      ],
+      "grid_origin_metres": [
+        -900.0,
+        120.0,
+        -300.0
+      ],
+      "grid_spacing_metres": 10.416666666666666,
+      "width": 32,
+      "initial_loss": 0.03714345944868953,
+      "collocation_pairs": 4608,
+      "source_cases": [
+        {
+          "source": [
+            -400.0,
+            620.0,
+            200.0
+          ],
+          "source_grid_index": [
+            48,
+            48,
+            48
+          ],
+          "evaluation_pairs": 384,
+          "time_range_seconds": [
+            0.10994222635468315,
+            0.6755983732104599
+          ],
+          "homogeneous_fmm_median_relative_error": 0.0031230687990586896,
+          "homogeneous_fmm_p95_relative_error": 0.008660584903477103,
+          "untrained_baseline_median_relative_error": 0.0369549255739419
+        },
+        {
+          "source": [
+            600.0,
+            620.0,
+            700.0
+          ],
+          "source_grid_index": [
+            144,
+            48,
+            96
+          ],
+          "evaluation_pairs": 384,
+          "time_range_seconds": [
+            0.10373505084781194,
+            0.6942237525822342
+          ],
+          "homogeneous_fmm_median_relative_error": 0.003674312634179922,
+          "homogeneous_fmm_p95_relative_error": 0.009357186323147606,
+          "untrained_baseline_median_relative_error": 0.04074746820351183
+        },
+        {
+          "source": [
+            100.0,
+            1620.0,
+            1200.0
+          ],
+          "source_grid_index": [
+            96,
+            144,
+            144
+          ],
+          "evaluation_pairs": 384,
+          "time_range_seconds": [
+            0.09426587505536144,
+            0.6401249731094368
+          ],
+          "homogeneous_fmm_median_relative_error": 0.0036295496284267374,
+          "homogeneous_fmm_p95_relative_error": 0.009472203930836094,
+          "untrained_baseline_median_relative_error": 0.0445970232904809
+        }
+      ],
+      "velocity_range_m_per_s": [
+        2577.600197467624,
+        3599.9999904787323
+      ],
+      "velocity_formula": "u=(x-origin)/2000; v=2600+1000*u[-1]-550*exp(-sum(((u-center)/0.22)^2)); center=[0.60,0.45,0.55]"
+    }
+  ],
+  "files": {
+    "derivatives_2d.npz": {
+      "bytes": 7680,
+      "sha256": "d3c54e0e8e0278dc7f181ed86073a63045dc77a0254c69b3d35eaa623155f795"
+    },
+    "derivatives_3d.npz": {
+      "bytes": 8929,
+      "sha256": "ebe13469082c8a72b380d3477f3fed9589da3f9daed016bb51e7b078cad6a1a9"
+    },
+    "homogeneous_2d.npz": {
+      "bytes": 81153,
+      "sha256": "127e0fc377c7c2c4eeb1daa752021821f187a3399440a7f6bcb57f4b65558af2"
+    },
+    "smooth_2d.npz": {
+      "bytes": 98704,
+      "sha256": "f6bbab78fa9b337b9637a56b5e5ba46bdf21ce1c901593a3e1f3710ec6ccbe0a"
+    },
+    "smooth_3d.npz": {
+      "bytes": 121187,
+      "sha256": "2568adebb2cd16d5d002468229b88f8c0846dd70c8bb2a9751401b49c0b0dc28"
+    }
+  },
+  "limitations": [
+    "Synthetic smooth isotropic media only; no discontinuous salt or public model.",
+    "Only three source locations per medium; no claim of unseen-source generalization.",
+    "No PINN has been trained by this judge builder; optimizer feasibility must be reviewed in Wave 2.",
+    "FMM is a discretized oracle; same-grid homogeneous 2D/3D error is audited; no 1e-4 continuum claim."
+  ]
+}

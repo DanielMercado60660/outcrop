@@ -1,0 +1,78 @@
+{
+  "project": "32-mt-1d",
+  "sizes": {
+    "small": {
+      "layers": 16,
+      "frequencies": 20480
+    },
+    "medium": {
+      "layers": 32,
+      "frequencies": 131072
+    },
+    "large": {
+      "layers": 64,
+      "frequencies": 524288
+    }
+  },
+  "results": {
+    "judge": {
+      "small": {
+        "wall_s": 0.0057768340047914535,
+        "peak_mem_mb": 19.6893253326416,
+        "mem_method": "tracemalloc peak per call, including NumPy tracked allocations; maximum of repeats"
+      },
+      "medium": {
+        "wall_s": 0.06896087501081638,
+        "peak_mem_mb": 254.00216102600098,
+        "mem_method": "tracemalloc peak per call, including NumPy tracked allocations; maximum of repeats"
+      },
+      "large": {
+        "wall_s": 0.538726291997591,
+        "peak_mem_mb": 2040.0028553009033,
+        "mem_method": "tracemalloc peak per call, including NumPy tracked allocations; maximum of repeats"
+      }
+    },
+    "mlx": {
+      "small": {
+        "wall_s": 0.0035414159938227385,
+        "peak_mem_mb": 24.21942901611328,
+        "mem_method": "MLX allocator peak after reset; maximum of repeats",
+        "process_peak_rss_mb": 290.890625
+      },
+      "medium": {
+        "wall_s": 0.0062491669959854335,
+        "peak_mem_mb": 157.00104522705078,
+        "mem_method": "MLX allocator peak after reset; maximum of repeats",
+        "process_peak_rss_mb": 562.4375
+      },
+      "large": {
+        "wall_s": 0.03009208300500177,
+        "peak_mem_mb": 634.00146484375,
+        "mem_method": "MLX allocator peak after reset; maximum of repeats",
+        "process_peak_rss_mb": 2654.4375
+      }
+    },
+    "metal": {
+      "small": {
+        "wall_s": 0.04548158298712224,
+        "peak_mem_mb": 14.109375,
+        "mem_method": "fresh parent RUSAGE_CHILDREN ru_maxrss delta (macOS bytes); maximum of repeats"
+      },
+      "medium": {
+        "wall_s": 0.04630387498764321,
+        "peak_mem_mb": 16.921875,
+        "mem_method": "fresh parent RUSAGE_CHILDREN ru_maxrss delta (macOS bytes); maximum of repeats"
+      },
+      "large": {
+        "wall_s": 0.050380707980366424,
+        "peak_mem_mb": 25.71875,
+        "mem_method": "fresh parent RUSAGE_CHILDREN ru_maxrss delta (macOS bytes); maximum of repeats"
+      }
+    }
+  },
+  "medium_max_rel_diff": {
+    "mlx": 6.731421980927132e-06,
+    "metal": 7.803131029433171e-06
+  },
+  "notes": "Seed 3201; frequencies log-spaced 0.001\u20131000 Hz; layer count includes half-space. Wall time includes output materialization; Metal includes process startup, shader compilation and harness file I/O, but excludes its fresh measurement-parent startup. MLX RSS is process lifetime high-water, not an incremental allocation. Memory is MiB. Large size runtimes are estimates until measured."
+}

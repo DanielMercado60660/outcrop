@@ -1,0 +1,59 @@
+[workspace]
+resolver = "2"
+members = [
+    "common/rust",
+    "projects/01-point-sphere-gravity/metal",
+    "projects/02-prism-gravity/metal",
+    "projects/03-prism-magnetic/metal",
+    "projects/04-tesseroid-gravity/metal",
+    "projects/05-talwani-2d/metal",
+    "projects/06-terrain-bouguer/metal",
+    "projects/09-equivalent-sources/metal",
+    "projects/10-density-inversion/metal",
+    "projects/12-acoustic-1d/metal",
+    "projects/13-acoustic-2d/metal",
+    "projects/14-born-2d/metal",
+    "projects/15-elastic-psv/metal",
+    "projects/16-fwi-marmousi/metal",
+    "projects/17-rtm/metal",
+    "projects/18-lsrtm/metal",
+    "projects/21-checkpointing/metal",
+    "projects/22-acoustic-3d/metal",
+    "projects/24-fast-marching/metal",
+    "projects/25-fast-sweeping/metal",
+    "projects/26-ray-tracing/metal",
+    "projects/27-traveltime-tomo/metal",
+    "projects/28-diff-eikonal/metal",
+    "projects/30-eq-location/metal",
+    "projects/32-mt-1d/metal",
+    "projects/34-dc-2d/metal",
+    "projects/36-gpr-fdtd/metal",
+    "projects/37-sta-lta/metal",
+    "projects/38-template-matching/metal",
+    "projects/39-ambient-noise/metal",
+    "projects/40-cmp-processing/metal",
+    "projects/41-deconvolution/metal",
+    "projects/42-fk-radon/metal",
+    "projects/44-okada/metal",
+    "projects/46-plate-flexure/metal",
+    "projects/47-geotherm/metal",
+    "projects/48-mantle-convection/metal",
+    "projects/49-tsunami/metal",
+    "projects/50-wave-sandbox/metal",
+]
+
+[workspace.package]
+edition = "2021"
+version = "0.1.0"
+license = "MIT OR Apache-2.0"
+rust-version = "1.88"
+
+[workspace.dependencies]
+outcrop-common = { path = "common/rust" }
+objc2 = "0.6"
+objc2-foundation = "0.3"
+objc2-metal = "0.3"
+serde_json = "1"
+
+[profile.release]
+debug = false

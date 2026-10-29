@@ -1,0 +1,10 @@
+# Exact direct dependencies; repository uv.lock pins the transitive environment.
+numpy==2.5.4
+scipy==1.18.1
+simpeg==0.26.0
+discretize==0.13.0
+pymatsolver==0.5.1
+pytest==9.2.0
+mlx==0.32.4
+ruff==0.17.3
+torch==2.15.0

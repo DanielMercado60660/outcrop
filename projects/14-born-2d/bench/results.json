@@ -1,0 +1,87 @@
+{
+  "project": "14-born-2d",
+  "sizes": {
+    "small": {
+      "ny": 48,
+      "nx": 48,
+      "shots": 1,
+      "receivers": 24,
+      "nt": 100
+    },
+    "medium": {
+      "ny": 128,
+      "nx": 128,
+      "shots": 2,
+      "receivers": 96,
+      "nt": 240
+    },
+    "large": {
+      "ny": 256,
+      "nx": 256,
+      "shots": 4,
+      "receivers": 192,
+      "nt": 400
+    }
+  },
+  "results": {
+    "judge": {
+      "small": {
+        "wall_s": 0.005894292000448331,
+        "peak_mem_mb": 304.125,
+        "mem_method": "process peak RSS (ru_maxrss, macOS bytes; includes native Torch allocations)"
+      },
+      "medium": {
+        "wall_s": 0.05425195800489746,
+        "peak_mem_mb": 328.15625,
+        "mem_method": "process peak RSS (ru_maxrss, macOS bytes; includes native Torch allocations)"
+      },
+      "large": {
+        "wall_s": 1.182049333001487,
+        "peak_mem_mb": 393.671875,
+        "mem_method": "process peak RSS (ru_maxrss, macOS bytes; includes native Torch allocations)"
+      }
+    },
+    "mlx": {
+      "small": {
+        "wall_s": 0.05930037499638274,
+        "peak_mem_mb": 2.8672866821289062,
+        "mem_method": "MLX reset_peak_memory/get_peak_memory; process peak RSS separately",
+        "process_peak_rss_mb": 315.3125
+      },
+      "medium": {
+        "wall_s": 0.2271912500145845,
+        "peak_mem_mb": 16.98312759399414,
+        "mem_method": "MLX reset_peak_memory/get_peak_memory; process peak RSS separately",
+        "process_peak_rss_mb": 331.46875
+      },
+      "large": {
+        "wall_s": 0.5375648330082186,
+        "peak_mem_mb": 110.02312088012695,
+        "mem_method": "MLX reset_peak_memory/get_peak_memory; process peak RSS separately",
+        "process_peak_rss_mb": 409.0
+      }
+    },
+    "metal": {
+      "small": {
+        "wall_s": 0.045675375004066154,
+        "peak_mem_mb": 16.453125,
+        "mem_method": "Metal child ru_maxrss delta in a fresh helper process (macOS bytes)"
+      },
+      "medium": {
+        "wall_s": 0.05448141699889675,
+        "peak_mem_mb": 21.015625,
+        "mem_method": "Metal child ru_maxrss delta in a fresh helper process (macOS bytes)"
+      },
+      "large": {
+        "wall_s": 0.09480229200562462,
+        "peak_mem_mb": 49.921875,
+        "mem_method": "Metal child ru_maxrss delta in a fresh helper process (macOS bytes)"
+      }
+    }
+  },
+  "medium_max_rel_diff": {
+    "mlx": 9.054934233011562e-06,
+    "metal": 7.093415911070288e-06
+  },
+  "notes": "Forward born, accuracy 4, 10-cell PML, dx 10 m, dt 1 ms; median of three after one warm-up. Relative error is the maximum over both outputs of max absolute error divided by each reference field's peak absolute amplitude. Metal includes harness serialization, process startup and shader compilation; MLX and judge run in process. RSS is a process lifetime high-water mark, not GPU allocation; Metal's child RSS may omit device memory. Timings and memory are uncalibrated until run on the target machine."
+}

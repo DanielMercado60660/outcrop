@@ -1,0 +1,998 @@
+{
+  "schema_version": 3,
+  "seed": 18017,
+  "precision": "float64 CPU; supplied floats quantized to float32 first",
+  "python": "3.12.11",
+  "library_versions": {
+    "numpy": "2.5.4",
+    "torch": "2.15.0",
+    "deepwave": "0.1.0",
+    "pytest": "9.2.0"
+  },
+  "deepwave_source_sha256": {
+    "__init__.py": "cea213d91c0d3c0155f5142a580d6ee3272bb0aeb49cecd72af555453a40ec19",
+    "_backend_utils.py": "b4761e39369fe3792b7e4ded6bded50867d3785edb58a8701b80ac62b819ce1b",
+    "_boundaries.py": "d60ee0ffcfec81ca36eaa020654f65ff155e2947a44417a3475406b3611f8150",
+    "_capabilities.py": "52bf1646e7352ee95aeac6cb539ba5c120c81e9552b7199dc27b45ac63702a7d",
+    "_common.py": "f68a299c4367ba11c57196e37425f53feefcaa21db0b8e13a94c76714d324f6a",
+    "_engine.py": "9b1d30fc1e7ab48c0d29f1e89b11d9debd476f683ae3e4cc4b61e7ba116fac52",
+    "_exceptions.py": "6b554907b4c619d16fc5a7affa842315d6c87a5c8022c5f2e91983b91a373b64",
+    "_gsls.py": "7485a8045617b6ebb43f5541dda6b71a57104404bc703b01f6ff8778664bff95",
+    "_location_interpolation.py": "d331e961d47d8b4bc664ad1d4a82b29f2626cd5df36a61c9eaceb1382bbc6d60",
+    "_plan.py": "2b203b88a5825190260770bd53d6d09dba8013c44dc2711a29b33c409ca6375f",
+    "_pytree.py": "b722bfa14b320f1ca51ae932f0435ea6bc765623bbd82cacb90b8e50a25d23b0",
+    "_regular_grid.py": "9a4192aa07b7bd1e4f89f68b72bea3f0b40a5cd6eb8a8ed7f41c5c2d70b1b098",
+    "_staggered_grid.py": "e6f70ce4d1199315f61955e53d88938e524e9bf42d07986a4baf15e89ad5dc38",
+    "_storage.py": "295a7f936f20ad4b88332a7c187d4d4c39e01f149b1565e0a14cd54a411081df",
+    "_version.py": "91447944015cec709e8aa7655f7e9d64e1e4508e7023a57fe3746911c0fc6fed",
+    "_windows.py": "04080ae64bdaa382d84e786e41d8a54d24d0f2449242157c47a20130f10e9628",
+    "acoustic.c": "297d278a2c4578b36e8a8331e6fb62119d19894da269f60f31f1c60ec5597c38",
+    "acoustic.py": "9972e67fb12d7a06a24aba4c59d8c1b1832e14d27ca71cdb9533c5fd8a46ccbc",
+    "acoustic_born.c": "3925863a1c3ce259b4c9fdefd0077ec9b1e7c65a880be8ac0d030f73ad0a8614",
+    "acoustic_born.py": "7f50f05c6866fa5406181f2c0dde636eefabed9dbcb9d0ca455fb2dce0b623a5",
+    "acoustic_born_kernels.h": "2ca9eea06328c1d82fe9e67405ff8470996947cfa200dc83b46f4f6aea19029c",
+    "acoustic_kernels.h": "a3a9fa9862283a170e4146da152fc1d3635dc47ac96dd7cecbf37b634bbbdd39",
+    "acoustic_vti.c": "ed88370151dc393f868a8a9a84983992c3a2fe5391157ccc1708f99d8f32dcae",
+    "acoustic_vti.py": "ff8da556bffa0e51b985300f41c41c07e5945072f2057dbe0392a3c3fbf40b65",
+    "acoustic_vti_kernels.h": "5624b1a1eb4863d2f877fc821b59bc3ab2b1cbcc6726e9123824392c155409e5",
+    "adj_fold_bc_kernel_dev.h": "be50779d32b0b9e91e0664c020c7e39279422389257837be9706d802fde90953",
+    "adj_line_bc.h": "66839182ea46bd02c06788eaf492852bf410db7987e6fe11c299ac3ff884574d",
+    "anisotropy.py": "8e42b2e0580957222b19e6464e577478a3194a1eb0d52fdc4df8f8727e5ef39f",
+    "attenuation.py": "914315f0bed9df94e4afc0c15aeff54fd3a9a167acb59bd2c5b4cdb56ecfc76f",
+    "backend_utils.py": "cfb420594c91e7a1e700f1e60b03b8a9b85f7164c3b028df791fedb6e527c0e6",
+    "checkpointing.py": "85abf1b3781ec752f4e1ff739927f234d73c90b789165f25d6b7f3f5238f175e",
+    "common.py": "8ba613fe1af4d6f8f3f92e8f933ae556dbf88ecb71e1fadafe783bd18cb43d39",
+    "common_cpu.h": "b291fcbca4b9832854b33a65d133167a7464cea7424c7ec54eaa2d3e61afa1d4",
+    "common_gpu.h": "da7de04eef458262f10d7a14dfc44aba97460a17ac3622b4d8c8978b6bed21af",
+    "cpu_features.c": "bf8006ee44cabff492be13164c3547b1897d37ba6cedd6368c7fe2cc2007c4e3",
+    "cpu_loops.h": "e61f8d68a7b0d176e7af8063880ae165b3feeaa41481947dbd25bc4df5eaeeb7",
+    "das.py": "050aadd1b2fb14bd1b99797023791262aedd1d4dbb195ed5d299da65d2e42078",
+    "diagnostics.py": "c77016c530be95d6a768b5de0d99a005ba82dacd88ab93d4f4022eee87f1e715",
+    "discretisation.py": "e40f2edbf84e5820885c0068206c9498c6a0cb695f6fe84c4a9dec19f4c832e5",
+    "elastic.c": "55c12f4ffa2f390d1ab66be70b99a0590f4b61d3f04af8e15712c96a109ef065",
+    "elastic.py": "880009ed3020cfd3c93b056b77c52aebb1714cc76ccfdd820f83fae355016aab",
+    "elastic_bc.h": "120d9dd8b72b5bb9fb656dd24bca37661718433f405340481ae08785593fd402",
+    "elastic_born.c": "d3bc6d2d5846e72daf8e49209b884e699256757b597f61911c96e962725f3972",
+    "elastic_born.py": "1467de52ac377dce06af4d63d6dca1b3758251635555adc9456d3fdc43e85759",
+    "elastic_born_kernels.h": "87b6bc6a7cadeb5d0181e91e793ab0d2048fbcaeaeb07a6ddc98a36f5963cb74",
+    "elastic_kernels.h": "7dc47b164a461f9b1d8452440bce576451453994f45ab34f6b3103429eebb100",
+    "elastic_line_bc.h": "ff3aeb8f44437fd5732920077b58a657ff5ec122ed173a601fb7f24deb1491cd",
+    "elastic_line_bc_dev.h": "ee1f53693120d8b7b256262276b61b7c3b891572aed18a872b805eeede0cc280",
+    "elastic_vti.c": "aa8ae722ce65c051ad46f519bc28009de5f67ff6838bddb29a6295cc14237c9e",
+    "elastic_vti.py": "79902af558ba23dbdfb9c3852258ab884e5a89704063752e9a1c4ece0b2d044c",
+    "elastic_vti_kernels.h": "ca8d22bbc40e824cd40a4ec9beaabcde167550d725eedda34c3b17c3c252eaeb",
+    "introspection.py": "5837afa67f0b29e92ac8c8c44330bcd14306d6f0a0d16106211cafc2fbad97ff",
+    "libdeepwave_C.dylib": "305176361bae47d347abf1a274d3a52ef89bb52e5a0ec12cf053444ded0af182",
+    "line_bc.h": "e7c7d30b84ff3887c4547b12f3aeb55f98cf6597b96c78bfd145cb24399f9ff9",
+    "line_bc_dev.h": "2527e578bd665fb6a28c575ebac158b4fa74f772f3200f3b6df2df3188fc63b7",
+    "location_interpolation.py": "1ea23158d399ccfc8dbc2c8dd6f3fa567826981139e77028531afc17812fdebe",
+    "misfits.py": "69b62c148dcead027d56d4c910e60b44a9a5475df15e72b7eaf7257be4fd65fc",
+    "native_types.h": "91dc1b31a15be64b2d6ac15f9e2298c830090cae34ed544973978e0ea0a871cb",
+    "regular_grid.h": "b8de5452e3983b6f532dbe81a038999c983a98873e3f344c38b39263dfa881ac",
+    "regular_grid.py": "b4d7f7c807072bf15fee87324bef3f7b9ad12a817ddaae823adb4143e555659a",
+    "scalar.c": "c27ac6a07e21ff3948452ce99dca311de7640e8a911cb072ae021f6880ae9e3e",
+    "scalar.py": "68b90b7303c2eaad0558be0d4b9405339c026685b35e81685acb2fac8982c8c0",
+    "scalar_born.c": "043d4940a911852ef086bc2c7af65cd13ab4fe25394b600c7f0dba880fa5bfbc",
+    "scalar_born.py": "f2830e3815ce6ac304858567c772fccd63f7cf1efe3e1eacd7ca7718fc4b5943",
+    "scalar_born_kernels.h": "aff72fdb8522c760f10994eafee7428e6405b2c6147345e1f4b60b13efdf383d",
+    "scalar_kernels.h": "b90fee2bbf6db774f705e442e0a5555ca86eb6d1d2ea861651c4e3adab90a76e",
+    "simple_compress.c": "7ed2b9a1d5914bc9267e4028ef9ebe4bacd5086e10bee1ebb52d3ac5ef84acc4",
+    "simple_compress.h": "a434853e2b6b5065d4ffe5bd7d09f2865ced7410b6457378a01418f1a110ba9f",
+    "staggered_bc.h": "240795661d73a9a606f79782a7963536e888b7e9c8293bc13879041ac341c456",
+    "staggered_grid.h": "88729c17433619ecc54b58222be0bf3ff9429f33e8a01f78685dbf6fcd349a2e",
+    "staggered_grid.py": "0c901b425066e44c68b1759fefd121248c9d3c3388f73e3223ed8f1fb17e494d",
+    "storage_utils.c": "98163bf9f323985769aeeb30a077ab7b0c84dc3234520612c4e4d239c926167d",
+    "storage_utils.h": "83d4caa98ab05fc9be0a5889e40ebad1605b488216168f6ac669e6f294bb1adc",
+    "time_dispersion.py": "dc89ef337afbfa8fd242066c12a96ca0ede784eb77824ea06ee87519a6dafac4",
+    "transducers.py": "99fa37eae377adf4cf8c8274005aee90b4aeeecf870ffebdaa865c1a30099b83",
+    "types.py": "4b1d489baf351a9330ef1ef23959644cefbc26e0238dd5af38faf2c3faea2c81",
+    "viscoacoustic.c": "4ffcd110f0ad20241386d0e92399905cc1ba52d8376ff96a89b210c2674a2da4",
+    "viscoacoustic.py": "50fc7cee27adff2c7176e890ab0bfb305e9d614d367e3ea45d72c08e2778176b",
+    "viscoacoustic_kernels.h": "54ebf95f85377713134e477e0dacb9cc3b8fd4644c92c20cfdb5f00de3989bc3",
+    "wavefields.py": "4a15cf15892249b79336da6ddec8c99c0eed0796e21c690f0ab6432b32b19299",
+    "wavelets.py": "2140dab95680f23003b8933a2cb34f5228977fff22e1f54d69a5399c98be1d8f"
+  },
+  "lock_status": "REFERENCE_PASS: round-3 local locked scheme independently verified; full-column analytic-envelope FWHM; implementation parity not yet evaluated",
+  "scheme": {
+    "specification": "tests/SCHEME.md",
+    "reference": "judge/scheme_reference.py",
+    "sha256": {
+      "tests/SCHEME.md": "a98ab2a4281a2abaa28dc3348b6cdcc13b79734fd49597bf16b121332d024a35",
+      "judge/scheme_reference.py": "799819ac04fc2c950cedb9526eeb93cb52abd4b7d3b532525335b6fba176cfc8"
+    },
+    "validation": {
+      "layered": {
+        "step_ratio": 1,
+        "relative_max_errors": {
+          "observed": 4.8808328357248925e-08,
+          "rtm": 3.937132402100944e-15,
+          "zero_objective": 1.1540361586756534e-16,
+          "zero_model_prediction": 0.0,
+          "image": 8.082131216223838e-15,
+          "residual_history": 4.107825191113079e-15,
+          "predicted": 2.5344817189122936e-14,
+          "rtm_scaled": 5.055748259381891e-15,
+          "rtm_scaled_predicted": 5.712691099133262e-15,
+          "scaled_image": 8.418570455681091e-15,
+          "scaled_residual_history": 4.773959005888173e-15,
+          "scaled_predicted": 1.652818962530477e-14,
+          "scaled_rtm": 4.120865237985036e-15
+        },
+        "max_relative_error": 4.8808328357248925e-08
+      },
+      "small": {
+        "step_ratio": 1,
+        "relative_max_errors": {
+          "observed": 3.74181298813652e-08,
+          "rtm": 2.753712508834111e-15,
+          "zero_objective": 1.660750594580194e-16,
+          "zero_model_prediction": 0.0,
+          "predicted": 4.9550954562097936e-15,
+          "objective": 1.732641130071872e-16,
+          "gradient": 3.614374499055379e-15,
+          "adjoint": 8.641033410509254e-15,
+          "masked_model_prediction": 4.9550954562097936e-15,
+          "fd_values": 6.99111584347328e-15
+        },
+        "max_relative_error": 3.74181298813652e-08
+      }
+    }
+  },
+  "synthetic": "Exact project 17 layers_variable Born sheets, survey, velocity and data; no synthetic modifications",
+  "project17_provenance": {
+    "case": "layers_variable",
+    "file": "judge/input/rtm17_layers_variable.npz",
+    "sha256": "222f031c4f1cb36e35384ec28074fcc805a19727baec228a57868ac5b57d90b1"
+  },
+  "inputs": {
+    "layered": {
+      "v": {
+        "shape": [
+          69,
+          61
+        ],
+        "dtype": "float32",
+        "sha256": "e4e9ad9ba6ca20ac142e8e2e82817bbcc8be42c9512470ee4839c8d3a0244d55",
+        "min": 1815.010986328125,
+        "max": 2157.0
+      },
+      "source_amplitudes": {
+        "shape": [
+          3,
+          1,
+          680
+        ],
+        "dtype": "float32",
+        "sha256": "d10c26f907ee37577490a08ac06dc571cff0525219cb6e28bfff1ec79fe1fc2a",
+        "min": -0.44493451714515686,
+        "max": 1.0
+      },
+      "source_locations": {
+        "shape": [
+          3,
+          1,
+          2
+        ],
+        "dtype": "int64",
+        "sha256": "6fc910ed6b099fa5a9772d84995710ecceea569c2f0566354b709e8a096c80da",
+        "min": 3.0,
+        "max": 45.0
+      },
+      "receiver_locations": {
+        "shape": [
+          3,
+          26,
+          2
+        ],
+        "dtype": "int64",
+        "sha256": "766eb394a82b1ba1d209ae63656e74419c467bd821dcf1482621904192ec0e2a",
+        "min": 3.0,
+        "max": 55.0
+      },
+      "spacing": {
+        "shape": [
+          2
+        ],
+        "dtype": "float64",
+        "sha256": "e11804195d548dd0deec149f11438341dc642f5b487311a6e2d56877472cdd72",
+        "min": 10.0,
+        "max": 12.0
+      },
+      "dt": {
+        "shape": [],
+        "dtype": "float64",
+        "sha256": "cb529eddce2ef8826d77d57b8acb0f1b648ed6a4b1b5358696939aab6ee2b17c",
+        "min": 0.001,
+        "max": 0.001,
+        "value": 0.001
+      },
+      "pml_width": {
+        "shape": [],
+        "dtype": "int64",
+        "sha256": "220dde27afee4d537cac96d85d6546f825153b90e828931b74e103807541bc42",
+        "min": 12.0,
+        "max": 12.0,
+        "value": 12
+      },
+      "pml_freq": {
+        "shape": [],
+        "dtype": "float64",
+        "sha256": "e7b8ee63056a30fe915339c69a58a2c6524122e307384c171a612d2c97c26a3a",
+        "min": 25.0,
+        "max": 25.0,
+        "value": 25.0
+      },
+      "accuracy": {
+        "shape": [],
+        "dtype": "int64",
+        "sha256": "f0a0278e4372459cca6159cd5e71cfee638302a7b9ca9b05c34181ac0a65ac5d",
+        "min": 4.0,
+        "max": 4.0,
+        "value": 4
+      },
+      "mask": {
+        "shape": [
+          69,
+          61
+        ],
+        "dtype": "float32",
+        "sha256": "21605d09488d28123b2446a97b0b59de6f7273778f4baeadb303933290001ea7",
+        "min": 1.0,
+        "max": 1.0
+      },
+      "truth": {
+        "shape": [
+          69,
+          61
+        ],
+        "dtype": "float32",
+        "sha256": "d21af67d4c832992ba4c458661b59a421d2a9dff70d292c01f847d2c0a6691ee",
+        "min": -25.0,
+        "max": 35.0
+      },
+      "observed": {
+        "shape": [
+          3,
+          26,
+          680
+        ],
+        "dtype": "float64",
+        "sha256": "2c63c79650936a14309107d46e3e7c13ab314ca62b4e6cb181eeba76311beb04",
+        "min": -0.06700260192155838,
+        "max": 0.07513123750686646
+      },
+      "rtm": {
+        "shape": [
+          69,
+          61
+        ],
+        "dtype": "float64",
+        "sha256": "276617fd16b2498d9af91dc5c3bac41e7388edaa6aefb00765f34ddd30c0b9bb",
+        "min": -0.004873814897160016,
+        "max": 0.006609087397154026
+      },
+      "rtm_scaled": {
+        "shape": [
+          69,
+          61
+        ],
+        "dtype": "float64",
+        "sha256": "aeaa504f11149c60fa56655c56e8b48b4126a2c012b3f301561868974c1fbe73",
+        "min": -5.959367163297412,
+        "max": 8.08113956829029
+      },
+      "image": {
+        "shape": [
+          69,
+          61
+        ],
+        "dtype": "float64",
+        "sha256": "452a8a46de0a062f59d6c153d17ecd22b25afcd1aff416459edad1ee62efbba5",
+        "min": -23.16747825204614,
+        "max": 30.722265305342134
+      },
+      "predicted": {
+        "shape": [
+          3,
+          26,
+          680
+        ],
+        "dtype": "float64",
+        "sha256": "9d9f095ac8767178cc58b7ea32cfc542fc157711fdb9ed3993f23df08dc40f6a",
+        "min": -0.06724256010300729,
+        "max": 0.07440816182452595
+      },
+      "residual_history": {
+        "shape": [
+          41
+        ],
+        "dtype": "float64",
+        "sha256": "6da58ba59397aa9480657191e476dc9606701b207f2d9563f69cb31d5f09b575",
+        "min": 0.05449654344485759,
+        "max": 1.0
+      },
+      "iterations": {
+        "shape": [],
+        "dtype": "int64",
+        "sha256": "552a4a6608d384327b0410f4da0f5da26e1e983f02e8d6ca1e115cd89bef0829",
+        "min": 40.0,
+        "max": 40.0,
+        "value": 40
+      },
+      "columns": {
+        "shape": [
+          3
+        ],
+        "dtype": "int64",
+        "sha256": "3bbe311e4023784256088639dd2c1a694468f1b78fc43ac31122e68f22b62870",
+        "min": 20.0,
+        "max": 40.0
+      },
+      "windows": {
+        "shape": [
+          3,
+          2
+        ],
+        "dtype": "int64",
+        "sha256": "fc9a6396c8251ee36f5db5c8be89d147a2a7af17c3f6de011b251591788ecf2c",
+        "min": 8.0,
+        "max": 64.0
+      },
+      "reflector_depths": {
+        "shape": [
+          3
+        ],
+        "dtype": "int64",
+        "sha256": "2ea20c51c8d0094510ad84917a48636f32e0d005b2d70fa7a5d1032069907331",
+        "min": 19.0,
+        "max": 50.0
+      },
+      "rtm_depths": {
+        "shape": [
+          3,
+          3
+        ],
+        "dtype": "int64",
+        "sha256": "59335b662ec4b26b3abc710bbda2e32d2cda52f4008fb13caa2e727d9bb1e39a",
+        "min": 19.0,
+        "max": 50.0
+      },
+      "rtm_widths": {
+        "shape": [
+          3,
+          3
+        ],
+        "dtype": "float64",
+        "sha256": "2933c9958629884056dc9f655fadc21d77c974e36d5e1f8f066607b4d20ff04d",
+        "min": 3.8560720324714826,
+        "max": 5.354219324638203
+      },
+      "ls_depths": {
+        "shape": [
+          3,
+          3
+        ],
+        "dtype": "int64",
+        "sha256": "59335b662ec4b26b3abc710bbda2e32d2cda52f4008fb13caa2e727d9bb1e39a",
+        "min": 19.0,
+        "max": 50.0
+      },
+      "ls_widths": {
+        "shape": [
+          3,
+          3
+        ],
+        "dtype": "float64",
+        "sha256": "f8e80fe2f1a50bc580eb63afebe12e1f6391d1f683b696bb4361251726ca5941",
+        "min": 2.635133134748928,
+        "max": 3.023956882359207
+      },
+      "truth_depths": {
+        "shape": [
+          3,
+          3
+        ],
+        "dtype": "int64",
+        "sha256": "59335b662ec4b26b3abc710bbda2e32d2cda52f4008fb13caa2e727d9bb1e39a",
+        "min": 19.0,
+        "max": 50.0
+      },
+      "truth_widths": {
+        "shape": [
+          3,
+          3
+        ],
+        "dtype": "float64",
+        "sha256": "0e251042bb2fc34c8498342cd07947e1decbe82542f09fd3e7fe2131fc5060c7",
+        "min": 2.4384301088571165,
+        "max": 2.469337563326804
+      },
+      "zero_objective": {
+        "shape": [],
+        "dtype": "float64",
+        "sha256": "18bb128803669096d4eaee51ddb10a71b356ce89f0b0a921f546e7d5fe8411fa",
+        "min": 3.8481394756269136,
+        "max": 3.8481394756269136,
+        "value": 3.8481394756269136
+      },
+      "zero_model": {
+        "shape": [
+          69,
+          61
+        ],
+        "dtype": "float32",
+        "sha256": "e14d9fe9c8832cc5eb77221c069b8440e837d27bae8a16d6bc945a64b3754c92",
+        "min": 0.0,
+        "max": 0.0
+      },
+      "rtm_scaled_predicted": {
+        "shape": [
+          3,
+          26,
+          680
+        ],
+        "dtype": "float64",
+        "sha256": "db1c0f6af14215e58c059299c99eb89faee1ec58241b6eb72e8bc7c0c32078fc",
+        "min": -0.0747006914403337,
+        "max": 0.06435353761088299
+      },
+      "scaled_observed": {
+        "shape": [
+          3,
+          26,
+          680
+        ],
+        "dtype": "float32",
+        "sha256": "74028f3e46699517e824fc8ad9a734770c839fce6e06dd6f4f9e4185a13e79e7",
+        "min": -0.046957023441791534,
+        "max": 0.04187662526965141
+      },
+      "scaled_image": {
+        "shape": [
+          69,
+          61
+        ],
+        "dtype": "float64",
+        "sha256": "b40346cbb54a2c57c1178edb5e03bce5b7cf19e85bd74bb6c9dc10939165da3c",
+        "min": -19.20141587415685,
+        "max": 14.479673892623143
+      },
+      "scaled_rtm": {
+        "shape": [
+          69,
+          61
+        ],
+        "dtype": "float64",
+        "sha256": "83de7179f2ffbf2db9c309e01515f1357df9e72a8a932f3c4c3540d6231d1eac",
+        "min": -0.00413067963279129,
+        "max": 0.0030461343136905035
+      },
+      "scaled_predicted": {
+        "shape": [
+          3,
+          26,
+          680
+        ],
+        "dtype": "float64",
+        "sha256": "e5f4b4bebfa72a64b197dc893a0ebefd70f3077ab530a037ba4a8bdd97c5015e",
+        "min": -0.04650510113986093,
+        "max": 0.04202660018990772
+      },
+      "scaled_residual_history": {
+        "shape": [
+          41
+        ],
+        "dtype": "float64",
+        "sha256": "a44543c5a9791432096610e56b8dceb3fa205073ec125b04b81d1c9a719541dd",
+        "min": 0.0544965434778199,
+        "max": 1.0
+      }
+    },
+    "small": {
+      "v": {
+        "shape": [
+          18,
+          22
+        ],
+        "dtype": "float32",
+        "sha256": "e77f2f8f8e5c5ba807018ca99694519c85ddc68f3bf14b4c635909534873cd8f",
+        "min": 1900.0,
+        "max": 1936.0
+      },
+      "source_amplitudes": {
+        "shape": [
+          3,
+          1,
+          280
+        ],
+        "dtype": "float32",
+        "sha256": "0c15059fdbe5a5d2cc34011087a882009a195584aee3d667256ab841974473dc",
+        "min": -0.446260005235672,
+        "max": 1.0
+      },
+      "source_locations": {
+        "shape": [
+          3,
+          1,
+          2
+        ],
+        "dtype": "int64",
+        "sha256": "4b9096936119032a88cfd7d98fd61dfa26190a9750ebcc58d6a35186c92cf978",
+        "min": 3.0,
+        "max": 17.0
+      },
+      "receiver_locations": {
+        "shape": [
+          3,
+          7,
+          2
+        ],
+        "dtype": "int64",
+        "sha256": "350d2277fd6add3200be46f522e6d4c53cc16c4d2e8b6ef9142b31cbd1cef6df",
+        "min": 3.0,
+        "max": 16.0
+      },
+      "mask": {
+        "shape": [
+          18,
+          22
+        ],
+        "dtype": "float32",
+        "sha256": "9248f1efbb18db4a846738a12f551fee397195fa814bc88bf0e8c1b7b1c57579",
+        "min": 0.0,
+        "max": 1.0
+      },
+      "spacing": {
+        "shape": [
+          2
+        ],
+        "dtype": "float64",
+        "sha256": "6d2c110c804affccb3b428d36d8904bca68270352a61440d6c2208d411e329f3",
+        "min": 10.0,
+        "max": 10.0
+      },
+      "dt": {
+        "shape": [],
+        "dtype": "float64",
+        "sha256": "cb529eddce2ef8826d77d57b8acb0f1b648ed6a4b1b5358696939aab6ee2b17c",
+        "min": 0.001,
+        "max": 0.001,
+        "value": 0.001
+      },
+      "pml_width": {
+        "shape": [],
+        "dtype": "int64",
+        "sha256": "220dde27afee4d537cac96d85d6546f825153b90e828931b74e103807541bc42",
+        "min": 12.0,
+        "max": 12.0,
+        "value": 12
+      },
+      "pml_freq": {
+        "shape": [],
+        "dtype": "float64",
+        "sha256": "a6eb657cf3aab7d4083b6f0eca93d6e4726d1db995b090f29decf45f2376682d",
+        "min": 30.0,
+        "max": 30.0,
+        "value": 30.0
+      },
+      "accuracy": {
+        "shape": [],
+        "dtype": "int64",
+        "sha256": "f0a0278e4372459cca6159cd5e71cfee638302a7b9ca9b05c34181ac0a65ac5d",
+        "min": 4.0,
+        "max": 4.0,
+        "value": 4
+      },
+      "truth": {
+        "shape": [
+          18,
+          22
+        ],
+        "dtype": "float32",
+        "sha256": "f25c94e0a00ff9e2f00f6e027aa3cf55616a392f0d6d0be06401d1092977f5ee",
+        "min": -70.36075592041016,
+        "max": 56.45242691040039
+      },
+      "model": {
+        "shape": [
+          18,
+          22
+        ],
+        "dtype": "float32",
+        "sha256": "3cededf4fbff73d34e14610bbc76609af72c715e4abbf079bf5fd0929aa4db63",
+        "min": -17.066280364990234,
+        "max": 15.801722526550293
+      },
+      "observed": {
+        "shape": [
+          3,
+          7,
+          280
+        ],
+        "dtype": "float64",
+        "sha256": "92274f0138b5e4919e90b35fd34f95168ad8c66f513617e6535baffbb3390a50",
+        "min": -0.17924609780311584,
+        "max": 0.19829843938350677
+      },
+      "objective": {
+        "shape": [],
+        "dtype": "float64",
+        "sha256": "d332a1bb6c7adb44b530674f4c7b48eefe5583a41a1660fd8eb79369c8476255",
+        "min": 2.563076693392597,
+        "max": 2.563076693392597,
+        "value": 2.563076693392597
+      },
+      "gradient": {
+        "shape": [
+          18,
+          22
+        ],
+        "dtype": "float64",
+        "sha256": "36301b0027bd299f54b8abe1990b308c14cbd1b6e4f16bf2b3bdea161ebbfc45",
+        "min": -0.009925454441785745,
+        "max": 0.011038878223021471
+      },
+      "predicted": {
+        "shape": [
+          3,
+          7,
+          280
+        ],
+        "dtype": "float64",
+        "sha256": "9640286a68ebaffaeeca1fb23728a90e7edb1c5a407799640d787f592dadc6c3",
+        "min": -0.06495553261351017,
+        "max": 0.07701953838984517
+      },
+      "directions": {
+        "shape": [
+          3,
+          18,
+          22
+        ],
+        "dtype": "float32",
+        "sha256": "3b3ed3ebbe3cf78c48f4a9625d7ee1487b7477a283485509a6811d154339230d",
+        "min": -1.0,
+        "max": 1.0
+      },
+      "fd_values": {
+        "shape": [
+          3
+        ],
+        "dtype": "float64",
+        "sha256": "c8e0c7ec0b9ad1ea0733f7a2141391ba53e92249922d87fd96fcec7c4199b681",
+        "min": -0.015880483881004936,
+        "max": 0.01103887822302152
+      },
+      "probe_data": {
+        "shape": [
+          3,
+          7,
+          280
+        ],
+        "dtype": "float32",
+        "sha256": "9cc30ba40ccda7436b0bd1ed6aa824f115e8dde502ed7cef6b6878fca6bda230",
+        "min": -3.7078423500061035,
+        "max": 3.219064235687256
+      },
+      "adjoint": {
+        "shape": [
+          18,
+          22
+        ],
+        "dtype": "float64",
+        "sha256": "53455be958fb213bd3610d66e9dd37a15aca0e62ba0e438e203dffbb819eb870",
+        "min": -0.0236889918648283,
+        "max": 0.017281671586499653
+      },
+      "rtm": {
+        "shape": [
+          18,
+          22
+        ],
+        "dtype": "float64",
+        "sha256": "5420b37d9f45931242e74472bc1344ebdca9975c6545099c8859bfdd7a6ba8de",
+        "min": -0.008759144086866164,
+        "max": 0.01007932946035107
+      },
+      "zero_objective": {
+        "shape": [],
+        "dtype": "float64",
+        "sha256": "a166aff055ef0b28ef9f159bca74b6548f316aa1f050771b0068fce1d919c21e",
+        "min": 2.674027101356058,
+        "max": 2.674027101356058,
+        "value": 2.674027101356058
+      },
+      "zero_model": {
+        "shape": [
+          18,
+          22
+        ],
+        "dtype": "float32",
+        "sha256": "c87499548f9efbd98c824a95a664af38f414efb1c9eede544e55e019473d6b24",
+        "min": 0.0,
+        "max": 0.0
+      },
+      "zero_observed": {
+        "shape": [
+          3,
+          7,
+          280
+        ],
+        "dtype": "float32",
+        "sha256": "4c3b636836c85a4b7e00a397ec03e4789fb64e812a8313d3a051e8173afa3300",
+        "min": 0.0,
+        "max": 0.0
+      },
+      "model_outside": {
+        "shape": [
+          18,
+          22
+        ],
+        "dtype": "float32",
+        "sha256": "4b456fe895eee53259fb4ee152165dfeb5d4e0515eca238cbe527d6194fde99d",
+        "min": -273.6795654296875,
+        "max": 268.30340576171875
+      },
+      "fd_models_plus": {
+        "shape": [
+          3,
+          18,
+          22
+        ],
+        "dtype": "float32",
+        "sha256": "96eb8fd5740538dacccaf20cb0ba129796c617c1fc7f5b5479fa5fe6681d8dea",
+        "min": -17.066280364990234,
+        "max": 16.341140747070312
+      },
+      "fd_models_minus": {
+        "shape": [
+          3,
+          18,
+          22
+        ],
+        "dtype": "float32",
+        "sha256": "d1eabf1715cbe1b497af904e3679c211c0480459764eaeca1d718d1ceb5c08b7",
+        "min": -17.957292556762695,
+        "max": 16.750490188598633
+      }
+    }
+  },
+  "tolerances": {
+    "PARITY_RTOL": {
+      "value": 0.0001,
+      "reason": "Campaign float32 same-discretization max-norm parity."
+    },
+    "CROSS_RTOL": {
+      "value": 0.0002,
+      "reason": "Triangle bound for two paths each within PARITY_RTOL."
+    },
+    "GRADIENT_RTOL": {
+      "value": 0.001,
+      "reason": "Campaign float32 centered finite-difference criterion."
+    },
+    "ORACLE_RTOL": {
+      "value": 1e-07,
+      "reason": "Float64 oracle self-check, three orders tighter than parity."
+    },
+    "FD_STEP": {
+      "value": 2.0,
+      "reason": "2 m/s; quadratic objective has no centered-difference truncation error."
+    },
+    "BORN_LINEARIZATION_STEP": {
+      "value": 0.001,
+      "reason": "Float64 scalar/Born central difference; velocity change below 0.1 m/s."
+    },
+    "MAX_RESIDUAL_RATIO": {
+      "value": 0.5,
+      "reason": "Campaign: residual L2 norm reduced by at least 50%."
+    },
+    "MAX_WIDTH_RATIO": {
+      "value": 0.8,
+      "reason": "Campaign: each reflector vertical analytic-envelope FWHM reduced by at least 20%; review route (a) resolves the raw-lobe sampling floor."
+    },
+    "MAX_DEPTH_ERROR_CELLS": {
+      "value": 2.0,
+      "reason": "Project 17 reflector localization guard."
+    },
+    "HISTORY_SLACK": {
+      "value": 1e-06,
+      "reason": "Only permits float32 reduction roundoff in residual monotonicity."
+    }
+  },
+  "conventions": "axes (z,x), z down, metres; scatter is velocity perturbation m/s; data are scattered field only",
+  "objective": "0.5 sum((A m - observed)^2), A m = scalar_born(v, mask*m); no dt/dx weights or damping",
+  "solver": "40 CGLS steps with two-pass full reorthogonalization; true residual recomputed each step",
+  "rtm": "A^T d, Euclidean adjoint; scaled RTM is best-fit alpha*A^T d (first CGLS iterate)",
+  "width_metric": {
+    "name": "full-column analytic-signal envelope FWHM",
+    "axis": "z (axis 0), separately for each saved x column",
+    "transform_length": "nz, the full physical column length (69 for layered)",
+    "padding": "none; periodic DFT extension; no taper, detrending or smoothing",
+    "analytic_signal": "ifft(fft(column)*h): h[0]=1; positive frequencies=2; negative frequencies=0; even-N Nyquist=1",
+    "selection": "largest envelope sample in each saved half-open [lo,hi) depth window; first maximum on ties",
+    "crossings": "first contiguous half-peak crossings inside the same window, linearly interpolated between samples",
+    "rejection": "nonfinite or zero column/window, or either crossing outside the window",
+    "units": "grid cells; multiply by dz for metres; ratios independent of dz"
+  },
+  "width_transform_length_layered": 69,
+  "width_definition_reason": "Science review route (a): wave-packet envelope captures RTM side-lobe ringing; raw-amplitude central lobes saturate at the sampled one-cell floor on the unchanged project-17 survey.",
+  "residual": "L2 norm vs zero start AND best-fit scaled RTM; both must fall at least 50%",
+  "test_collection_count": 55,
+  "diagnostics": {
+    "layered": {
+      "residual_ratio": 0.05449654344485759,
+      "residual_vs_scaled_rtm": 0.06523779351241864,
+      "rtm_widths_cells": [
+        [
+          4.097356218590065,
+          5.354219324638203,
+          3.8560720324714826
+        ],
+        [
+          3.9802375109038124,
+          4.280029669165657,
+          3.9531288894777523
+        ],
+        [
+          4.2700910010215765,
+          4.288003635483428,
+          4.159684747568314
+        ]
+      ],
+      "ls_widths_cells": [
+        [
+          2.752412120444756,
+          2.635133134748928,
+          2.6849782470027943
+        ],
+        [
+          2.859216908304533,
+          2.778247975717033,
+          2.755609966925472
+        ],
+        [
+          2.9390850872968564,
+          2.904582771984659,
+          3.023956882359207
+        ]
+      ],
+      "width_ratios": [
+        [
+          0.671753192450493,
+          0.4921601030841205,
+          0.6962987787554125
+        ],
+        [
+          0.7183533395863294,
+          0.649118859089269,
+          0.697070610133715
+        ],
+        [
+          0.6882956561332556,
+          0.677374139319543,
+          0.7269678030593458
+        ]
+      ],
+      "width_criterion_passes": true,
+      "minimum_width_ratio_margin": 0.07303219694065421,
+      "rtm_peak_depths_cells": [
+        [
+          19,
+          19,
+          19
+        ],
+        [
+          35,
+          35,
+          35
+        ],
+        [
+          50,
+          50,
+          50
+        ]
+      ],
+      "ls_peak_depths_cells": [
+        [
+          19,
+          19,
+          19
+        ],
+        [
+          35,
+          35,
+          35
+        ],
+        [
+          50,
+          50,
+          50
+        ]
+      ],
+      "truth_widths_cells": [
+        [
+          2.4408885174175374,
+          2.4408885174175374,
+          2.4408885174175374
+        ],
+        [
+          2.469337563326804,
+          2.469337563326804,
+          2.469337563326804
+        ],
+        [
+          2.4384301088571165,
+          2.4384301088571165,
+          2.4384301088571165
+        ]
+      ],
+      "exact_truth_width_ratios": [
+        [
+          0.5957227995806204,
+          0.4558813095656058,
+          0.63299868282105
+        ],
+        [
+          0.6203995506705526,
+          0.5769440294109395,
+          0.6246539468772616
+        ],
+        [
+          0.5710487453952964,
+          0.5686632559447932,
+          0.5862055075886662
+        ]
+      ],
+      "float32_width_ratios": [
+        [
+          0.6717516648972517,
+          0.49215960190564045,
+          0.6962987504905523
+        ],
+        [
+          0.7183528132818211,
+          0.6491186267206166,
+          0.6970703602895115
+        ],
+        [
+          0.6882948893936615,
+          0.6773740376758101,
+          0.7269671214269972
+        ]
+      ],
+      "float32_diagnostic": {
+        "image_max_relative": 4.151613483417791e-06,
+        "predicted_max_relative": 1.0356948669213854e-05,
+        "rtm_max_relative": 1.477881960759258e-06,
+        "history_max_absolute": 2.1223172909090593e-06
+      }
+    },
+    "small": {
+      "objective": 2.563076693392597,
+      "directional_finite_differences": [
+        -0.015880483881004936,
+        -0.009925454728638927,
+        0.01103887822302152
+      ],
+      "directional_gradient_products": [
+        -0.015880483872824196,
+        -0.009925454441785745,
+        0.011038878223021471
+      ],
+      "adjoint_dot_lhs": -0.5125669551403121,
+      "adjoint_dot_rhs": -0.5125669551403116,
+      "born_vs_nonlinear_scalar_relative_error": 8.615850157457979e-10,
+      "float32_max_relative_errors": {
+        "objective": 1.699859038365932e-07,
+        "gradient": 1.3929246932933272e-06,
+        "predicted": 2.413347095630069e-06
+      },
+      "float32_fd_relative_errors": [
+        1.4519584309400116e-06,
+        4.2224150562688415e-06,
+        2.44666006855879e-06
+      ]
+    }
+  },
+  "generation_seconds": 164.24864654100384
+}

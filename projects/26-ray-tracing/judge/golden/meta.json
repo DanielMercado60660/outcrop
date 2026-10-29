@@ -1,0 +1,186 @@
+{
+  "method": "Snell horizontal slowness; float64 depth integrals with scipy quad and brentq; circle identity checked independently",
+  "seed": "none: explicit deterministic inputs",
+  "versions": {
+    "python": "3.12.11",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1"
+  },
+  "cases": [
+    {
+      "name": "layered_multi",
+      "kind": "layered",
+      "params": [
+        [
+          350,
+          850
+        ],
+        [
+          1800,
+          2400,
+          2000
+        ]
+      ],
+      "angles_rad": [
+        -0.55,
+        -0.2,
+        0,
+        0.2,
+        0.55
+      ],
+      "offsets_m": [
+        -1300,
+        -450,
+        0,
+        450,
+        1300
+      ],
+      "depth_m": 1300
+    },
+    {
+      "name": "layered_homogeneous",
+      "kind": "layered",
+      "params": [
+        [],
+        [
+          2200
+        ]
+      ],
+      "angles_rad": [
+        -0.7,
+        0,
+        0.7
+      ],
+      "offsets_m": [
+        -1000,
+        0,
+        1000
+      ],
+      "depth_m": 900
+    },
+    {
+      "name": "layered_partial",
+      "kind": "layered",
+      "params": [
+        [
+          400,
+          1200
+        ],
+        [
+          1800,
+          2600,
+          2100
+        ]
+      ],
+      "angles_rad": [
+        -0.45,
+        0,
+        0.45
+      ],
+      "offsets_m": [
+        -700,
+        0,
+        700
+      ],
+      "depth_m": 700
+    },
+    {
+      "name": "gradient_positive",
+      "kind": "gradient",
+      "params": [
+        1800,
+        0.6
+      ],
+      "angles_rad": [
+        -0.65,
+        -0.2,
+        0,
+        0.2,
+        0.65
+      ],
+      "offsets_m": [
+        -1300,
+        -400,
+        0,
+        400,
+        1300
+      ],
+      "depth_m": 1200
+    },
+    {
+      "name": "gradient_negative",
+      "kind": "gradient",
+      "params": [
+        2400,
+        -0.5
+      ],
+      "angles_rad": [
+        -0.7,
+        0,
+        0.7
+      ],
+      "offsets_m": [
+        -1100,
+        0,
+        1100
+      ],
+      "depth_m": 1000
+    },
+    {
+      "name": "gradient_zero",
+      "kind": "gradient",
+      "params": [
+        2000,
+        0
+      ],
+      "angles_rad": [
+        -0.6,
+        0,
+        0.6
+      ],
+      "offsets_m": [
+        -900,
+        0,
+        900
+      ],
+      "depth_m": 1000
+    },
+    {
+      "name": "gradient_shallow",
+      "kind": "gradient",
+      "params": [
+        1800,
+        0.6
+      ],
+      "angles_rad": [
+        -0.65,
+        0,
+        0.65
+      ],
+      "offsets_m": [
+        -500,
+        0,
+        500
+      ],
+      "depth_m": 500
+    }
+  ],
+  "tolerances": {
+    "endpoint_relative": {
+      "value": 0.0001,
+      "reason": "campaign float32 limit, Euclidean error divided by receiver distance"
+    },
+    "time_relative": {
+      "value": 0.0001,
+      "reason": "campaign float32 limit per ray"
+    },
+    "angle_scaled": {
+      "value": 0.0001,
+      "reason": "one radian floor for vertical rays"
+    },
+    "cross_factor": {
+      "value": 2.0,
+      "reason": "sum of independent reference error bounds"
+    }
+  }
+}

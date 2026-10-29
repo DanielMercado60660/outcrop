@@ -1,0 +1,129 @@
+{
+  "seed": 330101,
+  "dtype": "float64; implementation inputs quantized to float32 first",
+  "versions": {
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "pytest": "9.2.0"
+  },
+  "reference": "analytic quasistatic impedance recursion; SciPy SLSQP",
+  "conventions": "exp(+i omega t), quadrant I Z, top-down, mu0=4*pi*1e-7",
+  "objective": "0.5*mean(((response-observed)/sigma)^2)+alpha*0.5*sum(diff(model)^2)",
+  "noise": "seeded Gaussian normalized to weighted RMS=0.8; sigma conservative by 25%",
+  "resolved_depth": "finite layers 0..6, 0..5080 m, all three inversion cases",
+  "tolerance_source": "tests/tolerances.py",
+  "tolerances": {
+    "FORWARD_RTOL": 0.0001,
+    "FORWARD_ATOL": 1e-06,
+    "OBJECTIVE_RTOL": 0.0001,
+    "OBJECTIVE_ATOL": 1e-06,
+    "GRADIENT_RTOL": 0.001,
+    "GRADIENT_ATOL": 1e-05,
+    "FD_STEP": 0.002,
+    "JUDGE_FD_STEP": 1e-05,
+    "JUDGE_FD_RTOL": 1e-05,
+    "TARGET_RMS": 1.0,
+    "MISFIT_SLACK": 0.0001,
+    "MODEL_MAX_ERROR": 0.2,
+    "ROUGHNESS_RTOL": 0.05,
+    "ROUGHNESS_ATOL": 1e-05,
+    "MODEL_LOWER": 0.0,
+    "MODEL_UPPER": 4.0,
+    "MAX_ITERATIONS": 150,
+    "ORACLE_RTOL": 1e-10,
+    "ORACLE_LEAST_SQUARES_TOL": 1e-12,
+    "ORACLE_CONSTRAINED_TOL": 1e-11
+  },
+  "tolerance_reasons": "\"\"\"Locked numeric criteria, shared by the judge and tests.\"\"\"\n\n# Campaign float32 parity against the float64 analytic layered-earth recursion.\nFORWARD_RTOL = 1e-4\n# Absolute floors only protect cancellation near zero in log10(rhoa).\nFORWARD_ATOL = 1e-6\n# Weighted objectives/gradients amplify float32 response rounding slightly.\nOBJECTIVE_RTOL = 1e-4\nOBJECTIVE_ATOL = 1e-6\nGRADIENT_RTOL = 1e-3  # Campaign gradient criterion, measured in relative L2 norm.\nGRADIENT_ATOL = 1e-5  # At exact zero the relative error is undefined.\nFD_STEP = 2e-3  # log10(ohm m); centered O(h^2), large enough for float32 subtraction.\n# Judge-only derivative uses float64 and a much smaller centered step.\nJUDGE_FD_STEP = 1e-5\nJUDGE_FD_RTOL = 1e-5  # Step-halving check of the float64 objective derivative.\nTARGET_RMS = 1.0  # sqrt(mean(((prediction-observation)/sigma)**2)).\nMISFIT_SLACK = 1e-4  # Float32 allowance at the active RMS=1 constraint.\nMODEL_MAX_ERROR = 0.2  # Spec: maximum absolute log10 resistivity error, not mean error.\n# Constrained nonlinear solvers need not return identical models. Enforce that\n# their roughness is within 5% of an independent float64 constrained minimum.\nROUGHNESS_RTOL = 0.05\nROUGHNESS_ATOL = 1e-5  # Handles the constant halfspace's zero minimum roughness.\nMODEL_LOWER = 0.0  # Fixed inversion bounds: 1 ohm m.\nMODEL_UPPER = 4.0  # Fixed inversion bounds: 10,000 ohm m.\nMAX_ITERATIONS = 150  # Small 8-parameter problem; stopping budget, not parity accuracy.\n# Oracle sanity checks: analytic limits and monotonic physical magnitudes.\nORACLE_RTOL = 1e-10\n# Float64 optimizer stopping tolerances; substantially tighter than float32 gates.\nORACLE_LEAST_SQUARES_TOL = 1e-12\nORACLE_CONSTRAINED_TOL = 1e-11\n",
+  "inputs": "All inputs, perturbations, uncertainties and truth are saved in each NPZ.",
+  "sanity": {
+    "halfspace": {
+      "rhoa_ohm_m": [
+        100.0,
+        100.0
+      ],
+      "phase_degrees": [
+        45.0,
+        45.00000000000001
+      ]
+    },
+    "two_layer": {
+      "rhoa_ohm_m": [
+        8.260268939010206,
+        957.4048968886381
+      ],
+      "phase_degrees": [
+        12.576411146502135,
+        46.27187916005582
+      ]
+    },
+    "thin_conductor": {
+      "rhoa_ohm_m": [
+        1.0909446237268263,
+        22.440648777764626
+      ],
+      "phase_degrees": [
+        13.009976010859985,
+        85.72687067372128
+      ]
+    },
+    "thick_resistor": {
+      "rhoa_ohm_m": [
+        0.8376548761932913,
+        2.385782702272824
+      ],
+      "phase_degrees": [
+        23.718711261604223,
+        45.99545370721311
+      ]
+    },
+    "inversion_conductor": {
+      "rms": 1.0000000000019809,
+      "max_resolved_error": 0.040404227814600624,
+      "roughness": 0.12415334360755151,
+      "oracle_iterations": 22,
+      "linearized_std_log10_rho": [
+        0.007821792845645286,
+        0.011058319014365877,
+        0.012974129093294519,
+        0.013309917370568521,
+        0.020330184680357917,
+        0.034432488967672245,
+        0.032885443862065634,
+        0.0058050672888222835
+      ]
+    },
+    "inversion_resistor": {
+      "rms": 1.000000000000557,
+      "max_resolved_error": 0.06436451923122233,
+      "roughness": 0.11640913093529082,
+      "oracle_iterations": 25,
+      "linearized_std_log10_rho": [
+        0.005689092522442479,
+        0.011963343647256128,
+        0.028954572829174224,
+        0.05232225505393911,
+        0.04125659905233788,
+        0.022903662012231145,
+        0.014459547268489732,
+        0.005600964656472704
+      ]
+    },
+    "inversion_constant": {
+      "rms": 0.7973118690543551,
+      "max_resolved_error": 0.0006199130427597677,
+      "roughness": 6.7309073065673e-14,
+      "oracle_iterations": 13,
+      "linearized_std_log10_rho": [
+        0.006685943930608547,
+        0.011033817434793924,
+        0.017108927258393167,
+        0.022083593086756493,
+        0.02504736825142551,
+        0.02486090990787039,
+        0.019015461079370192,
+        0.005473711120903237
+      ]
+    }
+  }
+}

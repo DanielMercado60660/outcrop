@@ -1,0 +1,90 @@
+{
+  "project": "10-density-inversion",
+  "sizes": {
+    "small": {
+      "shape": [
+        4,
+        4,
+        2
+      ],
+      "n_data": 36
+    },
+    "medium": {
+      "shape": [
+        8,
+        8,
+        4
+      ],
+      "n_data": 144
+    },
+    "large": {
+      "shape": [
+        12,
+        12,
+        6
+      ],
+      "n_data": 324
+    }
+  },
+  "results": {
+    "judge": {
+      "small": {
+        "wall_s": 0.0006930840027052909,
+        "peak_mem_mb": 0.05083465576171875,
+        "mem_method": "tracemalloc peak during call"
+      },
+      "medium": {
+        "wall_s": 0.006454124988522381,
+        "peak_mem_mb": 2.0721025466918945,
+        "mem_method": "tracemalloc peak during call"
+      },
+      "large": {
+        "wall_s": 0.041795083991019055,
+        "peak_mem_mb": 21.385685920715332,
+        "mem_method": "tracemalloc peak during call"
+      }
+    },
+    "mlx": {
+      "small": {
+        "wall_s": 0.0026052500179503113,
+        "peak_mem_mb": 0.18743133544921875,
+        "mem_method": "MLX reset_peak_memory/get_peak_memory",
+        "process_peak_rss_mb": 269.265625
+      },
+      "medium": {
+        "wall_s": 0.005944250005995855,
+        "peak_mem_mb": 8.062122344970703,
+        "mem_method": "MLX reset_peak_memory/get_peak_memory",
+        "process_peak_rss_mb": 279.203125
+      },
+      "large": {
+        "wall_s": 0.053967665997333825,
+        "peak_mem_mb": 97.04218292236328,
+        "mem_method": "MLX reset_peak_memory/get_peak_memory",
+        "process_peak_rss_mb": 386.5625
+      }
+    },
+    "metal": {
+      "small": {
+        "wall_s": 0.055638124991673976,
+        "peak_mem_mb": 0.0,
+        "mem_method": "RUSAGE_CHILDREN ru_maxrss high-water delta (macOS bytes)"
+      },
+      "medium": {
+        "wall_s": 0.06356737500755116,
+        "peak_mem_mb": 0.015625,
+        "mem_method": "RUSAGE_CHILDREN ru_maxrss high-water delta (macOS bytes)"
+      },
+      "large": {
+        "wall_s": 0.18043054098961875,
+        "peak_mem_mb": 0.71875,
+        "mem_method": "RUSAGE_CHILDREN ru_maxrss high-water delta (macOS bytes)"
+      }
+    }
+  },
+  "medium_max_rel_diff": {
+    "mlx": 1.1211113386838152e-06,
+    "metal": 4.096888339391041e-08
+  },
+  "notes": "Synthetic point-cell gravity, fixed beta=10; timing includes harness transfers and Metal process startup. Relative difference is max absolute error divided by reference maximum, across model and predicted. macOS ru_maxrss is a cumulative child high-water mark, so deltas can be zero after warm-up and are not per-call absolute peaks. MLX RSS is a cumulative high-water mark; tracemalloc may omit native allocations."
+}

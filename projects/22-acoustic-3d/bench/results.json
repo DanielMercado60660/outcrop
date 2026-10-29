@@ -1,0 +1,73 @@
+{
+  "project": "22-acoustic-3d",
+  "sizes": {
+    "small": {
+      "shape": [
+        48,
+        48,
+        48
+      ],
+      "steps": 320,
+      "spacing": 10.0,
+      "dt": 0.0015
+    },
+    "medium": {
+      "shape": [
+        96,
+        96,
+        96
+      ],
+      "steps": 200,
+      "spacing": 10.0,
+      "dt": 0.0015
+    },
+    "large": {
+      "shape": [
+        192,
+        192,
+        192
+      ],
+      "steps": 500,
+      "spacing": 10.0,
+      "dt": 0.0015
+    }
+  },
+  "results": {
+    "judge": {
+      "small": {
+        "wall_s": 0.03823162498883903,
+        "peak_mem_mb": 2.5577831268310547,
+        "mem_method": "tracemalloc peak; excludes most native PyTorch/Deepwave allocations"
+      },
+      "medium": {
+        "wall_s": 0.19511874997988343,
+        "peak_mem_mb": 20.275793075561523,
+        "mem_method": "tracemalloc peak; excludes most native PyTorch/Deepwave allocations"
+      },
+      "large": {
+        "skipped": "Single-threaded Deepwave reference may exceed 120 s at this size."
+      }
+    },
+    "metal": {
+      "small": {
+        "wall_s": 0.05239316599909216,
+        "peak_mem_mb": 26.09375,
+        "mem_method": "fresh worker RUSAGE_CHILDREN ru_maxrss delta, macOS bytes; child RSS, not GPU allocation"
+      },
+      "medium": {
+        "wall_s": 0.06517770802020095,
+        "peak_mem_mb": 52.96875,
+        "mem_method": "fresh worker RUSAGE_CHILDREN ru_maxrss delta, macOS bytes; child RSS, not GPU allocation"
+      },
+      "large": {
+        "wall_s": 0.23166616700473242,
+        "peak_mem_mb": 265.734375,
+        "mem_method": "fresh worker RUSAGE_CHILDREN ru_maxrss delta, macOS bytes; child RSS, not GPU allocation"
+      }
+    }
+  },
+  "medium_max_rel_diff": {
+    "metal": 8.806730768676295e-06
+  },
+  "notes": "Fixed seed 22001; float64 Deepwave reference and float32 Metal. Times include harness serialization, process startup, shader compilation and output loading. Memory is the maximum of three repeats; judge tracemalloc omits native allocations. Relative difference is max absolute error divided by max reference amplitude, maximized over final and last. Periodic boundaries; no source or damping."
+}

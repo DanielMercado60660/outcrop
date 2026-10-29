@@ -1,0 +1,90 @@
+{
+  "project": "18-lsrtm",
+  "sizes": {
+    "small": {
+      "nz": 20,
+      "nx": 24,
+      "nt": 128,
+      "nshot": 1,
+      "nrec": 8,
+      "iterations": 1
+    },
+    "medium": {
+      "nz": 40,
+      "nx": 48,
+      "nt": 320,
+      "nshot": 2,
+      "nrec": 20,
+      "iterations": 1
+    },
+    "large": {
+      "nz": 64,
+      "nx": 80,
+      "nt": 640,
+      "nshot": 3,
+      "nrec": 36,
+      "iterations": 1
+    }
+  },
+  "results": {
+    "judge": {
+      "small": {
+        "wall_s": 0.02491216702037491,
+        "peak_mem_mb": 0.03486824035644531,
+        "mem_method": "tracemalloc peak Python allocations; excludes native Torch allocations"
+      },
+      "medium": {
+        "wall_s": 0.17466795799555257,
+        "peak_mem_mb": 0.03109264373779297,
+        "mem_method": "tracemalloc peak Python allocations; excludes native Torch allocations"
+      },
+      "large": {
+        "wall_s": 0.7294317500200123,
+        "peak_mem_mb": 0.03098297119140625,
+        "mem_method": "tracemalloc peak Python allocations; excludes native Torch allocations"
+      }
+    },
+    "mlx": {
+      "small": {
+        "wall_s": 0.09952845799853094,
+        "peak_mem_mb": 7.012626647949219,
+        "mem_method": "MLX reset_peak_memory/get_peak_memory in MiB",
+        "process_peak_rss_mb": 333.28125
+      },
+      "medium": {
+        "wall_s": 0.16393833298934624,
+        "peak_mem_mb": 32.195003509521484,
+        "mem_method": "MLX reset_peak_memory/get_peak_memory in MiB",
+        "process_peak_rss_mb": 359.34375
+      },
+      "large": {
+        "wall_s": 0.35545074997935444,
+        "peak_mem_mb": 157.13880920410156,
+        "mem_method": "MLX reset_peak_memory/get_peak_memory in MiB",
+        "process_peak_rss_mb": 504.5625
+      }
+    },
+    "metal": {
+      "small": {
+        "wall_s": 0.05716054100776091,
+        "peak_mem_mb": 0.0,
+        "mem_method": "RUSAGE_CHILDREN ru_maxrss high-water mark delta; bytes on macOS"
+      },
+      "medium": {
+        "wall_s": 0.07506054101395421,
+        "peak_mem_mb": 0.0,
+        "mem_method": "RUSAGE_CHILDREN ru_maxrss high-water mark delta; bytes on macOS"
+      },
+      "large": {
+        "wall_s": 0.1334038749919273,
+        "peak_mem_mb": 0.46875,
+        "mem_method": "RUSAGE_CHILDREN ru_maxrss high-water mark delta; bytes on macOS"
+      }
+    }
+  },
+  "medium_max_rel_diff": {
+    "mlx": 2.1289957751456802e-06,
+    "metal": 1.9250626584346065e-06
+  },
+  "notes": "One CGLS update; deterministic synthetic observations. Times include harness and Metal process/serialization overhead. MLX retains its warmed operator and background cache. Memory is MiB. Child ru_maxrss is a cumulative high-water mark, so its delta can be zero even when the child uses memory. Relative difference is the maximum across outputs of max absolute error divided by each reference output's maximum magnitude."
+}

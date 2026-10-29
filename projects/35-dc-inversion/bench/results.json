@@ -1,0 +1,69 @@
+{
+  "project": "35-dc-inversion",
+  "sizes": {
+    "small": {
+      "nx": 6,
+      "nz": 5,
+      "electrodes": 4,
+      "quadrature": 5
+    },
+    "medium": {
+      "nx": 12,
+      "nz": 7,
+      "electrodes": 8,
+      "quadrature": 13
+    },
+    "large": {
+      "nx": 22,
+      "nz": 11,
+      "electrodes": 16,
+      "quadrature": 25
+    }
+  },
+  "results": {
+    "judge": {
+      "small": {
+        "wall_s": 0.020379916997626424,
+        "peak_mem_mb": 0.16833019256591797,
+        "mem_method": "tracemalloc peak of traced Python allocations over three repeats",
+        "process_peak_rss_mb": 410.421875
+      },
+      "medium": {
+        "wall_s": 0.0481080409954302,
+        "peak_mem_mb": 0.31946372985839844,
+        "mem_method": "tracemalloc peak of traced Python allocations over three repeats",
+        "process_peak_rss_mb": 428.515625
+      },
+      "large": {
+        "wall_s": 0.10005029200692661,
+        "peak_mem_mb": 1.582219123840332,
+        "mem_method": "tracemalloc peak of traced Python allocations over three repeats",
+        "process_peak_rss_mb": 437.703125
+      }
+    },
+    "mlx": {
+      "small": {
+        "wall_s": 0.006252834020415321,
+        "peak_mem_mb": 0.5240516662597656,
+        "mem_method": "MLX peak allocated bytes after reset over three repeats",
+        "process_peak_rss_mb": 426.40625
+      },
+      "medium": {
+        "wall_s": 0.008544124983018264,
+        "peak_mem_mb": 17.177757263183594,
+        "mem_method": "MLX peak allocated bytes after reset over three repeats",
+        "process_peak_rss_mb": 432.15625
+      },
+      "large": {
+        "wall_s": 0.028514583013020456,
+        "peak_mem_mb": 590.9280395507812,
+        "mem_method": "MLX peak allocated bytes after reset over three repeats",
+        "process_peak_rss_mb": 449.09375
+      }
+    }
+  },
+  "medium_max_rel_diff": {
+    "mlx": 6.780992912424264e-07
+  },
+  "notes": "Forward voltage prediction; median of three timed calls after one warmup, including per-call problem setup. Seed 350101. The judge uses float64 SimPEG, MLX uses float32. RSS is the process lifetime high-water mark on macOS; tracemalloc excludes native allocations. Relative error is elementwise with a 1e-12 peak-voltage floor."
+}

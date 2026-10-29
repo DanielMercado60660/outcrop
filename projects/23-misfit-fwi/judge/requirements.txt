@@ -1,0 +1,4 @@
+# Python 3.12.11; matches the repository's pinned environment.
+numpy==2.5.4
+scipy==1.18.1
+pytest==9.2.0

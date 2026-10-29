@@ -1,0 +1,95 @@
+{
+  "seed": 43045,
+  "steps": 36000,
+  "planned_steps": 36000,
+  "last_loss": 0.019694358110427856,
+  "training_seconds": 325.2601564999786,
+  "chunks": [
+    {
+      "start_step": 0,
+      "end_step": 24320,
+      "setup_seconds": 0.7782235409831628,
+      "training_seconds": 220.00085799998487,
+      "checkpoint_seconds": 0.006927292008185759
+    },
+    {
+      "start_step": 24320,
+      "end_step": 36000,
+      "setup_seconds": 0.7831349170010071,
+      "training_seconds": 105.25929849999375,
+      "checkpoint_seconds": 0.006727875006617978
+    }
+  ],
+  "device": "Device(gpu, 0)",
+  "device_info": {
+    "device_name": "Apple M5 Max",
+    "max_recommended_working_set_size": 115448725504,
+    "memory_size": 137438953472,
+    "architecture": "applegpu_g17s",
+    "max_buffer_length": 86586540032,
+    "resource_limit": 499000
+  },
+  "mlx": "0.32.4",
+  "numpy": "2.5.4",
+  "dtype": "float32",
+  "parameters": 647971,
+  "contract": {
+    "steps": 36000,
+    "batch_size": 32,
+    "seed": 43043,
+    "schedule": "training_schedule_round4.npz",
+    "schedule_seed": 43043,
+    "shared_schedule_across_init_seeds": true,
+    "learning_rate": 0.001,
+    "final_learning_rate": 1e-05,
+    "warmup_steps": 1000,
+    "label_sigma_samples": 10.0,
+    "reference_widths": [
+      16,
+      32,
+      64,
+      128,
+      192
+    ],
+    "parameters": 647971,
+    "optimizer": {
+      "name": "Adam",
+      "betas": [
+        0.9,
+        0.999
+      ],
+      "eps": 1e-08,
+      "bias_correction": true,
+      "epsilon_outside_sqrt": true,
+      "weight_decay": 0.0,
+      "amsgrad": false,
+      "gradient_clipping": false,
+      "gradient_accumulation": false,
+      "initial_moments": "zero",
+      "first_update_index": 1
+    },
+    "initialization": {
+      "weights": "independent U(-1/sqrt(fan_in), +1/sqrt(fan_in))",
+      "biases": "independent U(-1/sqrt(fan_in), +1/sqrt(fan_in)); NOT zero",
+      "fan_in": "input_channels * kernel_size; groups=1",
+      "rng": "MLX 0.32.4; reset mx.random.seed(seed) AFTER layer construction",
+      "draw_order": "stem, down shallow-to-deep, up deep-to-shallow, head; weight then bias per layer",
+      "weight_layout": "out_channels,kernel_size,in_channels"
+    },
+    "normalization": "float32; per-component demean, joint RMS floor 1e-8 counts, clip [-10,10]",
+    "augmentation": "saved zero-filled shifts [-500,500], common +/- polarity, N/E rotation; before normalization",
+    "provenance": "Final model only; no early stopping, selection, test/validation inputs or external weights",
+    "budget": "Candidate requires measured GPU training <=1800 s per seed; unmeasured in builder sandbox",
+    "status": "CANDIDATE_PENDING_THREE_MLX_GPU_RUNS"
+  },
+  "source_sha256": {
+    "reference_mlx.py": "4066aa292a9a0c6632d48e7a7cccaaafd5d666ac34caa47396db3a0bc517f926",
+    "round4_config.py": "e963116fe19956869bf30db2d8a9e6818f2eeddf0f880ea26d5d377e41d007af"
+  },
+  "schedule_sha256": "30a5e5931905577c8bb792a15094ceff45d65dbc2729d66e826d39916f0bb00e",
+  "checkpoint_sha256": {
+    "model.npz": "301a0e8d2e3af2682b7d02eb5b15fea59168737214c61920f6c37d8ae1c6e028",
+    "optimizer.npz": "071e10f1fea477ed47c17f43fb4473c47abcfb69fb2c9cfb890dc0a0f8da6084"
+  },
+  "status": "COMPLETE"
+}

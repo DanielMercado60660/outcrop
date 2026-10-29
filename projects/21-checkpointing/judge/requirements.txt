@@ -1,0 +1,8 @@
+# Direct oracle/test dependencies from the pinned environment; Python 3.12.11.
+# Use the pinned environment offline. Deepwave source hashes are in meta.json.
+numpy==2.5.4
+torch==2.15.0
+deepwave==0.1.0
+matplotlib==3.11.2
+pytest==9.2.0
+mlx==0.32.4

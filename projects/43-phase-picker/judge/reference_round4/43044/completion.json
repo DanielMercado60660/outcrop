@@ -1,0 +1,17 @@
+{
+  "steps": 36000,
+  "evidence_sha256": {
+    "test_metrics.json": "ace3f2ef7e331eb1c1af02f6cb82e20baad512717c2c5bd0f8a6e89329288291",
+    "test_picks.json": "b492fd8529e7cffc35ba89f6852f74958e3ef93304dcb5f73517a2f0d9ea0959",
+    "training.json": "ce28eab399025db2b2a90fd1cd364ced564d73ea61d8a56618162ab9a41f7ffa",
+    "untrained_picks.json": "4aee03adf5ce32a85bb2df9d232b24f92bd2bb4f79c26bb5b3f7b01abf415c63",
+    "val_metrics.json": "25f315b7d306f3d676a923d55d2f7c3e188d92ad5b43e400b2b2f1a28865c162",
+    "val_picks.json": "5e8da65ff11421a3f845b5c65da4e6cf294c915212385538d54489c78186c491"
+  },
+  "source_sha256": {
+    "reference_mlx.py": "4066aa292a9a0c6632d48e7a7cccaaafd5d666ac34caa47396db3a0bc517f926",
+    "round4_config.py": "e963116fe19956869bf30db2d8a9e6818f2eeddf0f880ea26d5d377e41d007af"
+  },
+  "checkpoint_removed": true,
+  "note": "Reports and decoded picks only; no trained weights shipped"
+}

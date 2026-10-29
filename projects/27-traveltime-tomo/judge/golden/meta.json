@@ -1,0 +1,683 @@
+{
+  "project": "27-traveltime-tomo",
+  "seed": 27001,
+  "reference": "Analytic straight-line/cell intersections; NumPy float64 SVD least squares (numpy.linalg.lstsq, rcond=None).",
+  "versions": {
+    "python": "3.12.11",
+    "numpy": "2.5.4",
+    "pytest": "9.2.0",
+    "ruff": "0.17.3"
+  },
+  "precision": "All implementation inputs quantized to float32 before float64 reference evaluation; reference outputs float64.",
+  "model": "Fixed straight rays; 2-D cellwise absolute slowness, no eikonal relinearization.",
+  "objective": "0.5*||G@s-t||^2 + 0.5*damping^2*||s-prior||^2 (unweighted, no normalization)",
+  "input_inventory": {
+    "checkerboard_clean.npz": {
+      "matrix": {
+        "shape": [
+          450,
+          120
+        ],
+        "dtype": "float32"
+      },
+      "travel_times": {
+        "shape": [
+          450
+        ],
+        "dtype": "float32"
+      },
+      "reference_slowness": {
+        "shape": [
+          120
+        ],
+        "dtype": "float32"
+      },
+      "damping": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "slowness": {
+        "shape": [
+          120
+        ],
+        "dtype": "float64"
+      },
+      "predicted_times": {
+        "shape": [
+          450
+        ],
+        "dtype": "float64"
+      },
+      "true_slowness": {
+        "shape": [
+          120
+        ],
+        "dtype": "float32"
+      },
+      "mask": {
+        "shape": [
+          120
+        ],
+        "dtype": "bool"
+      },
+      "coverage": {
+        "shape": [
+          10,
+          12
+        ],
+        "dtype": "int64"
+      },
+      "horizontal_hits": {
+        "shape": [
+          10,
+          12
+        ],
+        "dtype": "int64"
+      },
+      "vertical_hits": {
+        "shape": [
+          10,
+          12
+        ],
+        "dtype": "int64"
+      },
+      "grid_shape": {
+        "shape": [
+          2
+        ],
+        "dtype": "int32"
+      },
+      "noise_seconds": {
+        "shape": [
+          450
+        ],
+        "dtype": "float64"
+      }
+    },
+    "checkerboard_noisy.npz": {
+      "matrix": {
+        "shape": [
+          450,
+          120
+        ],
+        "dtype": "float32"
+      },
+      "travel_times": {
+        "shape": [
+          450
+        ],
+        "dtype": "float32"
+      },
+      "reference_slowness": {
+        "shape": [
+          120
+        ],
+        "dtype": "float32"
+      },
+      "damping": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "slowness": {
+        "shape": [
+          120
+        ],
+        "dtype": "float64"
+      },
+      "predicted_times": {
+        "shape": [
+          450
+        ],
+        "dtype": "float64"
+      },
+      "true_slowness": {
+        "shape": [
+          120
+        ],
+        "dtype": "float32"
+      },
+      "mask": {
+        "shape": [
+          120
+        ],
+        "dtype": "bool"
+      },
+      "coverage": {
+        "shape": [
+          10,
+          12
+        ],
+        "dtype": "int64"
+      },
+      "horizontal_hits": {
+        "shape": [
+          10,
+          12
+        ],
+        "dtype": "int64"
+      },
+      "vertical_hits": {
+        "shape": [
+          10,
+          12
+        ],
+        "dtype": "int64"
+      },
+      "grid_shape": {
+        "shape": [
+          2
+        ],
+        "dtype": "int32"
+      },
+      "noise_seconds": {
+        "shape": [
+          450
+        ],
+        "dtype": "float64"
+      }
+    },
+    "geometry_checkerboard.npz": {
+      "x_edges": {
+        "shape": [
+          13
+        ],
+        "dtype": "float32"
+      },
+      "z_edges": {
+        "shape": [
+          11
+        ],
+        "dtype": "float32"
+      },
+      "sources": {
+        "shape": [
+          450,
+          2
+        ],
+        "dtype": "float32"
+      },
+      "receivers": {
+        "shape": [
+          450,
+          2
+        ],
+        "dtype": "float32"
+      },
+      "matrix": {
+        "shape": [
+          450,
+          120
+        ],
+        "dtype": "float64"
+      },
+      "path_lengths": {
+        "shape": [
+          450
+        ],
+        "dtype": "float64"
+      }
+    },
+    "geometry_hand.npz": {
+      "x_edges": {
+        "shape": [
+          3
+        ],
+        "dtype": "float32"
+      },
+      "z_edges": {
+        "shape": [
+          3
+        ],
+        "dtype": "float32"
+      },
+      "sources": {
+        "shape": [
+          10,
+          2
+        ],
+        "dtype": "float32"
+      },
+      "receivers": {
+        "shape": [
+          10,
+          2
+        ],
+        "dtype": "float32"
+      },
+      "matrix": {
+        "shape": [
+          10,
+          4
+        ],
+        "dtype": "float64"
+      },
+      "path_lengths": {
+        "shape": [
+          10
+        ],
+        "dtype": "float64"
+      }
+    },
+    "geometry_irregular.npz": {
+      "x_edges": {
+        "shape": [
+          5
+        ],
+        "dtype": "float32"
+      },
+      "z_edges": {
+        "shape": [
+          4
+        ],
+        "dtype": "float32"
+      },
+      "sources": {
+        "shape": [
+          19,
+          2
+        ],
+        "dtype": "float32"
+      },
+      "receivers": {
+        "shape": [
+          19,
+          2
+        ],
+        "dtype": "float32"
+      },
+      "matrix": {
+        "shape": [
+          19,
+          12
+        ],
+        "dtype": "float64"
+      },
+      "path_lengths": {
+        "shape": [
+          19
+        ],
+        "dtype": "float64"
+      }
+    },
+    "gradient_damped.npz": {
+      "matrix": {
+        "shape": [
+          9,
+          6
+        ],
+        "dtype": "float32"
+      },
+      "travel_times": {
+        "shape": [
+          9
+        ],
+        "dtype": "float32"
+      },
+      "slowness": {
+        "shape": [
+          6
+        ],
+        "dtype": "float32"
+      },
+      "reference_slowness": {
+        "shape": [
+          6
+        ],
+        "dtype": "float32"
+      },
+      "damping": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "objective": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "gradient": {
+        "shape": [
+          6
+        ],
+        "dtype": "float64"
+      },
+      "fd_plus": {
+        "shape": [
+          6,
+          6
+        ],
+        "dtype": "float32"
+      },
+      "fd_minus": {
+        "shape": [
+          6,
+          6
+        ],
+        "dtype": "float32"
+      },
+      "fd_separation": {
+        "shape": [
+          6
+        ],
+        "dtype": "float64"
+      },
+      "fd_plus_objectives": {
+        "shape": [
+          6
+        ],
+        "dtype": "float64"
+      },
+      "fd_minus_objectives": {
+        "shape": [
+          6
+        ],
+        "dtype": "float64"
+      },
+      "fd_gradient": {
+        "shape": [
+          6
+        ],
+        "dtype": "float64"
+      }
+    },
+    "gradient_plain.npz": {
+      "matrix": {
+        "shape": [
+          9,
+          6
+        ],
+        "dtype": "float32"
+      },
+      "travel_times": {
+        "shape": [
+          9
+        ],
+        "dtype": "float32"
+      },
+      "slowness": {
+        "shape": [
+          6
+        ],
+        "dtype": "float32"
+      },
+      "reference_slowness": {
+        "shape": [
+          6
+        ],
+        "dtype": "float32"
+      },
+      "damping": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "objective": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "gradient": {
+        "shape": [
+          6
+        ],
+        "dtype": "float64"
+      },
+      "fd_plus": {
+        "shape": [
+          6,
+          6
+        ],
+        "dtype": "float32"
+      },
+      "fd_minus": {
+        "shape": [
+          6,
+          6
+        ],
+        "dtype": "float32"
+      },
+      "fd_separation": {
+        "shape": [
+          6
+        ],
+        "dtype": "float64"
+      },
+      "fd_plus_objectives": {
+        "shape": [
+          6
+        ],
+        "dtype": "float64"
+      },
+      "fd_minus_objectives": {
+        "shape": [
+          6
+        ],
+        "dtype": "float64"
+      },
+      "fd_gradient": {
+        "shape": [
+          6
+        ],
+        "dtype": "float64"
+      }
+    },
+    "small_damped.npz": {
+      "matrix": {
+        "shape": [
+          3,
+          4
+        ],
+        "dtype": "float32"
+      },
+      "travel_times": {
+        "shape": [
+          3
+        ],
+        "dtype": "float32"
+      },
+      "reference_slowness": {
+        "shape": [
+          4
+        ],
+        "dtype": "float32"
+      },
+      "damping": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "slowness": {
+        "shape": [
+          4
+        ],
+        "dtype": "float64"
+      },
+      "predicted_times": {
+        "shape": [
+          3
+        ],
+        "dtype": "float64"
+      }
+    },
+    "small_hand.npz": {
+      "matrix": {
+        "shape": [
+          3,
+          2
+        ],
+        "dtype": "float32"
+      },
+      "travel_times": {
+        "shape": [
+          3
+        ],
+        "dtype": "float32"
+      },
+      "reference_slowness": {
+        "shape": [
+          2
+        ],
+        "dtype": "float32"
+      },
+      "damping": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "slowness": {
+        "shape": [
+          2
+        ],
+        "dtype": "float64"
+      },
+      "predicted_times": {
+        "shape": [
+          3
+        ],
+        "dtype": "float64"
+      },
+      "hand_slowness": {
+        "shape": [
+          2
+        ],
+        "dtype": "float64"
+      }
+    }
+  },
+  "golden_sha256": {
+    "checkerboard_clean.npz": "416890f3608a7e1541e22cfb94e2169d40311c56af523d6315434cf99fcb6a15",
+    "checkerboard_noisy.npz": "bbac2d16c122eeb6d411033cd466e527a55348eb10e501aae1995d72bc2e512e",
+    "geometry_checkerboard.npz": "004934028c68c45095405845e275eb3aca6ee62fd44c296d435b07bfde51235a",
+    "geometry_hand.npz": "09a375362c502c1de631a0998a5f5b0bc34d02e6f4b0e1aad11430c0765b3f8e",
+    "geometry_irregular.npz": "01c807e767689e46a7d57c9b28d5e35de2415607f0c805c698ee7da8a83bde5a",
+    "gradient_damped.npz": "40a311ff1d4150bd60d07ca45c38df722d9fbfb721c6cc918656f744165487ff",
+    "gradient_plain.npz": "e9d196cdcffdacec2d3d90afcc1c9c42148d48cb1162dcbf8c551dd3d42a8fa0",
+    "small_damped.npz": "030fd5cf02c1193790c20266bac8843e1933f6b19923b6b6a7d747d1d03cd5cc",
+    "small_hand.npz": "bb0d84635469b5ebbca954fca49a65108c29f7653a460a751fe2bac28982a3d7"
+  },
+  "locked_test_count": 35,
+  "checkerboard": {
+    "shape_z_x": [
+      10,
+      12
+    ],
+    "cell_size_m": 100,
+    "block_size_cells": [
+      2,
+      2
+    ],
+    "background_slowness_s_per_m": 0.0005,
+    "true_slowness_s_per_m": [
+      0.000475,
+      0.000525
+    ],
+    "acquisition": "225 all-paired left/right rays + 225 all-paired top/bottom rays, endpoint levels 25 m inside each corner",
+    "mask_rule": "Interior iz=1..8, ix=1..10; >=12 nonzero ray lengths, >=4 abs(dx)>=abs(dz) rays, >=4 other rays. Computed only from geometry; frozen in each npz.",
+    "damping_m": 20.0
+  },
+  "tolerances": {
+    "PARITY_RTOL": {
+      "value": 0.0001,
+      "reason": "Campaign float32 relative parity, max absolute error / max absolute reference."
+    },
+    "GEOMETRY_ATOL_M": {
+      "value": 0.00025,
+      "reason": "0.25 mm near-zero floor for float32 intersection cancellation at nearly coincident corners on a 1.2 km grid. Also require global relative max error <=1e-4."
+    },
+    "SMALL_SYSTEM_RTOL": {
+      "value": 1e-05,
+      "reason": "Spec 1e-5, interpreted as relative max error in recovered slowness."
+    },
+    "CHECKERBOARD_MIN_CORRELATION": {
+      "value": 0.8,
+      "reason": "Spec Pearson correlation >= 0.8, on a geometry-only frozen mask."
+    },
+    "GRADIENT_FD_RTOL": {
+      "value": 0.001,
+      "reason": "Campaign centered finite-difference gradient relative error <= 1e-3."
+    },
+    "FD_STEP_S_PER_M": {
+      "value": 1e-05,
+      "reason": "Quadratic objective: no centered truncation error; 2% of background slowness avoids float32 cancellation. Actual float32 endpoint separation is used."
+    },
+    "ORACLE_RTOL": {
+      "value": 1e-11,
+      "reason": "Judge-only float64 hand-solution and normal-equation sanity checks."
+    },
+    "ORACLE_ATOL": {
+      "value": 1e-12,
+      "reason": "Judge-only float64 zero floor: reversing kilometre rays changes nearly zero segments by ~1.5e-13 m. Never a relaxed implementation tolerance."
+    }
+  },
+  "sanity": {
+    "small_hand": {
+      "slowness_s_per_m": [
+        0.0005066666603088379,
+        0.0006066666841506958
+      ],
+      "condition_augmented": 1.732050807568877,
+      "hand_derivation": "inv(G.T G)= [[2,-1],[-1,2]]/3e6; multiply G.T t."
+    },
+    "small_damped": {
+      "slowness_s_per_m": [
+        0.0003875478871491161,
+        0.0005015214455738988,
+        0.0005975478854820487,
+        0.0005715214547194865
+      ],
+      "condition_augmented": 4.82807774685883
+    },
+    "checkerboard_clean": {
+      "nrays": 450,
+      "ncells": 120,
+      "mask_cells": 80,
+      "noise_std_seconds": 0.0,
+      "correlation": 0.9999911823584527,
+      "condition_augmented": 17.176822577421625,
+      "slowness_range_s_per_m": [
+        0.0004749162087788739,
+        0.0005250835029962163
+      ],
+      "velocity_range_m_per_s": [
+        1904.4589942244024,
+        2105.63459725084
+      ],
+      "travel_time_range_s": [
+        0.4950000047683716,
+        0.7652614116668701
+      ],
+      "residual_l2_s": 0.00033462909064420056
+    },
+    "checkerboard_noisy": {
+      "nrays": 450,
+      "ncells": 120,
+      "mask_cells": 80,
+      "noise_std_seconds": 2e-05,
+      "correlation": 0.9999884896967735,
+      "condition_augmented": 17.176822577421625,
+      "slowness_range_s_per_m": [
+        0.0004749000664040069,
+        0.0005251870282986938
+      ],
+      "velocity_range_m_per_s": [
+        1904.083585688377,
+        2105.7061700835397
+      ],
+      "travel_time_range_s": [
+        0.49496230483055115,
+        0.765270471572876
+      ],
+      "residual_l2_s": 0.0005023000254551984
+    },
+    "gradient_plain": {
+      "objective_s_squared": 0.01750063886369291,
+      "gradient_range_s_m": [
+        -36.458086696439615,
+        154.9913594202415
+      ],
+      "fd_max_abs_difference": 8.526512829121202e-14
+    },
+    "gradient_damped": {
+      "objective_s_squared": 0.018811388396381273,
+      "gradient_range_s_m": [
+        -47.48308508096748,
+        162.34135834326008
+      ],
+      "fd_max_abs_difference": 1.4210854715202004e-13
+    }
+  }
+}

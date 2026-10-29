@@ -1,0 +1,58 @@
+{
+  "seed": {
+    "spiking": 4101,
+    "short": 4102,
+    "gap": 4103
+  },
+  "versions": {
+    "numpy": "2.5.4",
+    "scipy": "1.18.1"
+  },
+  "inputs": {
+    "spiking": {
+      "length": 256,
+      "spikes": 35,
+      "wavelet": [
+        1.0,
+        0.5,
+        -0.20000000298023224
+      ],
+      "inverse_length": 32,
+      "stabilization": 1e-06
+    },
+    "spiking_loaded": {
+      "trace_length": 258,
+      "wavelet": [
+        2.0,
+        1.0,
+        -0.4000000059604645
+      ],
+      "inverse_length": 32,
+      "stabilization": 0.2,
+      "source": "same reflectivity as spiking"
+    },
+    "predictive": {
+      "length": 192,
+      "short": {
+        "order": 8,
+        "lag": 1
+      },
+      "gap": {
+        "order": 12,
+        "lag": 3
+      },
+      "stabilization": 0.01
+    }
+  },
+  "tolerances": {
+    "relative_max_error": {
+      "value": 0.0001,
+      "reason": "float32 rounding against float64 reference"
+    },
+    "minimum_correlation": {
+      "value": 0.9,
+      "reason": "campaign noise-free recovery threshold"
+    }
+  },
+  "spiking_correlation": 0.9999999961113369
+}

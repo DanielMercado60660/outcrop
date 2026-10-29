@@ -1,0 +1,17 @@
+{
+  "versions": {
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "torch": "2.15.0",
+    "deepwave": "0.1.0",
+    "pytest": "9.2.0"
+  },
+  "source_sha256": {
+    "elastic.py": "880009ed3020cfd3c93b056b77c52aebb1714cc76ccfdd820f83fae355016aab",
+    "elastic.c": "55c12f4ffa2f390d1ab66be70b99a0590f4b61d3f04af8e15712c96a109ef065",
+    "elastic_kernels.h": "7dc47b164a461f9b1d8452440bce576451453994f45ab34f6b3103429eebb100",
+    "_staggered_grid.py": "e6f70ce4d1199315f61955e53d88938e524e9bf42d07986a4baf15e89ad5dc38",
+    "_common.py": "f68a299c4367ba11c57196e37425f53feefcaa21db0b8e13a94c76714d324f6a",
+    "libdeepwave_C.dylib": "305176361bae47d347abf1a274d3a52ef89bb52e5a0ec12cf053444ded0af182"
+  }
+}

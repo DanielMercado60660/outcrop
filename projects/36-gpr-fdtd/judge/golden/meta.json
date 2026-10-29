@@ -1,0 +1,19 @@
+{
+  "seed": 3601,
+  "numpy": "2.5.4",
+  "scipy": "1.18.1",
+  "reference": "float64 SciPy sparse Yee difference operators; analytic plane wave and Fresnel coefficient",
+  "inputs": {
+    "all": "All input arrays and scalar numerical inputs are saved in each npz; SI units, periodic domain.",
+    "heterogeneous": "21x19, random permittivity 1..5 and three random fields; 45 steps",
+    "wave": "24, 48, 96 square grids over 1 m; diagonal one-cycle plane wave; CFL 0.4; n/2 steps",
+    "reflection": "4x800 grid, 0.005 m spacing, 800 steps, Gaussian width 0.15 m at z=1 m, interface at z=2 m, relative permittivity 1 to 4"
+  },
+  "tolerances": {
+    "parity": "1e-4 relative max norm, float32 rounding",
+    "cross": "1e-4 relative max norm, float32 rounding",
+    "zero_hz_absolute": "1e-6 V/m for reflection Hz parity and cross-check; exact symmetry gives zero, so relative error is undefined; allows float32 roundoff relative to a unit V/m pulse",
+    "convergence": "error ratio <= 0.30 per refinement, second order",
+    "reflection": "2% relative amplitude, finite-grid interface error"
+  }
+}

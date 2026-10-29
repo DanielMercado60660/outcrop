@@ -1,0 +1,86 @@
+{
+  "units": {
+    "positions": "m, x horizontal and z positive down",
+    "density": "kg/m^3",
+    "gz": "mGal, positive down"
+  },
+  "gravitational_constant_SI": 6.6743e-11,
+  "seed": "none; all inputs deterministic",
+  "versions": {
+    "numpy": "2.5.4",
+    "harmonica": "0.7.0",
+    "scipy": "1.18.1",
+    "numba": "0.68.1"
+  },
+  "cases": {
+    "rectangle": {
+      "source": "Harmonica finite prism, strike +/- 10,000 km; independently checked by area quadrature",
+      "density_kg_m3": 600.0,
+      "prism_w_e_s_n_bottom_top_m": [
+        -800,
+        900,
+        -10000000.0,
+        10000000.0,
+        -1600,
+        -500
+      ]
+    },
+    "polygon": {
+      "source": "96-point Gauss-Legendre area integration per triangle, checked at order 64",
+      "density_kg_m3": -425
+    },
+    "polygon_reversed": {
+      "source": "same area integral as polygon, reversed winding",
+      "density_kg_m3": -425
+    },
+    "polygon_translated": {
+      "source": "same area integral as polygon, translated with observations",
+      "density_kg_m3": -425,
+      "translation_m": [
+        4000.0,
+        3000.0
+      ]
+    },
+    "zero_density": {
+      "source": "exact zero density response",
+      "density_kg_m3": 0
+    },
+    "concave": {
+      "source": "sum of independent area integrations over two rectangles",
+      "density_kg_m3": 700
+    },
+    "cylinder": {
+      "source": "analytic infinite circular cylinder; 1024-sided inscribed polygon approximation independently checked by area quadrature",
+      "density_kg_m3": 800,
+      "radius_m": 400,
+      "center_m": [
+        0,
+        1200
+      ]
+    },
+    "slab": {
+      "source": "exact analytic finite-width rectangle; separate infinite-slab limit assertion",
+      "density_kg_m3": 500,
+      "half_width_m": 100000.0,
+      "thickness_m": 300,
+      "infinite_slab_mgal": 6.290379554356306,
+      "tested_relative_difference_from_infinite": 0.007320799178749504,
+      "limit_half_width_m": 10000000.0,
+      "limit_relative_error": 7.321127349435574e-05
+    }
+  },
+  "tolerances": {
+    "relative_error": {
+      "value": 0.0001,
+      "reason": "campaign float32 limit, including geometric truncation"
+    },
+    "cross_path_relative_error": {
+      "value": 0.0002,
+      "reason": "sum of two independent 1e-4 implementation error budgets"
+    },
+    "zero_absolute_error_mgal": {
+      "value": 0.0,
+      "reason": "zero density has exactly zero response"
+    }
+  }
+}

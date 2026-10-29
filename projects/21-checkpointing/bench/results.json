@@ -1,0 +1,93 @@
+{
+  "project": "21-checkpointing",
+  "sizes": {
+    "small": {
+      "nz": 16,
+      "nx": 24,
+      "nt": 16,
+      "nshot": 1,
+      "nreceiver": 8,
+      "checkpoint_budget": 7
+    },
+    "medium": {
+      "nz": 48,
+      "nx": 64,
+      "nt": 64,
+      "nshot": 1,
+      "nreceiver": 16,
+      "checkpoint_budget": 7
+    },
+    "large": {
+      "nz": 96,
+      "nx": 128,
+      "nt": 192,
+      "nshot": 1,
+      "nreceiver": 32,
+      "checkpoint_budget": 7
+    }
+  },
+  "results": {
+    "judge": {
+      "small": {
+        "wall_s": 0.007229915994685143,
+        "peak_mem_mb": 0.029570579528808594,
+        "mem_method": "tracemalloc peak Python allocations; excludes native PyTorch storage"
+      },
+      "medium": {
+        "wall_s": 0.03150766697945073,
+        "peak_mem_mb": 0.05460643768310547,
+        "mem_method": "tracemalloc peak Python allocations; excludes native PyTorch storage"
+      },
+      "large": {
+        "wall_s": 0.14425804201164283,
+        "peak_mem_mb": 0.12457084655761719,
+        "mem_method": "tracemalloc peak Python allocations; excludes native PyTorch storage"
+      }
+    },
+    "mlx": {
+      "small": {
+        "wall_s": 0.01568387501174584,
+        "peak_mem_mb": 0.4462013244628906,
+        "mem_method": "MLX allocator peak after reset; process RSS high-water mark also reported",
+        "process_peak_rss_mb": 326.875
+      },
+      "medium": {
+        "wall_s": 0.06720300001325086,
+        "peak_mem_mb": 2.9985198974609375,
+        "mem_method": "MLX allocator peak after reset; process RSS high-water mark also reported",
+        "process_peak_rss_mb": 342.921875
+      },
+      "large": {
+        "wall_s": 0.2556632079940755,
+        "peak_mem_mb": 6.2867889404296875,
+        "mem_method": "MLX allocator peak after reset; process RSS high-water mark also reported",
+        "process_peak_rss_mb": 431.4375
+      }
+    },
+    "metal": {
+      "small": {
+        "wall_s": 0.05847849999554455,
+        "peak_mem_mb": 0.0,
+        "mem_method": "RUSAGE_CHILDREN ru_maxrss high-water delta in macOS bytes; cumulative and may be zero",
+        "children_peak_rss_mb": 17.28125
+      },
+      "medium": {
+        "wall_s": 0.08414320801966824,
+        "peak_mem_mb": 0.046875,
+        "mem_method": "RUSAGE_CHILDREN ru_maxrss high-water delta in macOS bytes; cumulative and may be zero",
+        "children_peak_rss_mb": 18.265625
+      },
+      "large": {
+        "wall_s": 0.16074991700588726,
+        "peak_mem_mb": 0.03125,
+        "mem_method": "RUSAGE_CHILDREN ru_maxrss high-water delta in macOS bytes; cumulative and may be zero",
+        "children_peak_rss_mb": 22.15625
+      }
+    }
+  },
+  "medium_max_rel_diff": {
+    "mlx": 6.988249452853211e-07,
+    "metal": 5.008799073531302e-07
+  },
+  "notes": "Median of three calls after one warmup; includes harness serialization and Metal process startup. Memory values are MiB. Child ru_maxrss is a cumulative high-water mark, not an individual-call peak; the warmup can make its measured delta zero. The reference uses float64 Deepwave on CPU. Timings and sizes are estimates until run on the target machine."
+}

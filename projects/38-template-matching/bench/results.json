@@ -1,0 +1,61 @@
+{
+  "project": "38-template-matching",
+  "sizes": {
+    "small": {
+      "stations": 2,
+      "samples": 8192,
+      "templates": 4,
+      "template_samples": 128
+    },
+    "medium": {
+      "stations": 4,
+      "samples": 16384,
+      "templates": 8,
+      "template_samples": 192
+    },
+    "large": {
+      "stations": 8,
+      "samples": 32768,
+      "templates": 16,
+      "template_samples": 256
+    }
+  },
+  "results": {
+    "judge": {
+      "small": {
+        "wall_s": 0.0020960000110790133,
+        "peak_mem_mb": 1.5706415176391602,
+        "mem_method": "tracemalloc peak during timed calls (Python and traced NumPy allocations)"
+      },
+      "medium": {
+        "wall_s": 0.016327541990904137,
+        "peak_mem_mb": 12.357388496398926,
+        "mem_method": "tracemalloc peak during timed calls (Python and traced NumPy allocations)"
+      },
+      "large": {
+        "skipped": "Direct float64 correlation may exceed 120 seconds at this size."
+      }
+    },
+    "metal": {
+      "small": {
+        "wall_s": 0.04176229101722129,
+        "peak_mem_mb": 14.90625,
+        "mem_method": "RUSAGE_CHILDREN ru_maxrss high-water delta, fresh worker; includes warm-up child"
+      },
+      "medium": {
+        "wall_s": 0.04923216599854641,
+        "peak_mem_mb": 22.6875,
+        "mem_method": "RUSAGE_CHILDREN ru_maxrss high-water delta, fresh worker; includes warm-up child"
+      },
+      "large": {
+        "wall_s": 0.07209487500949763,
+        "peak_mem_mb": 80.0625,
+        "mem_method": "RUSAGE_CHILDREN ru_maxrss high-water delta, fresh worker; includes warm-up child"
+      }
+    }
+  },
+  "medium_max_rel_diff": {
+    "metal": 7.921922255297611e-07
+  },
+  "notes": "Median of three calls after one warm-up; Metal timing includes harness file I/O, process startup and shader compilation. Relative difference is maximum absolute correlation error divided by maximum absolute reference correlation. ru_maxrss is a child high-water mark, not GPU allocation; memory is in MiB. Large runtimes depend on hardware and have not been calibrated on M5 Max."
+}

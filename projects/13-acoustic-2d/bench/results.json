@@ -1,0 +1,87 @@
+{
+  "project": "13-acoustic-2d",
+  "sizes": {
+    "small": {
+      "nz": 64,
+      "nx": 64,
+      "nt": 24,
+      "shots": 1,
+      "receivers": 32
+    },
+    "medium": {
+      "nz": 128,
+      "nx": 128,
+      "nt": 240,
+      "shots": 1,
+      "receivers": 64
+    },
+    "large": {
+      "nz": 256,
+      "nx": 256,
+      "nt": 1000,
+      "shots": 1,
+      "receivers": 128
+    }
+  },
+  "results": {
+    "judge": {
+      "small": {
+        "wall_s": 0.002026457979809493,
+        "peak_mem_mb": 0.037394,
+        "mem_method": "tracemalloc peak (Python allocations; excludes native Torch allocations)"
+      },
+      "medium": {
+        "wall_s": 0.008723834005650133,
+        "peak_mem_mb": 0.137354,
+        "mem_method": "tracemalloc peak (Python allocations; excludes native Torch allocations)"
+      },
+      "large": {
+        "wall_s": 0.07988899998599663,
+        "peak_mem_mb": 0.536546,
+        "mem_method": "tracemalloc peak (Python allocations; excludes native Torch allocations)"
+      }
+    },
+    "mlx": {
+      "small": {
+        "wall_s": 0.00852862501051277,
+        "peak_mem_mb": 2.167028,
+        "mem_method": "MLX reset_peak_memory/get_peak_memory (bytes; includes live MLX allocations)",
+        "process_peak_rss_mb": 362.348544
+      },
+      "medium": {
+        "wall_s": 0.11787212500348687,
+        "peak_mem_mb": 4.89058,
+        "mem_method": "MLX reset_peak_memory/get_peak_memory (bytes; includes live MLX allocations)",
+        "process_peak_rss_mb": 364.46208
+      },
+      "large": {
+        "wall_s": 0.48833870800444856,
+        "peak_mem_mb": 16.33554,
+        "mem_method": "MLX reset_peak_memory/get_peak_memory (bytes; includes live MLX allocations)",
+        "process_peak_rss_mb": 374.423552
+      }
+    },
+    "metal": {
+      "small": {
+        "wall_s": 0.03997637500287965,
+        "peak_mem_mb": 0.0,
+        "mem_method": "RUSAGE_CHILDREN ru_maxrss high-water delta, macOS bytes; may be zero after warm-up"
+      },
+      "medium": {
+        "wall_s": 0.046640457992907614,
+        "peak_mem_mb": 0.032768,
+        "mem_method": "RUSAGE_CHILDREN ru_maxrss high-water delta, macOS bytes; may be zero after warm-up"
+      },
+      "large": {
+        "wall_s": 0.060020542005077004,
+        "peak_mem_mb": 0.0,
+        "mem_method": "RUSAGE_CHILDREN ru_maxrss high-water delta, macOS bytes; may be zero after warm-up"
+      }
+    }
+  },
+  "medium_max_rel_diff": {
+    "mlx": 3.310789092822435e-07,
+    "metal": 3.7314321240840215e-07
+  },
+  "notes": "Median of three wall-clock calls after one warm-up; inputs fixed by seed 1301. Spacing 10 m, dt 0.001 s, order 4, 12-cell PML. Metal timing includes process startup, shader compilation and file I/O. Memory MB is decimal; MLX RSS is the parent lifetime high-water mark. Child RSS is a cumulative high-water statistic, so its delta is not an individual child peak. Relative difference is maximum absolute error divided by reference peak amplitude."
+}

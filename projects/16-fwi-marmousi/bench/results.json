@@ -1,0 +1,173 @@
+{
+  "project": "16-fwi-marmousi",
+  "sizes": {
+    "small": {
+      "model": "synthetic tilted layers, fault and lens (stand-in)",
+      "nz": 48,
+      "nx": 64,
+      "nt": 800,
+      "shots": 4,
+      "receivers": 64,
+      "grid_spacing": 10.0,
+      "dt": 0.001,
+      "accuracy": 4,
+      "pml_width": 10,
+      "pml_freq": 15.0,
+      "max_vel": 2600.0,
+      "record_length_s": 0.799,
+      "shot_batch_size": 1,
+      "source_depth_index": 2,
+      "receiver_depth_index": 2
+    },
+    "medium": {
+      "model": "data/marmousi2/vp_70x340_d50m.npy",
+      "nz": 70,
+      "nx": 340,
+      "nt": 1001,
+      "shots": 8,
+      "receivers": 340,
+      "grid_spacing": 50.0,
+      "dt": 0.004,
+      "accuracy": 4,
+      "pml_width": 12,
+      "pml_freq": 4.5,
+      "max_vel": 4700.0,
+      "record_length_s": 4.0,
+      "shot_batch_size": 1,
+      "source_depth_index": 1,
+      "receiver_depth_index": 1,
+      "starting_model_gaussian_sigma_m": 150.0
+    },
+    "large": {
+      "model": "data/marmousi2/vp_140x680_d25m.npy",
+      "nz": 140,
+      "nx": 680,
+      "nt": 2001,
+      "shots": 8,
+      "receivers": 680,
+      "grid_spacing": 25.0,
+      "dt": 0.002,
+      "accuracy": 4,
+      "pml_width": 24,
+      "pml_freq": 8.0,
+      "max_vel": 4700.0,
+      "record_length_s": 4.0,
+      "shot_batch_size": 1,
+      "source_depth_index": 1,
+      "receiver_depth_index": 1,
+      "starting_model_gaussian_sigma_m": 150.0
+    }
+  },
+  "results": {
+    "judge": {
+      "small": {
+        "wall_s": 0.17215554200811312,
+        "peak_mem_mb": 1.728925,
+        "mem_method": "tracemalloc peak; native PyTorch memory excluded; process lifetime max RSS also reported",
+        "repeat_wall_s": [
+          0.1668659999850206,
+          0.17483066700515337,
+          0.17215554200811312
+        ],
+        "process_max_rss_mb": 363.937792
+      },
+      "medium": {
+        "wall_s": 1.913022374996217,
+        "peak_mem_mb": 22.329094,
+        "mem_method": "tracemalloc peak; native PyTorch memory excluded; process lifetime max RSS also reported",
+        "repeat_wall_s": [
+          1.9122604170115665,
+          1.913022374996217,
+          1.9493907919968478
+        ],
+        "process_max_rss_mb": 977.207296
+      },
+      "large": {
+        "wall_s": 14.04553683300037,
+        "peak_mem_mb": 89.222861,
+        "mem_method": "tracemalloc peak; native PyTorch memory excluded; process lifetime max RSS also reported",
+        "repeat_wall_s": [
+          14.04553683300037,
+          14.204792832984822,
+          13.952657416986767
+        ],
+        "process_max_rss_mb": 3394.813952
+      }
+    },
+    "mlx": {
+      "small": {
+        "wall_s": 3.2452722919988446,
+        "peak_mem_mb": 61.308264,
+        "mem_method": "mx.reset_peak_memory/get_peak_memory; process lifetime max RSS also reported",
+        "repeat_wall_s": [
+          3.235190458013676,
+          3.2452722919988446,
+          3.282242708024569
+        ],
+        "process_max_rss_mb": 638.828544
+      },
+      "medium": {
+        "wall_s": 8.396441042015795,
+        "peak_mem_mb": 334.93838,
+        "mem_method": "mx.reset_peak_memory/get_peak_memory; process lifetime max RSS also reported",
+        "repeat_wall_s": [
+          8.396441042015795,
+          8.397385791991837,
+          8.38448687500204
+        ],
+        "process_max_rss_mb": 1058.963456
+      },
+      "large": {
+        "wall_s": 18.68019737501163,
+        "peak_mem_mb": 2478.265936,
+        "mem_method": "mx.reset_peak_memory/get_peak_memory; process lifetime max RSS also reported",
+        "repeat_wall_s": [
+          18.68019737501163,
+          18.63037795800483,
+          18.73784750001505
+        ],
+        "process_max_rss_mb": 3627.220992
+      }
+    },
+    "metal": {
+      "small": {
+        "wall_s": 0.3520541249890812,
+        "peak_mem_mb": 39.48544,
+        "mem_method": "fresh worker RUSAGE_CHILDREN ru_maxrss delta; maximum of one-shot child peaks; macOS bytes",
+        "repeat_wall_s": [
+          0.32946720797917806,
+          0.3624512920214329,
+          0.3520541249890812
+        ],
+        "child_max_rss_mb": 39.48544
+      },
+      "medium": {
+        "wall_s": 0.941490375000285,
+        "peak_mem_mb": 173.735936,
+        "mem_method": "fresh worker RUSAGE_CHILDREN ru_maxrss delta; maximum of one-shot child peaks; macOS bytes",
+        "repeat_wall_s": [
+          0.8552689999924041,
+          0.941490375000285,
+          1.0027525829791557
+        ],
+        "child_max_rss_mb": 173.735936
+      },
+      "large": {
+        "wall_s": 1.950451874989085,
+        "peak_mem_mb": 1184.432128,
+        "mem_method": "fresh worker RUSAGE_CHILDREN ru_maxrss delta; maximum of one-shot child peaks; macOS bytes",
+        "repeat_wall_s": [
+          2.004506124998443,
+          1.950451874989085,
+          1.898428332991898
+        ],
+        "child_max_rss_mb": 1184.432128
+      }
+    }
+  },
+  "medium_max_rel_diff": {
+    "mlx": 1.2200930330159549e-05,
+    "metal": 5.271484500053752e-05
+  },
+  "notes": "Seed 1601. Small is an expanded synthetic stand-in; medium/large are Marmousi2. Marmousi2 surveys have eight surface shots, receivers at every horizontal cell, 4 s records, peak frequencies 4.5/8 Hz, and max_vel*dt/dx=0.376. All paths process shots sequentially, then average per-shot objectives/gradients; wall_s covers the full survey. Large padded cell-shot-step work is about 111x small. Noiseless targets are generated on the true velocity with Metal before timing. Median of three repeats after one warm-up; includes harness I/O, process launch, Metal shader compilation, and shot assembly. Fresh Metal measurement worker setup and input loading are outside its timer. Memory is the maximum over repeats, in decimal MB. Metal child RSS may omit GPU allocations; MLX process RSS is a lifetime high-water mark; tracemalloc excludes native PyTorch allocations. One large Metal shot history is about 1.12 GB; MLX autodiff retains more intermediates. Large target 5-60 s/path is unverified. The medium sanity metric is the maximum over predicted/objective/gradient of max(abs(actual-reference))/max(abs(reference)); reference is Deepwave CPU float64. Velocity model: Marmousi2 (AGL Elastic Marmousi), (c) 2004 Allied Geophysical Laboratory, University of Houston; Martin, Wiley & Marfurt (2006); CC BY 4.0. Block-averaged. Licence: https://creativecommons.org/licenses/by/4.0/"
+}

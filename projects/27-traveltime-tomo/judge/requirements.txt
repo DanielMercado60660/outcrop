@@ -1,0 +1,5 @@
+# Python 3.12.11; these exact versions are also in the repository's uv.lock.
+# Use the provided venv offline. No reference library besides NumPy is needed.
+numpy==2.5.4
+pytest==9.2.0
+ruff==0.17.3

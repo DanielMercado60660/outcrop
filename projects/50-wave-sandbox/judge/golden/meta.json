@@ -1,0 +1,2994 @@
+{
+  "seed": 50001316,
+  "python": "3.12.11",
+  "versions": {
+    "numpy": "2.5.4",
+    "torch": "2.15.0",
+    "deepwave": "0.1.0",
+    "pytest": "9.2.0",
+    "ruff": "0.17.3"
+  },
+  "reference": "Deepwave scalar CPU float64; analytic periodic homogeneous standing wave",
+  "deepwave_scalar_sha256": "68b90b7303c2eaad0558be0d4b9405339c026685b35e81685acb2fac8982c8c0",
+  "deepwave_binary_sha256": "305176361bae47d347abf1a274d3a52ef89bb52e5a0ec12cf053444ded0af182",
+  "deepwave_source_sha256": {
+    "scalar.py": "68b90b7303c2eaad0558be0d4b9405339c026685b35e81685acb2fac8982c8c0",
+    "_common.py": "f68a299c4367ba11c57196e37425f53feefcaa21db0b8e13a94c76714d324f6a",
+    "_regular_grid.py": "9a4192aa07b7bd1e4f89f68b72bea3f0b40a5cd6eb8a8ed7f41c5c2d70b1b098",
+    "scalar.c": "c27ac6a07e21ff3948452ce99dca311de7640e8a911cb072ae021f6880ae9e3e",
+    "scalar_kernels.h": "b90fee2bbf6db774f705e442e0a5555ca86eb6d1d2ea861651c4e3adab90a76e",
+    "regular_grid.h": "b8de5452e3983b6f532dbe81a038999c983a98873e3f344c38b39263dfa881ac",
+    "libdeepwave_C.dylib": "305176361bae47d347abf1a274d3a52ef89bb52e5a0ec12cf053444ded0af182"
+  },
+  "scheme_sha256": "62be94a897154212c36ac552fca76781e90f6ffd0e5605b65d5448930ae157e1",
+  "documented_scheme_float64_audit": {
+    "evolved_o2": {
+      "expected_state:0": 3.7525103601981586e-15,
+      "expected_state:1": 3.804102574471019e-15,
+      "expected_state:2": 2.9701939732712527e-15,
+      "expected_state:3": 2.929942626244364e-15,
+      "expected_state:4": 4.923532187709906e-15,
+      "expected_state:5": 7.674085778418654e-15,
+      "expected_receivers:None": 8.242550105482619e-16,
+      "expected_rgba:None": 7.541189894766376e-14,
+      "expected_texture_samples:None": 8.770761894538737e-14
+    },
+    "one_step_o2": {
+      "expected_state:0": 1.7456236254272652e-16,
+      "expected_state:1": 0.0,
+      "expected_state:2": 1.1669936429308206e-16,
+      "expected_state:3": 1.569516719330182e-16,
+      "expected_state:4": 8.416080408018118e-17,
+      "expected_state:5": 1.673434706314288e-16,
+      "expected_receivers:None": 0.0,
+      "expected_rgba:None": 3.3306690738754696e-16,
+      "expected_texture_samples:None": 2.7755575615628914e-17
+    },
+    "evolved_o4": {
+      "expected_state:0": 4.832399246416117e-15,
+      "expected_state:1": 4.782718597784734e-15,
+      "expected_state:2": 5.841003633819369e-15,
+      "expected_state:3": 4.784168367827254e-15,
+      "expected_state:4": 5.661423943923862e-15,
+      "expected_state:5": 6.550224885494637e-15,
+      "expected_receivers:None": 1.064599123895203e-15,
+      "expected_rgba:None": 9.070522111187529e-14,
+      "expected_texture_samples:None": 8.032463583163008e-14
+    },
+    "one_step_o4": {
+      "expected_state:0": 1.5659768798828354e-16,
+      "expected_state:1": 0.0,
+      "expected_state:2": 1.0781999826681738e-16,
+      "expected_state:3": 2.504515415820657e-16,
+      "expected_state:4": 7.879649414790368e-17,
+      "expected_state:5": 1.204855721990248e-16,
+      "expected_receivers:None": 0.0,
+      "expected_rgba:None": 2.220446049250313e-16,
+      "expected_texture_samples:None": 0.0
+    },
+    "evolved_o6": {
+      "expected_state:0": 5.102532017538501e-15,
+      "expected_state:1": 5.1554594680178044e-15,
+      "expected_state:2": 3.903449162133773e-15,
+      "expected_state:3": 7.247165809102079e-15,
+      "expected_state:4": 4.62406467488434e-15,
+      "expected_state:5": 9.077215684352462e-15,
+      "expected_receivers:None": 1.1100412524672072e-15,
+      "expected_rgba:None": 1.0313971898767704e-13,
+      "expected_texture_samples:None": 5.6066262743570405e-14
+    },
+    "one_step_o6": {
+      "expected_state:0": 1.5100425493126402e-16,
+      "expected_state:1": 0.0,
+      "expected_state:2": 1.0348374218209572e-16,
+      "expected_state:3": 1.2164554216998024e-16,
+      "expected_state:4": 7.592732472528267e-17,
+      "expected_state:5": 9.508625333739788e-17,
+      "expected_receivers:None": 0.0,
+      "expected_rgba:None": 2.220446049250313e-16,
+      "expected_texture_samples:None": 3.469446951953614e-18
+    },
+    "evolved_o8": {
+      "expected_state:0": 4.154803312768364e-15,
+      "expected_state:1": 4.195995055906881e-15,
+      "expected_state:2": 4.299615538393673e-15,
+      "expected_state:3": 5.284564889898537e-15,
+      "expected_state:4": 4.461550891607223e-15,
+      "expected_state:5": 5.745073133945335e-15,
+      "expected_receivers:None": 9.485907416640551e-16,
+      "expected_rgba:None": 7.389922007661198e-14,
+      "expected_texture_samples:None": 6.616929226765933e-14
+    },
+    "one_step_o8": {
+      "expected_state:0": 1.5469211109720782e-16,
+      "expected_state:1": 0.0,
+      "expected_state:2": 1.0313327256420982e-16,
+      "expected_state:3": 1.1773818054398184e-16,
+      "expected_state:4": 1.593775927636925e-16,
+      "expected_state:5": 9.97237844463933e-17,
+      "expected_receivers:None": 0.0,
+      "expected_rgba:None": 2.220446049250313e-16,
+      "expected_texture_samples:None": 2.7755575615628914e-17
+    },
+    "rest": {
+      "expected_state:0": 0.0,
+      "expected_state:1": 0.0,
+      "expected_state:2": 0.0,
+      "expected_state:3": 0.0,
+      "expected_state:4": 0.0,
+      "expected_state:5": 0.0,
+      "expected_receivers:None": 0.0,
+      "expected_rgba:None": 0.0,
+      "expected_texture_samples:None": 0.0
+    },
+    "source_impulse": {
+      "expected_state:0": 0.0,
+      "expected_state:1": 0.0,
+      "expected_state:2": 0.0,
+      "expected_state:3": 0.0,
+      "expected_state:4": 0.0,
+      "expected_state:5": 0.0,
+      "expected_receivers:None": 0.0,
+      "expected_rgba:None": 0.0,
+      "expected_texture_samples:None": 0.0
+    },
+    "convergence_n16": {
+      "expected_state:0": 1.9454595731085915e-15,
+      "expected_state:1": 1.0190001981063184e-15,
+      "expected_state:2": 0.0,
+      "expected_state:3": 0.0,
+      "expected_state:4": 0.0,
+      "expected_state:5": 0.0,
+      "expected_receivers:None": 7.804242869632683e-16,
+      "expected_rgba:None": 1.5543122344752192e-15,
+      "expected_texture_samples:None": 1.9984014443252818e-15
+    },
+    "convergence_n32": {
+      "expected_state:0": 3.5176269082163856e-15,
+      "expected_state:1": 2.9084331687665225e-15,
+      "expected_state:2": 0.0,
+      "expected_state:3": 0.0,
+      "expected_state:4": 0.0,
+      "expected_state:5": 0.0,
+      "expected_receivers:None": 3.7720507203224636e-15,
+      "expected_rgba:None": 6.328271240363392e-15,
+      "expected_texture_samples:None": 1.199040866595169e-14
+    },
+    "convergence_n64": {
+      "expected_state:0": 1.3092106300808611e-14,
+      "expected_state:1": 1.1496573089330926e-14,
+      "expected_state:2": 0.0,
+      "expected_state:3": 0.0,
+      "expected_state:4": 0.0,
+      "expected_state:5": 0.0,
+      "expected_receivers:None": 1.1740497618967776e-14,
+      "expected_rgba:None": 1.4876988529977098e-14,
+      "expected_texture_samples:None": 3.652633751016765e-14
+    },
+    "fwi": {
+      "expected_receivers:None": 6.352470958510872e-16
+    }
+  },
+  "render_target_format": "MTLPixelFormatRGBA32Float; linear float32; no intermediate quantization",
+  "tolerances": {
+    "PARITY_REL": {
+      "value": 0.0001,
+      "reason": "Campaign float32 max-absolute error / max-absolute reference at identical discretization, in physical field units."
+    },
+    "RENDER_ROUND_ABS": {
+      "value": 4.76837158203125e-07,
+      "reason": "Four float32 epsilons for colormap division/storage; absolute color bound is PARITY_REL*peak pressure/render_scale plus this allowance (colormap Lipschitz gain 1/render_scale)."
+    },
+    "RENDER_AUDIT_MARGIN_MIN": {
+      "value": 3.0,
+      "reason": "Director ruling: Deepwave float32 and independent written-recurrence float32 must each have at least 3x render headroom."
+    },
+    "ORACLE_CALIBRATION_REL": {
+      "value": 1e-14,
+      "reason": "Float64 reference source-sign/scale calibration against the exact first step."
+    },
+    "ORACLE_SCHEME_REL": {
+      "value": 1e-10,
+      "reason": "Oracle-only NumPy evaluation of SCHEME.md vs Deepwave; reordered float64 operations over 160 steps."
+    },
+    "EXACT_ABS": {
+      "value": 0.0,
+      "reason": "Zero-input linear physics and constant render channels are exact."
+    },
+    "GRAD_FD_REL": {
+      "value": 0.001,
+      "reason": "Campaign centered finite difference gradient threshold for float32."
+    },
+    "FD_STEP_MPS": {
+      "value": 2.0,
+      "reason": "2 m/s centered perturbation balances float32 objective cancellation and truncation."
+    },
+    "GRAD_COS_MIN": {
+      "value": 0.999,
+      "reason": "Project 16 direction agreement, applied to live FWI gradient."
+    },
+    "CONVERGENCE_ORDER": {
+      "value": 2.0,
+      "reason": "Fourth-order space with dt proportional to h has second-order total error."
+    },
+    "CONVERGENCE_ORDER_SLACK": {
+      "value": 0.2,
+      "reason": "Campaign order acceptance band of 0.2."
+    },
+    "MIN_STEPS_PER_SECOND": {
+      "value": 60.0,
+      "reason": "Project 50: at least 60 simulation+render frames per second."
+    },
+    "PERFORMANCE_STEPS": {
+      "value": 240,
+      "reason": "240 resident steps amortize launch; full wall time is charged."
+    },
+    "PERFORMANCE_GRID_SIZE": {
+      "value": 1000,
+      "reason": "Project 50 mandates 1000 by 1000 physical cells."
+    },
+    "DESCENT_RATIO_MAX": {
+      "value": 0.99,
+      "reason": "One conservative oracle-selected live FWI step must reduce objective by at least 1%."
+    }
+  },
+  "inputs": {
+    "evolved_o2": {
+      "inputs": {
+        "velocity": {
+          "shape": [
+            25,
+            31
+          ],
+          "dtype": "float32"
+        },
+        "state": {
+          "shape": [
+            6,
+            41,
+            47
+          ],
+          "dtype": "float32"
+        },
+        "source_amplitudes": {
+          "shape": [
+            2,
+            160
+          ],
+          "dtype": "float32"
+        },
+        "source_locations": {
+          "shape": [
+            2,
+            2
+          ],
+          "dtype": "int64"
+        },
+        "receiver_locations": {
+          "shape": [
+            7,
+            2
+          ],
+          "dtype": "int64"
+        },
+        "grid_spacing": {
+          "shape": [
+            2
+          ],
+          "dtype": "float64"
+        },
+        "dt": {
+          "shape": [],
+          "dtype": "float64",
+          "value": 0.001
+        },
+        "accuracy": {
+          "shape": [],
+          "dtype": "int64",
+          "value": 2
+        },
+        "pml_width": {
+          "shape": [],
+          "dtype": "int64",
+          "value": 8
+        },
+        "pml_freq": {
+          "shape": [],
+          "dtype": "float64",
+          "value": 25.0
+        },
+        "max_velocity": {
+          "shape": [],
+          "dtype": "float64",
+          "value": 2500.0
+        },
+        "boundary": {
+          "shape": [],
+          "dtype": "<U3",
+          "value": "pml"
+        },
+        "render_scale": {
+          "shape": [],
+          "dtype": "float64",
+          "value": 0.25
+        }
+      },
+      "outputs": {
+        "expected_receivers": {
+          "shape": [
+            7,
+            160
+          ],
+          "dtype": "float64",
+          "min": -32.32658855574359,
+          "max": 19.811737689955777
+        },
+        "expected_state": {
+          "shape": [
+            6,
+            41,
+            47
+          ],
+          "dtype": "float64",
+          "min": -5.136540051399609,
+          "max": 4.461311389067208
+        },
+        "expected_rgba": {
+          "shape": [
+            25,
+            31,
+            4
+          ],
+          "dtype": "float64",
+          "min": 0.0,
+          "max": 1.0
+        },
+        "expected_texture_samples": {
+          "shape": [
+            160,
+            7,
+            4
+          ],
+          "dtype": "float64",
+          "min": 0.0,
+          "max": 1.0
+        }
+      }
+    },
+    "one_step_o2": {
+      "inputs": {
+        "velocity": {
+          "shape": [
+            25,
+            31
+          ],
+          "dtype": "float32"
+        },
+        "state": {
+          "shape": [
+            6,
+            41,
+            47
+          ],
+          "dtype": "float32"
+        },
+        "source_amplitudes": {
+          "shape": [
+            2,
+            1
+          ],
+          "dtype": "float32"
+        },
+        "source_locations": {
+          "shape": [
+            2,
+            2
+          ],
+          "dtype": "int64"
+        },
+        "receiver_locations": {
+          "shape": [
+            7,
+            2
+          ],
+          "dtype": "int64"
+        },
+        "grid_spacing": {
+          "shape": [
+            2
+          ],
+          "dtype": "float64"
+        },
+        "dt": {
+          "shape": [],
+          "dtype": "float64",
+          "value": 0.001
+        },
+        "accuracy": {
+          "shape": [],
+          "dtype": "int64",
+          "value": 2
+        },
+        "pml_width": {
+          "shape": [],
+          "dtype": "int64",
+          "value": 8
+        },
+        "pml_freq": {
+          "shape": [],
+          "dtype": "float64",
+          "value": 25.0
+        },
+        "max_velocity": {
+          "shape": [],
+          "dtype": "float64",
+          "value": 2500.0
+        },
+        "boundary": {
+          "shape": [],
+          "dtype": "<U3",
+          "value": "pml"
+        },
+        "render_scale": {
+          "shape": [],
+          "dtype": "float64",
+          "value": 0.25
+        }
+      },
+      "outputs": {
+        "expected_receivers": {
+          "shape": [
+            7,
+            1
+          ],
+          "dtype": "float64",
+          "min": -2.2211642265319824,
+          "max": 1.4207040071487427
+        },
+        "expected_state": {
+          "shape": [
+            6,
+            41,
+            47
+          ],
+          "dtype": "float64",
+          "min": -5.088029325237457,
+          "max": 4.461311340332031
+        },
+        "expected_rgba": {
+          "shape": [
+            25,
+            31,
+            4
+          ],
+          "dtype": "float64",
+          "min": 0.0,
+          "max": 1.0
+        },
+        "expected_texture_samples": {
+          "shape": [
+            1,
+            7,
+            4
+          ],
+          "dtype": "float64",
+          "min": 0.0,
+          "max": 1.0
+        }
+      }
+    },
+    "evolved_o4": {
+      "inputs": {
+        "velocity": {
+          "shape": [
+            25,
+            31
+          ],
+          "dtype": "float32"
+        },
+        "state": {
+          "shape": [
+            6,
+            41,
+            47
+          ],
+          "dtype": "float32"
+        },
+        "source_amplitudes": {
+          "shape": [
+            2,
+            160
+          ],
+          "dtype": "float32"
+        },
+        "source_locations": {
+          "shape": [
+            2,
+            2
+          ],
+          "dtype": "int64"
+        },
+        "receiver_locations": {
+          "shape": [
+            7,
+            2
+          ],
+          "dtype": "int64"
+        },
+        "grid_spacing": {
+          "shape": [
+            2
+          ],
+          "dtype": "float64"
+        },
+        "dt": {
+          "shape": [],
+          "dtype": "float64",
+          "value": 0.001
+        },
+        "accuracy": {
+          "shape": [],
+          "dtype": "int64",
+          "value": 4
+        },
+        "pml_width": {
+          "shape": [],
+          "dtype": "int64",
+          "value": 8
+        },
+        "pml_freq": {
+          "shape": [],
+          "dtype": "float64",
+          "value": 25.0
+        },
+        "max_velocity": {
+          "shape": [],
+          "dtype": "float64",
+          "value": 2500.0
+        },
+        "boundary": {
+          "shape": [],
+          "dtype": "<U3",
+          "value": "pml"
+        },
+        "render_scale": {
+          "shape": [],
+          "dtype": "float64",
+          "value": 0.25
+        }
+      },
+      "outputs": {
+        "expected_receivers": {
+          "shape": [
+            7,
+            160
+          ],
+          "dtype": "float64",
+          "min": -26.69710015016111,
+          "max": 17.166332435407714
+        },
+        "expected_state": {
+          "shape": [
+            6,
+            41,
+            47
+          ],
+          "dtype": "float64",
+          "min": -5.617599414770767,
+          "max": 3.7406275758101706
+        },
+        "expected_rgba": {
+          "shape": [
+            25,
+            31,
+            4
+          ],
+          "dtype": "float64",
+          "min": 0.0,
+          "max": 1.0
+        },
+        "expected_texture_samples": {
+          "shape": [
+            160,
+            7,
+            4
+          ],
+          "dtype": "float64",
+          "min": 0.0,
+          "max": 1.0
+        }
+      }
+    },
+    "one_step_o4": {
+      "inputs": {
+        "velocity": {
+          "shape": [
+            25,
+            31
+          ],
+          "dtype": "float32"
+        },
+        "state": {
+          "shape": [
+            6,
+            41,
+            47
+          ],
+          "dtype": "float32"
+        },
+        "source_amplitudes": {
+          "shape": [
+            2,
+            1
+          ],
+          "dtype": "float32"
+        },
+        "source_locations": {
+          "shape": [
+            2,
+            2
+          ],
+          "dtype": "int64"
+        },
+        "receiver_locations": {
+          "shape": [
+            7,
+            2
+          ],
+          "dtype": "int64"
+        },
+        "grid_spacing": {
+          "shape": [
+            2
+          ],
+          "dtype": "float64"
+        },
+        "dt": {
+          "shape": [],
+          "dtype": "float64",
+          "value": 0.001
+        },
+        "accuracy": {
+          "shape": [],
+          "dtype": "int64",
+          "value": 4
+        },
+        "pml_width": {
+          "shape": [],
+          "dtype": "int64",
+          "value": 8
+        },
+        "pml_freq": {
+          "shape": [],
+          "dtype": "float64",
+          "value": 25.0
+        },
+        "max_velocity": {
+          "shape": [],
+          "dtype": "float64",
+          "value": 2500.0
+        },
+        "boundary": {
+          "shape": [],
+          "dtype": "<U3",
+          "value": "pml"
+        },
+        "render_scale": {
+          "shape": [],
+          "dtype": "float64",
+          "value": 0.25
+        }
+      },
+      "outputs": {
+        "expected_receivers": {
+          "shape": [
+            7,
+            1
+          ],
+          "dtype": "float64",
+          "min": -3.007499933242798,
+          "max": 1.2429848909378052
+        },
+        "expected_state": {
+          "shape": [
+            6,
+            41,
+            47
+          ],
+          "dtype": "float64",
+          "min": -5.671721154443722,
+          "max": 3.6818816627484665
+        },
+        "expected_rgba": {
+          "shape": [
+            25,
+            31,
+            4
+          ],
+          "dtype": "float64",
+          "min": 0.0,
+          "max": 1.0
+        },
+        "expected_texture_samples": {
+          "shape": [
+            1,
+            7,
+            4
+          ],
+          "dtype": "float64",
+          "min": 0.0,
+          "max": 1.0
+        }
+      }
+    },
+    "evolved_o6": {
+      "inputs": {
+        "velocity": {
+          "shape": [
+            25,
+            31
+          ],
+          "dtype": "float32"
+        },
+        "state": {
+          "shape": [
+            6,
+            41,
+            47
+          ],
+          "dtype": "float32"
+        },
+        "source_amplitudes": {
+          "shape": [
+            2,
+            160
+          ],
+          "dtype": "float32"
+        },
+        "source_locations": {
+          "shape": [
+            2,
+            2
+          ],
+          "dtype": "int64"
+        },
+        "receiver_locations": {
+          "shape": [
+            7,
+            2
+          ],
+          "dtype": "int64"
+        },
+        "grid_spacing": {
+          "shape": [
+            2
+          ],
+          "dtype": "float64"
+        },
+        "dt": {
+          "shape": [],
+          "dtype": "float64",
+          "value": 0.001
+        },
+        "accuracy": {
+          "shape": [],
+          "dtype": "int64",
+          "value": 6
+        },
+        "pml_width": {
+          "shape": [],
+          "dtype": "int64",
+          "value": 8
+        },
+        "pml_freq": {
+          "shape": [],
+          "dtype": "float64",
+          "value": 25.0
+        },
+        "max_velocity": {
+          "shape": [],
+          "dtype": "float64",
+          "value": 2500.0
+        },
+        "boundary": {
+          "shape": [],
+          "dtype": "<U3",
+          "value": "pml"
+        },
+        "render_scale": {
+          "shape": [],
+          "dtype": "float64",
+          "value": 0.25
+        }
+      },
+      "outputs": {
+        "expected_receivers": {
+          "shape": [
+            7,
+            160
+          ],
+          "dtype": "float64",
+          "min": -25.604192066946304,
+          "max": 16.66292894022122
+        },
+        "expected_state": {
+          "shape": [
+            6,
+            41,
+            47
+          ],
+          "dtype": "float64",
+          "min": -5.9508886213998,
+          "max": 3.7355559075368876
+        },
+        "expected_rgba": {
+          "shape": [
+            25,
+            31,
+            4
+          ],
+          "dtype": "float64",
+          "min": 0.0,
+          "max": 1.0
+        },
+        "expected_texture_samples": {
+          "shape": [
+            160,
+            7,
+            4
+          ],
+          "dtype": "float64",
+          "min": 0.0,
+          "max": 1.0
+        }
+      }
+    },
+    "one_step_o6": {
+      "inputs": {
+        "velocity": {
+          "shape": [
+            25,
+            31
+          ],
+          "dtype": "float32"
+        },
+        "state": {
+          "shape": [
+            6,
+            41,
+            47
+          ],
+          "dtype": "float32"
+        },
+        "source_amplitudes": {
+          "shape": [
+            2,
+            1
+          ],
+          "dtype": "float32"
+        },
+        "source_locations": {
+          "shape": [
+            2,
+            2
+          ],
+          "dtype": "int64"
+        },
+        "receiver_locations": {
+          "shape": [
+            7,
+            2
+          ],
+          "dtype": "int64"
+        },
+        "grid_spacing": {
+          "shape": [
+            2
+          ],
+          "dtype": "float64"
+        },
+        "dt": {
+          "shape": [],
+          "dtype": "float64",
+          "value": 0.001
+        },
+        "accuracy": {
+          "shape": [],
+          "dtype": "int64",
+          "value": 6
+        },
+        "pml_width": {
+          "shape": [],
+          "dtype": "int64",
+          "value": 8
+        },
+        "pml_freq": {
+          "shape": [],
+          "dtype": "float64",
+          "value": 25.0
+        },
+        "max_velocity": {
+          "shape": [],
+          "dtype": "float64",
+          "value": 2500.0
+        },
+        "boundary": {
+          "shape": [],
+          "dtype": "<U3",
+          "value": "pml"
+        },
+        "render_scale": {
+          "shape": [],
+          "dtype": "float64",
+          "value": 0.25
+        }
+      },
+      "outputs": {
+        "expected_receivers": {
+          "shape": [
+            7,
+            1
+          ],
+          "dtype": "float64",
+          "min": -3.049543857574463,
+          "max": 1.2900508642196655
+        },
+        "expected_state": {
+          "shape": [
+            6,
+            41,
+            47
+          ],
+          "dtype": "float64",
+          "min": -5.950888633728027,
+          "max": 3.7081656455993652
+        },
+        "expected_rgba": {
+          "shape": [
+            25,
+            31,
+            4
+          ],
+          "dtype": "float64",
+          "min": 0.0,
+          "max": 1.0
+        },
+        "expected_texture_samples": {
+          "shape": [
+            1,
+            7,
+            4
+          ],
+          "dtype": "float64",
+          "min": 0.0,
+          "max": 1.0
+        }
+      }
+    },
+    "evolved_o8": {
+      "inputs": {
+        "velocity": {
+          "shape": [
+            25,
+            31
+          ],
+          "dtype": "float32"
+        },
+        "state": {
+          "shape": [
+            6,
+            41,
+            47
+          ],
+          "dtype": "float32"
+        },
+        "source_amplitudes": {
+          "shape": [
+            2,
+            160
+          ],
+          "dtype": "float32"
+        },
+        "source_locations": {
+          "shape": [
+            2,
+            2
+          ],
+          "dtype": "int64"
+        },
+        "receiver_locations": {
+          "shape": [
+            7,
+            2
+          ],
+          "dtype": "int64"
+        },
+        "grid_spacing": {
+          "shape": [
+            2
+          ],
+          "dtype": "float64"
+        },
+        "dt": {
+          "shape": [],
+          "dtype": "float64",
+          "value": 0.001
+        },
+        "accuracy": {
+          "shape": [],
+          "dtype": "int64",
+          "value": 8
+        },
+        "pml_width": {
+          "shape": [],
+          "dtype": "int64",
+          "value": 8
+        },
+        "pml_freq": {
+          "shape": [],
+          "dtype": "float64",
+          "value": 25.0
+        },
+        "max_velocity": {
+          "shape": [],
+          "dtype": "float64",
+          "value": 2500.0
+        },
+        "boundary": {
+          "shape": [],
+          "dtype": "<U3",
+          "value": "pml"
+        },
+        "render_scale": {
+          "shape": [],
+          "dtype": "float64",
+          "value": 0.25
+        }
+      },
+      "outputs": {
+        "expected_receivers": {
+          "shape": [
+            7,
+            160
+          ],
+          "dtype": "float64",
+          "min": -25.280467411937092,
+          "max": 16.411417546891972
+        },
+        "expected_state": {
+          "shape": [
+            6,
+            41,
+            47
+          ],
+          "dtype": "float64",
+          "min": -5.771829741785021,
+          "max": 3.8577896356080226
+        },
+        "expected_rgba": {
+          "shape": [
+            25,
+            31,
+            4
+          ],
+          "dtype": "float64",
+          "min": 0.0,
+          "max": 1.0
+        },
+        "expected_texture_samples": {
+          "shape": [
+            160,
+            7,
+            4
+          ],
+          "dtype": "float64",
+          "min": 0.0,
+          "max": 1.0
+        }
+      }
+    },
+    "one_step_o8": {
+      "inputs": {
+        "velocity": {
+          "shape": [
+            25,
+            31
+          ],
+          "dtype": "float32"
+        },
+        "state": {
+          "shape": [
+            6,
+            41,
+            47
+          ],
+          "dtype": "float32"
+        },
+        "source_amplitudes": {
+          "shape": [
+            2,
+            1
+          ],
+          "dtype": "float32"
+        },
+        "source_locations": {
+          "shape": [
+            2,
+            2
+          ],
+          "dtype": "int64"
+        },
+        "receiver_locations": {
+          "shape": [
+            7,
+            2
+          ],
+          "dtype": "int64"
+        },
+        "grid_spacing": {
+          "shape": [
+            2
+          ],
+          "dtype": "float64"
+        },
+        "dt": {
+          "shape": [],
+          "dtype": "float64",
+          "value": 0.001
+        },
+        "accuracy": {
+          "shape": [],
+          "dtype": "int64",
+          "value": 8
+        },
+        "pml_width": {
+          "shape": [],
+          "dtype": "int64",
+          "value": 8
+        },
+        "pml_freq": {
+          "shape": [],
+          "dtype": "float64",
+          "value": 25.0
+        },
+        "max_velocity": {
+          "shape": [],
+          "dtype": "float64",
+          "value": 2500.0
+        },
+        "boundary": {
+          "shape": [],
+          "dtype": "<U3",
+          "value": "pml"
+        },
+        "render_scale": {
+          "shape": [],
+          "dtype": "float64",
+          "value": 0.25
+        }
+      },
+      "outputs": {
+        "expected_receivers": {
+          "shape": [
+            7,
+            1
+          ],
+          "dtype": "float64",
+          "min": -3.108966112136841,
+          "max": 1.222192645072937
+        },
+        "expected_state": {
+          "shape": [
+            6,
+            41,
+            47
+          ],
+          "dtype": "float64",
+          "min": -5.771829605102539,
+          "max": 3.8385634422302246
+        },
+        "expected_rgba": {
+          "shape": [
+            25,
+            31,
+            4
+          ],
+          "dtype": "float64",
+          "min": 0.0,
+          "max": 1.0
+        },
+        "expected_texture_samples": {
+          "shape": [
+            1,
+            7,
+            4
+          ],
+          "dtype": "float64",
+          "min": 0.0,
+          "max": 1.0
+        }
+      }
+    },
+    "rest": {
+      "inputs": {
+        "velocity": {
+          "shape": [
+            17,
+            23
+          ],
+          "dtype": "float32"
+        },
+        "state": {
+          "shape": [
+            6,
+            33,
+            39
+          ],
+          "dtype": "float32"
+        },
+        "source_amplitudes": {
+          "shape": [
+            2,
+            5
+          ],
+          "dtype": "float32"
+        },
+        "source_locations": {
+          "shape": [
+            2,
+            2
+          ],
+          "dtype": "int64"
+        },
+        "receiver_locations": {
+          "shape": [
+            7,
+            2
+          ],
+          "dtype": "int64"
+        },
+        "grid_spacing": {
+          "shape": [
+            2
+          ],
+          "dtype": "float64"
+        },
+        "dt": {
+          "shape": [],
+          "dtype": "float64",
+          "value": 0.001
+        },
+        "accuracy": {
+          "shape": [],
+          "dtype": "int64",
+          "value": 4
+        },
+        "pml_width": {
+          "shape": [],
+          "dtype": "int64",
+          "value": 8
+        },
+        "pml_freq": {
+          "shape": [],
+          "dtype": "float64",
+          "value": 25.0
+        },
+        "max_velocity": {
+          "shape": [],
+          "dtype": "float64",
+          "value": 2500.0
+        },
+        "boundary": {
+          "shape": [],
+          "dtype": "<U3",
+          "value": "pml"
+        },
+        "render_scale": {
+          "shape": [],
+          "dtype": "float64",
+          "value": 0.25
+        }
+      },
+      "outputs": {
+        "expected_receivers": {
+          "shape": [
+            7,
+            5
+          ],
+          "dtype": "float64",
+          "min": 0.0,
+          "max": 0.0
+        },
+        "expected_state": {
+          "shape": [
+            6,
+            33,
+            39
+          ],
+          "dtype": "float64",
+          "min": 0.0,
+          "max": 0.0
+        },
+        "expected_rgba": {
+          "shape": [
+            17,
+            23,
+            4
+          ],
+          "dtype": "float64",
+          "min": 0.0,
+          "max": 1.0
+        },
+        "expected_texture_samples": {
+          "shape": [
+            5,
+            7,
+            4
+          ],
+          "dtype": "float64",
+          "min": 0.0,
+          "max": 1.0
+        }
+      }
+    },
+    "source_impulse": {
+      "inputs": {
+        "velocity": {
+          "shape": [
+            17,
+            23
+          ],
+          "dtype": "float32"
+        },
+        "state": {
+          "shape": [
+            6,
+            33,
+            39
+          ],
+          "dtype": "float32"
+        },
+        "source_amplitudes": {
+          "shape": [
+            2,
+            1
+          ],
+          "dtype": "float32"
+        },
+        "source_locations": {
+          "shape": [
+            2,
+            2
+          ],
+          "dtype": "int64"
+        },
+        "receiver_locations": {
+          "shape": [
+            7,
+            2
+          ],
+          "dtype": "int64"
+        },
+        "grid_spacing": {
+          "shape": [
+            2
+          ],
+          "dtype": "float64"
+        },
+        "dt": {
+          "shape": [],
+          "dtype": "float64",
+          "value": 0.001
+        },
+        "accuracy": {
+          "shape": [],
+          "dtype": "int64",
+          "value": 4
+        },
+        "pml_width": {
+          "shape": [],
+          "dtype": "int64",
+          "value": 8
+        },
+        "pml_freq": {
+          "shape": [],
+          "dtype": "float64",
+          "value": 25.0
+        },
+        "max_velocity": {
+          "shape": [],
+          "dtype": "float64",
+          "value": 2500.0
+        },
+        "boundary": {
+          "shape": [],
+          "dtype": "<U3",
+          "value": "pml"
+        },
+        "render_scale": {
+          "shape": [],
+          "dtype": "float64",
+          "value": 0.25
+        }
+      },
+      "outputs": {
+        "expected_receivers": {
+          "shape": [
+            7,
+            1
+          ],
+          "dtype": "float64",
+          "min": 0.0,
+          "max": 0.0
+        },
+        "expected_state": {
+          "shape": [
+            6,
+            33,
+            39
+          ],
+          "dtype": "float64",
+          "min": -3.2399999999999998,
+          "max": 1.6199999999999999
+        },
+        "expected_rgba": {
+          "shape": [
+            17,
+            23,
+            4
+          ],
+          "dtype": "float64",
+          "min": 0.0,
+          "max": 1.0
+        },
+        "expected_texture_samples": {
+          "shape": [
+            1,
+            7,
+            4
+          ],
+          "dtype": "float64",
+          "min": 0.0,
+          "max": 1.0
+        }
+      }
+    },
+    "convergence_n16": {
+      "inputs": {
+        "velocity": {
+          "shape": [
+            16,
+            16
+          ],
+          "dtype": "float32"
+        },
+        "state": {
+          "shape": [
+            6,
+            16,
+            16
+          ],
+          "dtype": "float32"
+        },
+        "source_amplitudes": {
+          "shape": [
+            2,
+            16
+          ],
+          "dtype": "float32"
+        },
+        "source_locations": {
+          "shape": [
+            2,
+            2
+          ],
+          "dtype": "int64"
+        },
+        "receiver_locations": {
+          "shape": [
+            7,
+            2
+          ],
+          "dtype": "int64"
+        },
+        "grid_spacing": {
+          "shape": [
+            2
+          ],
+          "dtype": "float64"
+        },
+        "dt": {
+          "shape": [],
+          "dtype": "float64",
+          "value": 0.01
+        },
+        "accuracy": {
+          "shape": [],
+          "dtype": "int64",
+          "value": 4
+        },
+        "pml_width": {
+          "shape": [],
+          "dtype": "int64",
+          "value": 0
+        },
+        "pml_freq": {
+          "shape": [],
+          "dtype": "float64",
+          "value": 3.5355339059327378
+        },
+        "max_velocity": {
+          "shape": [],
+          "dtype": "float64",
+          "value": 1600.0
+        },
+        "boundary": {
+          "shape": [],
+          "dtype": "<U8",
+          "value": "periodic"
+        },
+        "render_scale": {
+          "shape": [],
+          "dtype": "float64",
+          "value": 0.25
+        }
+      },
+      "outputs": {
+        "expected_receivers": {
+          "shape": [
+            7,
+            16
+          ],
+          "dtype": "float64",
+          "min": -0.8532841228995574,
+          "max": 0.8535534143447876
+        },
+        "expected_state": {
+          "shape": [
+            6,
+            16,
+            16
+          ],
+          "dtype": "float64",
+          "min": -0.980569703538358,
+          "max": 0.9805697035383578
+        },
+        "expected_rgba": {
+          "shape": [
+            16,
+            16,
+            4
+          ],
+          "dtype": "float64",
+          "min": 0.0,
+          "max": 1.0
+        },
+        "expected_texture_samples": {
+          "shape": [
+            16,
+            7,
+            4
+          ],
+          "dtype": "float64",
+          "min": 0.0,
+          "max": 1.0
+        },
+        "analytic_final": {
+          "shape": [
+            16,
+            16
+          ],
+          "dtype": "float64",
+          "min": -0.9160357423258035,
+          "max": 0.9160357423258035
+        }
+      }
+    },
+    "convergence_n32": {
+      "inputs": {
+        "velocity": {
+          "shape": [
+            32,
+            32
+          ],
+          "dtype": "float32"
+        },
+        "state": {
+          "shape": [
+            6,
+            32,
+            32
+          ],
+          "dtype": "float32"
+        },
+        "source_amplitudes": {
+          "shape": [
+            2,
+            32
+          ],
+          "dtype": "float32"
+        },
+        "source_locations": {
+          "shape": [
+            2,
+            2
+          ],
+          "dtype": "int64"
+        },
+        "receiver_locations": {
+          "shape": [
+            7,
+            2
+          ],
+          "dtype": "int64"
+        },
+        "grid_spacing": {
+          "shape": [
+            2
+          ],
+          "dtype": "float64"
+        },
+        "dt": {
+          "shape": [],
+          "dtype": "float64",
+          "value": 0.005
+        },
+        "accuracy": {
+          "shape": [],
+          "dtype": "int64",
+          "value": 4
+        },
+        "pml_width": {
+          "shape": [],
+          "dtype": "int64",
+          "value": 0
+        },
+        "pml_freq": {
+          "shape": [],
+          "dtype": "float64",
+          "value": 3.5355339059327378
+        },
+        "max_velocity": {
+          "shape": [],
+          "dtype": "float64",
+          "value": 1600.0
+        },
+        "boundary": {
+          "shape": [],
+          "dtype": "<U8",
+          "value": "periodic"
+        },
+        "render_scale": {
+          "shape": [],
+          "dtype": "float64",
+          "value": 0.25
+        }
+      },
+      "outputs": {
+        "expected_receivers": {
+          "shape": [
+            7,
+            32
+          ],
+          "dtype": "float64",
+          "min": -0.8531707698614476,
+          "max": 0.8535534143447876
+        },
+        "expected_state": {
+          "shape": [
+            6,
+            32,
+            32
+          ],
+          "dtype": "float64",
+          "min": -0.9543136804274635,
+          "max": 0.9543136804274639
+        },
+        "expected_rgba": {
+          "shape": [
+            32,
+            32,
+            4
+          ],
+          "dtype": "float64",
+          "min": 0.0,
+          "max": 1.0
+        },
+        "expected_texture_samples": {
+          "shape": [
+            32,
+            7,
+            4
+          ],
+          "dtype": "float64",
+          "min": 0.0,
+          "max": 1.0
+        },
+        "analytic_final": {
+          "shape": [
+            32,
+            32
+          ],
+          "dtype": "float64",
+          "min": -0.9160357423258035,
+          "max": 0.9160357423258035
+        }
+      }
+    },
+    "convergence_n64": {
+      "inputs": {
+        "velocity": {
+          "shape": [
+            64,
+            64
+          ],
+          "dtype": "float32"
+        },
+        "state": {
+          "shape": [
+            6,
+            64,
+            64
+          ],
+          "dtype": "float32"
+        },
+        "source_amplitudes": {
+          "shape": [
+            2,
+            64
+          ],
+          "dtype": "float32"
+        },
+        "source_locations": {
+          "shape": [
+            2,
+            2
+          ],
+          "dtype": "int64"
+        },
+        "receiver_locations": {
+          "shape": [
+            7,
+            2
+          ],
+          "dtype": "int64"
+        },
+        "grid_spacing": {
+          "shape": [
+            2
+          ],
+          "dtype": "float64"
+        },
+        "dt": {
+          "shape": [],
+          "dtype": "float64",
+          "value": 0.0025
+        },
+        "accuracy": {
+          "shape": [],
+          "dtype": "int64",
+          "value": 4
+        },
+        "pml_width": {
+          "shape": [],
+          "dtype": "int64",
+          "value": 0
+        },
+        "pml_freq": {
+          "shape": [],
+          "dtype": "float64",
+          "value": 3.5355339059327378
+        },
+        "max_velocity": {
+          "shape": [],
+          "dtype": "float64",
+          "value": 1600.0
+        },
+        "boundary": {
+          "shape": [],
+          "dtype": "<U8",
+          "value": "periodic"
+        },
+        "render_scale": {
+          "shape": [],
+          "dtype": "float64",
+          "value": 0.25
+        }
+      },
+      "outputs": {
+        "expected_receivers": {
+          "shape": [
+            7,
+            64
+          ],
+          "dtype": "float64",
+          "min": -0.7775541104963013,
+          "max": 0.7777851223945618
+        },
+        "expected_state": {
+          "shape": [
+            6,
+            64,
+            64
+          ],
+          "dtype": "float64",
+          "min": -0.9367281236926189,
+          "max": 0.9367281236926194
+        },
+        "expected_rgba": {
+          "shape": [
+            64,
+            64,
+            4
+          ],
+          "dtype": "float64",
+          "min": 0.0,
+          "max": 1.0
+        },
+        "expected_texture_samples": {
+          "shape": [
+            64,
+            7,
+            4
+          ],
+          "dtype": "float64",
+          "min": 0.0,
+          "max": 1.0
+        },
+        "analytic_final": {
+          "shape": [
+            64,
+            64
+          ],
+          "dtype": "float64",
+          "min": -0.9160357423258035,
+          "max": 0.9160357423258035
+        }
+      }
+    },
+    "fwi": {
+      "inputs": {
+        "velocity": {
+          "shape": [
+            19,
+            23
+          ],
+          "dtype": "float32"
+        },
+        "state": {
+          "shape": [
+            6,
+            35,
+            39
+          ],
+          "dtype": "float32"
+        },
+        "source_amplitudes": {
+          "shape": [
+            2,
+            120
+          ],
+          "dtype": "float32"
+        },
+        "source_locations": {
+          "shape": [
+            2,
+            2
+          ],
+          "dtype": "int64"
+        },
+        "receiver_locations": {
+          "shape": [
+            7,
+            2
+          ],
+          "dtype": "int64"
+        },
+        "grid_spacing": {
+          "shape": [
+            2
+          ],
+          "dtype": "float64"
+        },
+        "dt": {
+          "shape": [],
+          "dtype": "float64",
+          "value": 0.001
+        },
+        "accuracy": {
+          "shape": [],
+          "dtype": "int64",
+          "value": 4
+        },
+        "pml_width": {
+          "shape": [],
+          "dtype": "int64",
+          "value": 8
+        },
+        "pml_freq": {
+          "shape": [],
+          "dtype": "float64",
+          "value": 25.0
+        },
+        "max_velocity": {
+          "shape": [],
+          "dtype": "float64",
+          "value": 2500.0
+        },
+        "boundary": {
+          "shape": [],
+          "dtype": "<U3",
+          "value": "pml"
+        },
+        "render_scale": {
+          "shape": [],
+          "dtype": "float64",
+          "value": 0.25
+        },
+        "observed": {
+          "shape": [
+            7,
+            120
+          ],
+          "dtype": "float32"
+        }
+      },
+      "outputs": {
+        "expected_receivers": {
+          "shape": [
+            7,
+            120
+          ],
+          "dtype": "float64",
+          "min": -27.089390874954717,
+          "max": 14.34153061602076
+        },
+        "expected_objective": {
+          "shape": [],
+          "dtype": "float64",
+          "min": 66.05271874436222,
+          "max": 66.05271874436222
+        },
+        "expected_gradient": {
+          "shape": [
+            19,
+            23
+          ],
+          "dtype": "float64",
+          "min": -0.09899519576443057,
+          "max": 0.021713908448092022
+        },
+        "directions": {
+          "shape": [
+            3,
+            19,
+            23
+          ],
+          "dtype": "float32",
+          "min": -1.0,
+          "max": 1.0
+        },
+        "expected_fd": {
+          "shape": [
+            3
+          ],
+          "dtype": "float64",
+          "min": -1.4904617089861905,
+          "max": 0.8859907299568022
+        },
+        "descent_step": {
+          "shape": [],
+          "dtype": "float64",
+          "min": 202.03000605799187,
+          "max": 202.03000605799187
+        },
+        "expected_descent_ratio": {
+          "shape": [],
+          "dtype": "float64",
+          "min": 0.7577281081284821,
+          "max": 0.7577281081284821
+        }
+      }
+    },
+    "performance": {
+      "inputs": {
+        "velocity": {
+          "shape": [
+            1000,
+            1000
+          ],
+          "dtype": "float32"
+        },
+        "state": {
+          "shape": [
+            6,
+            1016,
+            1016
+          ],
+          "dtype": "float32"
+        },
+        "source_amplitudes": {
+          "shape": [
+            2,
+            240
+          ],
+          "dtype": "float32"
+        },
+        "source_locations": {
+          "shape": [
+            2,
+            2
+          ],
+          "dtype": "int64"
+        },
+        "receiver_locations": {
+          "shape": [
+            7,
+            2
+          ],
+          "dtype": "int64"
+        },
+        "grid_spacing": {
+          "shape": [
+            2
+          ],
+          "dtype": "float64"
+        },
+        "dt": {
+          "shape": [],
+          "dtype": "float64",
+          "value": 0.001
+        },
+        "accuracy": {
+          "shape": [],
+          "dtype": "int64",
+          "value": 2
+        },
+        "pml_width": {
+          "shape": [],
+          "dtype": "int64",
+          "value": 8
+        },
+        "pml_freq": {
+          "shape": [],
+          "dtype": "float64",
+          "value": 25.0
+        },
+        "max_velocity": {
+          "shape": [],
+          "dtype": "float64",
+          "value": 2500.0
+        },
+        "boundary": {
+          "shape": [],
+          "dtype": "<U3",
+          "value": "pml"
+        },
+        "render_scale": {
+          "shape": [],
+          "dtype": "float64",
+          "value": 0.25
+        }
+      },
+      "outputs": {
+        "expected_receivers": {
+          "shape": [
+            7,
+            240
+          ],
+          "dtype": "float64",
+          "min": -31.987132204827372,
+          "max": 22.556841414755194
+        },
+        "expected_state": {
+          "shape": [
+            6,
+            1016,
+            1016
+          ],
+          "dtype": "float64",
+          "min": -2.733162260384574,
+          "max": 2.1663622220829426
+        },
+        "expected_rgba": {
+          "shape": [
+            1000,
+            1000,
+            4
+          ],
+          "dtype": "float64",
+          "min": 0.0,
+          "max": 1.0
+        },
+        "expected_texture_samples": {
+          "shape": [
+            240,
+            7,
+            4
+          ],
+          "dtype": "float64",
+          "min": 0.0,
+          "max": 1.0
+        }
+      }
+    }
+  },
+  "convergence_rms": [
+    0.001478751076819403,
+    0.00037313235438906234,
+    9.274890635000603e-05
+  ],
+  "convergence_orders": [
+    1.9866198520313902,
+    2.008285286596864
+  ],
+  "fwi_descent_ratio": 0.7577281081284821,
+  "generation_seconds": 3.320897249999689,
+  "float32_reference_audit": {
+    "evolved_o2": {
+      "expected_receivers:None": 3.0203912559610285e-07,
+      "expected_state:0": 1.9594512331977094e-06,
+      "expected_state:1": 1.9944481089856795e-06,
+      "expected_state:2": 2.1713899162810162e-06,
+      "expected_state:3": 1.4149407039431078e-06,
+      "expected_state:4": 2.4734022733881677e-06,
+      "expected_state:5": 3.0645400374456583e-06
+    },
+    "one_step_o2": {
+      "expected_receivers:None": 0.0,
+      "expected_state:0": 8.658716495848403e-08,
+      "expected_state:1": 0.0,
+      "expected_state:2": 4.507443684747587e-08,
+      "expected_state:3": 7.161390431799906e-08,
+      "expected_state:4": 4.4804847173693804e-08,
+      "expected_state:5": 8.212991524499092e-08
+    },
+    "evolved_o4": {
+      "expected_receivers:None": 3.6565635158253384e-07,
+      "expected_state:0": 1.521327536439922e-06,
+      "expected_state:1": 1.7233558221943074e-06,
+      "expected_state:2": 1.6617378300291156e-06,
+      "expected_state:3": 1.4101368925162944e-06,
+      "expected_state:4": 2.1880279094366107e-06,
+      "expected_state:5": 1.9079224642930104e-06
+    },
+    "one_step_o4": {
+      "expected_receivers:None": 0.0,
+      "expected_state:0": 8.154559450784564e-08,
+      "expected_state:1": 0.0,
+      "expected_state:2": 5.0136996142538876e-08,
+      "expected_state:3": 6.282069781259567e-08,
+      "expected_state:4": 6.577966679574274e-08,
+      "expected_state:5": 6.978492774547601e-08
+    },
+    "evolved_o6": {
+      "expected_receivers:None": 4.0546264696517456e-07,
+      "expected_state:0": 1.672398755905973e-06,
+      "expected_state:1": 1.7897030742371528e-06,
+      "expected_state:2": 1.8404696642402483e-06,
+      "expected_state:3": 1.762890698670842e-06,
+      "expected_state:4": 2.1420524473012424e-06,
+      "expected_state:5": 1.978054464843496e-06
+    },
+    "one_step_o6": {
+      "expected_receivers:None": 0.0,
+      "expected_state:0": 7.034028529552103e-08,
+      "expected_state:1": 0.0,
+      "expected_state:2": 6.431791726775561e-08,
+      "expected_state:3": 6.044793993172562e-08,
+      "expected_state:4": 5.5787664671762655e-08,
+      "expected_state:5": 7.580474389912818e-08
+    },
+    "evolved_o8": {
+      "expected_receivers:None": 3.4186514696361994e-07,
+      "expected_state:0": 2.0815716598332834e-06,
+      "expected_state:1": 2.097450065738289e-06,
+      "expected_state:2": 2.4245759627770086e-06,
+      "expected_state:3": 1.394509139516025e-06,
+      "expected_state:4": 3.187494017689834e-06,
+      "expected_state:5": 1.4537615234375004e-06
+    },
+    "one_step_o8": {
+      "expected_receivers:None": 0.0,
+      "expected_state:0": 8.255726336670754e-08,
+      "expected_state:1": 0.0,
+      "expected_state:2": 5.727752079068567e-08,
+      "expected_state:3": 5.5583471886908926e-08,
+      "expected_state:4": 4.639380130104581e-08,
+      "expected_state:5": 8.582444806962522e-08
+    },
+    "rest": {
+      "expected_receivers:None": 0.0,
+      "expected_state:0": 0.0,
+      "expected_state:1": 0.0,
+      "expected_state:2": 0.0,
+      "expected_state:3": 0.0,
+      "expected_state:4": 0.0,
+      "expected_state:5": 0.0
+    },
+    "source_impulse": {
+      "expected_receivers:None": 0.0,
+      "expected_state:0": 2.9434393194410155e-09,
+      "expected_state:1": 0.0,
+      "expected_state:2": 0.0,
+      "expected_state:3": 0.0,
+      "expected_state:4": 0.0,
+      "expected_state:5": 0.0
+    },
+    "convergence_n16": {
+      "expected_receivers:None": 1.8830004018065762e-07,
+      "expected_state:0": 1.873999694079607e-07,
+      "expected_state:1": 2.260815185595049e-07,
+      "expected_state:2": 0.0,
+      "expected_state:3": 0.0,
+      "expected_state:4": 0.0,
+      "expected_state:5": 0.0
+    },
+    "convergence_n32": {
+      "expected_receivers:None": 4.627894718710561e-07,
+      "expected_state:0": 5.556859459989743e-07,
+      "expected_state:1": 5.778446926567663e-07,
+      "expected_state:2": 0.0,
+      "expected_state:3": 0.0,
+      "expected_state:4": 0.0,
+      "expected_state:5": 0.0
+    },
+    "convergence_n64": {
+      "expected_receivers:None": 7.820735683877303e-07,
+      "expected_state:0": 1.1561502753899458e-06,
+      "expected_state:1": 1.258714580892071e-06,
+      "expected_state:2": 0.0,
+      "expected_state:3": 0.0,
+      "expected_state:4": 0.0,
+      "expected_state:5": 0.0
+    },
+    "fwi": {
+      "expected_receivers:None": 4.208347129703492e-07,
+      "expected_objective:None": 2.419967557448872e-06,
+      "expected_gradient:None": 4.911481738411377e-06,
+      "centered_fd_direction_0": 1.7591728258417687e-05,
+      "centered_fd_direction_1": 2.3474722796183175e-05,
+      "centered_fd_direction_2": 2.736270546012582e-05
+    },
+    "performance": {
+      "expected_receivers:None": 6.496834071654156e-07,
+      "expected_state:0": 3.3126897774319365e-06,
+      "expected_state:1": 3.1296155866274207e-06,
+      "expected_state:2": 0.0,
+      "expected_state:3": 0.0,
+      "expected_state:4": 0.0,
+      "expected_state:5": 0.0
+    }
+  },
+  "independent_numpy_float32_physics_audit": {
+    "evolved_o2": {
+      "expected_state:0": 1.0916287095658156e-06,
+      "expected_state:1": 1.1230486040495807e-06,
+      "expected_state:2": 1.0198356930874453e-06,
+      "expected_state:3": 1.2344028665493413e-06,
+      "expected_state:4": 1.707345935730997e-06,
+      "expected_state:5": 1.6946870637207605e-06,
+      "expected_receivers:None": 3.2791839022972727e-07
+    },
+    "one_step_o2": {
+      "expected_state:0": 4.5190464042687825e-08,
+      "expected_state:1": 0.0,
+      "expected_state:2": 4.507443684747587e-08,
+      "expected_state:3": 8.743561238423182e-08,
+      "expected_state:4": 5.661339345892771e-08,
+      "expected_state:5": 7.178453187450034e-08,
+      "expected_receivers:None": 0.0
+    },
+    "evolved_o4": {
+      "expected_state:0": 2.440623380922393e-06,
+      "expected_state:1": 2.482684611864649e-06,
+      "expected_state:2": 2.5332309567467512e-06,
+      "expected_state:3": 3.4502982747984142e-06,
+      "expected_state:4": 2.2376500577082917e-06,
+      "expected_state:5": 3.5345937586532627e-06,
+      "expected_receivers:None": 3.729247801960115e-07
+    },
+    "one_step_o4": {
+      "expected_state:0": 5.7870364593061836e-08,
+      "expected_state:1": 0.0,
+      "expected_state:2": 5.0136996142538876e-08,
+      "expected_state:3": 4.178089005836607e-08,
+      "expected_state:4": 7.692342158236294e-08,
+      "expected_state:5": 6.456740052636445e-08,
+      "expected_receivers:None": 0.0
+    },
+    "evolved_o6": {
+      "expected_state:0": 3.3967369445162786e-06,
+      "expected_state:1": 3.7160250348115017e-06,
+      "expected_state:2": 4.671638010528135e-06,
+      "expected_state:3": 4.678169182989045e-06,
+      "expected_state:4": 3.524292755240579e-06,
+      "expected_state:5": 3.6681811599247663e-06,
+      "expected_receivers:None": 6.942800575788547e-07
+    },
+    "one_step_o6": {
+      "expected_state:0": 6.439823177395887e-08,
+      "expected_state:1": 0.0,
+      "expected_state:2": 6.431791726775561e-08,
+      "expected_state:3": 6.254487247815655e-08,
+      "expected_state:4": 1.0014391078447789e-07,
+      "expected_state:5": 7.858372827330175e-08,
+      "expected_receivers:None": 0.0
+    },
+    "evolved_o8": {
+      "expected_state:0": 2.109791016533463e-06,
+      "expected_state:1": 2.039174255908635e-06,
+      "expected_state:2": 2.9463681284560284e-06,
+      "expected_state:3": 2.6539198357460634e-06,
+      "expected_state:4": 2.9915956500262106e-06,
+      "expected_state:5": 2.4779409334821622e-06,
+      "expected_receivers:None": 4.813379536012534e-07
+    },
+    "one_step_o8": {
+      "expected_state:0": 6.458112118607207e-08,
+      "expected_state:1": 0.0,
+      "expected_state:2": 5.727752079068567e-08,
+      "expected_state:3": 5.5583471886908926e-08,
+      "expected_state:4": 9.178300830070097e-08,
+      "expected_state:5": 8.410907895403247e-08,
+      "expected_receivers:None": 0.0
+    },
+    "rest": {
+      "expected_state:0": 0.0,
+      "expected_state:1": 0.0,
+      "expected_state:2": 0.0,
+      "expected_state:3": 0.0,
+      "expected_state:4": 0.0,
+      "expected_state:5": 0.0,
+      "expected_receivers:None": 0.0
+    },
+    "source_impulse": {
+      "expected_state:0": 2.9434393194410155e-09,
+      "expected_state:1": 0.0,
+      "expected_state:2": 0.0,
+      "expected_state:3": 0.0,
+      "expected_state:4": 0.0,
+      "expected_state:5": 0.0,
+      "expected_receivers:None": 0.0
+    },
+    "convergence_n16": {
+      "expected_state:0": 7.068881491302689e-07,
+      "expected_state:1": 3.8177577709951727e-07,
+      "expected_state:2": 0.0,
+      "expected_state:3": 0.0,
+      "expected_state:4": 0.0,
+      "expected_state:5": 0.0,
+      "expected_receivers:None": 5.209618386814638e-07
+    },
+    "convergence_n32": {
+      "expected_state:0": 2.1048593620875596e-06,
+      "expected_state:1": 1.4522584666285367e-06,
+      "expected_state:2": 0.0,
+      "expected_state:3": 0.0,
+      "expected_state:4": 0.0,
+      "expected_state:5": 0.0,
+      "expected_receivers:None": 1.8425810987108053e-06
+    },
+    "convergence_n64": {
+      "expected_state:0": 6.751561151118574e-06,
+      "expected_state:1": 5.5930723235589235e-06,
+      "expected_state:2": 0.0,
+      "expected_state:3": 0.0,
+      "expected_state:4": 0.0,
+      "expected_state:5": 0.0,
+      "expected_receivers:None": 7.194812518734336e-06
+    },
+    "performance": {
+      "expected_state:0": 1.8488100760619445e-06,
+      "expected_state:1": 1.6974634645634295e-06,
+      "expected_state:2": 0.0,
+      "expected_state:3": 0.0,
+      "expected_state:4": 0.0,
+      "expected_state:5": 0.0,
+      "expected_receivers:None": 4.697234539845069e-07
+    }
+  },
+  "render_float32_audit": {
+    "evolved_o2": {
+      "deepwave_float32": {
+        "expected_rgba": {
+          "absolute_error": 3.937788952113053e-05,
+          "absolute_bound": 0.0020101154979207947,
+          "budget_fraction": 0.01958986414554879,
+          "pressure_peak_au": 5.024096651906478
+        },
+        "expected_texture_samples": {
+          "absolute_error": 3.059793377901965e-05,
+          "absolute_bound": 0.01293111225945564,
+          "budget_fraction": 0.002366225980030872,
+          "pressure_peak_au": 32.32658855574359
+        }
+      },
+      "numpy_recurrence_float32": {
+        "expected_rgba": {
+          "absolute_error": 1.8859738781684676e-05,
+          "absolute_bound": 0.0020101154979207947,
+          "budget_fraction": 0.00938241548865856,
+          "pressure_peak_au": 5.024096651906478
+        },
+        "expected_texture_samples": {
+          "absolute_error": 2.7380152676226288e-05,
+          "absolute_bound": 0.01293111225945564,
+          "budget_fraction": 0.002117385738122028,
+          "pressure_peak_au": 32.32658855574359
+        }
+      }
+    },
+    "one_step_o2": {
+      "deepwave_float32": {
+        "expected_rgba": {
+          "absolute_error": 2.0802412770137835e-07,
+          "absolute_bound": 0.002035688567253186,
+          "budget_fraction": 0.00010218858181341135,
+          "pressure_peak_au": 5.088029325237457
+        },
+        "expected_texture_samples": {
+          "absolute_error": 6.071377622873797e-09,
+          "absolute_bound": 0.0010055960308329348,
+          "budget_fraction": 6.037591077049973e-06,
+          "pressure_peak_au": 2.512797984186829
+        }
+      },
+      "numpy_recurrence_float32": {
+        "expected_rgba": {
+          "absolute_error": 7.297936632788549e-08,
+          "absolute_bound": 0.002035688567253186,
+          "budget_fraction": 3.584996619908254e-05,
+          "pressure_peak_au": 5.088029325237457
+        },
+        "expected_texture_samples": {
+          "absolute_error": 1.3792029740500311e-09,
+          "absolute_bound": 0.0010055960308329348,
+          "budget_fraction": 1.3715278618469066e-06,
+          "pressure_peak_au": 2.512797984186829
+        }
+      }
+    },
+    "evolved_o4": {
+      "deepwave_float32": {
+        "expected_rgba": {
+          "absolute_error": 3.108822302722025e-05,
+          "absolute_bound": 0.002154349192569906,
+          "budget_fraction": 0.014430447549747196,
+          "pressure_peak_au": 5.384680888529257
+        },
+        "expected_texture_samples": {
+          "absolute_error": 2.3032582990745176e-05,
+          "absolute_bound": 0.010679316897222648,
+          "budget_fraction": 0.002156746841807384,
+          "pressure_peak_au": 26.69710015016111
+        }
+      },
+      "numpy_recurrence_float32": {
+        "expected_rgba": {
+          "absolute_error": 3.772653117173341e-05,
+          "absolute_bound": 0.002154349192569906,
+          "budget_fraction": 0.017511799527136884,
+          "pressure_peak_au": 5.384680888529257
+        },
+        "expected_texture_samples": {
+          "absolute_error": 3.945241947955758e-05,
+          "absolute_bound": 0.010679316897222648,
+          "budget_fraction": 0.0036942830575444298,
+          "pressure_peak_au": 26.69710015016111
+        }
+      }
+    },
+    "one_step_o4": {
+      "deepwave_float32": {
+        "expected_rgba": {
+          "absolute_error": 1.9566989539754331e-07,
+          "absolute_bound": 0.002041329297450999,
+          "budget_fraction": 9.585415525161749e-05,
+          "pressure_peak_au": 5.102131150731989
+        },
+        "expected_texture_samples": {
+          "absolute_error": 1.5977477729745004e-08,
+          "absolute_bound": 0.001239595181282301,
+          "budget_fraction": 1.288927060301822e-05,
+          "pressure_peak_au": 3.097795860310245
+        }
+      },
+      "numpy_recurrence_float32": {
+        "expected_rgba": {
+          "absolute_error": 6.480408965003903e-08,
+          "absolute_bound": 0.002041329297450999,
+          "budget_fraction": 3.174602438271948e-05,
+          "pressure_peak_au": 5.102131150731989
+        },
+        "expected_texture_samples": {
+          "absolute_error": 1.5977477729745004e-08,
+          "absolute_bound": 0.001239595181282301,
+          "budget_fraction": 1.288927060301822e-05,
+          "pressure_peak_au": 3.097795860310245
+        }
+      }
+    },
+    "evolved_o6": {
+      "deepwave_float32": {
+        "expected_rgba": {
+          "absolute_error": 3.2997119658984e-05,
+          "absolute_bound": 0.0020085249362923486,
+          "budget_fraction": 0.01642853372778895,
+          "pressure_peak_au": 5.020120247835363
+        },
+        "expected_texture_samples": {
+          "absolute_error": 3.948652959551158e-05,
+          "absolute_bound": 0.010242153663936725,
+          "budget_fraction": 0.0038552955648914113,
+          "pressure_peak_au": 25.604192066946304
+        }
+      },
+      "numpy_recurrence_float32": {
+        "expected_rgba": {
+          "absolute_error": 6.453230160752277e-05,
+          "absolute_bound": 0.0020085249362923486,
+          "budget_fraction": 0.03212920110747873,
+          "pressure_peak_au": 5.020120247835363
+        },
+        "expected_texture_samples": {
+          "absolute_error": 7.110591976999814e-05,
+          "absolute_bound": 0.010242153663936725,
+          "budget_fraction": 0.006942477344424797,
+          "pressure_peak_au": 25.604192066946304
+        }
+      }
+    },
+    "one_step_o6": {
+      "deepwave_float32": {
+        "expected_rgba": {
+          "absolute_error": 1.1740902072787662e-07,
+          "absolute_bound": 0.0018801482234474542,
+          "budget_fraction": 6.24466833325484e-05,
+          "pressure_peak_au": 4.6991784657231275
+        },
+        "expected_texture_samples": {
+          "absolute_error": 1.8382657201998498e-10,
+          "absolute_bound": 0.001243457629650441,
+          "budget_fraction": 1.478350107286422e-07,
+          "pressure_peak_au": 3.1074519812305947
+        }
+      },
+      "numpy_recurrence_float32": {
+        "expected_rgba": {
+          "absolute_error": 6.021193454941454e-08,
+          "absolute_bound": 0.0018801482234474542,
+          "budget_fraction": 3.202509982910255e-05,
+          "pressure_peak_au": 4.6991784657231275
+        },
+        "expected_texture_samples": {
+          "absolute_error": 1.8382657201998498e-10,
+          "absolute_bound": 0.001243457629650441,
+          "budget_fraction": 1.478350107286422e-07,
+          "pressure_peak_au": 3.1074519812305947
+        }
+      }
+    },
+    "evolved_o8": {
+      "deepwave_float32": {
+        "expected_rgba": {
+          "absolute_error": 4.805790886353023e-05,
+          "absolute_bound": 0.0019120680956092142,
+          "budget_fraction": 0.02513399442932405,
+          "pressure_peak_au": 4.778978146127527
+        },
+        "expected_texture_samples": {
+          "absolute_error": 3.087479776531232e-05,
+          "absolute_bound": 0.01011266380193304,
+          "budget_fraction": 0.0030530825873406955,
+          "pressure_peak_au": 25.280467411937092
+        }
+      },
+      "numpy_recurrence_float32": {
+        "expected_rgba": {
+          "absolute_error": 3.391002357322481e-05,
+          "absolute_bound": 0.0019120680956092142,
+          "budget_fraction": 0.01773473635750434,
+          "pressure_peak_au": 4.778978146127527
+        },
+        "expected_texture_samples": {
+          "absolute_error": 4.86737938005799e-05,
+          "absolute_bound": 0.01011266380193304,
+          "budget_fraction": 0.004813152573239494,
+          "pressure_peak_au": 25.280467411937092
+        }
+      }
+    },
+    "one_step_o8": {
+      "deepwave_float32": {
+        "expected_rgba": {
+          "absolute_error": 1.0637812364322485e-07,
+          "absolute_bound": 0.0017749953382569105,
+          "budget_fraction": 5.993149466391884e-05,
+          "pressure_peak_au": 4.436296252746768
+        },
+        "expected_texture_samples": {
+          "absolute_error": 1.8520205369298992e-09,
+          "absolute_bound": 0.0012584599828255202,
+          "budget_fraction": 1.4716562800604153e-06,
+          "pressure_peak_au": 3.1449578641682923
+        }
+      },
+      "numpy_recurrence_float32": {
+        "expected_rgba": {
+          "absolute_error": 5.778945522116885e-08,
+          "absolute_bound": 0.0017749953382569105,
+          "budget_fraction": 3.255752506816133e-05,
+          "pressure_peak_au": 4.436296252746768
+        },
+        "expected_texture_samples": {
+          "absolute_error": 1.8520205369298992e-09,
+          "absolute_bound": 0.0012584599828255202,
+          "budget_fraction": 1.4716562800604153e-06,
+          "pressure_peak_au": 3.1449578641682923
+        }
+      }
+    },
+    "rest": {
+      "deepwave_float32": {
+        "expected_rgba": {
+          "absolute_error": 0.0,
+          "absolute_bound": 4.76837158203125e-07,
+          "budget_fraction": 0.0,
+          "pressure_peak_au": 0.0
+        },
+        "expected_texture_samples": {
+          "absolute_error": 0.0,
+          "absolute_bound": 4.76837158203125e-07,
+          "budget_fraction": 0.0,
+          "pressure_peak_au": 0.0
+        }
+      },
+      "numpy_recurrence_float32": {
+        "expected_rgba": {
+          "absolute_error": 0.0,
+          "absolute_bound": 4.76837158203125e-07,
+          "budget_fraction": 0.0,
+          "pressure_peak_au": 0.0
+        },
+        "expected_texture_samples": {
+          "absolute_error": 0.0,
+          "absolute_bound": 4.76837158203125e-07,
+          "budget_fraction": 0.0,
+          "pressure_peak_au": 0.0
+        }
+      }
+    },
+    "source_impulse": {
+      "deepwave_float32": {
+        "expected_rgba": {
+          "absolute_error": 0.0,
+          "absolute_bound": 0.0012964768371582032,
+          "budget_fraction": 0.0,
+          "pressure_peak_au": 3.2399999999999998
+        },
+        "expected_texture_samples": {
+          "absolute_error": 0.0,
+          "absolute_bound": 0.0012964768371582032,
+          "budget_fraction": 0.0,
+          "pressure_peak_au": 3.2399999999999998
+        }
+      },
+      "numpy_recurrence_float32": {
+        "expected_rgba": {
+          "absolute_error": 0.0,
+          "absolute_bound": 0.0012964768371582032,
+          "budget_fraction": 0.0,
+          "pressure_peak_au": 3.2399999999999998
+        },
+        "expected_texture_samples": {
+          "absolute_error": 0.0,
+          "absolute_bound": 0.0012964768371582032,
+          "budget_fraction": 0.0,
+          "pressure_peak_au": 3.2399999999999998
+        }
+      }
+    },
+    "convergence_n16": {
+      "deepwave_float32": {
+        "expected_rgba": {
+          "absolute_error": 6.844433509956005e-07,
+          "absolute_bound": 0.0003657081406412898,
+          "budget_fraction": 0.0018715562355144475,
+          "pressure_peak_au": 0.9130782587077166
+        },
+        "expected_texture_samples": {
+          "absolute_error": 6.844433505515113e-07,
+          "absolute_bound": 0.00034179048631802607,
+          "budget_fraction": 0.002002523118547708,
+          "pressure_peak_au": 0.8532841228995574
+        }
+      },
+      "numpy_recurrence_float32": {
+        "expected_rgba": {
+          "absolute_error": 3.120012821433704e-07,
+          "absolute_bound": 0.0003657081406412898,
+          "budget_fraction": 0.0008531428411636083,
+          "pressure_peak_au": 0.9130782587077166
+        },
+        "expected_texture_samples": {
+          "absolute_error": 1.7695341583134905e-06,
+          "absolute_bound": 0.00034179048631802607,
+          "budget_fraction": 0.005177248136353891,
+          "pressure_peak_au": 0.8532841228995574
+        }
+      }
+    },
+    "convergence_n32": {
+      "deepwave_float32": {
+        "expected_rgba": {
+          "absolute_error": 7.500050551723092e-07,
+          "absolute_bound": 0.0003665926141205164,
+          "budget_fraction": 0.0020458815215675537,
+          "pressure_peak_au": 0.915289442405783
+        },
+        "expected_texture_samples": {
+          "absolute_error": 7.517596239126068e-07,
+          "absolute_bound": 0.0003417451451027822,
+          "budget_fraction": 0.0021997667989884975,
+          "pressure_peak_au": 0.8531707698614476
+        }
+      },
+      "numpy_recurrence_float32": {
+        "expected_rgba": {
+          "absolute_error": 1.3895877890579555e-06,
+          "absolute_bound": 0.0003665926141205164,
+          "budget_fraction": 0.0037905504244587214,
+          "pressure_peak_au": 0.915289442405783
+        },
+        "expected_texture_samples": {
+          "absolute_error": 6.205171542816856e-06,
+          "absolute_bound": 0.0003417451451027822,
+          "budget_fraction": 0.01815730708025306,
+          "pressure_peak_au": 0.8531707698614476
+        }
+      }
+    },
+    "convergence_n64": {
+      "deepwave_float32": {
+        "expected_rgba": {
+          "absolute_error": 1.9273031082178704e-06,
+          "absolute_bound": 0.00036681693218817166,
+          "budget_fraction": 0.005254127983462859,
+          "pressure_peak_au": 0.9158502375749213
+        },
+        "expected_texture_samples": {
+          "absolute_error": 1.6330941651210296e-06,
+          "absolute_bound": 0.00031149848135672364,
+          "budget_fraction": 0.005242703457198667,
+          "pressure_peak_au": 0.7775541104963013
+        }
+      },
+      "numpy_recurrence_float32": {
+        "expected_rgba": {
+          "absolute_error": 6.969722407657031e-06,
+          "absolute_bound": 0.00036681693218817166,
+          "budget_fraction": 0.019000547128728687,
+          "pressure_peak_au": 0.9158502375749213
+        },
+        "expected_texture_samples": {
+          "absolute_error": 2.168035353244946e-05,
+          "absolute_bound": 0.00031149848135672364,
+          "budget_fraction": 0.06960019014545829,
+          "pressure_peak_au": 0.7775541104963013
+        }
+      }
+    },
+    "performance": {
+      "deepwave_float32": {
+        "expected_rgba": {
+          "absolute_error": 3.568458933626839e-05,
+          "absolute_bound": 0.0010776857439315926,
+          "budget_fraction": 0.033112240314216786,
+          "pressure_peak_au": 2.6930222669334736
+        },
+        "expected_texture_samples": {
+          "absolute_error": 5.817879854097541e-05,
+          "absolute_bound": 0.012795329719089152,
+          "budget_fraction": 0.004546877635687603,
+          "pressure_peak_au": 31.987132204827372
+        }
+      },
+      "numpy_recurrence_float32": {
+        "expected_rgba": {
+          "absolute_error": 1.9915546808663143e-05,
+          "absolute_bound": 0.0010776857439315926,
+          "budget_fraction": 0.018479920441378042,
+          "pressure_peak_au": 2.6930222669334736
+        },
+        "expected_texture_samples": {
+          "absolute_error": 2.736967384753264e-05,
+          "absolute_bound": 0.012795329719089152,
+          "budget_fraction": 0.0021390362302817606,
+          "pressure_peak_au": 31.987132204827372
+        }
+      }
+    }
+  },
+  "render_mutation_rejections": {
+    "evolved_o2": {
+      "expected_rgba": {
+        "swapped_red_blue": true,
+        "doubled_render_scale": true,
+        "omitted_clip": true
+      },
+      "expected_texture_samples": {
+        "swapped_red_blue": true,
+        "doubled_render_scale": true,
+        "omitted_clip": true
+      }
+    },
+    "one_step_o2": {
+      "expected_rgba": {
+        "swapped_red_blue": true,
+        "doubled_render_scale": true,
+        "omitted_clip": true
+      },
+      "expected_texture_samples": {
+        "swapped_red_blue": true,
+        "doubled_render_scale": true,
+        "omitted_clip": true
+      }
+    },
+    "evolved_o4": {
+      "expected_rgba": {
+        "swapped_red_blue": true,
+        "doubled_render_scale": true,
+        "omitted_clip": true
+      },
+      "expected_texture_samples": {
+        "swapped_red_blue": true,
+        "doubled_render_scale": true,
+        "omitted_clip": true
+      }
+    },
+    "one_step_o4": {
+      "expected_rgba": {
+        "swapped_red_blue": true,
+        "doubled_render_scale": true,
+        "omitted_clip": true
+      },
+      "expected_texture_samples": {
+        "swapped_red_blue": true,
+        "doubled_render_scale": true,
+        "omitted_clip": true
+      }
+    },
+    "evolved_o6": {
+      "expected_rgba": {
+        "swapped_red_blue": true,
+        "doubled_render_scale": true,
+        "omitted_clip": true
+      },
+      "expected_texture_samples": {
+        "swapped_red_blue": true,
+        "doubled_render_scale": true,
+        "omitted_clip": true
+      }
+    },
+    "one_step_o6": {
+      "expected_rgba": {
+        "swapped_red_blue": true,
+        "doubled_render_scale": true,
+        "omitted_clip": true
+      },
+      "expected_texture_samples": {
+        "swapped_red_blue": true,
+        "doubled_render_scale": true,
+        "omitted_clip": true
+      }
+    },
+    "evolved_o8": {
+      "expected_rgba": {
+        "swapped_red_blue": true,
+        "doubled_render_scale": true,
+        "omitted_clip": true
+      },
+      "expected_texture_samples": {
+        "swapped_red_blue": true,
+        "doubled_render_scale": true,
+        "omitted_clip": true
+      }
+    },
+    "one_step_o8": {
+      "expected_rgba": {
+        "swapped_red_blue": true,
+        "doubled_render_scale": true,
+        "omitted_clip": true
+      },
+      "expected_texture_samples": {
+        "swapped_red_blue": true,
+        "doubled_render_scale": true,
+        "omitted_clip": true
+      }
+    },
+    "rest": {
+      "expected_rgba": {
+        "swapped_red_blue": false,
+        "doubled_render_scale": false,
+        "omitted_clip": false
+      },
+      "expected_texture_samples": {
+        "swapped_red_blue": false,
+        "doubled_render_scale": false,
+        "omitted_clip": false
+      }
+    },
+    "source_impulse": {
+      "expected_rgba": {
+        "swapped_red_blue": true,
+        "doubled_render_scale": false,
+        "omitted_clip": true
+      },
+      "expected_texture_samples": {
+        "swapped_red_blue": true,
+        "doubled_render_scale": false,
+        "omitted_clip": true
+      }
+    },
+    "convergence_n16": {
+      "expected_rgba": {
+        "swapped_red_blue": true,
+        "doubled_render_scale": true,
+        "omitted_clip": true
+      },
+      "expected_texture_samples": {
+        "swapped_red_blue": true,
+        "doubled_render_scale": true,
+        "omitted_clip": true
+      }
+    },
+    "convergence_n32": {
+      "expected_rgba": {
+        "swapped_red_blue": true,
+        "doubled_render_scale": true,
+        "omitted_clip": true
+      },
+      "expected_texture_samples": {
+        "swapped_red_blue": true,
+        "doubled_render_scale": true,
+        "omitted_clip": true
+      }
+    },
+    "convergence_n64": {
+      "expected_rgba": {
+        "swapped_red_blue": true,
+        "doubled_render_scale": true,
+        "omitted_clip": true
+      },
+      "expected_texture_samples": {
+        "swapped_red_blue": true,
+        "doubled_render_scale": true,
+        "omitted_clip": true
+      }
+    },
+    "performance": {
+      "expected_rgba": {
+        "swapped_red_blue": true,
+        "doubled_render_scale": true,
+        "omitted_clip": true
+      },
+      "expected_texture_samples": {
+        "swapped_red_blue": true,
+        "doubled_render_scale": true,
+        "omitted_clip": true
+      }
+    }
+  },
+  "float32_reference_convergence_orders": [
+    1.9869581785217414,
+    2.006688580800968
+  ],
+  "conventions": "tests/api.py; no CFL substeps, uncompressed stride-1 gradient, SI geometry",
+  "tag": "T",
+  "paths": [
+    "metal"
+  ],
+  "upstream_contracts_available": true,
+  "upstream_conventions": "13: uniform spacing generalized to dy,dx; 16: mean objective multiplied by nr*nt"
+}

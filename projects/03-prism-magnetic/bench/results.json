@@ -1,0 +1,79 @@
+{
+  "project": "03-prism-magnetic",
+  "sizes": {
+    "small": {
+      "observations": 1024,
+      "prisms": 128
+    },
+    "medium": {
+      "observations": 4096,
+      "prisms": 256
+    },
+    "large": {
+      "observations": 16384,
+      "prisms": 1024
+    }
+  },
+  "results": {
+    "judge": {
+      "small": {
+        "wall_s": 0.027899041975615546,
+        "peak_mem_mb": 0.09937286376953125,
+        "mem_method": "tracemalloc peak during call; maximum of repeats"
+      },
+      "medium": {
+        "wall_s": 0.2220390000147745,
+        "peak_mem_mb": 0.32788848876953125,
+        "mem_method": "tracemalloc peak during call; maximum of repeats"
+      },
+      "large": {
+        "skipped": "16.8 million CPU prism-observation pairs may exceed 120 seconds"
+      }
+    },
+    "mlx": {
+      "small": {
+        "wall_s": 0.008699541009264067,
+        "peak_mem_mb": 97.02170181274414,
+        "mem_method": "MLX reset_peak_memory/get_peak_memory; maximum of repeats",
+        "process_peak_rss_mb": 314.4375,
+        "process_rss_method": "RUSAGE_SELF ru_maxrss, macOS bytes; cumulative process high-water mark"
+      },
+      "medium": {
+        "wall_s": 0.01669754201429896,
+        "peak_mem_mb": 768.0573463439941,
+        "mem_method": "MLX reset_peak_memory/get_peak_memory; maximum of repeats",
+        "process_peak_rss_mb": 314.890625,
+        "process_rss_method": "RUSAGE_SELF ru_maxrss, macOS bytes; cumulative process high-water mark"
+      },
+      "large": {
+        "wall_s": 0.3052641669928562,
+        "peak_mem_mb": 5712.012729644775,
+        "mem_method": "MLX reset_peak_memory/get_peak_memory; maximum of repeats",
+        "process_peak_rss_mb": 316.34375,
+        "process_rss_method": "RUSAGE_SELF ru_maxrss, macOS bytes; cumulative process high-water mark"
+      }
+    },
+    "metal": {
+      "small": {
+        "wall_s": 0.07072695801616646,
+        "peak_mem_mb": 15.796875,
+        "mem_method": "fresh worker RUSAGE_CHILDREN ru_maxrss delta; macOS bytes; maximum of repeats"
+      },
+      "medium": {
+        "wall_s": 0.07674399999086745,
+        "peak_mem_mb": 15.984375,
+        "mem_method": "fresh worker RUSAGE_CHILDREN ru_maxrss delta; macOS bytes; maximum of repeats"
+      },
+      "large": {
+        "wall_s": 0.08015466699725948,
+        "peak_mem_mb": 16.421875,
+        "mem_method": "fresh worker RUSAGE_CHILDREN ru_maxrss delta; macOS bytes; maximum of repeats"
+      }
+    }
+  },
+  "medium_max_rel_diff": {
+    "mlx": 5.4018357052393975e-05,
+    "metal": 5.789421020804219e-05
+  },
+  "notes": "Seed 20261028; one warm-up and three timed calls, median wall time. Metal timing includes binary startup, compilation, and file I/O, but excludes Python worker startup. Memory is the maximum over repeats, in MiB; RSS excludes GPU allocations not reflected in process RSS. Relative difference is the worst field-wise max absolute error divided by that reference field's max absolute value. Large sizes are estimates and have not been timed on M5 Max."
+}

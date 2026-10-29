@@ -1,0 +1,317 @@
+{
+  "acquisition": {
+    "accuracy": 4,
+    "dt_s": 0.001,
+    "freq_taper_frac": 0.0,
+    "internal_step_ratio": 1,
+    "max_vel_m_s": 2600.0,
+    "model_gradient_sampling_interval": 1,
+    "nt": 280,
+    "pml_freq_Hz": 18.0,
+    "pml_width": 12,
+    "receiver_depth_index": 21,
+    "receiver_x_indices": [
+      1,
+      3,
+      5,
+      7,
+      9,
+      11,
+      13,
+      15,
+      17,
+      19,
+      21,
+      23,
+      25,
+      27,
+      29
+    ],
+    "receivers_per_shot": 15,
+    "shape": [
+      24,
+      32
+    ],
+    "shots": 3,
+    "source_frequency_Hz": 18.0,
+    "source_grid_indices": [
+      [
+        2,
+        6
+      ],
+      [
+        2,
+        16
+      ],
+      [
+        2,
+        25
+      ]
+    ],
+    "source_peak_s": 0.06,
+    "sources_per_shot": 1,
+    "spacing_m": 10.0,
+    "time_pad_frac": 0.0,
+    "time_taper": false
+  },
+  "calibration": {
+    "noise_a": {
+      "grid": {
+        "inversion_float32_relative_errors": {
+          "loss_history": 3.2043932809623806e-07,
+          "parameters": 1.8178621446402602e-05,
+          "predicted": 1.947644667221448e-06,
+          "velocity": 2.268895303345604e-06,
+          "velocity_perturbation": 1.6762936267978274e-05
+        },
+        "one_step_float32_relative_errors": {
+          "loss_history": 2.6188095753177654e-07,
+          "parameters": 1.37184820603598e-05,
+          "predicted": 2.2608134912130215e-06,
+          "velocity": 8.464828242691319e-08,
+          "velocity_perturbation": 1.7016575304070568e-05
+        },
+        "probe": {
+          "float32_fd_relative_errors": [
+            0.00030847556095457387,
+            0.0001708433601694368
+          ],
+          "float32_gradient_relative_error": 3.538768023922814e-06,
+          "float32_prediction_relative_error": 2.2521455374810536e-06,
+          "float32_velocity_perturbation_relative_error": 7.901455250129915e-07,
+          "float64_fd_relative_errors": [
+            2.2842531099820834e-07,
+            3.0329685027350975e-08
+          ]
+        }
+      },
+      "neural": {
+        "inversion_float32_relative_errors": {
+          "loss_history": 7.429540512491736e-07,
+          "parameters": 8.273008416950864e-07,
+          "predicted": 2.20389208871004e-06,
+          "velocity": 6.052753032371853e-07,
+          "velocity_perturbation": 3.7892803099174992e-06
+        },
+        "one_step_float32_relative_errors": {
+          "loss_history": 7.429540512491736e-07,
+          "parameters": 1.433847104116828e-09,
+          "predicted": 3.1628550818508914e-06,
+          "velocity": 3.77165479230585e-08,
+          "velocity_perturbation": 2.507898626190023e-06
+        },
+        "probe": {
+          "float32_fd_relative_errors": [
+            3.687657542958139e-05,
+            8.924495642875248e-05,
+            2.1380141742740766e-05,
+            2.839644175483707e-05
+          ],
+          "float32_gradient_relative_error": 8.85555830596406e-07,
+          "float32_prediction_relative_error": 2.2027837854213873e-06,
+          "float32_velocity_perturbation_relative_error": 5.623632045755908e-07,
+          "float64_fd_relative_errors": [
+            6.8320734442474725e-06,
+            2.61782103146077e-06,
+            7.767998102460755e-06,
+            1.1046386573614149e-05
+          ]
+        }
+      }
+    },
+    "noise_b": {
+      "grid": {
+        "inversion_float32_relative_errors": {
+          "loss_history": 4.801823826473977e-07,
+          "parameters": 6.900467624762373e-06,
+          "predicted": 2.2673911495078188e-06,
+          "velocity": 1.2290833991080503e-06,
+          "velocity_perturbation": 8.46966256182069e-06
+        },
+        "one_step_float32_relative_errors": {
+          "loss_history": 4.801823826473977e-07,
+          "parameters": 2.066639419705947e-06,
+          "predicted": 2.297466370594927e-06,
+          "velocity": 3.052418913104866e-08,
+          "velocity_perturbation": 6.136180940054813e-06
+        },
+        "probe": {
+          "float32_fd_relative_errors": [
+            4.599151463008489e-05,
+            3.9240145000924235e-05
+          ],
+          "float32_gradient_relative_error": 3.912031871126214e-06,
+          "float32_prediction_relative_error": 2.3337270797777243e-06,
+          "float32_velocity_perturbation_relative_error": 6.813956878372894e-07,
+          "float64_fd_relative_errors": [
+            1.4701730767214044e-07,
+            2.595300540668319e-08
+          ]
+        }
+      },
+      "neural": {
+        "inversion_float32_relative_errors": {
+          "loss_history": 5.373349409896281e-07,
+          "parameters": 4.080960442006788e-07,
+          "predicted": 1.4940641781356967e-06,
+          "velocity": 3.961613250984611e-07,
+          "velocity_perturbation": 2.5374220231052544e-06
+        },
+        "one_step_float32_relative_errors": {
+          "loss_history": 5.373349409896281e-07,
+          "parameters": 1.2059670693182602e-09,
+          "predicted": 2.9539976736216044e-06,
+          "velocity": 3.4367226865050495e-08,
+          "velocity_perturbation": 2.9190917614047058e-06
+        },
+        "probe": {
+          "float32_fd_relative_errors": [
+            3.530888499920019e-05,
+            6.687008138798328e-05,
+            5.034271218444839e-06,
+            2.268023652569694e-05
+          ],
+          "float32_gradient_relative_error": 5.104408304792652e-07,
+          "float32_prediction_relative_error": 1.962071497233175e-06,
+          "float32_velocity_perturbation_relative_error": 7.260817709569061e-07,
+          "float64_fd_relative_errors": [
+            1.0648638839995107e-06,
+            1.1960251499900345e-06,
+            5.661996701245699e-06,
+            1.6081506140740587e-05
+          ]
+        }
+      }
+    }
+  },
+  "elapsed_seconds": 24.41752441599965,
+  "files": {
+    "noise_a.npz": {
+      "bytes": 868110,
+      "sha256": "387a72fa1f4481dadfe4712f7578df2818407c0d4b96610012434b166a157c44"
+    },
+    "noise_b.npz": {
+      "bytes": 868386,
+      "sha256": "29dfee141934060c9e9bd4a412b3adad51f87a94079791205f3eb2965adff20c"
+    }
+  },
+  "finite_difference": "Centered difference at h=0.01 in saved unit directions: even/odd grid blocks and each of W1,b1,W2,b2. Directions align with the float64 block gradient and are quantized to float32. Probe parameters are nonzero. Both float64 and float32 FD calibrated.",
+  "libraries": {
+    "deepwave": "0.1.0",
+    "mlx": "0.32.4",
+    "numpy": "2.5.4",
+    "pytest": "9.2.0",
+    "torch": "2.15.0"
+  },
+  "metrics": {
+    "noise_a": {
+      "clean_max_abs": 7.204494946729108,
+      "data_scale": 1.3627067804336548,
+      "grid": {
+        "final_loss": 0.12337938957552651,
+        "initial_loss": 0.2798132437108046,
+        "model_error": 0.04902230533980132,
+        "velocity_max": 2294.417274366971,
+        "velocity_min": 1689.4462584296339
+      },
+      "initial_model_error": 0.05060788656267161,
+      "neural": {
+        "final_loss": 0.12478699570490887,
+        "initial_loss": 0.2798132437108046,
+        "model_error": 0.04202969443426988,
+        "velocity_max": 2380.1974569557938,
+        "velocity_min": 1811.06243772503
+      },
+      "neural_over_plain_error": 0.8573585869317712,
+      "noise_rms_over_clean_rms": 0.4992910770451502,
+      "truth_max": 2359.569091796875,
+      "truth_min": 1773.294189453125
+    },
+    "noise_b": {
+      "clean_max_abs": 7.204494946729108,
+      "data_scale": 1.3627067804336548,
+      "grid": {
+        "final_loss": 0.1229156481025475,
+        "initial_loss": 0.27805788938681797,
+        "model_error": 0.04966600472004495,
+        "velocity_max": 2324.466322471441,
+        "velocity_min": 1662.6827871969863
+      },
+      "initial_model_error": 0.05060788656267161,
+      "neural": {
+        "final_loss": 0.12472651419585278,
+        "initial_loss": 0.27805788938681797,
+        "model_error": 0.03655800387711096,
+        "velocity_max": 2370.0262424535513,
+        "velocity_min": 1818.5013175773558
+      },
+      "neural_over_plain_error": 0.7360770024321351,
+      "noise_rms_over_clean_rms": 0.49899115021046375,
+      "truth_max": 2359.569091796875,
+      "truth_min": 1773.294189453125
+    }
+  },
+  "network": "Fixed latent length 4 -> dense tanh width 8 -> linear 5x7 image -> bilinear align_corners=True 24x32 -> v0+500*tanh(image). Train all 355 parameters; W1/sqrt(4), W2/sqrt(8); W1 normal, all remaining initial parameters zero. Grid mode trains 768 independent q with v=v0+500*tanh(q).",
+  "objective": "0.5*mean(((predicted-observed)/data_scale)^2), data_scale=float32 RMS(clean) fixed by judge; no explicit regularizer",
+  "optimizer": {
+    "beta1": 0.9,
+    "beta2": 0.999,
+    "bias_correction": true,
+    "clipping": false,
+    "epsilon": 1e-08,
+    "learning_rate": 0.02,
+    "name": "Adam",
+    "schedule": "fixed; return last iterate; no truth/clean data in implementation inputs",
+    "steps": 160,
+    "weight_decay": 0.0
+  },
+  "paper": "Zhu et al. (2022), Integrating deep neural networks with FWI: reparametrization, regularization, and uncertainty quantification, Geophysics 87(1). Concept only; compact synthetic experiment, not their published architecture/data.",
+  "project": "20-nnfwi",
+  "python": "3.12.11",
+  "reference": "Deepwave scalar + PyTorch autograd; unregularized bounded plain FWI on exactly the same noisy gathers",
+  "reference_dtype": "float64 CPU; public floating inputs quantized once to float32",
+  "reference_native_sha256": {
+    "libdeepwave_C.dylib": "305176361bae47d347abf1a274d3a52ef89bb52e5a0ec12cf053444ded0af182"
+  },
+  "reference_scalar_sha256": "68b90b7303c2eaad0558be0d4b9405339c026685b35e81685acb2fac8982c8c0",
+  "seeds": {
+    "noise_a": 20261020,
+    "noise_b": 20261021
+  },
+  "synthetic_model": "v0=2000; truth=v0+360 exp(-((z-12)/5)^2-((x-12)/7)^2)-240 exp(-((z-15)/4)^2-((x-24)/5)^2), z,x in cell indices. Two independent 0.5*RMS(clean) Gaussian-noise realizations; same geology. All physical cells included in error.",
+  "tag": "M",
+  "tolerances": {
+    "FD_RTOL": {
+      "reason": "Campaign float32 centered-difference gradient limit, separately per direction.",
+      "value": 0.001
+    },
+    "FD_STEP": {
+      "reason": "Dimensionless 0.01 step balances float32 loss cancellation and O(h^2) truncation; calibrated in the oracle.",
+      "value": 0.01
+    },
+    "MAX_ERROR_RATIO": {
+      "reason": "Unchanged project pass criterion: full physical-grid model error <= 0.90 times plain FWI.",
+      "value": 0.9
+    },
+    "MAX_GOLDEN_BYTES": {
+      "reason": "Frozen contract: committed project goldens below 20 MB.",
+      "value": 20000000
+    },
+    "MAX_INITIAL_ERROR_RATIO": {
+      "reason": "Additional recovery sanity: lower model error than the common initial velocity.",
+      "value": 1.0
+    },
+    "MIN_DIRECTIONAL_DERIVATIVE": {
+      "reason": "At h=0.01, the loss change must resolve float32 arithmetic; no near-zero direction checks.",
+      "value": 0.0001
+    },
+    "ORACLE_FD_RTOL": {
+      "reason": "Float64 derivative calibration is ten times tighter than the implementation FD requirement.",
+      "value": 0.0001
+    },
+    "PARITY_RTOL": {
+      "reason": "Campaign float32 limit, same stencil/grid/dt/PML; max norm relative error.",
+      "value": 0.0001
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "step": 36000,
+  "counts_P_S": [
+    [
+      2632,
+      260,
+      368
+    ],
+    [
+      2077,
+      461,
+      897
+    ]
+  ],
+  "matched_median_s_P_S": [
+    0.02,
+    0.03
+  ],
+  "f1_P_S": [
+    0.8934147997284454,
+    0.7536284470246735
+  ],
+  "f1_micro": 0.8258505787443002,
+  "inference_and_decode_seconds": 0.2247223329904955,
+  "inference_audit": {
+    "deterministic": true,
+    "batch_max_allowance_ratio": 0.0,
+    "gain_max_allowance_ratio": 0.0,
+    "constant_max_allowance_ratio": 0.0
+  }
+}

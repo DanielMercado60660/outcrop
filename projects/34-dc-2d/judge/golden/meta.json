@@ -1,0 +1,79 @@
+{
+  "versions": {
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "discretize": "0.13.0",
+    "simpeg": "0.26.0"
+  },
+  "seed": "none; deterministic geometry and models",
+  "reference": "SimPEG Simulation2DCellCentered, Robin sides/bottom, insulating top, 61-point trapezoidal Fourier quadrature",
+  "inputs": {
+    "hx_count": 121,
+    "hz_count": 60,
+    "origin_m": [
+      -108.68475341796875,
+      -108.55975341796875
+    ],
+    "core_cell_m": 0.25,
+    "padding_growth": 1.5,
+    "padding_cells": 12,
+    "source_ab_m": [
+      [
+        -3.0,
+        3.0
+      ],
+      [
+        -4.0,
+        4.0
+      ],
+      [
+        -6.0,
+        6.0
+      ],
+      [
+        -5.0,
+        3.0
+      ]
+    ],
+    "receiver_mn_m": [
+      [
+        -1.0,
+        1.0
+      ],
+      [
+        -2.0,
+        2.0
+      ],
+      [
+        -2.0,
+        2.0
+      ],
+      [
+        -1.0,
+        1.0
+      ]
+    ],
+    "currents_A": [
+      1.0,
+      1.0,
+      1.0,
+      2.0
+    ],
+    "models": "100 ohm-m half-space; 25 ohm-m block; 40 ohm-m lower layer"
+  },
+  "tolerances": {
+    "reference_relative": {
+      "value": 0.0001,
+      "reason": "campaign float32 same-mesh parity"
+    },
+    "analytic_relative": {
+      "value": 0.01,
+      "reason": "finite-volume mesh and Fourier quadrature discretization"
+    },
+    "cross_path_relative": {
+      "value": 0.0001,
+      "reason": "float32 independent implementation parity"
+    }
+  },
+  "homogeneous_max_analytic_relative_error": 0.005835472422816901
+}

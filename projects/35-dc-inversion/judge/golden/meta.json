@@ -1,0 +1,809 @@
+{
+  "project": "35-dc-inversion",
+  "tag": "M",
+  "paths": [
+    "mlx"
+  ],
+  "seed": 350101,
+  "python": "3.12.11",
+  "versions": {
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "simpeg": "0.26.0",
+    "discretize": "0.13.0",
+    "pymatsolver": "0.5.1",
+    "pytest": "9.2.0",
+    "mlx": "0.32.4",
+    "torch": "2.15.0"
+  },
+  "oracle": "SimPEG Simulation2DCellCentered + SciPy bounded least_squares",
+  "precision": "float64, implementation inputs rounded through float32 first",
+  "conventions": "See tests/api.py for mesh, Robin BCs, Fourier normalization, ABMN order, log10 model and objective definitions.",
+  "reference_optimizer": "bounded trust-region least_squares; fixed beta; analytic SimPEG Jacobian; max_nfev=100",
+  "reference_cache": "sim.model=None before each solve forces material-cache invalidation; np.allclose otherwise hides small FD steps",
+  "tolerances": {
+    "PARITY_RTOL": {
+      "value": 0.0001,
+      "reason": "Campaign float32 ceiling against the identical float64 discrete problem."
+    },
+    "VOLTAGE_ATOL": {
+      "value": 1e-10,
+      "reason": "Volts: only protects cancellation at nearly zero voltage; 0.1 nV is below noise."
+    },
+    "OBJECTIVE_ATOL": {
+      "value": 1e-07,
+      "reason": "Dimensionless objective absolute floor for a zero-valued objective."
+    },
+    "GRADIENT_ATOL": {
+      "value": 1e-06,
+      "reason": "Objective per dex: absolute floor for nearly zero gradient components."
+    },
+    "FD_RTOL": {
+      "value": 0.001,
+      "reason": "Campaign centered finite-difference relative-error ceiling for float32 gradients."
+    },
+    "FD_STEP": {
+      "value": 0.01,
+      "reason": "Dex: 0.01 gives ~6--26 objective-unit differences at objectives ~1700. eps32*objective/(h*|slope|) is ~7e-5 or less, below FD_RTOL=1e-3; a full float32 assembly/solve/autodiff replay checks rounding AND truncation."
+    },
+    "ORACLE_FD_RTOL": {
+      "value": 1e-06,
+      "reason": "Float64 adjoint vs centered difference: independent oracle sanity check."
+    },
+    "ORACLE_FD_STEP": {
+      "value": 1e-05,
+      "reason": "Dex: float64 FD step gives negligible roundoff and second-order truncation."
+    },
+    "TARGET_CHI2": {
+      "value": 1.1,
+      "reason": "Target is reduced chi squared <= 1.1 (RMS <= sqrt(1.1)); finite noisy survey has stochastic chi-square fluctuations. Proposed numeric meaning of \"target\"."
+    },
+    "LOCATION_CELLS": {
+      "value": 2.0,
+      "reason": "Project spec: Euclidean contrast-weighted centroid distance in core cell units."
+    },
+    "ANOMALY_LOG10_MAX": {
+      "value": 0.3,
+      "reason": "Project spec, applied to EVERY true anomaly cell rather than just its average."
+    },
+    "BACKGROUND_LOG10_RMS": {
+      "value": 0.15,
+      "reason": "Broad background changes must not masquerade as a localized recovered anomaly. 0.15 dex is half the allowed anomaly error and below half the true contrast."
+    },
+    "MODEL_ATOL": {
+      "value": 1e-06,
+      "reason": "Float32 model bounds and inactive-cell preservation allow only rounding."
+    },
+    "SUPPORT_CONTRAST_FRACTION": {
+      "value": 0.5,
+      "reason": "Recovery support uses half the prescribed contrast, avoiding tiny noise tails."
+    },
+    "FD_SLOPE_FLOOR": {
+      "value": 1e-06,
+      "reason": "Runtime centered differences can use this denominator floor for near-zero slopes."
+    },
+    "ORACLE_LINEAR_RTOL": {
+      "value": 1e-10,
+      "reason": "Float64 solve linearity/reciprocity sanity checks; no approximation is involved."
+    },
+    "ORACLE_OPT_FTOL": {
+      "value": 1e-09,
+      "reason": "Tight float64 optimizer termination makes oracle recovery reproducible; these are reference-solver settings, not required implementation iteration parity."
+    },
+    "ORACLE_OPT_XTOL": {
+      "value": 1e-09,
+      "reason": "Tight float64 parameter-step termination; reference solver setting only."
+    },
+    "ORACLE_OPT_GTOL": {
+      "value": 1e-09,
+      "reason": "Tight float64 projected-gradient termination; reference solver setting only."
+    },
+    "SANITY_HALFSPACE_RHO_MIN": {
+      "value": 50.0,
+      "reason": "Oracle-only half-space sanity bounds, ohm m. Coarse near-electrode cells can bias apparent resistivity; tight identical-mesh parity remains 1e-4."
+    },
+    "SANITY_HALFSPACE_RHO_MAX": {
+      "value": 150.0,
+      "reason": "Oracle-only upper sanity bound in ohm m on the same coarse inversion mesh."
+    },
+    "MIN_INITIAL_CHI2_FACTOR": {
+      "value": 10.0,
+      "reason": "Oracle-only guard: a homogeneous starting model must decisively miss target."
+    }
+  },
+  "tolerance_reasons_source": "tests/tolerances.py (comments are normative)",
+  "noise": "independent seeded Gaussian: sigma=.005*abs(clean)+.0001*max(abs(clean)); observations rounded to float32; sigma fixed after generation",
+  "recovery": {
+    "conductor": {
+      "metrics": {
+        "chi2": 0.7265254965808199,
+        "location_cells": 0.09031354945584985,
+        "anomaly_max_dex": 0.18623810265231455,
+        "background_rms_dex": 0.0703751588716564
+      },
+      "initial_chi2": 710.1480034217597,
+      "n_data": 144,
+      "shape": [
+        11,
+        22
+      ],
+      "n_active": 48,
+      "n_anomaly": 4,
+      "voltage_range": [
+        -0.3742534814632107,
+        1.2367807493691751
+      ],
+      "apparent_resistivity_range": [
+        48.91471731843789,
+        106.6351704534736
+      ],
+      "homogeneous_apparent_range": [
+        66.49880420978064,
+        104.66027508493444
+      ],
+      "rho_background": 100.0,
+      "rho_anomaly": 25.0,
+      "reference_nfev": 14,
+      "reference_status": 2,
+      "reference_message": "`ftol` termination condition is satisfied."
+    },
+    "resistor": {
+      "metrics": {
+        "chi2": 0.6573630615116439,
+        "location_cells": 0.040914286638600625,
+        "anomaly_max_dex": 0.15548421966707116,
+        "background_rms_dex": 0.06531653574565142
+      },
+      "initial_chi2": 379.9230120556217,
+      "n_data": 144,
+      "shape": [
+        11,
+        22
+      ],
+      "n_active": 48,
+      "n_anomaly": 4,
+      "voltage_range": [
+        -0.5016841946728459,
+        1.4470809617986067
+      ],
+      "apparent_resistivity_range": [
+        64.14918362058805,
+        140.8865645992974
+      ],
+      "homogeneous_apparent_range": [
+        66.49880420978064,
+        104.66027508493444
+      ],
+      "rho_background": 100.0,
+      "rho_anomaly": 400.0,
+      "reference_nfev": 15,
+      "reference_status": 2,
+      "reference_message": "`ftol` termination condition is satisfied."
+    }
+  },
+  "gradient": [
+    {
+      "beta": 0.0,
+      "objective": 1667.1209345928462,
+      "gradient_range": [
+        1.2938276328663292,
+        3973.9721707612725
+      ],
+      "oracle_fd_max_relative": 3.261540707401104e-10,
+      "saved_slope_float64_relative_by_direction": [
+        1.4757309422589545e-10,
+        3.261540708464869e-10,
+        3.178304529067759e-10,
+        2.6192287412593173e-11,
+        1.7021138694986535e-12,
+        8.631155953588808e-11
+      ],
+      "saved_slope_float32_relative_by_direction": [
+        3.002543439518688e-09,
+        2.909998627979182e-09,
+        1.338680197694286e-07,
+        1.2764732270367536e-08,
+        1.7084761397875562e-08,
+        1.2832287649751423e-08
+      ],
+      "fd_slopes_convention": "centered float64 differences at ORACLE_FD_STEP along (float32(model+FD_STEP*v)-float32(model-FD_STEP*v))/(2*FD_STEP)",
+      "float32_audit": {
+        "arithmetic": "torch CPU float32 material mapping, assembly, LU solve, quadrature, objective and autodiff; fixed reference geometry/Robin/projection coefficients rounded to float32",
+        "step_dex": 0.01,
+        "objective": 1667.12109375,
+        "objective_absolute_error": 0.0001591571538028802,
+        "perturbed_objective_max_absolute_error": 0.0012173624272691086,
+        "self_fd_relative_by_direction": [
+          1.4421810126349199e-06,
+          8.30039508955305e-05,
+          0.00011594938156827974,
+          1.561907287213802e-05,
+          2.4553309172559255e-05,
+          3.302557761933556e-05
+        ],
+        "saved_slope_relative_by_direction": [
+          2.194357650181968e-07,
+          6.253981054012042e-07,
+          2.725105141024966e-08,
+          3.047204639553978e-07,
+          1.7084761397875562e-08,
+          3.1221128367744955e-07
+        ],
+        "one_epsilon_scale_by_direction": [
+          2.831352546760748e-05,
+          5.944278082972033e-05,
+          4.766864215003337e-05,
+          2.0794672320824143e-05,
+          1.5165571640018437e-05,
+          4.622763494393109e-05
+        ],
+        "float64_runtime_step_truncation_by_direction": [
+          1.0227496541013173e-06,
+          7.252092889660956e-06,
+          8.25955142861723e-06,
+          1.133161737442431e-05,
+          1.9028204668000194e-05,
+          2.5376761777005023e-06
+        ]
+      }
+    },
+    {
+      "beta": 20.0,
+      "objective": 1686.1741301023062,
+      "gradient_range": [
+        -19.29727948286986,
+        3984.170282295391
+      ],
+      "oracle_fd_max_relative": 3.210012726785565e-10,
+      "saved_slope_float64_relative_by_direction": [
+        1.5862092875172379e-10,
+        3.2100127278159835e-10,
+        3.076216901932417e-10,
+        2.7037596919923265e-11,
+        4.436425232744839e-12,
+        8.995624922004808e-11
+      ],
+      "saved_slope_float32_relative_by_direction": [
+        4.5597511611490835e-08,
+        5.253786796567615e-09,
+        1.7867441443034562e-07,
+        1.716733087571827e-08,
+        2.5636464494282147e-08,
+        1.747811258187373e-08
+      ],
+      "fd_slopes_convention": "centered float64 differences at ORACLE_FD_STEP along (float32(model+FD_STEP*v)-float32(model-FD_STEP*v))/(2*FD_STEP)",
+      "float32_audit": {
+        "arithmetic": "torch CPU float32 material mapping, assembly, LU solve, quadrature, objective and autodiff; fixed reference geometry/Robin/projection coefficients rounded to float32",
+        "step_dex": 0.01,
+        "objective": 1686.17431640625,
+        "objective_absolute_error": 0.00018630394379215431,
+        "perturbed_objective_max_absolute_error": 0.0012054958740463917,
+        "self_fd_relative_by_direction": [
+          1.2535057874311614e-06,
+          8.309438749401236e-05,
+          0.00011835514668063261,
+          1.36270188792789e-05,
+          2.2691235331056098e-05,
+          2.981586156308947e-05
+        ],
+        "saved_slope_relative_by_direction": [
+          1.833338389069262e-07,
+          6.127020909458775e-07,
+          1.387911234323948e-08,
+          3.2872022418731595e-07,
+          2.5636464494282147e-08,
+          3.399637933239374e-07
+        ],
+        "one_epsilon_scale_by_direction": [
+          2.8869662923178253e-05,
+          6.153744191866498e-05,
+          4.882454591415508e-05,
+          2.0640272256744736e-05,
+          1.5269552556874305e-05,
+          4.6458227508744376e-05
+        ],
+        "float64_runtime_step_truncation_by_direction": [
+          1.031136249026128e-06,
+          7.427144404261733e-06,
+          8.364716972733169e-06,
+          1.1119882819318592e-05,
+          1.894315566455165e-05,
+          2.521544312382694e-06
+        ]
+      }
+    },
+    {
+      "sanity": "reciprocal"
+    },
+    {
+      "sanity": "reverse_source"
+    },
+    {
+      "sanity": "reverse_receiver"
+    }
+  ],
+  "sha256": {
+    "conductor.npz": "2eaf12be8bf1986e6851aa464dffd974f4cff16435ee4c20bc86bb6c2a836184",
+    "gradient_data.npz": "0fcf8736b8d4d77534599cdd29a8fa3ab69ff3923e48614c19bbd79f5b7b461e",
+    "gradient_regularized.npz": "5fcf22c3e9090cad8454392b4f5975619772fad1ea3f76f86418d2019b86d64e",
+    "resistor.npz": "a3ff248edd62fbd78aaf2532cf2990f828ba3ebfd5706a5dc0b163164bedf160"
+  },
+  "inputs": {
+    "conductor.npz": {
+      "hx": {
+        "shape": [
+          22
+        ],
+        "dtype": "float64"
+      },
+      "hz": {
+        "shape": [
+          11
+        ],
+        "dtype": "float64"
+      },
+      "origin": {
+        "shape": [
+          2
+        ],
+        "dtype": "float64"
+      },
+      "quadrature": {
+        "shape": [
+          25,
+          2
+        ],
+        "dtype": "float64"
+      },
+      "electrodes": {
+        "shape": [
+          16,
+          2
+        ],
+        "dtype": "float64"
+      },
+      "abmn": {
+        "shape": [
+          144,
+          4
+        ],
+        "dtype": "int32"
+      },
+      "current": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "initial": {
+        "shape": [
+          11,
+          22
+        ],
+        "dtype": "float64"
+      },
+      "truth": {
+        "shape": [
+          11,
+          22
+        ],
+        "dtype": "float64"
+      },
+      "active": {
+        "shape": [
+          11,
+          22
+        ],
+        "dtype": "int32"
+      },
+      "anomaly": {
+        "shape": [
+          11,
+          22
+        ],
+        "dtype": "int32"
+      },
+      "clean": {
+        "shape": [
+          144
+        ],
+        "dtype": "float64"
+      },
+      "observed": {
+        "shape": [
+          144
+        ],
+        "dtype": "float64"
+      },
+      "standard_deviation": {
+        "shape": [
+          144
+        ],
+        "dtype": "float64"
+      },
+      "initial_predicted": {
+        "shape": [
+          144
+        ],
+        "dtype": "float64"
+      },
+      "reference_model": {
+        "shape": [
+          11,
+          22
+        ],
+        "dtype": "float64"
+      },
+      "reference_predicted": {
+        "shape": [
+          144
+        ],
+        "dtype": "float64"
+      },
+      "beta": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "lower_bound": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "upper_bound": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "max_iterations": {
+        "shape": [],
+        "dtype": "int64"
+      }
+    },
+    "gradient_data.npz": {
+      "hx": {
+        "shape": [
+          6
+        ],
+        "dtype": "float64"
+      },
+      "hz": {
+        "shape": [
+          5
+        ],
+        "dtype": "float64"
+      },
+      "origin": {
+        "shape": [
+          2
+        ],
+        "dtype": "float64"
+      },
+      "quadrature": {
+        "shape": [
+          25,
+          2
+        ],
+        "dtype": "float64"
+      },
+      "electrodes": {
+        "shape": [
+          4,
+          2
+        ],
+        "dtype": "float64"
+      },
+      "abmn": {
+        "shape": [
+          6,
+          4
+        ],
+        "dtype": "int32"
+      },
+      "current": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "log10_rho": {
+        "shape": [
+          5,
+          6
+        ],
+        "dtype": "float64"
+      },
+      "observed": {
+        "shape": [
+          6
+        ],
+        "dtype": "float64"
+      },
+      "standard_deviation": {
+        "shape": [
+          6
+        ],
+        "dtype": "float64"
+      },
+      "reference": {
+        "shape": [
+          5,
+          6
+        ],
+        "dtype": "float64"
+      },
+      "beta": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "objective": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "gradient": {
+        "shape": [
+          5,
+          6
+        ],
+        "dtype": "float64"
+      },
+      "predicted": {
+        "shape": [
+          6
+        ],
+        "dtype": "float64"
+      },
+      "directions": {
+        "shape": [
+          6,
+          5,
+          6
+        ],
+        "dtype": "float64"
+      },
+      "fd_slopes": {
+        "shape": [
+          6
+        ],
+        "dtype": "float64"
+      },
+      "row_selection": {
+        "shape": [
+          7
+        ],
+        "dtype": "int32"
+      }
+    },
+    "gradient_regularized.npz": {
+      "hx": {
+        "shape": [
+          6
+        ],
+        "dtype": "float64"
+      },
+      "hz": {
+        "shape": [
+          5
+        ],
+        "dtype": "float64"
+      },
+      "origin": {
+        "shape": [
+          2
+        ],
+        "dtype": "float64"
+      },
+      "quadrature": {
+        "shape": [
+          25,
+          2
+        ],
+        "dtype": "float64"
+      },
+      "electrodes": {
+        "shape": [
+          4,
+          2
+        ],
+        "dtype": "float64"
+      },
+      "abmn": {
+        "shape": [
+          6,
+          4
+        ],
+        "dtype": "int32"
+      },
+      "current": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "log10_rho": {
+        "shape": [
+          5,
+          6
+        ],
+        "dtype": "float64"
+      },
+      "observed": {
+        "shape": [
+          6
+        ],
+        "dtype": "float64"
+      },
+      "standard_deviation": {
+        "shape": [
+          6
+        ],
+        "dtype": "float64"
+      },
+      "reference": {
+        "shape": [
+          5,
+          6
+        ],
+        "dtype": "float64"
+      },
+      "beta": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "objective": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "gradient": {
+        "shape": [
+          5,
+          6
+        ],
+        "dtype": "float64"
+      },
+      "predicted": {
+        "shape": [
+          6
+        ],
+        "dtype": "float64"
+      },
+      "directions": {
+        "shape": [
+          6,
+          5,
+          6
+        ],
+        "dtype": "float64"
+      },
+      "fd_slopes": {
+        "shape": [
+          6
+        ],
+        "dtype": "float64"
+      },
+      "row_selection": {
+        "shape": [
+          7
+        ],
+        "dtype": "int32"
+      }
+    },
+    "resistor.npz": {
+      "hx": {
+        "shape": [
+          22
+        ],
+        "dtype": "float64"
+      },
+      "hz": {
+        "shape": [
+          11
+        ],
+        "dtype": "float64"
+      },
+      "origin": {
+        "shape": [
+          2
+        ],
+        "dtype": "float64"
+      },
+      "quadrature": {
+        "shape": [
+          25,
+          2
+        ],
+        "dtype": "float64"
+      },
+      "electrodes": {
+        "shape": [
+          16,
+          2
+        ],
+        "dtype": "float64"
+      },
+      "abmn": {
+        "shape": [
+          144,
+          4
+        ],
+        "dtype": "int32"
+      },
+      "current": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "initial": {
+        "shape": [
+          11,
+          22
+        ],
+        "dtype": "float64"
+      },
+      "truth": {
+        "shape": [
+          11,
+          22
+        ],
+        "dtype": "float64"
+      },
+      "active": {
+        "shape": [
+          11,
+          22
+        ],
+        "dtype": "int32"
+      },
+      "anomaly": {
+        "shape": [
+          11,
+          22
+        ],
+        "dtype": "int32"
+      },
+      "clean": {
+        "shape": [
+          144
+        ],
+        "dtype": "float64"
+      },
+      "observed": {
+        "shape": [
+          144
+        ],
+        "dtype": "float64"
+      },
+      "standard_deviation": {
+        "shape": [
+          144
+        ],
+        "dtype": "float64"
+      },
+      "initial_predicted": {
+        "shape": [
+          144
+        ],
+        "dtype": "float64"
+      },
+      "reference_model": {
+        "shape": [
+          11,
+          22
+        ],
+        "dtype": "float64"
+      },
+      "reference_predicted": {
+        "shape": [
+          144
+        ],
+        "dtype": "float64"
+      },
+      "beta": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "lower_bound": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "upper_bound": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "max_iterations": {
+        "shape": [],
+        "dtype": "int64"
+      }
+    }
+  }
+}

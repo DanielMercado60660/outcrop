@@ -1,0 +1,16 @@
+{
+  "reference": "SciPy correlate1d centered Laplacian, float64 leapfrog and Mur boundary; d\u2019Alembert Gaussian solutions",
+  "versions": {
+    "python": "3.12.11",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1"
+  },
+  "seed": "not applicable: deterministic analytic pulses",
+  "inputs": "Uniform x=0..1 m, c=1 m/s, Courant number 0.5, Gaussian width 0.06 m. Convergence: n=101,201,401, t=0.25 s; reflection: n=401, t=1.2 s, both directions. Initial arrays rounded to float32 before reference.",
+  "tolerances": {
+    "parity": "1e-4 normalized max error, campaign float32 limit",
+    "cross_path": "1e-4 normalized max error, accumulated float32 rounding",
+    "order_deviation": "0.2, project requirement for order 2",
+    "reflection": "0.01 of incident peak, project requirement"
+  }
+}

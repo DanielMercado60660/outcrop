@@ -1,0 +1,75 @@
+{
+  "project": "44-okada",
+  "sizes": {
+    "small": {
+      "n_observations": 512
+    },
+    "medium": {
+      "n_observations": 2048
+    },
+    "large": {
+      "n_observations": 131072
+    }
+  },
+  "results": {
+    "judge": {
+      "small": {
+        "wall_s": 0.0992019159893971,
+        "peak_mem_mb": 0.144989013671875,
+        "mem_method": "tracemalloc peak during a separate reference call"
+      },
+      "medium": {
+        "wall_s": 0.3880100419919472,
+        "peak_mem_mb": 0.5802078247070312,
+        "mem_method": "tracemalloc peak during a separate reference call"
+      },
+      "large": {
+        "wall_s": 24.99197908298811,
+        "peak_mem_mb": 37.088050842285156,
+        "mem_method": "tracemalloc peak during a separate reference call"
+      }
+    },
+    "mlx": {
+      "small": {
+        "wall_s": 0.042070958006661385,
+        "peak_mem_mb": 2.502887725830078,
+        "mem_method": "MLX allocator peak after reset; process peak RSS also reported",
+        "process_peak_rss_mb": 81.671875
+      },
+      "medium": {
+        "wall_s": 0.041030374995898455,
+        "peak_mem_mb": 10.794353485107422,
+        "mem_method": "MLX allocator peak after reset; process peak RSS also reported",
+        "process_peak_rss_mb": 83.765625
+      },
+      "large": {
+        "wall_s": 0.042108916997676715,
+        "peak_mem_mb": 651.3782577514648,
+        "mem_method": "MLX allocator peak after reset; process peak RSS also reported",
+        "process_peak_rss_mb": 181.203125
+      }
+    },
+    "metal": {
+      "small": {
+        "wall_s": 0.0409013330063317,
+        "peak_mem_mb": 0.0,
+        "mem_method": "RUSAGE_CHILDREN ru_maxrss high-water delta after warmup (macOS bytes)"
+      },
+      "medium": {
+        "wall_s": 0.04119254200486466,
+        "peak_mem_mb": 0.0,
+        "mem_method": "RUSAGE_CHILDREN ru_maxrss high-water delta after warmup (macOS bytes)"
+      },
+      "large": {
+        "wall_s": 0.03767566700116731,
+        "peak_mem_mb": 0.0,
+        "mem_method": "RUSAGE_CHILDREN ru_maxrss high-water delta after warmup (macOS bytes)"
+      }
+    }
+  },
+  "medium_max_rel_diff": {
+    "mlx": 6.130810965852925e-06,
+    "metal": 4.6728965750765825e-06
+  },
+  "notes": "Surface observations uniformly sampled in [-12, 12] km with seed 4401; depth 6 km, dip 50 degrees, bounds [-3, 3, -2, 2] km, slip [1, 0.6, 0.2] m. Times include harness conversion and Metal process startup, I/O and compilation. Memory is MiB. Metal's child ru_maxrss is a cumulative high-water mark, so its delta can be zero even when the child uses memory and excludes GPU allocations. MLX process RSS is a cumulative high-water mark. Relative differences use the maximum absolute reference value separately for each output. Medium comparison uses all observations."
+}

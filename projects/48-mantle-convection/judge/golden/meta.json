@@ -1,0 +1,1532 @@
+{
+  "project": "48-mantle-convection",
+  "seed": 481989,
+  "versions": {
+    "python": "3.12.11",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1"
+  },
+  "reference": {
+    "citation": "Blankenbach et al. (1989), GJI 98, 23-38, case 1a",
+    "doi": "10.1111/j.1365-246X.1989.tb04425.x",
+    "published_nu": 4.884409,
+    "published_vrms": 42.864947,
+    "parameters": {
+      "Ra": 10000,
+      "aspect_ratio": 1,
+      "viscosity": 1,
+      "internal_heating": 0,
+      "Prandtl": "infinite"
+    },
+    "boundary_conditions": "All walls free slip and impermeable; Tbottom=1, Ttop=0; insulated sides.",
+    "discrete_oracle": "Float64 SciPy DST-I double Poisson + centered differences + midpoint RK2.",
+    "published_source_availability": "Paper not bundled; no network used. Scalars transcribed; verify citation/table at review."
+  },
+  "precision": "Inputs saved float32, then promoted to float64 before reference computation; reference and analytic outputs float64.",
+  "conventions": "Unit square [z,x], upward z; u=psi_z, w=-psi_x. No internal heating.",
+  "tolerances": {
+    "PARITY_RTOL": {
+      "value": 0.0001,
+      "reason": "Campaign float32 ceiling, global infinity norm, identical grid/stencil/dt."
+    },
+    "ZERO_ATOL": {
+      "value": 1e-06,
+      "reason": "Float32 additive allowance for zero fields and exact walls only."
+    },
+    "CROSS_RTOL": {
+      "value": 0.0002,
+      "reason": "Two independent float32 paths, each within 1e-4 of float64."
+    },
+    "CROSS_ZERO_ATOL": {
+      "value": 2e-06,
+      "reason": "Sum of two 1e-6 absolute zero-reference allowances."
+    },
+    "TRAJECTORY_RTOL": {
+      "value": 0.0001,
+      "reason": "Retain campaign 1e-4 ceiling for identical-step long trajectories."
+    },
+    "BENCHMARK_RTOL": {
+      "value": 0.01,
+      "reason": "Explicit case 1a 1% published-value requirement; FD error dominates."
+    },
+    "MIN_SPATIAL_ORDER": {
+      "value": 1.8,
+      "reason": "Second-order scheme; allow small-grid corrections, reject first order."
+    },
+    "MIN_TEMPORAL_ORDER": {
+      "value": 1.8,
+      "reason": "Midpoint RK2 expected order 2; allow finite-dt corrections."
+    },
+    "FINE_STOKES_ERROR": {
+      "value": 0.003,
+      "reason": "Fine-grid analytic Stokes error bound, discretization not roundoff."
+    },
+    "FINE_DIFFUSION_ERROR": {
+      "value": 0.003,
+      "reason": "Fine-grid analytic heat error bound, discretization not roundoff."
+    },
+    "STEADY_RESIDUAL_RTOL": {
+      "value": 0.0005,
+      "reason": "Small discrete heat residual relative to RMS diffusion at N=128."
+    },
+    "HEAT_BALANCE_RTOL": {
+      "value": 0.005,
+      "reason": "O(h^2) flux imbalance of centered discretization, below benchmark budget."
+    },
+    "DIVERGENCE_RTOL": {
+      "value": 2e-06,
+      "reason": "Centered derivative roundoff normalized by max speed / h."
+    },
+    "TEMPERATURE_ATOL": {
+      "value": 1e-05,
+      "reason": "Float32 allowance on physical benchmark temperature range [0,1]."
+    }
+  },
+  "cases": {
+    "stokes_n12": {
+      "rayleigh": 3750.0,
+      "modes": [
+        [
+          1,
+          1,
+          -0.02062102288859025
+        ],
+        [
+          2,
+          1,
+          -0.056097335585887566
+        ],
+        [
+          1,
+          3,
+          -0.03718916048682956
+        ],
+        [
+          3,
+          2,
+          -0.02494494657570376
+        ]
+      ],
+      "arrays": {
+        "input_temperature": {
+          "shape": [
+            13,
+            13
+          ],
+          "dtype": "float32"
+        },
+        "rayleigh": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "psi": {
+          "shape": [
+            13,
+            13
+          ],
+          "dtype": "float64"
+        },
+        "u": {
+          "shape": [
+            13,
+            13
+          ],
+          "dtype": "float64"
+        },
+        "w": {
+          "shape": [
+            13,
+            13
+          ],
+          "dtype": "float64"
+        }
+      }
+    },
+    "stokes_n17": {
+      "rayleigh": 3750.0,
+      "modes": [
+        [
+          1,
+          1,
+          -0.02370441492460783
+        ],
+        [
+          2,
+          1,
+          0.058046214900328866
+        ],
+        [
+          1,
+          3,
+          0.032883682141262416
+        ],
+        [
+          3,
+          2,
+          0.0030132929591359715
+        ]
+      ],
+      "arrays": {
+        "input_temperature": {
+          "shape": [
+            18,
+            18
+          ],
+          "dtype": "float32"
+        },
+        "rayleigh": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "psi": {
+          "shape": [
+            18,
+            18
+          ],
+          "dtype": "float64"
+        },
+        "u": {
+          "shape": [
+            18,
+            18
+          ],
+          "dtype": "float64"
+        },
+        "w": {
+          "shape": [
+            18,
+            18
+          ],
+          "dtype": "float64"
+        }
+      }
+    },
+    "stokes_n32": {
+      "rayleigh": 3750.0,
+      "modes": [
+        [
+          1,
+          1,
+          -0.0029883703379132995
+        ],
+        [
+          2,
+          1,
+          -0.03178657827650755
+        ],
+        [
+          1,
+          3,
+          0.03816380845593787
+        ],
+        [
+          3,
+          2,
+          -0.02934346594453085
+        ]
+      ],
+      "arrays": {
+        "input_temperature": {
+          "shape": [
+            33,
+            33
+          ],
+          "dtype": "float32"
+        },
+        "rayleigh": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "psi": {
+          "shape": [
+            33,
+            33
+          ],
+          "dtype": "float64"
+        },
+        "u": {
+          "shape": [
+            33,
+            33
+          ],
+          "dtype": "float64"
+        },
+        "w": {
+          "shape": [
+            33,
+            33
+          ],
+          "dtype": "float64"
+        }
+      }
+    },
+    "stokes_refine_n16": {
+      "rayleigh": 10000.0,
+      "mode": [
+        1,
+        2,
+        0.1
+      ],
+      "analytic_errors": {
+        "psi": 0.015544507023506111,
+        "u": 0.010356622530128515,
+        "w": 0.009031817469143742
+      },
+      "arrays": {
+        "input_temperature": {
+          "shape": [
+            17,
+            17
+          ],
+          "dtype": "float32"
+        },
+        "rayleigh": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "psi": {
+          "shape": [
+            17,
+            17
+          ],
+          "dtype": "float64"
+        },
+        "u": {
+          "shape": [
+            17,
+            17
+          ],
+          "dtype": "float64"
+        },
+        "w": {
+          "shape": [
+            17,
+            17
+          ],
+          "dtype": "float64"
+        },
+        "exact_psi": {
+          "shape": [
+            17,
+            17
+          ],
+          "dtype": "float64"
+        },
+        "exact_u": {
+          "shape": [
+            17,
+            17
+          ],
+          "dtype": "float64"
+        },
+        "exact_w": {
+          "shape": [
+            17,
+            17
+          ],
+          "dtype": "float64"
+        }
+      }
+    },
+    "stokes_refine_n32": {
+      "rayleigh": 10000.0,
+      "mode": [
+        1,
+        2,
+        0.1
+      ],
+      "analytic_errors": {
+        "psi": 0.0038630296794211374,
+        "u": 0.0025750141866468196,
+        "w": 0.0022512489657938537
+      },
+      "arrays": {
+        "input_temperature": {
+          "shape": [
+            33,
+            33
+          ],
+          "dtype": "float32"
+        },
+        "rayleigh": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "psi": {
+          "shape": [
+            33,
+            33
+          ],
+          "dtype": "float64"
+        },
+        "u": {
+          "shape": [
+            33,
+            33
+          ],
+          "dtype": "float64"
+        },
+        "w": {
+          "shape": [
+            33,
+            33
+          ],
+          "dtype": "float64"
+        },
+        "exact_psi": {
+          "shape": [
+            33,
+            33
+          ],
+          "dtype": "float64"
+        },
+        "exact_u": {
+          "shape": [
+            33,
+            33
+          ],
+          "dtype": "float64"
+        },
+        "exact_w": {
+          "shape": [
+            33,
+            33
+          ],
+          "dtype": "float64"
+        }
+      }
+    },
+    "stokes_refine_n64": {
+      "rayleigh": 10000.0,
+      "mode": [
+        1,
+        2,
+        0.1
+      ],
+      "analytic_errors": {
+        "psi": 0.0009643072415263068,
+        "u": 0.0006428674244495765,
+        "w": 0.0005624085837822886
+      },
+      "arrays": {
+        "input_temperature": {
+          "shape": [
+            65,
+            65
+          ],
+          "dtype": "float32"
+        },
+        "rayleigh": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "psi": {
+          "shape": [
+            65,
+            65
+          ],
+          "dtype": "float64"
+        },
+        "u": {
+          "shape": [
+            65,
+            65
+          ],
+          "dtype": "float64"
+        },
+        "w": {
+          "shape": [
+            65,
+            65
+          ],
+          "dtype": "float64"
+        },
+        "exact_psi": {
+          "shape": [
+            65,
+            65
+          ],
+          "dtype": "float64"
+        },
+        "exact_u": {
+          "shape": [
+            65,
+            65
+          ],
+          "dtype": "float64"
+        },
+        "exact_w": {
+          "shape": [
+            65,
+            65
+          ],
+          "dtype": "float64"
+        }
+      }
+    },
+    "diffusion_n8": {
+      "rayleigh": 0.0,
+      "dt": 5e-05,
+      "steps": 400,
+      "final_time": 0.02,
+      "arrays": {
+        "input_temperature": {
+          "shape": [
+            9,
+            9
+          ],
+          "dtype": "float32"
+        },
+        "rayleigh": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "dt": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "steps": {
+          "shape": [],
+          "dtype": "int64"
+        },
+        "temperature": {
+          "shape": [
+            9,
+            9
+          ],
+          "dtype": "float64"
+        },
+        "u": {
+          "shape": [
+            9,
+            9
+          ],
+          "dtype": "float64"
+        },
+        "w": {
+          "shape": [
+            9,
+            9
+          ],
+          "dtype": "float64"
+        },
+        "nu_top": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "nu_bottom": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "vrms": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "exact_temperature": {
+          "shape": [
+            9,
+            9
+          ],
+          "dtype": "float64"
+        },
+        "base": {
+          "shape": [
+            9,
+            9
+          ],
+          "dtype": "float64"
+        }
+      }
+    },
+    "diffusion_n16": {
+      "rayleigh": 0.0,
+      "dt": 5e-05,
+      "steps": 400,
+      "final_time": 0.02,
+      "arrays": {
+        "input_temperature": {
+          "shape": [
+            17,
+            17
+          ],
+          "dtype": "float32"
+        },
+        "rayleigh": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "dt": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "steps": {
+          "shape": [],
+          "dtype": "int64"
+        },
+        "temperature": {
+          "shape": [
+            17,
+            17
+          ],
+          "dtype": "float64"
+        },
+        "u": {
+          "shape": [
+            17,
+            17
+          ],
+          "dtype": "float64"
+        },
+        "w": {
+          "shape": [
+            17,
+            17
+          ],
+          "dtype": "float64"
+        },
+        "nu_top": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "nu_bottom": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "vrms": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "exact_temperature": {
+          "shape": [
+            17,
+            17
+          ],
+          "dtype": "float64"
+        },
+        "base": {
+          "shape": [
+            17,
+            17
+          ],
+          "dtype": "float64"
+        }
+      }
+    },
+    "diffusion_n32": {
+      "rayleigh": 0.0,
+      "dt": 5e-05,
+      "steps": 400,
+      "final_time": 0.02,
+      "arrays": {
+        "input_temperature": {
+          "shape": [
+            33,
+            33
+          ],
+          "dtype": "float32"
+        },
+        "rayleigh": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "dt": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "steps": {
+          "shape": [],
+          "dtype": "int64"
+        },
+        "temperature": {
+          "shape": [
+            33,
+            33
+          ],
+          "dtype": "float64"
+        },
+        "u": {
+          "shape": [
+            33,
+            33
+          ],
+          "dtype": "float64"
+        },
+        "w": {
+          "shape": [
+            33,
+            33
+          ],
+          "dtype": "float64"
+        },
+        "nu_top": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "nu_bottom": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "vrms": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "exact_temperature": {
+          "shape": [
+            33,
+            33
+          ],
+          "dtype": "float64"
+        },
+        "base": {
+          "shape": [
+            33,
+            33
+          ],
+          "dtype": "float64"
+        }
+      }
+    },
+    "time_s10": {
+      "rayleigh": 0.0,
+      "dt": 0.0032,
+      "steps": 10,
+      "final_time": 0.032,
+      "arrays": {
+        "input_temperature": {
+          "shape": [
+            9,
+            9
+          ],
+          "dtype": "float32"
+        },
+        "rayleigh": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "dt": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "steps": {
+          "shape": [],
+          "dtype": "int64"
+        },
+        "temperature": {
+          "shape": [
+            9,
+            9
+          ],
+          "dtype": "float64"
+        },
+        "u": {
+          "shape": [
+            9,
+            9
+          ],
+          "dtype": "float64"
+        },
+        "w": {
+          "shape": [
+            9,
+            9
+          ],
+          "dtype": "float64"
+        },
+        "nu_top": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "nu_bottom": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "vrms": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "exact_temperature": {
+          "shape": [
+            9,
+            9
+          ],
+          "dtype": "float64"
+        },
+        "base": {
+          "shape": [
+            9,
+            9
+          ],
+          "dtype": "float64"
+        }
+      }
+    },
+    "time_s20": {
+      "rayleigh": 0.0,
+      "dt": 0.0016,
+      "steps": 20,
+      "final_time": 0.032,
+      "arrays": {
+        "input_temperature": {
+          "shape": [
+            9,
+            9
+          ],
+          "dtype": "float32"
+        },
+        "rayleigh": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "dt": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "steps": {
+          "shape": [],
+          "dtype": "int64"
+        },
+        "temperature": {
+          "shape": [
+            9,
+            9
+          ],
+          "dtype": "float64"
+        },
+        "u": {
+          "shape": [
+            9,
+            9
+          ],
+          "dtype": "float64"
+        },
+        "w": {
+          "shape": [
+            9,
+            9
+          ],
+          "dtype": "float64"
+        },
+        "nu_top": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "nu_bottom": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "vrms": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "exact_temperature": {
+          "shape": [
+            9,
+            9
+          ],
+          "dtype": "float64"
+        },
+        "base": {
+          "shape": [
+            9,
+            9
+          ],
+          "dtype": "float64"
+        }
+      }
+    },
+    "time_s40": {
+      "rayleigh": 0.0,
+      "dt": 0.0008,
+      "steps": 40,
+      "final_time": 0.032,
+      "arrays": {
+        "input_temperature": {
+          "shape": [
+            9,
+            9
+          ],
+          "dtype": "float32"
+        },
+        "rayleigh": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "dt": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "steps": {
+          "shape": [],
+          "dtype": "int64"
+        },
+        "temperature": {
+          "shape": [
+            9,
+            9
+          ],
+          "dtype": "float64"
+        },
+        "u": {
+          "shape": [
+            9,
+            9
+          ],
+          "dtype": "float64"
+        },
+        "w": {
+          "shape": [
+            9,
+            9
+          ],
+          "dtype": "float64"
+        },
+        "nu_top": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "nu_bottom": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "vrms": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "exact_temperature": {
+          "shape": [
+            9,
+            9
+          ],
+          "dtype": "float64"
+        },
+        "base": {
+          "shape": [
+            9,
+            9
+          ],
+          "dtype": "float64"
+        }
+      }
+    },
+    "conduction_zero": {
+      "rayleigh": 10000.0,
+      "dt": 0.0001,
+      "steps": 0,
+      "final_time": 0.0,
+      "arrays": {
+        "input_temperature": {
+          "shape": [
+            17,
+            17
+          ],
+          "dtype": "float32"
+        },
+        "rayleigh": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "dt": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "steps": {
+          "shape": [],
+          "dtype": "int64"
+        },
+        "temperature": {
+          "shape": [
+            17,
+            17
+          ],
+          "dtype": "float64"
+        },
+        "u": {
+          "shape": [
+            17,
+            17
+          ],
+          "dtype": "float64"
+        },
+        "w": {
+          "shape": [
+            17,
+            17
+          ],
+          "dtype": "float64"
+        },
+        "nu_top": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "nu_bottom": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "vrms": {
+          "shape": [],
+          "dtype": "float64"
+        }
+      }
+    },
+    "conduction_evolved": {
+      "rayleigh": 10000.0,
+      "dt": 0.0001,
+      "steps": 20,
+      "final_time": 0.002,
+      "arrays": {
+        "input_temperature": {
+          "shape": [
+            17,
+            17
+          ],
+          "dtype": "float32"
+        },
+        "rayleigh": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "dt": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "steps": {
+          "shape": [],
+          "dtype": "int64"
+        },
+        "temperature": {
+          "shape": [
+            17,
+            17
+          ],
+          "dtype": "float64"
+        },
+        "u": {
+          "shape": [
+            17,
+            17
+          ],
+          "dtype": "float64"
+        },
+        "w": {
+          "shape": [
+            17,
+            17
+          ],
+          "dtype": "float64"
+        },
+        "nu_top": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "nu_bottom": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "vrms": {
+          "shape": [],
+          "dtype": "float64"
+        }
+      }
+    },
+    "coupled_n12": {
+      "rayleigh": 10000.0,
+      "dt": 0.0001,
+      "steps": 1,
+      "final_time": 0.0001,
+      "arrays": {
+        "input_temperature": {
+          "shape": [
+            13,
+            13
+          ],
+          "dtype": "float32"
+        },
+        "rayleigh": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "dt": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "steps": {
+          "shape": [],
+          "dtype": "int64"
+        },
+        "temperature": {
+          "shape": [
+            13,
+            13
+          ],
+          "dtype": "float64"
+        },
+        "u": {
+          "shape": [
+            13,
+            13
+          ],
+          "dtype": "float64"
+        },
+        "w": {
+          "shape": [
+            13,
+            13
+          ],
+          "dtype": "float64"
+        },
+        "nu_top": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "nu_bottom": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "vrms": {
+          "shape": [],
+          "dtype": "float64"
+        }
+      }
+    },
+    "coupled_n24": {
+      "rayleigh": 10000.0,
+      "dt": 0.0001,
+      "steps": 75,
+      "final_time": 0.007500000000000001,
+      "arrays": {
+        "input_temperature": {
+          "shape": [
+            25,
+            25
+          ],
+          "dtype": "float32"
+        },
+        "rayleigh": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "dt": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "steps": {
+          "shape": [],
+          "dtype": "int64"
+        },
+        "temperature": {
+          "shape": [
+            25,
+            25
+          ],
+          "dtype": "float64"
+        },
+        "u": {
+          "shape": [
+            25,
+            25
+          ],
+          "dtype": "float64"
+        },
+        "w": {
+          "shape": [
+            25,
+            25
+          ],
+          "dtype": "float64"
+        },
+        "nu_top": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "nu_bottom": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "vrms": {
+          "shape": [],
+          "dtype": "float64"
+        }
+      }
+    },
+    "coupled_refine_n8": {
+      "rayleigh": 10000.0,
+      "dt": 5e-05,
+      "steps": 1,
+      "final_time": 5e-05,
+      "arrays": {
+        "input_temperature": {
+          "shape": [
+            9,
+            9
+          ],
+          "dtype": "float32"
+        },
+        "rayleigh": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "dt": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "steps": {
+          "shape": [],
+          "dtype": "int64"
+        },
+        "temperature": {
+          "shape": [
+            9,
+            9
+          ],
+          "dtype": "float64"
+        },
+        "u": {
+          "shape": [
+            9,
+            9
+          ],
+          "dtype": "float64"
+        },
+        "w": {
+          "shape": [
+            9,
+            9
+          ],
+          "dtype": "float64"
+        },
+        "nu_top": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "nu_bottom": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "vrms": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "analytic_rate": {
+          "shape": [
+            9,
+            9
+          ],
+          "dtype": "float64"
+        }
+      }
+    },
+    "coupled_refine_n16": {
+      "rayleigh": 10000.0,
+      "dt": 5e-05,
+      "steps": 1,
+      "final_time": 5e-05,
+      "arrays": {
+        "input_temperature": {
+          "shape": [
+            17,
+            17
+          ],
+          "dtype": "float32"
+        },
+        "rayleigh": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "dt": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "steps": {
+          "shape": [],
+          "dtype": "int64"
+        },
+        "temperature": {
+          "shape": [
+            17,
+            17
+          ],
+          "dtype": "float64"
+        },
+        "u": {
+          "shape": [
+            17,
+            17
+          ],
+          "dtype": "float64"
+        },
+        "w": {
+          "shape": [
+            17,
+            17
+          ],
+          "dtype": "float64"
+        },
+        "nu_top": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "nu_bottom": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "vrms": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "analytic_rate": {
+          "shape": [
+            17,
+            17
+          ],
+          "dtype": "float64"
+        }
+      }
+    },
+    "coupled_refine_n32": {
+      "rayleigh": 10000.0,
+      "dt": 5e-05,
+      "steps": 1,
+      "final_time": 5e-05,
+      "arrays": {
+        "input_temperature": {
+          "shape": [
+            33,
+            33
+          ],
+          "dtype": "float32"
+        },
+        "rayleigh": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "dt": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "steps": {
+          "shape": [],
+          "dtype": "int64"
+        },
+        "temperature": {
+          "shape": [
+            33,
+            33
+          ],
+          "dtype": "float64"
+        },
+        "u": {
+          "shape": [
+            33,
+            33
+          ],
+          "dtype": "float64"
+        },
+        "w": {
+          "shape": [
+            33,
+            33
+          ],
+          "dtype": "float64"
+        },
+        "nu_top": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "nu_bottom": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "vrms": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "analytic_rate": {
+          "shape": [
+            33,
+            33
+          ],
+          "dtype": "float64"
+        }
+      }
+    },
+    "case1a": {
+      "rayleigh": 10000.0,
+      "dt": 1e-05,
+      "steps": 30000,
+      "final_time": 0.30000000000000004,
+      "arrays": {
+        "input_temperature": {
+          "shape": [
+            129,
+            129
+          ],
+          "dtype": "float32"
+        },
+        "rayleigh": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "dt": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "steps": {
+          "shape": [],
+          "dtype": "int64"
+        },
+        "temperature": {
+          "shape": [
+            129,
+            129
+          ],
+          "dtype": "float64"
+        },
+        "u": {
+          "shape": [
+            129,
+            129
+          ],
+          "dtype": "float64"
+        },
+        "w": {
+          "shape": [
+            129,
+            129
+          ],
+          "dtype": "float64"
+        },
+        "nu_top": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "nu_bottom": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "vrms": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "published_nu": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "published_vrms": {
+          "shape": [],
+          "dtype": "float64"
+        }
+      }
+    }
+  },
+  "sanity": {
+    "stokes_errors": [
+      {
+        "psi": 0.015544507023506111,
+        "u": 0.010356622530128515,
+        "w": 0.009031817469143742
+      },
+      {
+        "psi": 0.0038630296794211374,
+        "u": 0.0025750141866468196,
+        "w": 0.0022512489657938537
+      },
+      {
+        "psi": 0.0009643072415263068,
+        "u": 0.0006428674244495765,
+        "w": 0.0005624085837822886
+      }
+    ],
+    "diffusion_errors": [
+      0.005060220787729617,
+      0.0012675925883920646,
+      0.00031709039646991204
+    ],
+    "temporal_errors": [
+      0.027935864171058606,
+      0.006318116385938505,
+      0.001506424404495677
+    ],
+    "coupled_local_errors": [
+      0.029541544812981525,
+      0.007413886394878631,
+      0.0018473880224927264
+    ],
+    "case1a": {
+      "nu_top": 4.903174735693993,
+      "nu_bottom": 4.90317473568893,
+      "vrms": 42.85782937744429,
+      "temperature_range": [
+        0.0,
+        1.0
+      ],
+      "residual_relative_rms": 2.6920284498182855e-05,
+      "heat_balance_relative": 1.036485067546701e-12
+    },
+    "float32_audit": {
+      "relative_errors": {
+        "temperature": 1.4216432383196143e-05,
+        "u": 1.6282463693136186e-05,
+        "w": 1.605273931357277e-05,
+        "nu_top": 1.107239918527454e-05,
+        "nu_bottom": 2.1797848870929798e-05,
+        "vrms": 1.2172020038031745e-05
+      },
+      "steady_residual_relative_rms": 0.0001150470704014714,
+      "max_small_case_parity_error": 1.5580834321214347e-06,
+      "refinement_errors": {
+        "stokes_psi": [
+          0.015544411405947365,
+          0.003862918878998611,
+          0.0009642380335462871
+        ],
+        "stokes_u": [
+          0.010356676280838969,
+          0.0025749843113483193,
+          0.0006427386624982297
+        ],
+        "stokes_w": [
+          0.009031784580127671,
+          0.0022513354086467806,
+          0.0005625176504056441
+        ],
+        "diffusion": [
+          0.005060175832920248,
+          0.0012733274166557376,
+          0.00032418274236192313
+        ],
+        "time": [
+          0.02793584526299386,
+          0.006318893321944208,
+          0.0015066448034958613
+        ],
+        "coupled": [
+          0.029548395683497954,
+          0.0074107264223838105,
+          0.0018759654102628017
+        ]
+      }
+    }
+  },
+  "sha256": {
+    "case1a.npz": "f956e73256c6d5a993e81c65d470ebc17e1ccb00b5ce6900944ca03270361915",
+    "conduction_evolved.npz": "b269e596655e86ecdec54d88697a2e87001b1e21278d36810913a435b3086000",
+    "conduction_zero.npz": "183c95ce33d42969761c1a3d1a85668e024b2796d974c4cbc51da01ffaababa6",
+    "coupled_n12.npz": "5755e3df894e6f70901dbebe2f8e10baa2b1e120c681727e3b722425de915b9f",
+    "coupled_n24.npz": "323594f740a2dec699507f7ffb9596c69ea289c32fd888c60310d8257761757f",
+    "coupled_refine_n16.npz": "0d5de54cce33fb4eb74fc361b5ffb51920884a2127a56947aa6352075f153940",
+    "coupled_refine_n32.npz": "789d6858dec209eec5610743fca266c710d3ad2d5a2af13316a54cacbceb6eab",
+    "coupled_refine_n8.npz": "724fc67594ea949948c6ebb5b963f3af6136bfdf4c9f72bdee2de07c7e5d05a2",
+    "diffusion_n16.npz": "1d1f5da9aced4e7586d5b58392fb77a6157195dc12b0945851385639a5aac68c",
+    "diffusion_n32.npz": "c311bfea26c1c62e7eadbafda43adbf689b48fa8d2814415bb484fa6f6249c96",
+    "diffusion_n8.npz": "b44bafe443c62b5255a456592469f61c71a83d65a9601e28b2706d9eb7a630e2",
+    "stokes_n12.npz": "1157de82d226a8d0a8efa4f5e1c82b2effcaf5d757041086144f7bea376eda8c",
+    "stokes_n17.npz": "f785ddcc344f7489b4920c6bcce6efb6ed5d5ec644a760687184e7af59963fc0",
+    "stokes_n32.npz": "f2b68fdb7c987a425c33c4cdaeb087c1990c9e704cdaeeaf9c6ec61a8299dfd1",
+    "stokes_refine_n16.npz": "aa2c036d130da11f9601072b536ad58439bde0eb6ef5a139c071027f9aa0e0d6",
+    "stokes_refine_n32.npz": "766d3028cb65865dec1bf53d08f88c49f972bd688f4860a91583cd45408711f8",
+    "stokes_refine_n64.npz": "f438780fe3214da9cbf1c6418d010420ae126e2880a8480637f303a1b26fd866",
+    "time_s10.npz": "13c9f280dbc5a6f0f4184cf529cb3b5e969fba36917794a2fb2b87459becd18c",
+    "time_s20.npz": "2e88a8633525dd0deef90b29e036022b783f0bf524e5c0ab2da851f5ec3e0b3a",
+    "time_s40.npz": "820d357c60b37bfd41371a8b587850a855a7b626a61d08a42d6214ce119c5462"
+  }
+}

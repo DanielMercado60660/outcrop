@@ -1,0 +1,64 @@
+{
+  "project": "50-wave-sandbox",
+  "sizes": {
+    "small": {
+      "ny": 160,
+      "nx": 160,
+      "nt": 140,
+      "nr": 64,
+      "pml_width": 12
+    },
+    "medium": {
+      "ny": 320,
+      "nx": 320,
+      "nt": 240,
+      "nr": 128,
+      "pml_width": 12
+    },
+    "large": {
+      "ny": 1000,
+      "nx": 1000,
+      "nt": 360,
+      "nr": 256,
+      "pml_width": 12
+    }
+  },
+  "results": {
+    "judge": {
+      "small": {
+        "wall_s": 0.007780459010973573,
+        "peak_mem_mb": 3.3883886337280273,
+        "mem_method": "tracemalloc peak; excludes native Torch allocations"
+      },
+      "medium": {
+        "wall_s": 0.02848016601637937,
+        "peak_mem_mb": 12.69451904296875,
+        "mem_method": "tracemalloc peak; excludes native Torch allocations"
+      },
+      "large": {
+        "skipped": "Large float64 CPU reference may exceed 120 s."
+      }
+    },
+    "metal": {
+      "small": {
+        "wall_s": 0.05133962500258349,
+        "peak_mem_mb": 0.078125,
+        "mem_method": "RUSAGE_CHILDREN ru_maxrss high-water delta, macOS bytes; may be zero after warm-up"
+      },
+      "medium": {
+        "wall_s": 0.05915537499822676,
+        "peak_mem_mb": 0.0,
+        "mem_method": "RUSAGE_CHILDREN ru_maxrss high-water delta, macOS bytes; may be zero after warm-up"
+      },
+      "large": {
+        "wall_s": 0.11150054199970327,
+        "peak_mem_mb": 0.046875,
+        "mem_method": "RUSAGE_CHILDREN ru_maxrss high-water delta, macOS bytes; may be zero after warm-up"
+      }
+    }
+  },
+  "medium_max_rel_diff": {
+    "metal": 1.145461040330531e-05
+  },
+  "notes": "Forward run_frames: fourth-order CFS-PML, 10 m spacing, 1 ms step; fixed seed. Timings include reference rendering or Metal startup, file transport and every-frame rendering. Relative difference is the maximum of per-output max absolute errors normalized by each reference peak. Child ru_maxrss is a cumulative high-water mark, so its delta is not a reliable per-call peak and may omit GPU allocations. CPU tracemalloc excludes native allocations. Runtime targets are estimates."
+}

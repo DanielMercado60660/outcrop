@@ -1,0 +1,82 @@
+{
+  "project": "34-dc-2d",
+  "sizes": {
+    "small": {
+      "nx": 25,
+      "nz": 16,
+      "observations": 2,
+      "wavenumbers": 5
+    },
+    "medium": {
+      "nx": 61,
+      "nz": 32,
+      "observations": 8,
+      "wavenumbers": 12
+    },
+    "large": {
+      "nx": 121,
+      "nz": 60,
+      "observations": 16,
+      "wavenumbers": 24
+    }
+  },
+  "results": {
+    "judge": {
+      "small": {
+        "wall_s": 0.022998209024081007,
+        "peak_mem_mb": 0.4821653366088867,
+        "mem_method": "tracemalloc peak during call (Python allocations)"
+      },
+      "medium": {
+        "wall_s": 0.07126220801728778,
+        "peak_mem_mb": 4.643145561218262,
+        "mem_method": "tracemalloc peak during call (Python allocations)"
+      },
+      "large": {
+        "skipped": "Potentially exceeds 120 s for 24 modes and 16 sources"
+      }
+    },
+    "mlx": {
+      "small": {
+        "wall_s": 0.17083795799408108,
+        "peak_mem_mb": 2.2352867126464844,
+        "mem_method": "MLX peak allocated memory after reset; process RSS high-water also reported",
+        "process_peak_rss_mb": 273.15625
+      },
+      "medium": {
+        "wall_s": 0.17949887498980388,
+        "peak_mem_mb": 84.1247673034668,
+        "mem_method": "MLX peak allocated memory after reset; process RSS high-water also reported",
+        "process_peak_rss_mb": 299.578125
+      },
+      "large": {
+        "wall_s": 1.3111245000036433,
+        "peak_mem_mb": 1788.0075798034668,
+        "mem_method": "MLX peak allocated memory after reset; process RSS high-water also reported",
+        "process_peak_rss_mb": 303.15625
+      }
+    },
+    "metal": {
+      "small": {
+        "wall_s": 0.04873283300548792,
+        "peak_mem_mb": 0.0,
+        "mem_method": "RUSAGE_CHILDREN ru_maxrss delta, macOS bytes; cumulative child high-water mark"
+      },
+      "medium": {
+        "wall_s": 0.11898458300856873,
+        "peak_mem_mb": 0.0,
+        "mem_method": "RUSAGE_CHILDREN ru_maxrss delta, macOS bytes; cumulative child high-water mark"
+      },
+      "large": {
+        "wall_s": 0.9248438329959754,
+        "peak_mem_mb": 0.03125,
+        "mem_method": "RUSAGE_CHILDREN ru_maxrss delta, macOS bytes; cumulative child high-water mark"
+      }
+    }
+  },
+  "medium_max_rel_diff": {
+    "mlx": 5.215010325634226e-07,
+    "metal": 3.805391086849317e-07
+  },
+  "notes": "Deterministic synthetic block; 0.5 m cells, trapezoidal Fourier weights. Times include setup and harness serialization. Memory uses macOS ru_maxrss bytes. Child ru_maxrss is a cumulative high-water mark, so its delta can be zero even when a child uses substantial memory; tracemalloc excludes most native allocations. Sizes and timing targets are estimates and have not been run on the target GPU."
+}

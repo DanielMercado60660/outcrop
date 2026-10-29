@@ -1,0 +1,69 @@
+{
+  "project": "23-misfit-fwi",
+  "sizes": {
+    "small": {
+      "ntrace": 128,
+      "ntime": 1024,
+      "dt": 0.002,
+      "kind": "envelope",
+      "epsilon": 0.01
+    },
+    "medium": {
+      "ntrace": 512,
+      "ntime": 4096,
+      "dt": 0.002,
+      "kind": "envelope",
+      "epsilon": 0.01
+    },
+    "large": {
+      "ntrace": 2048,
+      "ntime": 8192,
+      "dt": 0.002,
+      "kind": "envelope",
+      "epsilon": 0.01
+    }
+  },
+  "results": {
+    "judge": {
+      "small": {
+        "wall_s": 0.002300916996318847,
+        "peak_mem_mb": 16.002779006958008,
+        "mem_method": "tracemalloc peak, MiB, including traced NumPy allocations during call"
+      },
+      "medium": {
+        "wall_s": 0.045064541016472504,
+        "peak_mem_mb": 256.0027332305908,
+        "mem_method": "tracemalloc peak, MiB, including traced NumPy allocations during call"
+      },
+      "large": {
+        "wall_s": 0.39838616698398255,
+        "peak_mem_mb": 2048.002733230591,
+        "mem_method": "tracemalloc peak, MiB, including traced NumPy allocations during call"
+      }
+    },
+    "mlx": {
+      "small": {
+        "wall_s": 0.0014083749847486615,
+        "peak_mem_mb": 47.02008819580078,
+        "mem_method": "MLX reset_peak_memory/get_peak_memory, MiB; RSS is process lifetime peak",
+        "process_peak_rss_mb": 141.4375
+      },
+      "medium": {
+        "wall_s": 0.0064544579945504665,
+        "peak_mem_mb": 752.0786819458008,
+        "mem_method": "MLX reset_peak_memory/get_peak_memory, MiB; RSS is process lifetime peak",
+        "process_peak_rss_mb": 478.359375
+      },
+      "large": {
+        "wall_s": 0.05998020799597725,
+        "peak_mem_mb": 3136.0937843322754,
+        "mem_method": "MLX reset_peak_memory/get_peak_memory, MiB; RSS is process lifetime peak",
+        "process_peak_rss_mb": 3192.71875
+      }
+    }
+  },
+  "medium_max_rel_diff": {
+    "mlx": 9.805126689618975e-06
+  },
+  "notes": "Envelope objective and gradient, three timed calls after one warm-up; median wall time includes input conversion and output synchronization. Memory values are MiB. Inputs are allocated before measurement. RSS is the process lifetime peak, not an isolated per-call delta. Medium error is the larger objective or gradient global infinity-norm relative difference. Runtimes depend on hardware."
+}

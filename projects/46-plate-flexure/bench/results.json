@@ -1,0 +1,81 @@
+{
+  "project": "46-plate-flexure",
+  "sizes": {
+    "small": {
+      "n": 800000,
+      "extent_km": 600
+    },
+    "medium": {
+      "n": 8000000,
+      "extent_km": 600
+    },
+    "large": {
+      "n": 80000000,
+      "extent_km": 600
+    }
+  },
+  "results": {
+    "judge": {
+      "small": {
+        "wall_s": 0.004699167009675875,
+        "peak_mem_mb": 30.518035888671875,
+        "mem_method": "tracemalloc peak bytes during call, including NumPy allocations"
+      },
+      "medium": {
+        "wall_s": 0.04764625002280809,
+        "peak_mem_mb": 305.1762390136719,
+        "mem_method": "tracemalloc peak bytes during call, including NumPy allocations"
+      },
+      "large": {
+        "wall_s": 0.4737920000043232,
+        "peak_mem_mb": 3051.758270263672,
+        "mem_method": "tracemalloc peak bytes during call, including NumPy allocations"
+      }
+    },
+    "mlx": {
+      "small": {
+        "wall_s": 0.0012915410043206066,
+        "peak_mem_mb": 12.250041961669922,
+        "mem_method": "MLX reset_peak_memory/get_peak_memory; process RSS high-water separately",
+        "process_peak_rss_mb": 99.125
+      },
+      "medium": {
+        "wall_s": 0.005777208018116653,
+        "peak_mem_mb": 122.12504196166992,
+        "mem_method": "MLX reset_peak_memory/get_peak_memory; process RSS high-water separately",
+        "process_peak_rss_mb": 557.21875
+      },
+      "large": {
+        "wall_s": 0.03648966702166945,
+        "peak_mem_mb": 1220.75004196167,
+        "mem_method": "MLX reset_peak_memory/get_peak_memory; process RSS high-water separately",
+        "process_peak_rss_mb": 5136.3125
+      }
+    },
+    "metal": {
+      "small": {
+        "wall_s": 0.03958112499094568,
+        "peak_mem_mb": 0.0,
+        "mem_method": "RUSAGE_CHILDREN ru_maxrss high-water delta (macOS bytes)",
+        "child_peak_rss_high_water_mb": 34.265625
+      },
+      "medium": {
+        "wall_s": 0.06152799999108538,
+        "peak_mem_mb": 0.0,
+        "mem_method": "RUSAGE_CHILDREN ru_maxrss high-water delta (macOS bytes)",
+        "child_peak_rss_high_water_mb": 171.328125
+      },
+      "large": {
+        "wall_s": 0.2795434579893481,
+        "peak_mem_mb": 0.0,
+        "mem_method": "RUSAGE_CHILDREN ru_maxrss high-water delta (macOS bytes)",
+        "child_peak_rss_high_water_mb": 1544.640625
+      }
+    }
+  },
+  "medium_max_rel_diff": {
+    "mlx": 3.1075236874477655e-07,
+    "metal": 3.1075236874477655e-07
+  },
+  "notes": "Coordinates are fixed and evenly spaced; scalar parameters are rounded to float32. Times are median of three calls after one warm-up, including harness conversion and Metal file I/O, process startup and shader compilation. Judge timing includes tracemalloc overhead. Memory is MiB. Child ru_maxrss is a cumulative high-water mark, so its delta can be zero after warm-up and is not an individual child's peak; the absolute high-water mark is also reported. Process RSS is likewise a lifetime high-water mark. Relative differences use the peak reference magnitude as denominator to avoid singularities at zero crossings."
+}

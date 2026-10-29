@@ -1,0 +1,72 @@
+{
+  "project": "25-fast-sweeping",
+  "sizes": {
+    "small": {
+      "shape": [
+        28,
+        28,
+        28
+      ],
+      "spacing_m": 10.0,
+      "seed": 25
+    },
+    "medium": {
+      "shape": [
+        64,
+        64,
+        64
+      ],
+      "spacing_m": 10.0,
+      "seed": 25
+    },
+    "large": {
+      "shape": [
+        128,
+        128,
+        128
+      ],
+      "spacing_m": 10.0,
+      "seed": 25
+    }
+  },
+  "results": {
+    "judge": {
+      "small": {
+        "wall_s": 0.003189875016687438,
+        "peak_mem_mb": 0.8379974365234375,
+        "mem_method": "tracemalloc peak allocated during call; excludes untracked native allocations"
+      },
+      "medium": {
+        "wall_s": 0.04290770800434984,
+        "peak_mem_mb": 10.000572204589844,
+        "mem_method": "tracemalloc peak allocated during call; excludes untracked native allocations"
+      },
+      "large": {
+        "wall_s": 0.44464895798591897,
+        "peak_mem_mb": 80.00057220458984,
+        "mem_method": "tracemalloc peak allocated during call; excludes untracked native allocations"
+      }
+    },
+    "metal": {
+      "small": {
+        "wall_s": 0.06044900001143105,
+        "peak_mem_mb": 0.90625,
+        "mem_method": "RUSAGE_CHILDREN ru_maxrss high-water delta (macOS bytes); may be zero after warmup and excludes GPU allocations"
+      },
+      "medium": {
+        "wall_s": 0.06821687499177642,
+        "peak_mem_mb": 0.0,
+        "mem_method": "RUSAGE_CHILDREN ru_maxrss high-water delta (macOS bytes); may be zero after warmup and excludes GPU allocations"
+      },
+      "large": {
+        "wall_s": 0.11222199999610893,
+        "peak_mem_mb": 0.0625,
+        "mem_method": "RUSAGE_CHILDREN ru_maxrss high-water delta (macOS bytes); may be zero after warmup and excludes GPU allocations"
+      }
+    }
+  },
+  "medium_max_rel_diff": {
+    "metal": 1.2269609375404217e-07
+  },
+  "notes": "Times include harness serialization, process startup and shader compilation for Metal. Relative difference is max absolute error normalized by maximum absolute judge travel time. The Metal memory metric is a child high-water increase, not an individual process peak; warmup can make it zero. Judge tracemalloc may miss native allocations. Grid sizes and timings are estimates pending execution on the target machine."
+}

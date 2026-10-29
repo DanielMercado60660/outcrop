@@ -1,0 +1,306 @@
+{
+  "versions": {
+    "numpy": "2.5.4",
+    "harmonica": "0.7.0",
+    "numba": "0.68.1"
+  },
+  "seed": "none; explicit deterministic cases",
+  "settings": {
+    "glq_degrees": [
+      2,
+      2,
+      2
+    ],
+    "distance_size_ratios": {
+      "potential": 1,
+      "g_z": 2.5
+    },
+    "input_precision": "float32-quantized inputs promoted to float64 before every Harmonica call",
+    "minimum_split_margin": "minimum abs(distance / size / ratio - 1) across active decisions for nonzero sources, computed with stable spherical formulas; must exceed 1e-4",
+    "fine": "uniform 8 subdivisions on each source axis, then Harmonica adaptive radial=True",
+    "finer": "uniform 16 subdivisions on each source axis, then Harmonica adaptive radial=True"
+  },
+  "tolerances": {
+    "matched_relative": [
+      0.0001,
+      "campaign float32 limit"
+    ],
+    "cross_relative": [
+      0.0001,
+      "float32 implementation parity"
+    ],
+    "fine_relative": [
+      0.003,
+      "adaptive quadrature approximation; proposed bound"
+    ]
+  },
+  "cases": {
+    "near": {
+      "coordinates": [
+        [
+          0.0,
+          0.0,
+          6375000.0
+        ],
+        [
+          0.75,
+          0.25,
+          6381000.0
+        ],
+        [
+          -1.5,
+          0.5,
+          6391000.0
+        ]
+      ],
+      "tesseroids": [
+        [
+          -1.0,
+          1.0,
+          -1.0,
+          1.0,
+          6361000.0,
+          6371000.0
+        ]
+      ],
+      "density": [
+        2670.0
+      ],
+      "results": {
+        "potential_0_minimum_split_margin": 0.026059886353452466,
+        "potential_0": [
+          1298.2220457496005,
+          1042.2517376283013,
+          526.137934373038
+        ],
+        "potential_0_fine_max_relative": 0.0019486568759235646,
+        "potential_1_minimum_split_margin": 0.026059886353452466,
+        "potential_1": [
+          1298.3108907387846,
+          1042.2517376283013,
+          526.137934373038
+        ],
+        "potential_1_fine_max_relative": 0.0019486568759235646,
+        "potential_fine": [
+          1298.5480910740582,
+          1043.869277740575,
+          527.1651984617681
+        ],
+        "potential_fine_finer_max_relative": 8.323531409759488e-05,
+        "g_z_0_minimum_split_margin": 0.005906335210587921,
+        "g_z_0": [
+          1046.214057069526,
+          884.718442252153,
+          79.94246052660448
+        ],
+        "g_z_0_fine_max_relative": 0.00043863855919867953,
+        "g_z_1_minimum_split_margin": 0.0004343359015928083,
+        "g_z_1": [
+          1046.247725210308,
+          884.6695606591056,
+          79.94246052660448
+        ],
+        "g_z_1_fine_max_relative": 0.00043863855919867953,
+        "g_z_fine": [
+          1046.2804216458367,
+          884.7503581168136,
+          79.97754176029046
+        ],
+        "g_z_fine_finer_max_relative": 0.00022809817340700464
+      }
+    },
+    "mixed": {
+      "coordinates": [
+        [
+          20.1299991607666,
+          34.0,
+          6381000.0
+        ],
+        [
+          22.0,
+          36.0,
+          6401000.0
+        ],
+        [
+          27.0,
+          32.0,
+          6471000.0
+        ]
+      ],
+      "tesseroids": [
+        [
+          19.0,
+          21.0,
+          33.0,
+          35.0,
+          6351000.0,
+          6371000.0
+        ],
+        [
+          22.0,
+          24.0,
+          34.0,
+          36.0,
+          6341000.0,
+          6361000.0
+        ],
+        [
+          18.0,
+          19.0,
+          31.0,
+          32.0,
+          6351000.0,
+          6371000.0
+        ]
+      ],
+      "density": [
+        2500.0,
+        -800.0,
+        0.0
+      ],
+      "results": {
+        "potential_0_minimum_split_margin": 0.03324852130101641,
+        "potential_0": [
+          1831.7586813823352,
+          179.40267591924754,
+          110.66420963547952
+        ],
+        "potential_0_fine_max_relative": 0.0020429106890182585,
+        "potential_1_minimum_split_margin": 0.03324852130101641,
+        "potential_1": [
+          1831.7586813823352,
+          179.40267591924754,
+          110.66420963547952
+        ],
+        "potential_1_fine_max_relative": 0.0020429106890182585,
+        "potential_fine": [
+          1831.4525702956435,
+          179.03691948270742,
+          110.67771300961951
+        ],
+        "potential_fine_finer_max_relative": 0.00011995975976806386,
+        "g_z_0_minimum_split_margin": 0.009271023360327368,
+        "g_z_0": [
+          1724.0234549482866,
+          -100.54493050636317,
+          1.3116986724360555
+        ],
+        "g_z_0_fine_max_relative": 0.0009908834291375303,
+        "g_z_1_minimum_split_margin": 0.005920114491353656,
+        "g_z_1": [
+          1724.0484514373777,
+          -100.54493050636317,
+          1.3116986724360555
+        ],
+        "g_z_1_fine_max_relative": 0.0009908834291375303,
+        "g_z_fine": [
+          1724.1362224325972,
+          -100.54752867565267,
+          1.3129997020833124
+        ],
+        "g_z_fine_finer_max_relative": 4.6201504795777404e-05
+      }
+    },
+    "distance": {
+      "coordinates": [
+        [
+          0.0,
+          0.0,
+          6381000.0
+        ],
+        [
+          0.0,
+          0.0,
+          6471000.0
+        ],
+        [
+          0.0,
+          0.0,
+          7371000.0
+        ],
+        [
+          0.0,
+          0.0,
+          16371000.0
+        ],
+        [
+          45.0,
+          30.0,
+          7371000.0
+        ]
+      ],
+      "tesseroids": [
+        [
+          -1.0,
+          1.0,
+          -1.0,
+          1.0,
+          6361000.0,
+          6371000.0
+        ]
+      ],
+      "density": [
+        2670.0
+      ],
+      "results": {
+        "potential_0_minimum_split_margin": 0.11030604863345417,
+        "potential_0": [
+          1237.2274236504782,
+          650.5270965860822,
+          87.14501348594864,
+          8.793872635931365,
+          14.391579176592353
+        ],
+        "potential_0_fine_max_relative": 0.000728755767408448,
+        "potential_1_minimum_split_margin": 0.11030604863345417,
+        "potential_1": [
+          1237.2274236504782,
+          650.5270965860822,
+          87.14501348594864,
+          8.793872635931365,
+          14.391579176592353
+        ],
+        "potential_1_fine_max_relative": 0.000728755767408448,
+        "potential_fine": [
+          1237.4209369520877,
+          650.0533664461612,
+          87.14616393685434,
+          8.793872723049132,
+          14.391579095983886
+        ],
+        "potential_fine_finer_max_relative": 2.9298180418521834e-05,
+        "g_z_0_minimum_split_margin": 0.011671657611345032,
+        "g_z_0": [
+          991.0251160518688,
+          395.67718597987715,
+          8.595787037875695,
+          0.087881914606568,
+          0.13368668460991626
+        ],
+        "g_z_0_fine_max_relative": 6.208669731293063e-05,
+        "g_z_1_minimum_split_margin": 0.011671657611345032,
+        "g_z_1": [
+          990.9914939506716,
+          395.67718597987715,
+          8.595787037875695,
+          0.087881914606568,
+          0.13368668460991626
+        ],
+        "g_z_1_fine_max_relative": 8.703610189871143e-05,
+        "g_z_fine": [
+          991.0777534950143,
+          395.65341573201044,
+          8.596320755040418,
+          0.08788191746215444,
+          0.1336866837890495
+        ],
+        "g_z_fine_finer_max_relative": 7.468168014955423e-05
+      }
+    }
+  },
+  "sanity": {
+    "far_point_mass_potential": 8.794799180345011,
+    "far_point_mass_g_z": 0.08790403978355833,
+    "far_comparison": "finite source versus central point mass; within 1%"
+  }
+}

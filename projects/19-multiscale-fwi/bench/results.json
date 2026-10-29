@@ -1,0 +1,72 @@
+{
+  "project": "19-multiscale-fwi",
+  "sizes": {
+    "small": {
+      "nz": 12,
+      "nx": 24,
+      "nt": 64,
+      "shots": 1,
+      "receivers": 4
+    },
+    "medium": {
+      "nz": 25,
+      "nx": 61,
+      "nt": 256,
+      "shots": 2,
+      "receivers": 8
+    },
+    "large": {
+      "nz": 40,
+      "nx": 80,
+      "nt": 1024,
+      "shots": 2,
+      "receivers": 16
+    }
+  },
+  "results": {
+    "judge": {
+      "small": {
+        "wall_s": 0.0015328330046031624,
+        "peak_mem_mb": 0.023720741271972656,
+        "mem_method": "tracemalloc peak during separate call (Python allocations only)",
+        "process_peak_rss_mb": 306.4375
+      },
+      "medium": {
+        "wall_s": 0.01630220899824053,
+        "peak_mem_mb": 0.03914165496826172,
+        "mem_method": "tracemalloc peak during separate call (Python allocations only)",
+        "process_peak_rss_mb": 356.15625
+      },
+      "large": {
+        "wall_s": 0.08778729100595228,
+        "peak_mem_mb": 0.2572660446166992,
+        "mem_method": "tracemalloc peak during separate call (Python allocations only)",
+        "process_peak_rss_mb": 509.296875
+      }
+    },
+    "mlx": {
+      "small": {
+        "wall_s": 0.036133250017883256,
+        "peak_mem_mb": 3.3196983337402344,
+        "mem_method": "MLX get_peak_memory after reset, across three timed calls",
+        "process_peak_rss_mb": 337.1875
+      },
+      "medium": {
+        "wall_s": 0.15502020801068284,
+        "peak_mem_mb": 32.82115936279297,
+        "mem_method": "MLX get_peak_memory after reset, across three timed calls",
+        "process_peak_rss_mb": 408.53125
+      },
+      "large": {
+        "wall_s": 0.6847115830169059,
+        "peak_mem_mb": 140.09804916381836,
+        "mem_method": "MLX get_peak_memory after reset, across three timed calls",
+        "process_peak_rss_mb": 721.28125
+      }
+    }
+  },
+  "medium_max_rel_diff": {
+    "mlx": 1.1341575140707045e-06
+  },
+  "notes": "misfit_and_grad; seed 190028; dx=20 m, dt=0.002 s, cutoff=9 Hz. Observed traces are synthetic Ricker-shaped targets, not modeled wavefields. Relative difference is the maximum of per-output max absolute differences divided by each reference output's maximum absolute value. Per-output differences: {'predicted': 1.1876456736661888e-07, 'objective': 1.3007633907507215e-07, 'gradient': 1.1341575140707045e-06}. MLX uses CPU float64. Process RSS is a cumulative high-water mark, and tracemalloc excludes native PyTorch allocations."
+}

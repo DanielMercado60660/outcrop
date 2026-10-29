@@ -1,0 +1,4 @@
+# Exact reference environment used to generate the committed float64 oracle.
+numpy==2.5.4
+torch==2.15.0
+deepwave==0.1.0

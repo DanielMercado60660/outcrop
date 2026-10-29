@@ -1,0 +1,523 @@
+{
+  "seed_data": 1101,
+  "seed_probes": 1102,
+  "dtype": "float64",
+  "libraries": {
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "harmonica": "0.7.0",
+    "pytest": "9.2.0"
+  },
+  "geometry": "5x4x3 cells, 100 m cube; east,north,depth C-order; ENU receivers/prisms",
+  "units": "density/500 kg m^-3, susceptibility/0.05 SI; data normalized by saved physical_data_scales (mGal,nT)",
+  "physics": "Harmonica prism g_z positive down; linear induced total-field projection, 50000 nT, I=60,D=20",
+  "noise": "independent Gaussian std 0.03 in normalized data; same forward mesh used for generation and inversion",
+  "synthetic_choice": "shallow Gaussian bodies, susceptibility=0.8*density in normalized units; favorable shared structure. Initial deeper, unequal-contrast case failed 10% criterion. Regularization selected in judge development, now fixed.",
+  "discretization": "forward differences in units of 100 m, zero outward row; cross product at every cell; no volume weights",
+  "objective": "0.5||Ag u-dg||\u00b2+0.5||Am v-dm||\u00b2+alpha/2(||u||\u00b2+||v||\u00b2)+smooth/2(||Du||\u00b2+||Dv||\u00b2)+coupling/2||Du x Dv||\u00b2",
+  "solver": "independent SPD minimizers, then 150 exact density-first block coordinate sweeps; same data and regularization",
+  "model_errors": [
+    [
+      0.7369319432008441,
+      0.8102818417566509
+    ],
+    [
+      0.5611526148012703,
+      0.7045296351563847
+    ]
+  ],
+  "improvement_ratios": [
+    0.7614714221287776,
+    0.8694871325624173
+  ],
+  "solver_feasibility": {
+    "normal_matrix_condition_numbers": [
+      11830.777634120872,
+      7774.534938591164
+    ],
+    "eps32_times_condition": [
+      0.0014103385965968218,
+      0.0009267967866171794
+    ],
+    "scope": "SciPy CPU audit only. Local mlx.core import failed: no Metal device available. SCIENCE_REVIEW-r1.md reports native MLX CPU solve errors up to 1.6e-3; those are prior review evidence, not independently rerun here. No GPU implementation certified.",
+    "cases": {
+      "scipy_spd_float32": {
+        "separate0": {
+          "model_errors": [
+            0.00020039052505151794,
+            0.0002004110424466441
+          ],
+          "prediction_errors": [
+            1.7621206730505939e-06,
+            9.028399859413271e-07
+          ]
+        },
+        "separate3": {
+          "model_errors": [
+            0.00020039052505151794,
+            0.0002004110424466441
+          ],
+          "prediction_errors": [
+            1.7621206730505939e-06,
+            9.028399859413271e-07
+          ]
+        },
+        "sweep1": {
+          "model_errors": [
+            0.0001671223529815903,
+            0.0001597135217285136
+          ],
+          "prediction_errors": [
+            1.8484836089570661e-06,
+            9.959980485656081e-07
+          ]
+        },
+        "sweep7": {
+          "model_errors": [
+            0.0001144156749961808,
+            9.537464478047077e-05
+          ],
+          "prediction_errors": [
+            1.14375579984827e-06,
+            1.1013871925696416e-06
+          ]
+        },
+        "joint150": {
+          "model_errors": [
+            7.634061444348785e-05,
+            9.581541923127439e-05
+          ],
+          "prediction_errors": [
+            1.1764364769636713e-06,
+            1.0958468053468905e-06
+          ],
+          "improvement_ratios": [
+            0.7614891413547865,
+            0.8694609356815631
+          ]
+        }
+      },
+      "scipy_lu_float32": {
+        "separate0": {
+          "model_errors": [
+            0.0001868108564997555,
+            0.00024339592499000127
+          ],
+          "prediction_errors": [
+            2.9512891142617558e-06,
+            1.2476236797983615e-06
+          ]
+        },
+        "separate3": {
+          "model_errors": [
+            0.0001868108564997555,
+            0.00024339592499000127
+          ],
+          "prediction_errors": [
+            2.9512891142617558e-06,
+            1.2476236797983615e-06
+          ]
+        },
+        "sweep1": {
+          "model_errors": [
+            0.00023436595129709364,
+            0.00021348589516681976
+          ],
+          "prediction_errors": [
+            2.3944802625588337e-06,
+            1.292569914988576e-06
+          ]
+        },
+        "sweep7": {
+          "model_errors": [
+            0.0001381478786815695,
+            0.00012980237036290778
+          ],
+          "prediction_errors": [
+            1.7019964223499196e-06,
+            1.401182899881274e-06
+          ]
+        },
+        "joint150": {
+          "model_errors": [
+            8.609935312397749e-05,
+            0.0001493271576017145
+          ],
+          "prediction_errors": [
+            1.2292812536320773e-06,
+            9.940178829033096e-07
+          ],
+          "improvement_ratios": [
+            0.7614617763890177,
+            0.8694849469375503
+          ]
+        }
+      },
+      "scipy_cholesky_float32": {
+        "separate0": {
+          "model_errors": [
+            0.0001418513204263762,
+            0.00018355382864610967
+          ],
+          "prediction_errors": [
+            1.9504418661432045e-06,
+            9.81269106396676e-07
+          ]
+        },
+        "separate3": {
+          "model_errors": [
+            0.0001418513204263762,
+            0.00018355382864610967
+          ],
+          "prediction_errors": [
+            1.9504418661432045e-06,
+            9.81269106396676e-07
+          ]
+        },
+        "sweep1": {
+          "model_errors": [
+            0.0001536507324443792,
+            0.00015181354872184736
+          ],
+          "prediction_errors": [
+            1.8168879075390803e-06,
+            1.402255273955237e-06
+          ]
+        },
+        "sweep7": {
+          "model_errors": [
+            0.00010002286427626287,
+            0.00010209497253683493
+          ],
+          "prediction_errors": [
+            1.2737247803416116e-06,
+            8.785426988016266e-07
+          ]
+        },
+        "joint150": {
+          "model_errors": [
+            0.00012892772282533296,
+            9.060882967688031e-05
+          ],
+          "prediction_errors": [
+            1.3621928497458458e-06,
+            8.385215213338563e-07
+          ],
+          "improvement_ratios": [
+            0.7614959710546892,
+            0.8694458547459725
+          ]
+        }
+      },
+      "rounded_inputs_float64": {
+        "separate0": {
+          "model_errors": [
+            7.453138631494018e-07,
+            7.114388626305521e-07
+          ],
+          "prediction_errors": [
+            2.2510495546216154e-08,
+            2.5351671867795176e-08
+          ]
+        },
+        "separate3": {
+          "model_errors": [
+            7.453138631494018e-07,
+            7.114388626305521e-07
+          ],
+          "prediction_errors": [
+            2.2510495546216154e-08,
+            2.5351671867795176e-08
+          ]
+        },
+        "sweep1": {
+          "model_errors": [
+            6.300393123014262e-07,
+            6.86828902455057e-07
+          ],
+          "prediction_errors": [
+            1.835565883304165e-08,
+            2.65829575595307e-08
+          ]
+        },
+        "sweep7": {
+          "model_errors": [
+            5.361592333259575e-07,
+            8.534727998680872e-07
+          ],
+          "prediction_errors": [
+            1.758366998118129e-08,
+            2.421763570345405e-08
+          ]
+        },
+        "joint150": {
+          "model_errors": [
+            4.3192704392659486e-07,
+            5.723011435116581e-07
+          ],
+          "prediction_errors": [
+            1.559124291403e-08,
+            2.204440181427406e-08
+          ],
+          "improvement_ratios": [
+            0.7614714460462265,
+            0.8694872122413362
+          ]
+        }
+      }
+    }
+  },
+  "finite_difference_diagnostics": {
+    "coupled": {
+      "full_float64_fd_error": 7.417040944161776e-11,
+      "float32_directional_fd_error": 0.0002930339069720132
+    },
+    "uncoupled": {
+      "full_float64_fd_error": 6.153690760738217e-11,
+      "float32_directional_fd_error": 0.00013938467928460902
+    }
+  },
+  "inputs": {
+    "gravity_matrix": {
+      "shape": [
+        72,
+        60
+      ],
+      "dtype": "float64",
+      "min": 0.0033447328328410925,
+      "max": 0.45541829333274647
+    },
+    "magnetic_matrix": {
+      "shape": [
+        72,
+        60
+      ],
+      "dtype": "float64",
+      "min": -0.16099257099054878,
+      "max": 0.8469714476471089
+    },
+    "gravity_data": {
+      "shape": [
+        72
+      ],
+      "dtype": "float64",
+      "min": 0.04077722821836133,
+      "max": 0.9768046829352284
+    },
+    "magnetic_data": {
+      "shape": [
+        72
+      ],
+      "dtype": "float64",
+      "min": -0.2547956899665104,
+      "max": 1.0022166120868443
+    },
+    "derivatives": {
+      "shape": [
+        3,
+        60,
+        60
+      ],
+      "dtype": "float64",
+      "min": -1.0,
+      "max": 1.0
+    },
+    "true_density": {
+      "shape": [
+        60
+      ],
+      "dtype": "float64",
+      "min": 1.0615495591187103e-07,
+      "max": 0.842367130157094
+    },
+    "true_susceptibility": {
+      "shape": [
+        60
+      ],
+      "dtype": "float64",
+      "min": 8.492396472949683e-08,
+      "max": 0.6738937041256752
+    },
+    "prisms": {
+      "shape": [
+        60,
+        6
+      ],
+      "dtype": "float64",
+      "min": -350.0,
+      "max": 500.0
+    },
+    "gravity_receivers": {
+      "shape": [
+        72,
+        3
+      ],
+      "dtype": "float64",
+      "min": -50.0,
+      "max": 550.0
+    },
+    "magnetic_receivers": {
+      "shape": [
+        72,
+        3
+      ],
+      "dtype": "float64",
+      "min": -30.0,
+      "max": 530.0
+    },
+    "physical_data_scales": {
+      "shape": [
+        2
+      ],
+      "dtype": "float64",
+      "min": 0.449130359523787,
+      "max": 132.42516023453229
+    },
+    "field_direction": {
+      "shape": [
+        3
+      ],
+      "dtype": "float64",
+      "min": -0.8660254037844386,
+      "max": 0.4698463103929543
+    },
+    "shape": {
+      "shape": [
+        3
+      ],
+      "dtype": "int64",
+      "min": 3.0,
+      "max": 5.0
+    },
+    "noise_std": {
+      "shape": [],
+      "dtype": "float64",
+      "min": 0.03,
+      "max": 0.03
+    },
+    "alpha": {
+      "shape": [],
+      "dtype": "float64",
+      "min": 0.001,
+      "max": 0.001
+    },
+    "smooth": {
+      "shape": [],
+      "dtype": "float64",
+      "min": 0.0001,
+      "max": 0.0001
+    },
+    "coupling": {
+      "shape": [],
+      "dtype": "float64",
+      "min": 0.1,
+      "max": 0.1
+    },
+    "sweeps": {
+      "shape": [],
+      "dtype": "int64",
+      "min": 150.0,
+      "max": 150.0
+    },
+    "separate_density": {
+      "shape": [
+        60
+      ],
+      "dtype": "float64",
+      "min": -0.40035112212940055,
+      "max": 0.8986842093230349
+    },
+    "separate_susceptibility": {
+      "shape": [
+        60
+      ],
+      "dtype": "float64",
+      "min": -0.41638079364027664,
+      "max": 0.689767744637943
+    },
+    "joint_density": {
+      "shape": [
+        60
+      ],
+      "dtype": "float64",
+      "min": -0.21773403761729523,
+      "max": 0.9080996416498879
+    },
+    "joint_susceptibility": {
+      "shape": [
+        60
+      ],
+      "dtype": "float64",
+      "min": -0.35609758311626255,
+      "max": 0.6623697638871133
+    },
+    "model_errors": {
+      "shape": [
+        2,
+        2
+      ],
+      "dtype": "float64",
+      "min": 0.5611526148012703,
+      "max": 0.8102818417566509
+    },
+    "sweep1_density": {
+      "shape": [
+        60
+      ],
+      "dtype": "float64",
+      "min": -0.2654797648183601,
+      "max": 0.8987529820814772
+    },
+    "sweep1_susceptibility": {
+      "shape": [
+        60
+      ],
+      "dtype": "float64",
+      "min": -0.3608070923177907,
+      "max": 0.6804572491759723
+    },
+    "sweep7_density": {
+      "shape": [
+        60
+      ],
+      "dtype": "float64",
+      "min": -0.22806169599330936,
+      "max": 0.9043518014735736
+    },
+    "sweep7_susceptibility": {
+      "shape": [
+        60
+      ],
+      "dtype": "float64",
+      "min": -0.3509329450161662,
+      "max": 0.6674152931158162
+    }
+  },
+  "physical_scales": [
+    0.449130359523787,
+    132.42516023453229
+  ],
+  "tolerances": {
+    "PARITY_RTOL": 0.0001,
+    "SOLVER_MODEL_RTOL": 0.003,
+    "ZERO_ATOL": 1e-06,
+    "GRAD_RTOL": 0.001,
+    "FD_STEP": 0.002,
+    "ORACLE_GRAD_RTOL": 1e-06,
+    "ORACLE_FD_STEP": 1e-05,
+    "ORACLE_ZERO_ATOL": 1e-14,
+    "MAX_ERROR_RATIO": 0.9
+  },
+  "tolerance_reasons": {
+    "PARITY_RTOL": "campaign float32 1e-4 global relative parity for forward, objective/gradient, and predicted data of every solver iterate",
+    "SOLVER_MODEL_RTOL": "round-2 proposed 3e-3 MODEL-only bound: cond(Hg)=1.18e4, cond(Hm)=7.80e3; about twice eps32*max(cond). Native MLX CPU solve measured up to 1.6e-3 in prior review. Every solver case audited locally with SciPy SPD, LU and Cholesky float32; predicted data retain 1e-4; 10% improvement unchanged. Requires science review before relock.",
+    "ZERO_ATOL": "absolute allowance only at analytically zero references",
+    "GRAD_RTOL": "campaign float32 centered FD 1e-3; FD_STEP=0.002 normalized units",
+    "FD_STEP": "0.002 normalized property units balances float32 objective cancellation and centered-difference truncation; fixed perturbations saved",
+    "ORACLE_GRAD_RTOL": "float64 centered FD self-check; h=1e-5",
+    "ORACLE_FD_STEP": "float64 coordinate step 1e-5; full gradient agrees to about 1e-10",
+    "ORACLE_ZERO_ATOL": "float64 affine-related cross-gradient identity roundoff",
+    "MAX_ERROR_RATIO": "campaign requires at least 10% improvement for EACH property"
+  },
+  "scope": "MLX-only tag M; physical matrices supplied, no project 03/10 implementation imports"
+}

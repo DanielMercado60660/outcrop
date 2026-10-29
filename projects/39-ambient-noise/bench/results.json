@@ -1,0 +1,78 @@
+{
+  "project": "39-ambient-noise",
+  "sizes": {
+    "small": {
+      "windows": 128,
+      "samples": 1024
+    },
+    "medium": {
+      "windows": 512,
+      "samples": 4096
+    },
+    "large": {
+      "windows": 2048,
+      "samples": 8192
+    }
+  },
+  "results": {
+    "judge": {
+      "small": {
+        "wall_s": 0.0017514580104034394,
+        "peak_mem_mb": 4.51162052154541,
+        "mem_method": "tracemalloc peak during reference call, excluding prebuilt inputs"
+      },
+      "medium": {
+        "wall_s": 0.03286125001613982,
+        "peak_mem_mb": 72.03936862945557,
+        "mem_method": "tracemalloc peak during reference call, excluding prebuilt inputs"
+      },
+      "large": {
+        "wall_s": 0.3387451669841539,
+        "peak_mem_mb": 576.1155405044556,
+        "mem_method": "tracemalloc peak during reference call, excluding prebuilt inputs"
+      }
+    },
+    "mlx": {
+      "small": {
+        "wall_s": 0.0014954579819459468,
+        "peak_mem_mb": 3.672398567199707,
+        "process_peak_rss_mb": 62.796875,
+        "mem_method": "MLX reset_peak_memory/get_peak_memory; process lifetime peak RSS separately (macOS bytes)"
+      },
+      "medium": {
+        "wall_s": 0.003003417019499466,
+        "peak_mem_mb": 57.09769058227539,
+        "process_peak_rss_mb": 216.390625,
+        "mem_method": "MLX reset_peak_memory/get_peak_memory; process lifetime peak RSS separately (macOS bytes)"
+      },
+      "large": {
+        "wall_s": 0.020527999993646517,
+        "peak_mem_mb": 768.0468788146973,
+        "process_peak_rss_mb": 1457.171875,
+        "mem_method": "MLX reset_peak_memory/get_peak_memory; process lifetime peak RSS separately (macOS bytes)"
+      }
+    },
+    "metal": {
+      "small": {
+        "wall_s": 0.05013612500624731,
+        "peak_mem_mb": 24.59375,
+        "mem_method": "fresh worker RUSAGE_CHILDREN ru_maxrss delta (macOS bytes); binary RSS"
+      },
+      "medium": {
+        "wall_s": 0.07886325000436045,
+        "peak_mem_mb": 181.953125,
+        "mem_method": "fresh worker RUSAGE_CHILDREN ru_maxrss delta (macOS bytes); binary RSS"
+      },
+      "large": {
+        "wall_s": 0.2992757920001168,
+        "peak_mem_mb": 1358.03125,
+        "mem_method": "fresh worker RUSAGE_CHILDREN ru_maxrss delta (macOS bytes); binary RSS"
+      }
+    }
+  },
+  "medium_max_rel_diff": {
+    "mlx": 9.944843551719355e-06,
+    "metal": 2.830233738792861e-06
+  },
+  "notes": "Seed 39001, dt=0.01 s, band 3\u201325 Hz, eps=1e-10. Median of three calls after one warmup; memory is the maximum of three peaks. Inputs are prebuilt. Metal timing includes harness file I/O, process startup and shader compilation. Relative error is the largest per-output peak-normalized absolute error. MLX RSS is a lifetime high-water mark. Metal RSS excludes separate GPU allocations. RSS units assume macOS."
+}

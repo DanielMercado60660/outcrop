@@ -1,0 +1,84 @@
+{
+  "project": "06-terrain-bouguer",
+  "sizes": {
+    "small": {
+      "nx": 32,
+      "ny": 32,
+      "observations": 80
+    },
+    "medium": {
+      "nx": 64,
+      "ny": 64,
+      "observations": 256
+    },
+    "large": {
+      "nx": 128,
+      "ny": 128,
+      "observations": 512
+    }
+  },
+  "results": {
+    "judge": {
+      "small": {
+        "wall_s": 0.00797158299246803,
+        "peak_mem_mb": 0.22995662689208984,
+        "mem_method": "tracemalloc peak during timed repeats; excludes native allocations"
+      },
+      "medium": {
+        "wall_s": 0.0687626670114696,
+        "peak_mem_mb": 0.791748046875,
+        "mem_method": "tracemalloc peak during timed repeats; excludes native allocations"
+      },
+      "large": {
+        "wall_s": 0.5360143330181018,
+        "peak_mem_mb": 3.007338523864746,
+        "mem_method": "tracemalloc peak during timed repeats; excludes native allocations"
+      }
+    },
+    "mlx": {
+      "small": {
+        "wall_s": 0.005256708012893796,
+        "peak_mem_mb": 99.075927734375,
+        "process_peak_rss_mb": 299.859375,
+        "mem_method": "MLX peak allocator after reset; process_peak_rss_mb is lifetime RSS high-water"
+      },
+      "medium": {
+        "wall_s": 0.017085041996324435,
+        "peak_mem_mb": 1268.0519409179688,
+        "process_peak_rss_mb": 301.3125,
+        "mem_method": "MLX peak allocator after reset; process_peak_rss_mb is lifetime RSS high-water"
+      },
+      "large": {
+        "wall_s": 0.15981091698631644,
+        "peak_mem_mb": 3840.241985321045,
+        "process_peak_rss_mb": 304.890625,
+        "mem_method": "MLX peak allocator after reset; process_peak_rss_mb is lifetime RSS high-water"
+      }
+    },
+    "metal": {
+      "small": {
+        "wall_s": 0.05268904200056568,
+        "peak_mem_mb": 0.078125,
+        "child_peak_rss_mb": 16.109375,
+        "mem_method": "RUSAGE_CHILDREN ru_maxrss high-water delta after warmup; child_peak_rss_mb is cumulative"
+      },
+      "medium": {
+        "wall_s": 0.0873579999897629,
+        "peak_mem_mb": 0.0,
+        "child_peak_rss_mb": 16.109375,
+        "mem_method": "RUSAGE_CHILDREN ru_maxrss high-water delta after warmup; child_peak_rss_mb is cumulative"
+      },
+      "large": {
+        "wall_s": 0.2347471250104718,
+        "peak_mem_mb": 0.0,
+        "child_peak_rss_mb": 16.40625,
+        "mem_method": "RUSAGE_CHILDREN ru_maxrss high-water delta after warmup; child_peak_rss_mb is cumulative"
+      }
+    }
+  },
+  "medium_max_rel_diff": {
+    "mlx": 2.6163205920099017e-07,
+    "metal": 2.4026340942605385e-07
+  },
+  "notes": "Fixed seed 20261028; 200 m cells; 700 m observation altitude. Median of three calls after one warmup; includes harness transfer and Metal process startup and shader compilation. Relative differences are max absolute errors normalized by each reference output's maximum absolute value. Memory measures are not directly comparable; Metal child high-water delta can be zero after warmup."
+}

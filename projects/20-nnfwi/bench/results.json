@@ -1,0 +1,69 @@
+{
+  "project": "20-nnfwi",
+  "sizes": {
+    "small": {
+      "nz": 12,
+      "nx": 16,
+      "shots": 1,
+      "receivers": 6,
+      "nt": 32
+    },
+    "medium": {
+      "nz": 24,
+      "nx": 32,
+      "shots": 3,
+      "receivers": 15,
+      "nt": 280
+    },
+    "large": {
+      "nz": 64,
+      "nx": 96,
+      "shots": 4,
+      "receivers": 32,
+      "nt": 1200
+    }
+  },
+  "results": {
+    "judge": {
+      "small": {
+        "wall_s": 0.0030529589857906103,
+        "peak_mem_mb": 0.034277,
+        "mem_method": "tracemalloc peak, Python allocations only; excludes native Torch allocations"
+      },
+      "medium": {
+        "wall_s": 0.022690707992296666,
+        "peak_mem_mb": 0.032555,
+        "mem_method": "tracemalloc peak, Python allocations only; excludes native Torch allocations"
+      },
+      "large": {
+        "wall_s": 0.41865095897810534,
+        "peak_mem_mb": 0.029659,
+        "mem_method": "tracemalloc peak, Python allocations only; excludes native Torch allocations"
+      }
+    },
+    "mlx": {
+      "small": {
+        "wall_s": 0.023501957999542356,
+        "peak_mem_mb": 1.435136,
+        "mem_method": "MLX peak device allocation since reset; process RSS is lifetime high-water mark",
+        "process_rss_mb": 346.537984
+      },
+      "medium": {
+        "wall_s": 0.28010079098748975,
+        "peak_mem_mb": 33.86524,
+        "mem_method": "MLX peak device allocation since reset; process RSS is lifetime high-water mark",
+        "process_rss_mb": 480.657408
+      },
+      "large": {
+        "wall_s": 1.2133920000051148,
+        "peak_mem_mb": 496.391776,
+        "mem_method": "MLX peak device allocation since reset; process RSS is lifetime high-water mark",
+        "process_rss_mb": 1343.81568
+      }
+    }
+  },
+  "medium_max_rel_diff": {
+    "mlx": 1.0229590935611953e-05
+  },
+  "notes": "Neural misfit_and_grad, 18 Hz source, dt=0.001 s, spacing=10 m; fixed-seed synthetic observations. Three repeats after one warm-up. Relative error is the maximum across outputs of max absolute difference divided by each reference output's maximum absolute value. Judge uses float64 CPU; MLX uses float32. MB means 10^6 bytes. Process RSS is macOS ru_maxrss and includes earlier work. Large-size runtime is an unmeasured estimate."
+}

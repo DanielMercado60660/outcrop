@@ -1,0 +1,42 @@
+{
+  "seed": 1402,
+  "numpy": "2.5.4",
+  "torch": "2.15.0",
+  "deepwave": "0.1.0",
+  "dtype": "float64 reference; float32 inputs",
+  "cases": {
+    "pml2,pml4": "48x52, two shots, 150 samples, dx=10 m, dt=1 ms, 10-cell PML, 15 Hz, max velocity 1800 m/s",
+    "mode24,mode48,mode96": "periodic 480 m square; dx=480/n, dt=0.2 dx/1500, nt=2n+1; 1500 m/s, dv=30 m/s"
+  },
+  "analytic": "cos(2pi y/L) cos(2pi x/L), tangent -dv*k*t*sin(v*k*t), k=sqrt(2)*2pi/L",
+  "tolerances": {
+    "PARITY": {
+      "value": 0.0001,
+      "reason": "float32 versus float64 at identical discretization"
+    },
+    "CROSS": {
+      "value": 0.0001,
+      "reason": "independent float32 implementations"
+    },
+    "GRADIENT": {
+      "value": 0.001,
+      "reason": "campaign centered directional derivative limit"
+    },
+    "ORACLE_FD": {
+      "value": 2e-06,
+      "reason": "float64 oracle directional derivative"
+    },
+    "CONVERGENCE_RATIO": {
+      "value": 3.2,
+      "reason": "second-order convergence allowing pre-asymptotic and rounding effects"
+    },
+    "CONVERGENCE_RATIO_MAX": {
+      "value": 5.0,
+      "reason": "upper bound for observed second-order convergence"
+    },
+    "CONVERGENCE_FINE": {
+      "value": 0.0001,
+      "reason": "fine-grid absolute modal amplitude error bound with float32 margin"
+    }
+  }
+}

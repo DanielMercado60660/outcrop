@@ -1,0 +1,818 @@
+{
+  "python": "3.12.11",
+  "versions": {
+    "contourpy": "1.4.0",
+    "cycler": "0.12.1",
+    "discretize": "0.13.0",
+    "fonttools": "4.68.0",
+    "geoana": "0.9.0",
+    "iniconfig": "2.3.1",
+    "kiwisolver": "1.5.1",
+    "libdlf": "0.3.0",
+    "llvmlite": "0.50.0",
+    "matplotlib": "3.11.2",
+    "mlx": "0.32.4",
+    "mlx-metal": "0.32.4",
+    "numba": "0.68.1",
+    "numpy": "2.5.4",
+    "packaging": "26.3",
+    "pillow": "13.0.0",
+    "pluggy": "1.7.0",
+    "pygments": "2.21.0",
+    "pymatsolver": "0.5.1",
+    "pyparsing": "3.3.3",
+    "pytest": "9.2.0",
+    "python-dateutil": "3.0.0",
+    "ruff": "0.17.3",
+    "scipy": "1.18.1",
+    "simpeg": "0.26.0",
+    "six": "1.17.0",
+    "typing_extensions": "4.16.0",
+    "tzdata": "2026.6"
+  },
+  "cases": {
+    "small": {
+      "seed": 10010,
+      "shape": [
+        3,
+        4,
+        2
+      ],
+      "cell_size": 40.0,
+      "depth_offset": 13.0,
+      "alpha_xyz": [
+        0.3,
+        0.7,
+        1.2
+      ],
+      "beta": 266.67351449011824,
+      "n_data": 144,
+      "chi_squared": 143.99999999999912,
+      "correlation": 0.676209298989842,
+      "model_error": 0.7573388446976327,
+      "gz_range_mgal": [
+        -0.38748091780462335,
+        -0.018238092420169164
+      ],
+      "noise_std_range_mgal": [
+        0.0040685496369485446,
+        0.008137099273897089
+      ],
+      "density_range_g_cc": [
+        0.0,
+        0.5
+      ],
+      "recovered_range_g_cc": [
+        -0.05776840180861647,
+        0.4084747566487618
+      ],
+      "cpu_float32_fd_relative_errors": [
+        3.4578706434337345e-06,
+        5.6329795041739715e-06,
+        2.440218284908672e-06,
+        5.367211271812887e-06
+      ],
+      "arrays": {
+        "sensitivity": {
+          "shape": [
+            144,
+            24
+          ],
+          "dtype": "float64"
+        },
+        "receivers": {
+          "shape": [
+            144,
+            3
+          ],
+          "dtype": "float64"
+        },
+        "cell_centers": {
+          "shape": [
+            24,
+            3
+          ],
+          "dtype": "float64"
+        },
+        "shape": {
+          "shape": [
+            3
+          ],
+          "dtype": "int64"
+        },
+        "cell_size": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "depth_offset": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "alpha_xyz": {
+          "shape": [
+            3
+          ],
+          "dtype": "float64"
+        },
+        "true_model": {
+          "shape": [
+            24
+          ],
+          "dtype": "float64"
+        },
+        "clean": {
+          "shape": [
+            144
+          ],
+          "dtype": "float64"
+        },
+        "data": {
+          "shape": [
+            144
+          ],
+          "dtype": "float64"
+        },
+        "uncertainty": {
+          "shape": [
+            144
+          ],
+          "dtype": "float64"
+        },
+        "reference": {
+          "shape": [
+            24
+          ],
+          "dtype": "float64"
+        },
+        "weights": {
+          "shape": [
+            24
+          ],
+          "dtype": "float64"
+        },
+        "precision": {
+          "shape": [
+            24,
+            24
+          ],
+          "dtype": "float64"
+        },
+        "beta": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "target": {
+          "shape": [],
+          "dtype": "int64"
+        },
+        "model": {
+          "shape": [
+            24
+          ],
+          "dtype": "float64"
+        },
+        "predicted": {
+          "shape": [
+            144
+          ],
+          "dtype": "float64"
+        },
+        "correlation": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "error": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "probe": {
+          "shape": [
+            24
+          ],
+          "dtype": "float64"
+        },
+        "probe_reference": {
+          "shape": [
+            24
+          ],
+          "dtype": "float64"
+        },
+        "direction": {
+          "shape": [
+            24
+          ],
+          "dtype": "float64"
+        },
+        "dual": {
+          "shape": [
+            144
+          ],
+          "dtype": "float64"
+        },
+        "probe_betas": {
+          "shape": [
+            3
+          ],
+          "dtype": "float64"
+        },
+        "objectives": {
+          "shape": [
+            3
+          ],
+          "dtype": "float64"
+        },
+        "gradients": {
+          "shape": [
+            3,
+            24
+          ],
+          "dtype": "float64"
+        },
+        "reg_gradient": {
+          "shape": [
+            24
+          ],
+          "dtype": "float64"
+        },
+        "zero_sensitivity": {
+          "shape": [
+            144,
+            24
+          ],
+          "dtype": "float64"
+        },
+        "zero_data": {
+          "shape": [
+            144
+          ],
+          "dtype": "float64"
+        },
+        "phi_d": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "phi_m": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "forward": {
+          "shape": [
+            144
+          ],
+          "dtype": "float64"
+        },
+        "adjoint": {
+          "shape": [
+            24
+          ],
+          "dtype": "float64"
+        }
+      }
+    },
+    "blocks_a": {
+      "seed": 10011,
+      "shape": [
+        8,
+        8,
+        4
+      ],
+      "cell_size": 50.0,
+      "depth_offset": 25.0,
+      "alpha_xyz": [
+        0.4,
+        0.4,
+        0.4
+      ],
+      "beta": 156.15682529758934,
+      "n_data": 144,
+      "chi_squared": 143.99999999999088,
+      "correlation": 0.7540575350724829,
+      "model_error": 1.850567696176897,
+      "gz_range_mgal": [
+        -0.9280000785324595,
+        0.6043873626889567
+      ],
+      "noise_std_range_mgal": [
+        0.013920001177986892,
+        0.013920001177986892
+      ],
+      "density_range_g_cc": [
+        -0.4,
+        0.5
+      ],
+      "recovered_range_g_cc": [
+        -0.40306985302390425,
+        0.5797593172237336
+      ],
+      "cpu_float32_fd_relative_errors": [
+        8.680212077298736e-06,
+        7.254962863467357e-05,
+        2.8222797989622682e-05,
+        2.407049456475786e-05
+      ],
+      "arrays": {
+        "sensitivity": {
+          "shape": [
+            144,
+            256
+          ],
+          "dtype": "float64"
+        },
+        "receivers": {
+          "shape": [
+            144,
+            3
+          ],
+          "dtype": "float64"
+        },
+        "cell_centers": {
+          "shape": [
+            256,
+            3
+          ],
+          "dtype": "float64"
+        },
+        "shape": {
+          "shape": [
+            3
+          ],
+          "dtype": "int64"
+        },
+        "cell_size": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "depth_offset": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "alpha_xyz": {
+          "shape": [
+            3
+          ],
+          "dtype": "float64"
+        },
+        "true_model": {
+          "shape": [
+            256
+          ],
+          "dtype": "float64"
+        },
+        "clean": {
+          "shape": [
+            144
+          ],
+          "dtype": "float64"
+        },
+        "data": {
+          "shape": [
+            144
+          ],
+          "dtype": "float64"
+        },
+        "uncertainty": {
+          "shape": [
+            144
+          ],
+          "dtype": "float64"
+        },
+        "reference": {
+          "shape": [
+            256
+          ],
+          "dtype": "float64"
+        },
+        "weights": {
+          "shape": [
+            256
+          ],
+          "dtype": "float64"
+        },
+        "precision": {
+          "shape": [
+            256,
+            256
+          ],
+          "dtype": "float64"
+        },
+        "beta": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "target": {
+          "shape": [],
+          "dtype": "int64"
+        },
+        "model": {
+          "shape": [
+            256
+          ],
+          "dtype": "float64"
+        },
+        "predicted": {
+          "shape": [
+            144
+          ],
+          "dtype": "float64"
+        },
+        "correlation": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "error": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "probe": {
+          "shape": [
+            256
+          ],
+          "dtype": "float64"
+        },
+        "probe_reference": {
+          "shape": [
+            256
+          ],
+          "dtype": "float64"
+        },
+        "direction": {
+          "shape": [
+            256
+          ],
+          "dtype": "float64"
+        },
+        "dual": {
+          "shape": [
+            144
+          ],
+          "dtype": "float64"
+        },
+        "probe_betas": {
+          "shape": [
+            3
+          ],
+          "dtype": "float64"
+        },
+        "objectives": {
+          "shape": [
+            3
+          ],
+          "dtype": "float64"
+        },
+        "gradients": {
+          "shape": [
+            3,
+            256
+          ],
+          "dtype": "float64"
+        },
+        "reg_gradient": {
+          "shape": [
+            256
+          ],
+          "dtype": "float64"
+        },
+        "zero_sensitivity": {
+          "shape": [
+            144,
+            256
+          ],
+          "dtype": "float64"
+        },
+        "zero_data": {
+          "shape": [
+            144
+          ],
+          "dtype": "float64"
+        },
+        "phi_d": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "phi_m": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "forward": {
+          "shape": [
+            144
+          ],
+          "dtype": "float64"
+        },
+        "adjoint": {
+          "shape": [
+            256
+          ],
+          "dtype": "float64"
+        }
+      }
+    },
+    "blocks_b": {
+      "seed": 10012,
+      "shape": [
+        8,
+        8,
+        4
+      ],
+      "cell_size": 50.0,
+      "depth_offset": 40.0,
+      "alpha_xyz": [
+        0.3,
+        0.6,
+        0.9
+      ],
+      "beta": 159.05467659347988,
+      "n_data": 144,
+      "chi_squared": 144.0000000000003,
+      "correlation": 0.8019549625047828,
+      "model_error": 1.428143145522612,
+      "gz_range_mgal": [
+        -0.8355498454147074,
+        0.5279826461470627
+      ],
+      "noise_std_range_mgal": [
+        0.012533247681220612,
+        0.012533247681220612
+      ],
+      "density_range_g_cc": [
+        -0.35,
+        0.45
+      ],
+      "recovered_range_g_cc": [
+        -0.340018325912806,
+        0.4650809442111479
+      ],
+      "cpu_float32_fd_relative_errors": [
+        0.00018905097613327847,
+        0.00025582989805266913,
+        0.00013014034889435118,
+        0.00017859459072386521
+      ],
+      "arrays": {
+        "sensitivity": {
+          "shape": [
+            144,
+            256
+          ],
+          "dtype": "float64"
+        },
+        "receivers": {
+          "shape": [
+            144,
+            3
+          ],
+          "dtype": "float64"
+        },
+        "cell_centers": {
+          "shape": [
+            256,
+            3
+          ],
+          "dtype": "float64"
+        },
+        "shape": {
+          "shape": [
+            3
+          ],
+          "dtype": "int64"
+        },
+        "cell_size": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "depth_offset": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "alpha_xyz": {
+          "shape": [
+            3
+          ],
+          "dtype": "float64"
+        },
+        "true_model": {
+          "shape": [
+            256
+          ],
+          "dtype": "float64"
+        },
+        "clean": {
+          "shape": [
+            144
+          ],
+          "dtype": "float64"
+        },
+        "data": {
+          "shape": [
+            144
+          ],
+          "dtype": "float64"
+        },
+        "uncertainty": {
+          "shape": [
+            144
+          ],
+          "dtype": "float64"
+        },
+        "reference": {
+          "shape": [
+            256
+          ],
+          "dtype": "float64"
+        },
+        "weights": {
+          "shape": [
+            256
+          ],
+          "dtype": "float64"
+        },
+        "precision": {
+          "shape": [
+            256,
+            256
+          ],
+          "dtype": "float64"
+        },
+        "beta": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "target": {
+          "shape": [],
+          "dtype": "int64"
+        },
+        "model": {
+          "shape": [
+            256
+          ],
+          "dtype": "float64"
+        },
+        "predicted": {
+          "shape": [
+            144
+          ],
+          "dtype": "float64"
+        },
+        "correlation": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "error": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "probe": {
+          "shape": [
+            256
+          ],
+          "dtype": "float64"
+        },
+        "probe_reference": {
+          "shape": [
+            256
+          ],
+          "dtype": "float64"
+        },
+        "direction": {
+          "shape": [
+            256
+          ],
+          "dtype": "float64"
+        },
+        "dual": {
+          "shape": [
+            144
+          ],
+          "dtype": "float64"
+        },
+        "probe_betas": {
+          "shape": [
+            3
+          ],
+          "dtype": "float64"
+        },
+        "objectives": {
+          "shape": [
+            3
+          ],
+          "dtype": "float64"
+        },
+        "gradients": {
+          "shape": [
+            3,
+            256
+          ],
+          "dtype": "float64"
+        },
+        "reg_gradient": {
+          "shape": [
+            256
+          ],
+          "dtype": "float64"
+        },
+        "zero_sensitivity": {
+          "shape": [
+            144,
+            256
+          ],
+          "dtype": "float64"
+        },
+        "zero_data": {
+          "shape": [
+            144
+          ],
+          "dtype": "float64"
+        },
+        "phi_d": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "phi_m": {
+          "shape": [],
+          "dtype": "float64"
+        },
+        "forward": {
+          "shape": [
+            144
+          ],
+          "dtype": "float64"
+        },
+        "adjoint": {
+          "shape": [
+            256
+          ],
+          "dtype": "float64"
+        }
+      }
+    }
+  },
+  "tolerances": {
+    "parity": {
+      "value": 0.0001,
+      "reason": "Campaign float32 relative norm/max-scale parity against float64 SimPEG."
+    },
+    "adjoint": {
+      "value": 1e-05,
+      "reason": "Project pass: normalized dot-product residual, Cauchy scale avoids cancellation."
+    },
+    "gradient": {
+      "value": 0.001,
+      "reason": "Campaign centered float32 finite-difference directional derivative check."
+    },
+    "fd_step": {
+      "value": 0.01,
+      "reason": "g/cc along saved unit direction; quadratic objective has zero centered truncation error; avoids float32 cancellation."
+    },
+    "chi_fraction": {
+      "value": 0.1,
+      "reason": "Project pass: absolute chi-squared deviation <=10% of N observations."
+    },
+    "correlation": {
+      "value": 0.7,
+      "reason": "Project pass: Pearson correlation of recovered and true cell densities >=0.7."
+    },
+    "model_error_fraction": {
+      "value": 0.2,
+      "reason": "Project pass: recovered L2 error <=1.20 times SimPEG error, better solutions are allowed."
+    },
+    "stationarity": {
+      "value": 0.0001,
+      "reason": "Normal-equation residual relative to RHS ensures actual minimization at locked beta; avoids rewarding arbitrary data fits."
+    },
+    "oracle_check": {
+      "value": 1e-10,
+      "reason": "Float64 stored-array algebra consistency; no implementation involved."
+    },
+    "oracle_regularization": {
+      "value": 1e-12,
+      "reason": "Float64 absolute and relative agreement of independent edge construction and SimPEG Hessian."
+    },
+    "oracle_gradient": {
+      "value": 1e-07,
+      "reason": "Float64 centered differences of SimPEG's quadratic objective."
+    },
+    "oracle_fd_step": {
+      "value": 1e-05,
+      "reason": "Float64 quadratic centered-difference step in g/cc along saved unit direction."
+    },
+    "beta_root_xtol": {
+      "value": 1e-12,
+      "reason": "Log-beta scalar discrepancy search precision; cheap float64 reference only."
+    }
+  },
+  "reference": "SimPEG Simulation3DIntegral float64 geoana; L2DataMisfit; WeightedLeastSquares",
+  "solver": "Exact SPD quadratic minimizer using scipy Cholesky of SimPEG Hessian; beta chosen by discrepancy principle chi^2=N; unconstrained, no positivity bounds.",
+  "conventions": "ENU; z up; mesh top z=0; x fastest, z slowest; gz positive upward; density g/cm^3; gravity mGal; full squared norms, no 1/2.",
+  "sources": [
+    "Li & Oldenburg (1998), 3-D inversion of gravity data, Geophysics 63, 109-119, doi:10.1190/1.1444302",
+    "Installed SimPEG regularization/base.py and utils/model_utils.py (depth_weighting exponent=2)."
+  ],
+  "input_policy": "All data, probes, directions, noise saved here; implementation receives float32 casts of these arrays.",
+  "input_recipes": {
+    "mesh": "Uniform cubes, origin=(-nx*h/2,-ny*h/2,-nz*h), top z=0; all cells active.",
+    "survey": "12x12 endpoint-inclusive regular surface grid over mesh xy extent; z=10m; upward gz.",
+    "noise": "default_rng(case.seed); independent standard normals times 0.015*max(abs(clean)); small has a 0.7..1.4 receiver-order uncertainty multiplier.",
+    "probes": "After noise draw: normal(0,0.2) model, normal(0,0.05) reference, unit-normalized standard-normal direction, standard-normal data dual.",
+    "truth": "Signed, piecewise-constant rectangular blocks, specified by source array slices and saved in each archive. Auxiliary small case is for derivative and stationarity tests only."
+  }
+}

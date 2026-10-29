@@ -1,0 +1,60 @@
+{
+  "project": "43-phase-picker",
+  "sizes": {
+    "small": {
+      "batch": 8,
+      "samples": 3000,
+      "calls": 16
+    },
+    "medium": {
+      "batch": 32,
+      "samples": 3000,
+      "calls": 64
+    },
+    "large": {
+      "batch": 128,
+      "samples": 3000,
+      "calls": 128
+    }
+  },
+  "results": {
+    "judge": {
+      "small": {
+        "wall_s": 0.020563291996950284,
+        "peak_mem_mb": 3.852294921875,
+        "mem_method": "tracemalloc peak during timed calls, including NumPy allocations"
+      },
+      "medium": {
+        "wall_s": 0.3321820840064902,
+        "peak_mem_mb": 15.382514953613281,
+        "mem_method": "tracemalloc peak during timed calls, including NumPy allocations"
+      },
+      "large": {
+        "wall_s": 2.701973374991212,
+        "peak_mem_mb": 61.52509307861328,
+        "mem_method": "tracemalloc peak during timed calls, including NumPy allocations"
+      }
+    },
+    "mlx": {
+      "small": {
+        "wall_s": 0.012887332995887846,
+        "peak_mem_mb": 1.9692611694335938,
+        "mem_method": "MLX peak allocated bytes since reset; process lifetime peak RSS 66.1 MiB (includes prior work)"
+      },
+      "medium": {
+        "wall_s": 0.04133337500388734,
+        "peak_mem_mb": 7.031761169433594,
+        "mem_method": "MLX peak allocated bytes since reset; process lifetime peak RSS 89.0 MiB (includes prior work)"
+      },
+      "large": {
+        "wall_s": 0.15725212497636676,
+        "peak_mem_mb": 35.250511169433594,
+        "mem_method": "MLX peak allocated bytes since reset; process lifetime peak RSS 201.4 MiB (includes prior work)"
+      }
+    }
+  },
+  "medium_max_rel_diff": {
+    "mlx": 2.8035947720881153e-07
+  },
+  "notes": "Median total wall time for the stated number of identical phase_loss_and_grad calls; input generation and warmup excluded. Judge uses loss64 and the analytic gradient from judge/make_goldens.py. Relative difference is the maximum over loss and gradient of max absolute error divided by the maximum absolute reference value. Training and inference are not benchmarked. MiB are reported as MB."
+}

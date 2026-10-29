@@ -1,0 +1,99 @@
+{
+  "project": "24-fast-marching",
+  "sizes": {
+    "small": {
+      "shape": [
+        48,
+        48
+      ],
+      "spacing_km": [
+        0.025,
+        0.025
+      ],
+      "order": 1
+    },
+    "medium": {
+      "shape": [
+        160,
+        160
+      ],
+      "spacing_km": [
+        0.025,
+        0.025
+      ],
+      "order": 1
+    },
+    "large": {
+      "shape": [
+        480,
+        480
+      ],
+      "spacing_km": [
+        0.025,
+        0.025
+      ],
+      "order": 1
+    }
+  },
+  "results": {
+    "judge": {
+      "small": {
+        "wall_s": 0.00016987498383969069,
+        "peak_mem_mb": 0.09087371826171875,
+        "mem_method": "tracemalloc peak traced Python/NumPy allocations during call"
+      },
+      "medium": {
+        "wall_s": 0.0017696669965516776,
+        "peak_mem_mb": 1.0017318725585938,
+        "mem_method": "tracemalloc peak traced Python/NumPy allocations during call"
+      },
+      "large": {
+        "wall_s": 0.017696875002002344,
+        "peak_mem_mb": 9.009574890136719,
+        "mem_method": "tracemalloc peak traced Python/NumPy allocations during call"
+      }
+    },
+    "mlx": {
+      "small": {
+        "wall_s": 0.03734495802200399,
+        "peak_mem_mb": 0.3421316146850586,
+        "mem_method": "MLX reset_peak_memory/get_peak_memory; process_rss_mb is process high-water RSS",
+        "process_rss_mb": 65.828125
+      },
+      "medium": {
+        "wall_s": 0.1732227499887813,
+        "peak_mem_mb": 4.408156394958496,
+        "mem_method": "MLX reset_peak_memory/get_peak_memory; process_rss_mb is process high-water RSS",
+        "process_rss_mb": 77.15625
+      },
+      "large": {
+        "wall_s": 1.3290558330190834,
+        "peak_mem_mb": 35.30228328704834,
+        "mem_method": "MLX reset_peak_memory/get_peak_memory; process_rss_mb is process high-water RSS",
+        "process_rss_mb": 174.859375
+      }
+    },
+    "metal": {
+      "small": {
+        "wall_s": 0.04963945798226632,
+        "peak_mem_mb": 15.671875,
+        "mem_method": "fresh worker RUSAGE_CHILDREN ru_maxrss delta (macOS bytes), child RSS high-water"
+      },
+      "medium": {
+        "wall_s": 0.15413662500213832,
+        "peak_mem_mb": 16.671875,
+        "mem_method": "fresh worker RUSAGE_CHILDREN ru_maxrss delta (macOS bytes), child RSS high-water"
+      },
+      "large": {
+        "wall_s": 1.2077461250009947,
+        "peak_mem_mb": 24.71875,
+        "mem_method": "fresh worker RUSAGE_CHILDREN ru_maxrss delta (macOS bytes), child RSS high-water"
+      }
+    }
+  },
+  "medium_max_rel_diff": {
+    "mlx": 2.1700303053797866e-07,
+    "metal": 2.0740037996655434e-07
+  },
+  "notes": "Order 1; float32 synthetic inputs, scikit-fmm float64 reference. Wall times include harness serialization and Metal process startup, but exclude input construction and benchmark-worker startup. Memory is the maximum of three repeats in MiB; methods are not directly comparable. tracemalloc can miss native allocations; MLX peak excludes CPU marching allocations and RSS is a lifetime high-water mark. Metal RSS excludes GPU allocation accounting and is measured in a fresh worker for each repeat. Relative error is max absolute difference divided by maximum absolute reference time."
+}

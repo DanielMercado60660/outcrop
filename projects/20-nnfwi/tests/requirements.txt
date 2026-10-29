@@ -1,0 +1,4 @@
+# Exact test / target environment; no reference libraries imported by tests.
+numpy==2.5.4
+pytest==9.2.0
+mlx==0.32.4

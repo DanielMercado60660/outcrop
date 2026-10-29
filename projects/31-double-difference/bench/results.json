@@ -1,0 +1,61 @@
+{
+  "project": "31-double-difference",
+  "sizes": {
+    "small": {
+      "events": 12,
+      "stations": 8,
+      "pairs": 66
+    },
+    "medium": {
+      "events": 24,
+      "stations": 8,
+      "pairs": 276
+    },
+    "large": {
+      "events": 48,
+      "stations": 8,
+      "pairs": 1128
+    }
+  },
+  "results": {
+    "judge": {
+      "small": {
+        "wall_s": 0.02721066601225175,
+        "peak_mem_mb": 1.850303,
+        "mem_method": "tracemalloc peak traced Python/NumPy allocations"
+      },
+      "medium": {
+        "wall_s": 0.10076595898135565,
+        "peak_mem_mb": 14.393518,
+        "mem_method": "tracemalloc peak traced Python/NumPy allocations"
+      },
+      "large": {
+        "skipped": "Dense numerical-Jacobian reference may exceed 120 s."
+      }
+    },
+    "mlx": {
+      "small": {
+        "wall_s": 0.02945237499079667,
+        "peak_mem_mb": 0.741834,
+        "mem_method": "MLX reset_peak_memory/get_peak_memory; process lifetime peak RSS also reported",
+        "process_peak_rss_mb": 110.10048
+      },
+      "medium": {
+        "wall_s": 0.0544979159894865,
+        "peak_mem_mb": 5.419732,
+        "mem_method": "MLX reset_peak_memory/get_peak_memory; process lifetime peak RSS also reported",
+        "process_peak_rss_mb": 139.378688
+      },
+      "large": {
+        "wall_s": 0.4163530840014573,
+        "peak_mem_mb": 39.707925,
+        "mem_method": "MLX reset_peak_memory/get_peak_memory; process lifetime peak RSS also reported",
+        "process_peak_rss_mb": 162.430976
+      }
+    }
+  },
+  "medium_max_rel_diff": {
+    "mlx": 4.601111415565688e-05
+  },
+  "notes": "All unordered pairs, 0.002 s independent noise, seed 3101; median of three runs after one warmup. Relative difference is the larger of the maximum absolute errors normalized by the maximum reference magnitude separately for locations and origins. Memory peaks are maxima across repeats; RSS is a lifetime high-water mark. Timings include host conversion. Large size is an unmeasured estimate."
+}

@@ -1,0 +1,91 @@
+{
+  "versions": {
+    "python": "3.12.11",
+    "numpy": "2.5.4",
+    "harmonica": "v0.7.0",
+    "xarray": "2026.9.0"
+  },
+  "inputs": "terrain.npz contains all inputs and float64 outputs; deterministic hand-built heterogeneous 4x5 DEM with positive and negative relief, 200 m spacing, six elevations 500-8000 m; no random seed needed",
+  "conventions": "upward coordinates; downward g_z mGal; density sign follows surface-reference; infinite slab at observation cell; G=6.67430e-11",
+  "tolerances": {
+    "near_rtol": [
+      0.0001,
+      "campaign float32 target"
+    ],
+    "far_rtol": [
+      0.001,
+      "far-field prism corner cancellation"
+    ],
+    "abs_mgal": [
+      2e-05,
+      "near-zero cancellation and float32 summation"
+    ],
+    "slab_rtol": [
+      2e-06,
+      "float32 slab arithmetic"
+    ],
+    "algebra_atol": [
+      2e-06,
+      "float32 algebra"
+    ],
+    "benchmark_normalized": {
+      "700_m": 0.0001,
+      "higher_altitudes": 0.001,
+      "slab": 2e-06,
+      "reason": "Maximum absolute error divided by maximum absolute reference per output and altitude; no absolute floor. At 700 m use the campaign target; higher altitude permits the existing far-field cancellation allowance. Slab uses its existing float32 arithmetic bound."
+    }
+  },
+  "layer_gz_mgal": [
+    2.116558737974506,
+    6.486514238293171,
+    2.8458897590099275,
+    1.1081873634919326,
+    0.13585480212255496,
+    0.018284851607593255
+  ],
+  "slab_gz_mgal": [
+    6.0387643721820545,
+    37.36485455287646,
+    14.384001247628087,
+    11.742041834798439,
+    27.803477630254875,
+    27.803477630254875
+  ],
+  "inputs_benchmark_regime": {
+    "seed": 20261028,
+    "grid": [
+      64,
+      64
+    ],
+    "spacing_m": 200,
+    "surface_m": "180 + 80 sin(x/1100) cos(y/1300)",
+    "density_kg_m3": "2670 + 100 cos(x/1700)",
+    "reference_m": 0,
+    "observations_per_height": 256,
+    "heights_m": [
+      700.0,
+      1400.0,
+      3000.0,
+      8000.0
+    ],
+    "note": "First 256 coordinates reproduce bench/run_bench.py medium; remaining heights use the same horizontal points. Inputs are float32 before float64 reference evaluation."
+  },
+  "benchmark_layer_ranges_mgal": [
+    [
+      6.938037334718943,
+      23.405145373742464
+    ],
+    [
+      5.312708452676648,
+      18.329563151405345
+    ],
+    [
+      4.410446125252854,
+      12.451502355732103
+    ],
+    [
+      2.7405117564721926,
+      5.219136469053353
+    ]
+  ]
+}

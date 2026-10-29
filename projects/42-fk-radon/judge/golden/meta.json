@@ -1,0 +1,40 @@
+{
+  "numpy": "2.5.4",
+  "reference": "NumPy float64 FFT and analytic orthogonal projection",
+  "seed": 4202,
+  "inputs": {
+    "nx": 32,
+    "nt": 256,
+    "dt_seconds": 0.004,
+    "dx_meters": 10.0,
+    "fk_cutoff_m_per_s": 500.0,
+    "radon_slowness_seconds_per_m2": 8e-05,
+    "broadband": "seeded Gaussian; f-k exact-boundary DFT bins removed; Radon includes spatially varying DC"
+  },
+  "metrics": {
+    "fk_unwanted_power_ratio": 3.777722420357301e-30,
+    "fk_primary_power_ratio": 0.9999999999999999,
+    "radon_unwanted_power_ratio": 2.149360397277541e-28,
+    "radon_primary_power_ratio": 0.9494150985837891,
+    "fk_broadband_wrong_k_radians_error": 0.6004111669150426,
+    "fk_broadband_double_cutoff_error": 0.2660215297965957,
+    "fk_broadband_triple_cutoff_error": 0.45304923497743377
+  },
+  "tolerances": {
+    "normalized_max_error": {
+      "value": 0.0001,
+      "reason": "float32 FFT and projection rounding"
+    },
+    "unwanted_power_ratio": {
+      "value": 0.01,
+      "reason": "20 dB suppression"
+    },
+    "primary_power_ratio": {
+      "value": [
+        0.7943282347242815,
+        1.2589254117941673
+      ],
+      "reason": "1 dB preservation"
+    }
+  }
+}

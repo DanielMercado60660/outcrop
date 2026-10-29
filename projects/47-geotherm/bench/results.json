@@ -1,0 +1,75 @@
+{
+  "project": "47-geotherm",
+  "sizes": {
+    "small": {
+      "n_age": 1200,
+      "n_depth": 1200
+    },
+    "medium": {
+      "n_age": 4000,
+      "n_depth": 4000
+    },
+    "large": {
+      "n_age": 12000,
+      "n_depth": 12000
+    }
+  },
+  "results": {
+    "judge": {
+      "small": {
+        "wall_s": 0.010251166997477412,
+        "peak_mem_mb": 46.217896,
+        "mem_method": "tracemalloc peak during repeats, including traced NumPy allocations"
+      },
+      "medium": {
+        "wall_s": 0.09504645800916478,
+        "peak_mem_mb": 512.201512,
+        "mem_method": "tracemalloc peak during repeats, including traced NumPy allocations"
+      },
+      "large": {
+        "wall_s": 0.8388721669907682,
+        "peak_mem_mb": 4608.330488,
+        "mem_method": "tracemalloc peak during repeats, including traced NumPy allocations"
+      }
+    },
+    "mlx": {
+      "small": {
+        "wall_s": 0.0033189999812748283,
+        "peak_mem_mb": 41.826464,
+        "mem_method": "MLX get_peak_memory after reset; process peak RSS 166.9 MB (ru_maxrss, macOS bytes)"
+      },
+      "medium": {
+        "wall_s": 0.017164958990179002,
+        "peak_mem_mb": 464.14128,
+        "mem_method": "MLX get_peak_memory after reset; process peak RSS 1001.0 MB (ru_maxrss, macOS bytes)"
+      },
+      "large": {
+        "wall_s": 0.14406670798780397,
+        "peak_mem_mb": 4176.15056,
+        "mem_method": "MLX get_peak_memory after reset; process peak RSS 8490.3 MB (ru_maxrss, macOS bytes)"
+      }
+    },
+    "metal": {
+      "small": {
+        "wall_s": 0.0475975839945022,
+        "peak_mem_mb": 42.68032,
+        "mem_method": "Metal child RUSAGE_CHILDREN ru_maxrss delta in a fresh worker, bytes on macOS; maximum of repeats"
+      },
+      "medium": {
+        "wall_s": 0.09141220801393501,
+        "peak_mem_mb": 275.726336,
+        "mem_method": "Metal child RUSAGE_CHILDREN ru_maxrss delta in a fresh worker, bytes on macOS; maximum of repeats"
+      },
+      "large": {
+        "wall_s": 0.4431393340055365,
+        "peak_mem_mb": 2323.873792,
+        "mem_method": "Metal child RUSAGE_CHILDREN ru_maxrss delta in a fresh worker, bytes on macOS; maximum of repeats"
+      }
+    }
+  },
+  "medium_max_rel_diff": {
+    "mlx": 3.783308019828163e-07,
+    "metal": 2.6999298319828487e-07
+  },
+  "notes": "Forward geotherm: deterministic 1\u2013200 Myr and 0\u2013200 km grids. Median of three wall times after one warmup; harness conversion and Metal process and file I/O are included. Medium difference is the maximum over outputs of max absolute error divided by that output's reference max magnitude. Memory measures differ by path and are not directly comparable. Large runtime is hardware and storage dependent."
+}

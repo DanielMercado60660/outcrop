@@ -1,0 +1,8 @@
+# The pinned environment supplies these exact versions. The installed
+# Deepwave is a source build; version alone is insufficient: see the enforced
+# source and binary fingerprints in golden/meta.json.
+numpy==2.5.4
+scipy==1.18.1
+torch==2.15.0
+deepwave==0.1.0
+pytest==9.2.0

@@ -1,0 +1,9 @@
+# CPython 3.12.11; exact direct versions used to generate and collect this judge.
+# The repository's existing uv.lock pins transitive packages; do not run uv here.
+numpy==2.5.4
+scikit-fmm==2025.6.23
+torch==2.15.0
+pytest==9.2.0
+mlx==0.32.4
+mlx-metal==0.32.4
+ruff==0.17.3

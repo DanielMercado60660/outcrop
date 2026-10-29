@@ -1,0 +1,111 @@
+{
+  "seed": 3701,
+  "numpy": "2.5.4",
+  "obspy": "1.5.1",
+  "tolerances": {
+    "rtol": [
+      0.0001,
+      "campaign float32 accuracy"
+    ],
+    "atol": [
+      1e-06,
+      "roundoff near zero; startup is exact"
+    ],
+    "trigger_indices": [
+      0,
+      "identical sample indices required"
+    ]
+  },
+  "cases": {
+    "long": {
+      "samples": 65536,
+      "nsta": 40,
+      "nlta": 400,
+      "on": 3.0,
+      "off": 1.5,
+      "min": 0.0,
+      "max": 9.746902723846233,
+      "triggers": [
+        [
+          5003,
+          5258
+        ],
+        [
+          27000,
+          27257
+        ],
+        [
+          65000,
+          65224
+        ]
+      ]
+    },
+    "constant": {
+      "samples": 1024,
+      "nsta": 8,
+      "nlta": 80,
+      "on": 3.0,
+      "off": 1.5,
+      "min": 0.0,
+      "max": 1.0,
+      "triggers": []
+    },
+    "impulse": {
+      "samples": 1024,
+      "nsta": 5,
+      "nlta": 50,
+      "on": 3.0,
+      "off": 1.5,
+      "min": 0.0,
+      "max": 8.997772828507795,
+      "triggers": [
+        [
+          512,
+          516
+        ]
+      ]
+    },
+    "equal_windows": {
+      "samples": 256,
+      "nsta": 16,
+      "nlta": 16,
+      "on": 3.0,
+      "off": 1.5,
+      "min": 0.0,
+      "max": 1.0,
+      "triggers": []
+    },
+    "trigger_edges": {
+      "characteristic": [
+        0.0,
+        2.0,
+        3.0,
+        2.5,
+        2.0,
+        1.5,
+        1.0,
+        3.0,
+        3.0,
+        1.0,
+        3.0,
+        2.0
+      ],
+      "on": 3.0,
+      "off": 2.0,
+      "triggers": [
+        [
+          2,
+          4
+        ],
+        [
+          7,
+          8
+        ],
+        [
+          10,
+          11
+        ]
+      ]
+    }
+  }
+}

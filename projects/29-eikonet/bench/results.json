@@ -1,0 +1,63 @@
+{
+  "project": "29-eikonet",
+  "sizes": {
+    "small": {
+      "pairs": 5243,
+      "dimension": 2,
+      "width": 32
+    },
+    "medium": {
+      "pairs": 65536,
+      "dimension": 2,
+      "width": 32
+    },
+    "large": {
+      "pairs": 524288,
+      "dimension": 2,
+      "width": 32
+    }
+  },
+  "results": {
+    "judge": {
+      "small": {
+        "wall_s": 0.0013774999824818224,
+        "peak_mem_mb": 6.922168,
+        "mem_method": "tracemalloc peak during call (includes NumPy allocations)"
+      },
+      "medium": {
+        "wall_s": 0.018118208012310788,
+        "peak_mem_mb": 86.508904,
+        "mem_method": "tracemalloc peak during call (includes NumPy allocations)"
+      },
+      "large": {
+        "wall_s": 0.14282554198871367,
+        "peak_mem_mb": 692.061664,
+        "mem_method": "tracemalloc peak during call (includes NumPy allocations)"
+      }
+    },
+    "mlx": {
+      "small": {
+        "wall_s": 0.001375417021336034,
+        "peak_mem_mb": 28.977215,
+        "mem_method": "MLX peak allocated memory after reset",
+        "process_peak_rss_mb": 237.125632
+      },
+      "medium": {
+        "wall_s": 0.005003082973416895,
+        "peak_mem_mb": 359.732164,
+        "mem_method": "MLX peak allocated memory after reset",
+        "process_peak_rss_mb": 340.148224
+      },
+      "large": {
+        "wall_s": 0.03271891598706134,
+        "peak_mem_mb": 2861.04466,
+        "mem_method": "MLX peak allocated memory after reset",
+        "process_peak_rss_mb": 1128.464384
+      }
+    }
+  },
+  "medium_max_rel_diff": {
+    "mlx": 2.375798094591626e-07
+  },
+  "notes": "Evaluation and receiver gradient; fixed seed, one warmup and median of three calls. Relative difference is the maximum across outputs of max absolute error divided by the maximum absolute reference value for that output. MB uses 10^6 bytes. MLX RSS is the macOS process lifetime high-water mark, not a per-call delta; MLX peak includes live allocations at reset. Timings include host output conversion."
+}

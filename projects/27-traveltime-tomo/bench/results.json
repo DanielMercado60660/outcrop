@@ -1,0 +1,79 @@
+{
+  "project": "27-traveltime-tomo",
+  "sizes": {
+    "small": {
+      "nx": 12,
+      "nz": 12,
+      "nrays": 576
+    },
+    "medium": {
+      "nx": 18,
+      "nz": 18,
+      "nrays": 1296
+    },
+    "large": {
+      "nx": 24,
+      "nz": 24,
+      "nrays": 2304
+    }
+  },
+  "results": {
+    "judge": {
+      "small": {
+        "wall_s": 0.001986541989026591,
+        "peak_mem_mb": 2.474876,
+        "mem_method": "tracemalloc peak in separate invocation; native library allocations may be omitted"
+      },
+      "medium": {
+        "wall_s": 0.009433707979042083,
+        "peak_mem_mb": 12.118156,
+        "mem_method": "tracemalloc peak in separate invocation; native library allocations may be omitted"
+      },
+      "large": {
+        "skipped": "Float64 augmented SVD is expected to exceed 120 s at this size."
+      }
+    },
+    "mlx": {
+      "small": {
+        "wall_s": 0.0016350829973816872,
+        "peak_mem_mb": 1.994576,
+        "process_peak_rss_mb": 67.944448,
+        "mem_method": "MLX peak allocation after reset; process lifetime peak RSS also reported (macOS bytes)"
+      },
+      "medium": {
+        "wall_s": 0.005561584024690092,
+        "peak_mem_mb": 9.434672,
+        "process_peak_rss_mb": 92.667904,
+        "mem_method": "MLX peak allocation after reset; process lifetime peak RSS also reported (macOS bytes)"
+      },
+      "large": {
+        "wall_s": 0.018747583992080763,
+        "peak_mem_mb": 29.491024,
+        "process_peak_rss_mb": 143.785984,
+        "mem_method": "MLX peak allocation after reset; process lifetime peak RSS also reported (macOS bytes)"
+      }
+    },
+    "metal": {
+      "small": {
+        "wall_s": 0.0643647919932846,
+        "peak_mem_mb": 0.0,
+        "mem_method": "RUSAGE_CHILDREN ru_maxrss high-water delta (macOS bytes); may be zero if an earlier child peaked higher"
+      },
+      "medium": {
+        "wall_s": 0.29857291700318456,
+        "peak_mem_mb": 0.016384,
+        "mem_method": "RUSAGE_CHILDREN ru_maxrss high-water delta (macOS bytes); may be zero if an earlier child peaked higher"
+      },
+      "large": {
+        "wall_s": 1.6313037080108188,
+        "peak_mem_mb": 0.065536,
+        "mem_method": "RUSAGE_CHILDREN ru_maxrss high-water delta (macOS bytes); may be zero if an earlier child peaked higher"
+      }
+    }
+  },
+  "medium_max_rel_diff": {
+    "mlx": 3.8874111662379513e-07,
+    "metal": 2.486666140417604e-07
+  },
+  "notes": "Damped solve_tomography only, with deterministic sparse nonnegative synthetic matrices, damping 200 m. One warmup and three timed calls; median includes harness conversion and Metal subprocess/file overhead. Relative difference is maximum absolute error normalized by each output's maximum reference magnitude. RSS uses macOS ru_maxrss units; Metal child high-water delta is not an individual child peak."
+}

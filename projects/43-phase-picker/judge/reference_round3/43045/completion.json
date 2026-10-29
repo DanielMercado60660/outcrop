@@ -1,0 +1,14 @@
+{
+  "steps": 6000,
+  "evidence_sha256": {
+    "test_metrics.json": "3f5819f3dfee28df906abed85b9bb4dfb0a4a493e03f5c5e7f7b325aeead1075",
+    "test_picks.json": "07d9eb5e63bc214e07cb366241bdc88724f7399882d0d563b12ab62dd8948bac",
+    "training.json": "48b74dab0ed8806aa7b1cec970aa7b07bca082a04bd880f87c7944d4d9a3cfa7",
+    "untrained_picks.json": "b4706de2e0c6260df86fa23bee538b806e51dab43aa13954d7304c01624ddafd",
+    "val_metrics.json": "d5b6b3bfadb10e0e4e6c6b608a288c4db78e98358475659dcba8bbeff717526e",
+    "val_picks.json": "84de38edfd4d991ed4cb8c06ec507aab7e5a10f21c0e51ac897b212c80aeffd3"
+  },
+  "reference_source_sha256": "ab2fe867d170effa11b0f156b3f110c856de106481ce5b01eed98f1f1dbbdab7",
+  "checkpoint_removed": true,
+  "note": "No trained weights are distributed to implementations; only reports and decoded picks remain."
+}

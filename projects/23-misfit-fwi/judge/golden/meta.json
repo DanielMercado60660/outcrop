@@ -1,0 +1,269 @@
+{
+  "seed": 2301,
+  "versions": {
+    "python": "3.12.11",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "pytest": "9.2.0"
+  },
+  "reference": "SciPy signal.hilbert (periodic discrete Hilbert); analytic Gaussian carrier translation",
+  "inputs": {
+    "odd": {
+      "shape": [
+        2,
+        63
+      ],
+      "amplitude_scale": 1.0,
+      "direction_count": 3,
+      "direction_max_abs": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "fd_steps": {
+        "l2": 0.01,
+        "envelope": 0.005
+      }
+    },
+    "even": {
+      "shape": [
+        3,
+        64
+      ],
+      "amplitude_scale": 1.0,
+      "direction_count": 3,
+      "direction_max_abs": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "fd_steps": {
+        "l2": 0.01,
+        "envelope": 0.005
+      }
+    },
+    "small": {
+      "shape": [
+        1,
+        32
+      ],
+      "amplitude_scale": 0.0001,
+      "direction_count": 3,
+      "direction_max_abs": [
+        9.999999747378752e-05,
+        9.999999747378752e-05,
+        9.999999747378752e-05
+      ],
+      "fd_steps": {
+        "l2": 0.01,
+        "envelope": 0.01
+      }
+    }
+  },
+  "cycle": {
+    "dt_seconds": 0.002,
+    "ntime": 512,
+    "frequency_hz": 10.0,
+    "gaussian_width_seconds": 0.05,
+    "center_seconds": 0.512,
+    "delay_grid_seconds": [
+      -0.18,
+      0.18,
+      0.00025
+    ],
+    "initial_seconds": [
+      0.01,
+      0.02,
+      0.03,
+      0.04,
+      0.05,
+      0.06,
+      0.07,
+      0.08,
+      0.09,
+      0.1,
+      0.11,
+      0.12
+    ],
+    "signs": [
+      -1,
+      1
+    ],
+    "basins_seconds": {
+      "l2": [
+        0.04,
+        0.04
+      ],
+      "envelope": [
+        0.12,
+        0.12
+      ]
+    },
+    "basin_ratios": [
+      3.0,
+      3.0
+    ],
+    "convergence": "contiguous tested delays from zero, both signs; abs(final delay)<=RECOVERY_SECONDS",
+    "scope": "single homogeneous-path arrival; no spatial velocity or PDE validation"
+  },
+  "cycle_objectives_at_delays_minus120_minus60_zero_60_120_ms": {
+    "l2": [
+      0.04106885321475271,
+      0.06932278146286276,
+      0.0,
+      0.06932278146286276,
+      0.04106885321475271
+    ],
+    "envelope": [
+      0.06759559699072665,
+      0.026796616709359428,
+      0.0,
+      0.02679661670935942,
+      0.06759559699072663
+    ]
+  },
+  "derivative_audits": {
+    "odd_l2": {
+      "float64_adjoint_fd_error": 1.7060053019761437e-10,
+      "fd_step": 0.01,
+      "float64_locked_step_truncation_error": 1.152362043611949e-13,
+      "literal_float32_fd_vs_float32_adjoint_error": 6.198734978699656e-05,
+      "literal_float32_fd_vs_float64_adjoint_error": 6.199668668356036e-05,
+      "literal_float32_objective_parity_error": 3.079903021705964e-08,
+      "literal_float32_gradient_parity_error": 8.64191582905522e-08,
+      "objective": 0.26080677716520995,
+      "gradient_max": 0.008190373182296753
+    },
+    "odd_envelope": {
+      "float64_adjoint_fd_error": 2.3734157925040664e-10,
+      "fd_step": 0.005,
+      "float64_locked_step_truncation_error": 2.1619132460691942e-05,
+      "literal_float32_fd_vs_float32_adjoint_error": 0.0002353991862102397,
+      "literal_float32_fd_vs_float64_adjoint_error": 0.00023552630760835758,
+      "literal_float32_objective_parity_error": 7.014584123971308e-08,
+      "literal_float32_gradient_parity_error": 6.678433543869954e-07,
+      "objective": 0.15226675147982957,
+      "gradient_max": 0.010139181247161943
+    },
+    "even_l2": {
+      "float64_adjoint_fd_error": 1.6833951983489616e-10,
+      "fd_step": 0.01,
+      "float64_locked_step_truncation_error": 1.1868721948480188e-13,
+      "literal_float32_fd_vs_float32_adjoint_error": 0.00014280203683383539,
+      "literal_float32_fd_vs_float64_adjoint_error": 0.0001428125917420573,
+      "literal_float32_objective_parity_error": 8.095354342777698e-08,
+      "literal_float32_gradient_parity_error": 5.841920827117661e-08,
+      "objective": 0.2913668813868023,
+      "gradient_max": 0.006504360834757487
+    },
+    "even_envelope": {
+      "float64_adjoint_fd_error": 2.9305608897853454e-10,
+      "fd_step": 0.005,
+      "float64_locked_step_truncation_error": 7.930526402630443e-05,
+      "literal_float32_fd_vs_float32_adjoint_error": 0.00013558346141254098,
+      "literal_float32_fd_vs_float64_adjoint_error": 0.0001355580158703368,
+      "literal_float32_objective_parity_error": 7.22455960904683e-08,
+      "literal_float32_gradient_parity_error": 1.8142350310242025e-07,
+      "objective": 0.12179973856395623,
+      "gradient_max": 0.005640406165752674
+    },
+    "small_l2": {
+      "float64_adjoint_fd_error": 8.733820776951767e-11,
+      "fd_step": 0.01,
+      "float64_locked_step_truncation_error": 1.372021563323866e-14,
+      "literal_float32_fd_vs_float32_adjoint_error": 5.843632066976444e-05,
+      "literal_float32_fd_vs_float64_adjoint_error": 5.843585204531136e-05,
+      "literal_float32_objective_parity_error": 4.901272741550504e-08,
+      "literal_float32_gradient_parity_error": 1.233057786045746e-07,
+      "objective": 1.206655834440264e-09,
+      "gradient_max": 1.3202913396526127e-06
+    },
+    "small_envelope": {
+      "float64_adjoint_fd_error": 9.62638735775343e-10,
+      "fd_step": 0.01,
+      "float64_locked_step_truncation_error": 5.815064470347112e-06,
+      "literal_float32_fd_vs_float32_adjoint_error": 0.0001979655410726496,
+      "literal_float32_fd_vs_float64_adjoint_error": 0.00019825132333803176,
+      "literal_float32_objective_parity_error": 1.3014924212998781e-06,
+      "literal_float32_gradient_parity_error": 1.8439844049143837e-06,
+      "objective": 9.538160788806067e-12,
+      "gradient_max": 4.2048390425359716e-08
+    }
+  },
+  "float32_audit_scope": "literal formula, SciPy complex64 FFT Hilbert, float32 envelope and reductions; CPU feasibility only, no GPU pass claimed",
+  "tolerances_and_controls": {
+    "PARITY_RTOL": {
+      "value": 0.0001,
+      "reason": "Campaign float32 relative parity limit"
+    },
+    "ZERO_ATOL": {
+      "value": 1e-12,
+      "reason": "absolute safeguard only for analytically exact zeros"
+    },
+    "GRAD_RTOL": {
+      "value": 0.001,
+      "reason": "Campaign centered finite-difference gradient limit"
+    },
+    "FD_L2_STEP": {
+      "value": 0.01,
+      "reason": "quadratic objective permits larger step without truncation; reduces float32 noise"
+    },
+    "FD_ENVELOPE_STEP": {
+      "value": 0.005,
+      "reason": "unit-scale envelope: float32 subtraction noise and float64 truncation audited"
+    },
+    "FD_SMALL_ENVELOPE_STEP": {
+      "value": 0.01,
+      "reason": "below epsilon: larger step resolves literal float32 envelope subtraction"
+    },
+    "FD_AUDIT_RTOL": {
+      "value": 0.0003333333333333333,
+      "reason": "at least 3x margin for literal float32 FD and float64 truncation audits"
+    },
+    "ORACLE_GRAD_RTOL": {
+      "value": 2e-06,
+      "reason": "float64 analytic Hilbert-adjoint verification; tighter than GPU bound"
+    },
+    "ORACLE_FD_STEP": {
+      "value": 1e-05,
+      "reason": "small float64 step with negligible truncation and measured cancellation"
+    },
+    "RECOVERY_SECONDS": {
+      "value": 0.0005,
+      "reason": "one quarter of a trace sampling interval"
+    },
+    "MIN_BASIN_RATIO": {
+      "value": 1.5,
+      "reason": "mandatory project pass threshold"
+    },
+    "MIN_L2_BASIN_SECONDS": {
+      "value": 0.01,
+      "reason": "requires at least the smallest tested L2 delay to converge"
+    },
+    "SEARCH_STEP_SECONDS": {
+      "value": 0.002,
+      "reason": "1/50 carrier period; local march cannot jump a carrier cycle"
+    },
+    "SEARCH_STOP_SECONDS": {
+      "value": 1e-06,
+      "reason": "bracket uncertainty negligible beside arrival recovery threshold"
+    },
+    "SEARCH_MAX_STEPS": {
+      "value": 100,
+      "reason": "covers entire dictionary from every tested initial delay"
+    },
+    "SEARCH_BISECTIONS": {
+      "value": 18,
+      "reason": "ample iterations to resolve the fixed 2 ms stationary-point bracket"
+    },
+    "ENVELOPE_EPSILON": {
+      "value": 0.001,
+      "reason": "smooth finite derivative at silent samples; small versus unit signal amplitude"
+    },
+    "TRACE_DT": {
+      "value": 0.002,
+      "reason": "50 samples per 10 Hz carrier period"
+    }
+  },
+  "total_npz_bytes": 108727
+}

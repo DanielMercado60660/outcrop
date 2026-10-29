@@ -1,0 +1,206 @@
+{
+  "seed": 1601,
+  "data": "SYNTHETIC STAND-IN; NOT Marmousi; no public model available",
+  "reference": "Deepwave scalar CPU float64, deterministic one thread",
+  "versions": {
+    "numpy": "2.5.4",
+    "torch": "2.15.0",
+    "deepwave": "0.1.0",
+    "pytest": "9.2.0"
+  },
+  "settings": {
+    "grid_spacing": 10.0,
+    "dt": 0.001,
+    "accuracy": 4,
+    "pml_width": 10,
+    "pml_freq": 15.0,
+    "max_vel": 2600.0
+  },
+  "shape": [
+    24,
+    32
+  ],
+  "shots": 4,
+  "receivers": 28,
+  "nt": 360,
+  "inputs": "Float32 arrays saved in initial/perturbed.npz; locations int64; reference float64",
+  "objective": "0.5 mean squared trace residual; gradient with respect to velocity in m/s",
+  "fd_step_m_per_s": 1.0,
+  "fd_directions": "global, seeded random, smooth local lens; RMS-one",
+  "tolerances": {
+    "PARITY": {
+      "value": 0.0001,
+      "reason": "1e-4 campaign float32 parity, matched grid/stencil/dt/PML; global max norm"
+    },
+    "GRADIENT_COSINE": {
+      "value": 0.999,
+      "reason": "0.999 campaign requirement; gradient magnitude separately at PARITY"
+    },
+    "FD_REL": {
+      "value": 0.001,
+      "reason": "1e-3 campaign centered FD; RMS-one directions and 1 m/s step avoid float32 cancellation"
+    },
+    "MODEL_ERROR_RATIO": {
+      "value": 0.7,
+      "reason": "0.70 campaign minimum 30% relative model L2 error reduction"
+    },
+    "EQUATION_AUDIT_REL": {
+      "value": 1e-10,
+      "reason": "1e-10 judge-only f64 forward equation audit; independent operation order, 360 steps"
+    }
+  },
+  "optimizer": {
+    "ITERATIONS": 40,
+    "UPDATE_MAX": 20.0,
+    "BACKTRACKS": 10,
+    "VELOCITY_MIN": 1400.0,
+    "VELOCITY_MAX": 2600.0
+  },
+  "golden_size_limit_bytes": 20000000,
+  "summaries": {
+    "initial": {
+      "objective": 0.10366245143209524,
+      "gradient_norm": 0.00014571898055325744,
+      "predicted_absmax": 41.043060375042685,
+      "fd_relative_errors": [
+        1.8561113946974903e-06,
+        1.4177228991514239e-05,
+        1.6942378025947372e-05
+      ],
+      "fd": [
+        -0.0027772792197107155,
+        -0.00020529427000325062,
+        -0.0027599599232881328
+      ],
+      "float32_reference_parity": {
+        "predicted": 1.0032312473981255e-06,
+        "objective": 2.666596599366662e-07,
+        "gradient": 6.1129416589097046e-06
+      },
+      "float32_fd_errors": [
+        4.036902934634706e-05,
+        0.0003731577909469195,
+        4.8034164081561714e-05
+      ],
+      "written_equation_trace_relative_error": 1.1902088352361586e-15,
+      "written_equation_fd": [
+        -0.0027772792197108542,
+        -0.0002052942700033547,
+        -0.0027599599232880356
+      ],
+      "written_equation_fd_relative_errors": [
+        1.8561113447285785e-06,
+        1.4177229498503221e-05,
+        1.6942377990750172e-05
+      ]
+    },
+    "perturbed": {
+      "objective": 0.10288514081159751,
+      "gradient_norm": 0.0001441078027644971,
+      "predicted_absmax": 40.98696028464294,
+      "fd_relative_errors": [
+        1.6787723258124573e-06,
+        2.8862181028022487e-05,
+        1.837122360257793e-05
+      ],
+      "fd": [
+        -0.0027615126032725645,
+        -9.909060066312647e-05,
+        -0.0026333199683524836
+      ],
+      "float32_reference_parity": {
+        "predicted": 9.85407448561025e-07,
+        "objective": 1.0974941343677501e-06,
+        "gradient": 4.945428995464909e-06
+      },
+      "float32_fd_errors": [
+        5.823181603358215e-06,
+        0.0004398011860351701,
+        3.403489467841088e-05
+      ],
+      "written_equation_trace_relative_error": 2.0802988974803113e-15,
+      "written_equation_fd": [
+        -0.0027615126032726547,
+        -9.909060066326525e-05,
+        -0.0026333199683526015
+      ],
+      "written_equation_fd_relative_errors": [
+        1.6787722931472182e-06,
+        2.886218242849712e-05,
+        1.8371223647372727e-05
+      ]
+    }
+  },
+  "velocity_range": [
+    1730.00244140625,
+    2077.48974609375
+  ],
+  "recovery": {
+    "initial_error": 0.05411123757819657,
+    "final_error": 0.03354148504545158,
+    "ratio": 0.6198617245998214,
+    "initial_objective": 0.10366245143209524,
+    "final_objective": 0.00047081715442103873
+  },
+  "runtime_seconds": 5.750818583008368,
+  "discrete_operator": {
+    "version": 1,
+    "spec": "tests/DISCRETE_OPERATOR.md",
+    "spec_sha256": "10d0db7128715945e2cf80cddbbe96f15141fe4e2f5911e7a23eea52cd486ae2",
+    "audit": "judge/discrete_operator.py: independent NumPy f64 recurrence and directional FD",
+    "audit_sha256": "6aea6c27491e170e6b14a13f204d011c2242294253876d3be853050a635b2a96",
+    "target_reflection": 0.001,
+    "polynomial_power": 2,
+    "guard_cells": 2,
+    "axis_total_lengths": [
+      48,
+      56
+    ],
+    "sigma0_per_s": 269.40245588030336,
+    "profile_sample_columns": [
+      "a",
+      "b",
+      "db_per_m"
+    ],
+    "axis_profile_samples": {
+      "outer_guard": [
+        0.7638357835776907,
+        -0.2361642164223093,
+        0.0
+      ],
+      "outer_active": [
+        0.7638357835776907,
+        -0.2361642164223093,
+        0.002049742378979439
+      ],
+      "inner_pml": [
+        0.9558966051560034,
+        -0.0026341701560809276,
+        0.0005048934975499073
+      ],
+      "first_model_node": [
+        0.0,
+        -0.0,
+        8.795233431916041e-05
+      ],
+      "second_model_node": [
+        0.0,
+        -0.0,
+        -2.1951417967341063e-05
+      ]
+    }
+  },
+  "sha256": {
+    "initial.npz": "685013a8705b9ceb34e6d84e2e3a006d1a913ca8bf3d1c1d58f7689278d57626",
+    "perturbed.npz": "842323217581ed1d4dcaba4f2d739d0cee4a3bcf99ec1402a03dc8c3b2996514",
+    "recovery.npz": "3d3c07e90599239667964a3f2dd89ae6434ed7f3ca8628ffe742f6ba5ff43d54"
+  },
+  "reference_sha256": {
+    "scalar.py": "68b90b7303c2eaad0558be0d4b9405339c026685b35e81685acb2fac8982c8c0",
+    "_common.py": "f68a299c4367ba11c57196e37425f53feefcaa21db0b8e13a94c76714d324f6a",
+    "_regular_grid.py": "9a4192aa07b7bd1e4f89f68b72bea3f0b40a5cd6eb8a8ed7f41c5c2d70b1b098",
+    "scalar_kernels.h": "b90fee2bbf6db774f705e442e0a5555ca86eb6d1d2ea861651c4e3adab90a76e",
+    "regular_grid.h": "b8de5452e3983b6f532dbe81a038999c983a98873e3f344c38b39263dfa881ac",
+    "libdeepwave_C.dylib": "305176361bae47d347abf1a274d3a52ef89bb52e5a0ec12cf053444ded0af182"
+  }
+}

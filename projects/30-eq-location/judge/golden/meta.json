@@ -1,0 +1,78 @@
+{
+  "seed": 30012026,
+  "versions": {
+    "python": "3.12.11",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1"
+  },
+  "reference": "Analytic t=t0+Euclidean distance/v; scipy.optimize.least_squares (TRF); scipy.stats.chi2",
+  "model": "Homogeneous 6000 m/s; local EN-down metres, relative seconds; known heteroscedastic independent pick sigma",
+  "precision": "Inputs quantized once to float32 and promoted to float64 for oracle computation; reference outputs float64",
+  "inputs": {
+    "grid": "6 events, 16 stations, 13x13x10 grid, 1000 m cells",
+    "clean": "same 6 events; initial models from exhaustive grid",
+    "noisy": "200 independent Gaussian pick-noise trials, varied truth; fixed perturbed starts",
+    "gradient": "3 off-solution models; central difference steps recorded in tolerances.py"
+  },
+  "ellipse": "Horizontal marginal covariance including depth and origin-time nuisance parameters; known sigma, no residual scaling",
+  "tolerances": {
+    "PARITY_RTOL": 0.0001,
+    "GRID_POSITION_ATOL_M": 0.001,
+    "TIME_ATOL_S": 2e-06,
+    "LOSS_ATOL": 0.0001,
+    "GRID_MAX_CELLS": 1.0,
+    "GEIGER_MAX_POSITION_M": 10.0,
+    "GEIGER_MAX_TIME_S": 0.01,
+    "COVERAGE_MIN": 0.9,
+    "COVERAGE_MAX": 0.99,
+    "NOISY_TRIALS": 200,
+    "ELLIPSE_CHI2_95": 5.991464547107979,
+    "GRADIENT_RTOL": 0.001,
+    "FD_STEPS": [
+      8.0,
+      8.0,
+      8.0,
+      0.002
+    ],
+    "ORACLE_GRADIENT_RTOL": 1e-06,
+    "ORACLE_FD_STEPS": [
+      0.1,
+      0.1,
+      0.1,
+      1e-05
+    ],
+    "ORACLE_QUANTILE_ATOL": 1e-14
+  },
+  "tolerance_reasons": "\"\"\"Locked numerical thresholds; shared by tests and golden metadata.\"\"\"\n\n# Campaign float32 parity ceiling; normwise comparisons avoid zero-entry ratios.\nPARITY_RTOL = 1.0e-4\n# A grid candidate must be the same node (millimetre allowance for coordinates).\nGRID_POSITION_ATOL_M = 1.0e-3\n# Origin time profiling uses sums of seconds in float32.\nTIME_ATOL_S = 2.0e-6\n# Near-zero dimensionless least-squares losses cannot use relative error alone.\nLOSS_ATOL = 1.0e-4\n# Required noise-free physical recovery limits from CAMPAIGN.md.\nGRID_MAX_CELLS = 1.0\nGEIGER_MAX_POSITION_M = 10.0\nGEIGER_MAX_TIME_S = 0.01\n# Inclusive campaign limits: 180 through 198 of the fixed 200 trials.\nCOVERAGE_MIN = 0.90\nCOVERAGE_MAX = 0.99\nNOISY_TRIALS = 200\n# Horizontal marginal Gaussian ellipse: chi-square(2) inverse CDF at 0.95.\nELLIPSE_CHI2_95 = 5.991464547107979\n# Campaign gradient limit, checked separately for each parameter's units.\nGRADIENT_RTOL = 1.0e-3\n# Central differences: 8 m spatial, 2 ms temporal. These resolve float32\n# objective differences while keeping nonlinear truncation well below 1e-3.\nFD_STEPS = (8.0, 8.0, 8.0, 0.002)\n# Float64 oracle self-check; far tighter than any implementation requirement.\nORACLE_GRADIENT_RTOL = 1.0e-6\nORACLE_FD_STEPS = (0.1, 0.1, 0.1, 1.0e-5)\n# Check the recorded analytic chi-square constant against SciPy in float64.\nORACLE_QUANTILE_ATOL = 1.0e-14\n",
+  "sanity": {
+    "grid_max_error_cells": 0.9454628496138808,
+    "clean_max_error_m": 0.0016642830742928374,
+    "clean_max_time_error_s": 1.8744658514258106e-07,
+    "coverage": 0.95,
+    "covered": 190,
+    "arrivals_range_s": [
+      0.26959556341171265,
+      6.710186958312988
+    ],
+    "noisy_loss_range": [
+      1.2311226999971574,
+      15.694052884292335
+    ],
+    "ellipse_semiaxis_range_m": [
+      122.28944071784781,
+      200.7808088859412
+    ],
+    "oracle_gradient_relative_error": [
+      9.430625673395924e-11,
+      6.166251149950284e-11,
+      1.646953963770336e-10,
+      4.6648711282880526e-12
+    ],
+    "float32_fd_step_check_relative_error": [
+      0.0002339712209605264,
+      0.00011336613807977134,
+      3.7238701953436104e-05,
+      3.3580289405040937e-06
+    ]
+  }
+}

@@ -1,0 +1,6 @@
+# Direct oracle/test dependencies, matching the repository's pinned environment at lock.
+# The repository uv.lock pins their transitive dependencies. No network needed.
+numpy==2.5.4
+scipy==1.18.1
+harmonica==0.7.0
+pytest==9.2.0

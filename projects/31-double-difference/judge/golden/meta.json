@@ -1,0 +1,26 @@
+{
+  "model": "straight-ray travel time origin + Euclidean distance / 6 km/s; Cartesian km, positive depth",
+  "cases": {
+    "clean": {
+      "seed": 3101,
+      "noise_std_s": 0.0
+    },
+    "noisy": {
+      "seed": 3102,
+      "noise_std_s": 0.002
+    }
+  },
+  "inputs": "12 events, 8 stations, every unordered event pair at every station, damping 0.0001",
+  "objective": "sum((predicted DD - observed DD)^2) + damping * sum((delta_xyz / velocity)^2 + delta_origin^2)",
+  "reference": "scipy.optimize.least_squares TRF, numerical Jacobian, float64",
+  "versions": {
+    "numpy": "2.5.4",
+    "scipy": "1.18.1"
+  },
+  "tolerances": {
+    "solution_scaled_max_error": "1e-4 relative to max reference magnitude; float32 campaign limit",
+    "residual_absolute_s": "2e-5 s; float32 subtraction of arrival times and iterative solver error",
+    "spread_ratio": "0.5 maximum, the campaign requirement",
+    "cross_path": "not applicable: tag M is MLX-only"
+  }
+}

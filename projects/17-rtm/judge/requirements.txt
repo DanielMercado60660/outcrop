@@ -1,0 +1,6 @@
+# Exact judge/test versions in the repository's pinned environment (Python 3.12.11).
+# Deepwave native/source hashes are also recorded in golden/meta.json.
+numpy==2.5.4
+torch==2.15.0
+deepwave==0.1.0
+pytest==9.2.0

@@ -1,0 +1,448 @@
+{
+  "seed": 24001,
+  "numpy": "2.5.4",
+  "scikit-fmm": "2025.6.23",
+  "cases": {
+    "heterogeneous_2d": {
+      "shape": [
+        37,
+        31
+      ],
+      "spacing": [
+        0.08,
+        0.11
+      ],
+      "speed_range": [
+        1.8313893878241922,
+        2.292591397683514
+      ],
+      "time_ranges": {
+        "time_order1": [
+          0.002694859295419401,
+          1.006380360135839
+        ],
+        "time_order2": [
+          0.0026948592954194007,
+          0.9756297406422251
+        ]
+      }
+    },
+    "heterogeneous_3d": {
+      "shape": [
+        21,
+        19,
+        17
+      ],
+      "spacing": [
+        0.09,
+        0.12,
+        0.15
+      ],
+      "speed_range": [
+        1.7323597348396076,
+        2.4210255914434184
+      ],
+      "time_ranges": {
+        "time_order1": [
+          4.6547416286496546e-05,
+          0.829710980656794
+        ],
+        "time_order2": [
+          4.6547416286496546e-05,
+          0.7807958543321337
+        ]
+      }
+    },
+    "gradient_2d_20": {
+      "shape": [
+        26,
+        5
+      ],
+      "spacing": [
+        0.05,
+        0.05
+      ],
+      "time_ranges": {
+        "time_order1": [
+          0.0,
+          0.41703927586332573
+        ],
+        "time_order2": [
+          0.0,
+          0.42029993329773047
+        ]
+      }
+    },
+    "gradient_2d_40": {
+      "shape": [
+        51,
+        5
+      ],
+      "spacing": [
+        0.025,
+        0.025
+      ],
+      "time_ranges": {
+        "time_order1": [
+          0.0,
+          0.41880968436464266
+        ],
+        "time_order2": [
+          0.0,
+          0.42051734121830137
+        ]
+      }
+    },
+    "gradient_2d_80": {
+      "shape": [
+        101,
+        5
+      ],
+      "spacing": [
+        0.0125,
+        0.0125
+      ],
+      "time_ranges": {
+        "time_order1": [
+          0.0,
+          0.41969871473283915
+        ],
+        "time_order2": [
+          0.0,
+          0.42057200986854587
+        ]
+      }
+    },
+    "gradient_3d_20": {
+      "shape": [
+        26,
+        5,
+        5
+      ],
+      "spacing": [
+        0.05,
+        0.05,
+        0.05
+      ],
+      "time_ranges": {
+        "time_order1": [
+          0.0,
+          0.41703927586332573
+        ],
+        "time_order2": [
+          0.0,
+          0.42029993329773047
+        ]
+      }
+    },
+    "gradient_3d_40": {
+      "shape": [
+        51,
+        5,
+        5
+      ],
+      "spacing": [
+        0.025,
+        0.025,
+        0.025
+      ],
+      "time_ranges": {
+        "time_order1": [
+          0.0,
+          0.41880968436464266
+        ],
+        "time_order2": [
+          0.0,
+          0.42051734121830137
+        ]
+      }
+    },
+    "gradient_3d_80": {
+      "shape": [
+        101,
+        5,
+        5
+      ],
+      "spacing": [
+        0.0125,
+        0.0125,
+        0.0125
+      ],
+      "time_ranges": {
+        "time_order1": [
+          0.0,
+          0.41969871473283915
+        ],
+        "time_order2": [
+          0.0,
+          0.42057200986854587
+        ]
+      }
+    },
+    "homogeneous_2d": {
+      "shape": [
+        17,
+        7
+      ],
+      "spacing": [
+        0.1,
+        0.1
+      ],
+      "time_ranges": {
+        "time_order1": [
+          0.01400000037252904,
+          0.38599999962747084
+        ],
+        "time_order2": [
+          0.01400000037252904,
+          0.3859999996274711
+        ]
+      }
+    },
+    "homogeneous_3d": {
+      "shape": [
+        17,
+        7,
+        7
+      ],
+      "spacing": [
+        0.1,
+        0.1,
+        0.1
+      ],
+      "time_ranges": {
+        "time_order1": [
+          0.01400000037252904,
+          0.38599999962747084
+        ],
+        "time_order2": [
+          0.01400000037252904,
+          0.3859999996274711
+        ]
+      }
+    },
+    "radial_2d_20": {
+      "shape": [
+        21,
+        21
+      ],
+      "spacing": [
+        0.1,
+        0.1
+      ],
+      "time_ranges": {
+        "time_order1": [
+          2.1917744107920657e-17,
+          0.4690815338261627
+        ],
+        "time_order2": [
+          2.1917744107920657e-17,
+          0.45107884703481527
+        ]
+      }
+    },
+    "radial_2d_40": {
+      "shape": [
+        41,
+        41
+      ],
+      "spacing": [
+        0.05,
+        0.05
+      ],
+      "time_ranges": {
+        "time_order1": [
+          2.2128802374926922e-17,
+          0.4567413771366378
+        ],
+        "time_order2": [
+          2.2128802374926925e-17,
+          0.4462205999377171
+        ]
+      }
+    },
+    "radial_2d_80": {
+      "shape": [
+        81,
+        81
+      ],
+      "spacing": [
+        0.025,
+        0.025
+      ],
+      "time_ranges": {
+        "time_order1": [
+          2.2185276981401747e-17,
+          0.45120497491216405
+        ],
+        "time_order2": [
+          2.2185276981401747e-17,
+          0.44562212127564876
+        ]
+      }
+    },
+    "radial_3d_20": {
+      "shape": [
+        21,
+        21,
+        21
+      ],
+      "spacing": [
+        0.1,
+        0.1,
+        0.1
+      ],
+      "time_ranges": {
+        "time_order1": [
+          0.0,
+          0.6149355137836323
+        ],
+        "time_order2": [
+          0.0,
+          0.5780237425219978
+        ]
+      }
+    },
+    "radial_3d_40": {
+      "shape": [
+        41,
+        41,
+        41
+      ],
+      "spacing": [
+        0.05,
+        0.05,
+        0.05
+      ],
+      "time_ranges": {
+        "time_order1": [
+          0.0,
+          0.5942815401265615
+        ],
+        "time_order2": [
+          0.0,
+          0.5748343282273063
+        ]
+      }
+    },
+    "radial_3d_80": {
+      "shape": [
+        81,
+        81,
+        81
+      ],
+      "spacing": [
+        0.025,
+        0.025,
+        0.025
+      ],
+      "time_ranges": {
+        "time_order1": [
+          0.0,
+          0.5832903588341728
+        ],
+        "time_order2": [
+          0.0,
+          0.5730343487628201
+        ]
+      }
+    }
+  },
+  "documented_rules_self_checks": {
+    "heterogeneous_2d": {
+      "order1_max_abs_error": 6.772360450213455e-15,
+      "order2_max_abs_error": 3.3306690738754696e-16
+    },
+    "heterogeneous_3d": {
+      "order1_max_abs_error": 8.770761894538737e-15,
+      "order2_max_abs_error": 3.3306690738754696e-16
+    },
+    "gradient_2d_20": {
+      "order1_max_abs_error": 1.1657341758564144e-15,
+      "order2_max_abs_error": 0.0
+    },
+    "gradient_2d_40": {
+      "order1_max_abs_error": 2.4980018054066022e-15,
+      "order2_max_abs_error": 1.734723475976807e-18
+    },
+    "gradient_2d_80": {
+      "order1_max_abs_error": 1.1213252548714081e-14,
+      "order2_max_abs_error": 0.0
+    },
+    "gradient_3d_20": {
+      "order1_max_abs_error": 1.1657341758564144e-15,
+      "order2_max_abs_error": 0.0
+    },
+    "gradient_3d_40": {
+      "order1_max_abs_error": 2.4980018054066022e-15,
+      "order2_max_abs_error": 1.734723475976807e-18
+    },
+    "gradient_3d_80": {
+      "order1_max_abs_error": 1.1213252548714081e-14,
+      "order2_max_abs_error": 0.0
+    },
+    "homogeneous_2d": {
+      "order1_max_abs_error": 1.6653345369377348e-16,
+      "order2_max_abs_error": 3.469446951953614e-18
+    },
+    "homogeneous_3d": {
+      "order1_max_abs_error": 1.6653345369377348e-16,
+      "order2_max_abs_error": 2.7755575615628914e-17
+    },
+    "radial_2d_20": {
+      "order1_max_abs_error": 1.1102230246251565e-15,
+      "order2_max_abs_error": 1.1102230246251565e-16
+    },
+    "radial_2d_40": {
+      "order1_max_abs_error": 6.050715484207103e-15,
+      "order2_max_abs_error": 5.551115123125783e-17
+    },
+    "radial_2d_80": {
+      "order1_max_abs_error": 1.27675647831893e-14,
+      "order2_max_abs_error": 2.7755575615628914e-16
+    },
+    "radial_3d_20": {
+      "order1_max_abs_error": 5.10702591327572e-15,
+      "order2_max_abs_error": 3.3306690738754696e-16
+    },
+    "radial_3d_40": {
+      "order1_max_abs_error": 1.2323475573339238e-14,
+      "order2_max_abs_error": 3.3306690738754696e-16
+    },
+    "radial_3d_80": {
+      "order1_max_abs_error": 3.375077994860476e-14,
+      "order2_max_abs_error": 4.440892098500626e-16
+    }
+  },
+  "initialization": "Order 1 uses strict sign changes only; exact phi zeros freeze at time 0, but zero neighbors do not count as crossings. Order 2 retains edges to zero neighbors as crossings. Both use node-local speed and inverse-square combination across crossing axes.",
+  "order1_update": "All axes with frozen immediate neighbors contribute to the larger quadratic root; no Godunov dimension dropping. See tests/api.py and independent judge/documented_rules.py.",
+  "reference": "Order 1: skfmm.travel_time. Order 2: judge/second_order.py published upwind FMM variant; compared to skfmm order 2 as a loose sanity check. Float64 from float32 inputs; nonperiodic, unmasked.",
+  "input_construction": "All arrays and spacing are saved in each npz. Heterogeneous: spherical signed distance with radius 0.34 and off-center origin; speed = 2 + sum_i 0.13 sin((i+1)*x_i) + uniform(-0.04,0.04), seed 24001. Gradient: x from -0.25 to 1, phi=x, speed=2+0.8*x. Homogeneous: phi=x with interface 0.035 past node 6, speed=2.5. Radial: axes span [-1,1], phi=r-0.3, speed=2.5; compare analytic outside r>=0.5.",
+  "analytic": "planar source: |x|/v for constant v; |log((2+0.8*x)/2)/0.8| for v=2+0.8*x; radial: (r-0.3)/2.5 outside the sphere",
+  "tolerances": {
+    "documented_rules_atol": [
+      1e-10,
+      "judge-only absolute time error; independent float64 API transcription must reproduce every golden at both orders, allowing accumulated float64 roundoff"
+    ],
+    "order2_skfmm_sanity_rel": [
+      0.05,
+      "different second-order interface, stencil and trial update rules; sanity check only"
+    ],
+    "parity_rel": [
+      0.0001,
+      "max absolute error / max reference time; float32 campaign threshold"
+    ],
+    "cross_rel": [
+      0.0001,
+      "same scaling for float32 path agreement"
+    ],
+    "refinement_ratio": [
+      0.8,
+      "each grid halving must shrink first-order error, allowing pre-asymptotic effects"
+    ],
+    "min_coarse_error": [
+      1e-05,
+      "avoid degenerate refinement ratios"
+    ]
+  }
+}

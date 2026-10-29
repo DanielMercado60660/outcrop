@@ -1,0 +1,60 @@
+{
+  "project": "07-fft-filters",
+  "sizes": {
+    "small": {
+      "ny": 768,
+      "nx": 768
+    },
+    "medium": {
+      "ny": 2048,
+      "nx": 2048
+    },
+    "large": {
+      "ny": 8192,
+      "nx": 8192
+    }
+  },
+  "results": {
+    "judge": {
+      "small": {
+        "wall_s": 0.022910875006346032,
+        "peak_mem_mb": 63.069923400878906,
+        "mem_method": "tracemalloc peak during a separate call, including NumPy allocations"
+      },
+      "medium": {
+        "wall_s": 0.1560266249871347,
+        "peak_mem_mb": 448.13830184936523,
+        "mem_method": "tracemalloc peak during a separate call, including NumPy allocations"
+      },
+      "large": {
+        "wall_s": 3.0286448749830015,
+        "peak_mem_mb": 7168.466384887695,
+        "mem_method": "tracemalloc peak during a separate call, including NumPy allocations"
+      }
+    },
+    "mlx": {
+      "small": {
+        "wall_s": 0.002049625007202849,
+        "peak_mem_mb": 50.08158874511719,
+        "mem_method": "MLX peak active memory during a separate call",
+        "process_peak_rss_mb": 321.25
+      },
+      "medium": {
+        "wall_s": 0.004966207983670756,
+        "peak_mem_mb": 356.0527801513672,
+        "mem_method": "MLX peak active memory during a separate call",
+        "process_peak_rss_mb": 882.5
+      },
+      "large": {
+        "wall_s": 0.06841454200912267,
+        "peak_mem_mb": 9280.000011444092,
+        "mem_method": "MLX peak active memory during a separate call",
+        "process_peak_rss_mb": 10100.546875
+      }
+    }
+  },
+  "medium_max_rel_diff": {
+    "mlx": 9.330713015733603e-07
+  },
+  "notes": "Upward continuation, dx=dy=100 m, height=250 m; fixed-seed float32 normal input. Median of three calls after one warm-up; each MLX call includes conversion of the output to NumPy. Memory is measured in a separate call; process_peak_rss_mb is the macOS process lifetime high-water RSS, not a per-call delta. Relative difference is max absolute error divided by the maximum absolute reference value over the full grid."
+}

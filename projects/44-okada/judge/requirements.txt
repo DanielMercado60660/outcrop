@@ -1,0 +1,4 @@
+# Judge and test dependencies; pinned interpreter: Python 3.12.11.
+# The supplied precision-audit source (data/okada/reviewer/dc3d.py) is pinned by SHA256 in make_goldens.py.
+numpy==2.5.4
+pytest==9.2.0

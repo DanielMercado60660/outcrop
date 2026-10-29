@@ -1,0 +1,82 @@
+{
+  "project": "15-elastic-psv",
+  "sizes": {
+    "small": {
+      "ny": 48,
+      "nx": 64,
+      "nt": 60,
+      "nreceiver": 24
+    },
+    "medium": {
+      "ny": 96,
+      "nx": 144,
+      "nt": 300,
+      "nreceiver": 72
+    },
+    "large": {
+      "ny": 160,
+      "nx": 240,
+      "nt": 600,
+      "nreceiver": 120
+    }
+  },
+  "results": {
+    "judge": {
+      "small": {
+        "wall_s": 0.006263791001401842,
+        "peak_mem_mb": 0.047547,
+        "mem_method": "tracemalloc peak Python allocations (excludes native Torch allocations)"
+      },
+      "medium": {
+        "wall_s": 0.024335124995559454,
+        "peak_mem_mb": 0.53146,
+        "mem_method": "tracemalloc peak Python allocations (excludes native Torch allocations)"
+      },
+      "large": {
+        "skipped": "Conservative CPU runtime limit for the large case"
+      }
+    },
+    "mlx": {
+      "small": {
+        "wall_s": 0.07608262498979457,
+        "peak_mem_mb": 13.687708,
+        "mem_method": "MLX reset_peak_memory/get_peak_memory; process RSS is lifetime high-water mark",
+        "process_peak_rss_mb": 381.845504
+      },
+      "medium": {
+        "wall_s": 0.3206562919949647,
+        "peak_mem_mb": 39.246288,
+        "mem_method": "MLX reset_peak_memory/get_peak_memory; process RSS is lifetime high-water mark",
+        "process_peak_rss_mb": 394.723328
+      },
+      "large": {
+        "wall_s": 0.6965471250005066,
+        "peak_mem_mb": 96.131384,
+        "mem_method": "MLX reset_peak_memory/get_peak_memory; process RSS is lifetime high-water mark",
+        "process_peak_rss_mb": 405.17632
+      }
+    },
+    "metal": {
+      "small": {
+        "wall_s": 0.06445187501958571,
+        "peak_mem_mb": 18.579456,
+        "mem_method": "fresh worker RUSAGE_CHILDREN ru_maxrss delta (macOS bytes); Metal child RSS"
+      },
+      "medium": {
+        "wall_s": 0.0713391250174027,
+        "peak_mem_mb": 21.037056,
+        "mem_method": "fresh worker RUSAGE_CHILDREN ru_maxrss delta (macOS bytes); Metal child RSS"
+      },
+      "large": {
+        "wall_s": 0.0796537919959519,
+        "peak_mem_mb": 27.099136,
+        "mem_method": "fresh worker RUSAGE_CHILDREN ru_maxrss delta (macOS bytes); Metal child RSS"
+      }
+    }
+  },
+  "medium_max_rel_diff": {
+    "mlx": 5.396207921247161e-08,
+    "metal": 4.641115196449337e-07
+  },
+  "notes": "Forward elastic only; three timed repeats after one warmup. Errors are the maximum of component-wise max absolute error divided by that reference component's peak. Memory is the maximum across repeats; tracemalloc excludes native allocations, and RSS includes runtime overhead. Metal timing includes harness file I/O and process startup. Sizes and runtime targets are estimates, not measured on the reserved GPU."
+}

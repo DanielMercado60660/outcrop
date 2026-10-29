@@ -1,0 +1,717 @@
+{
+  "project": "19-multiscale-fwi",
+  "tag": "M",
+  "paths": [
+    "mlx"
+  ],
+  "seed": 190028,
+  "python": "3.12.11",
+  "versions": {
+    "numpy": "2.5.4",
+    "torch": "2.15.0",
+    "deepwave": "0.1.0",
+    "pytest": "9.2.0",
+    "mlx": "0.32.4"
+  },
+  "reference": "Deepwave scalar, CPU float64, PyTorch autograd; two-dimensional scalar acoustic full-waveform inversion",
+  "deepwave_source_sha256": {
+    "scalar.py": "68b90b7303c2eaad0558be0d4b9405339c026685b35e81685acb2fac8982c8c0",
+    "scalar.c": "c27ac6a07e21ff3948452ce99dca311de7640e8a911cb072ae021f6880ae9e3e",
+    "scalar_kernels.h": "b90fee2bbf6db774f705e442e0a5555ca86eb6d1d2ea861651c4e3adab90a76e",
+    "libdeepwave_C.dylib": "305176361bae47d347abf1a274d3a52ef89bb52e5a0ec12cf053444ded0af182"
+  },
+  "inputs": {
+    "case_0": {
+      "file": "case_0.npz",
+      "arrays": {
+        "basis": {
+          "shape": [
+            2,
+            25,
+            61
+          ],
+          "stored_dtype": "float32"
+        },
+        "source": {
+          "shape": [
+            2,
+            1,
+            500
+          ],
+          "stored_dtype": "float32"
+        },
+        "sources": {
+          "shape": [
+            2,
+            1,
+            2
+          ],
+          "stored_dtype": "int64",
+          "values": [
+            [
+              [
+                12,
+                6
+              ]
+            ],
+            [
+              [
+                12,
+                54
+              ]
+            ]
+          ]
+        },
+        "receivers": {
+          "shape": [
+            2,
+            4,
+            2
+          ],
+          "stored_dtype": "int64",
+          "values": [
+            [
+              [
+                12,
+                16
+              ],
+              [
+                12,
+                24
+              ],
+              [
+                12,
+                36
+              ],
+              [
+                12,
+                44
+              ]
+            ],
+            [
+              [
+                12,
+                16
+              ],
+              [
+                12,
+                24
+              ],
+              [
+                12,
+                36
+              ],
+              [
+                12,
+                44
+              ]
+            ]
+          ]
+        },
+        "observed": {
+          "shape": [
+            2,
+            4,
+            500
+          ],
+          "stored_dtype": "float32"
+        },
+        "truth": {
+          "shape": [
+            2
+          ],
+          "stored_dtype": "float64",
+          "values": [
+            2200.0,
+            2600.0
+          ]
+        },
+        "initial": {
+          "shape": [
+            2
+          ],
+          "stored_dtype": "float64",
+          "values": [
+            1700.0,
+            1800.0
+          ]
+        },
+        "probe_parameters": {
+          "shape": [
+            3,
+            2
+          ],
+          "stored_dtype": "float64",
+          "values": [
+            [
+              1700.0,
+              1800.0
+            ],
+            [
+              2009.2147216796875,
+              2418.131591796875
+            ],
+            [
+              2200.0,
+              2600.0
+            ]
+          ]
+        },
+        "dx": {
+          "shape": [],
+          "stored_dtype": "float64",
+          "values": 20.0
+        },
+        "dt": {
+          "shape": [],
+          "stored_dtype": "float64",
+          "values": 0.002
+        },
+        "cutoffs": {
+          "shape": [
+            4
+          ],
+          "stored_dtype": "float64",
+          "values": [
+            3.0,
+            5.0,
+            9.0,
+            18.0
+          ]
+        },
+        "probe_cutoffs": {
+          "shape": [
+            3
+          ],
+          "stored_dtype": "float64",
+          "values": [
+            3.0,
+            9.0,
+            18.0
+          ]
+        },
+        "fd_step": {
+          "shape": [],
+          "stored_dtype": "float64",
+          "values": 1.0
+        },
+        "steps_per_stage": {
+          "shape": [],
+          "stored_dtype": "int64",
+          "values": 35
+        }
+      },
+      "sha256": "5ad61d903aa8212efb713e6ad8fdc889c3732f0f3afb79b1aa8de7c76031707a"
+    },
+    "case_1": {
+      "file": "case_1.npz",
+      "arrays": {
+        "basis": {
+          "shape": [
+            2,
+            25,
+            61
+          ],
+          "stored_dtype": "float32"
+        },
+        "source": {
+          "shape": [
+            2,
+            1,
+            500
+          ],
+          "stored_dtype": "float32"
+        },
+        "sources": {
+          "shape": [
+            2,
+            1,
+            2
+          ],
+          "stored_dtype": "int64",
+          "values": [
+            [
+              [
+                12,
+                6
+              ]
+            ],
+            [
+              [
+                12,
+                54
+              ]
+            ]
+          ]
+        },
+        "receivers": {
+          "shape": [
+            2,
+            4,
+            2
+          ],
+          "stored_dtype": "int64",
+          "values": [
+            [
+              [
+                12,
+                16
+              ],
+              [
+                12,
+                24
+              ],
+              [
+                12,
+                36
+              ],
+              [
+                12,
+                44
+              ]
+            ],
+            [
+              [
+                12,
+                16
+              ],
+              [
+                12,
+                24
+              ],
+              [
+                12,
+                36
+              ],
+              [
+                12,
+                44
+              ]
+            ]
+          ]
+        },
+        "observed": {
+          "shape": [
+            2,
+            4,
+            500
+          ],
+          "stored_dtype": "float32"
+        },
+        "truth": {
+          "shape": [
+            2
+          ],
+          "stored_dtype": "float64",
+          "values": [
+            2250.0,
+            2650.0
+          ]
+        },
+        "initial": {
+          "shape": [
+            2
+          ],
+          "stored_dtype": "float64",
+          "values": [
+            1700.0,
+            1800.0
+          ]
+        },
+        "probe_parameters": {
+          "shape": [
+            3,
+            2
+          ],
+          "stored_dtype": "float64",
+          "values": [
+            [
+              1700.0,
+              1800.0
+            ],
+            [
+              2061.267333984375,
+              2477.16796875
+            ],
+            [
+              2250.0,
+              2650.0
+            ]
+          ]
+        },
+        "dx": {
+          "shape": [],
+          "stored_dtype": "float64",
+          "values": 20.0
+        },
+        "dt": {
+          "shape": [],
+          "stored_dtype": "float64",
+          "values": 0.002
+        },
+        "cutoffs": {
+          "shape": [
+            4
+          ],
+          "stored_dtype": "float64",
+          "values": [
+            3.0,
+            5.0,
+            9.0,
+            18.0
+          ]
+        },
+        "probe_cutoffs": {
+          "shape": [
+            3
+          ],
+          "stored_dtype": "float64",
+          "values": [
+            3.0,
+            9.0,
+            18.0
+          ]
+        },
+        "fd_step": {
+          "shape": [],
+          "stored_dtype": "float64",
+          "values": 1.0
+        },
+        "steps_per_stage": {
+          "shape": [],
+          "stored_dtype": "int64",
+          "values": 35
+        }
+      },
+      "sha256": "fac28d9ca216c82b121d226e1ffe133c29fe4cdd3935512b63dc55f4d13ad0d8"
+    }
+  },
+  "input_precision": "Every floating API array is cast to float32 before use by implementations; source/basis/data/probe quantized to float32 before float64 reference work. Exact integer-valued truth/initial arrays are stored float64; coordinate indices int64.",
+  "grid": {
+    "shape_zx": [
+      25,
+      61
+    ],
+    "dx_m": 20.0,
+    "dt_s": 0.002,
+    "nt": 500,
+    "accuracy": 4,
+    "pml_width": 12,
+    "pml_freq_hz": 12.0,
+    "max_vel": 3000.0,
+    "time_order": 2,
+    "time_pad_frac": 0.0,
+    "freq_taper_frac": 0.0,
+    "time_taper": false,
+    "survey_pad": null,
+    "model_gradient_sampling_interval": 1
+  },
+  "filter": "Periodic, zero-phase real FFT on nt samples; H(f)=[1+(f/fc)^8]^(-1/2), irfft n=nt; no padding/taper; same operator on predicted and observed",
+  "objective": "0.5 * sum((H(predicted-observed))^2) / sum((H(observed))^2), over all shots, receivers and times; no regularization",
+  "parity_metric": "max(abs(actual-reference))/max(abs(reference)); history additionally permits history_atol. Only the saved single_flat_mask entries use single_flat_velocity absolute m/s INSTEAD OF relative parity. The mask selects free coefficients after the reference is within 1 m/s of its endpoint and its bound coefficients have reached their bounds. All other parameters/states retain 1e-4 parity. At zero-residual truth use absolute zero_objective/zero_gradient criteria.",
+  "model_error_metric": "L2 norm of sum_p((parameters[p]-truth[p])*basis[p,z,x]) over all physical grid cells; same units m/s; no PML cells in the score",
+  "optimizer": {
+    "steps_per_stage": 35,
+    "max_step": 80.0,
+    "lower": 1500.0,
+    "upper": 2900.0,
+    "backtracks": 16,
+    "armijo": 0.0001,
+    "objective_stop": 1e-10,
+    "gradient_floor": 1e-30
+  },
+  "gradient_check": {
+    "step_m_per_s": 1.0,
+    "method": "centered component differences at saved probe, independently in float64 and audited float32"
+  },
+  "tolerances": {
+    "parity": {
+      "value": 0.0001,
+      "reason": "Campaign float32 parity at the identical Deepwave grid, stencil, dt and PML; max absolute error divided by reference max amplitude."
+    },
+    "gradient_fd": {
+      "value": 0.001,
+      "reason": "Campaign centered finite differences; h=1 m/s balances float32 objective subtraction and O(h^2) truncation."
+    },
+    "oracle_fd": {
+      "value": 2e-05,
+      "reason": "Float64 adjoint versus centered differences at h=1 m/s; finite-step truncation is measured, not treated as rounding."
+    },
+    "history_atol": {
+      "value": 1e-08,
+      "reason": "Absolute allowance for near-zero normalized objectives in an iterative optimizer; relative parity alone is undefined there."
+    },
+    "single_flat_velocity": {
+      "value": 1.0,
+      "reason": "Absolute m/s allowance ONLY for the free coefficient in late single-scale states within 1 m/s of the float64 endpoint, with the other coefficient already on its bound. Curvature about 3.6e-6 per (m/s)^2 and float32 objective scatter of several 1e-7 relative make roughly 0.3-0.5 m/s unresolved; 1 m/s provides margin across arithmetic implementations. Early single-scale states, bound coordinates and all multiscale states retain 1e-4 parity."
+    },
+    "improvement": {
+      "value": 0.6,
+      "reason": "Unchanged project pass criterion: multiscale final grid-model L2 error is strictly below 0.6 times the single-scale error."
+    },
+    "baseline_error_fraction": {
+      "value": 0.3,
+      "reason": "Fixture validity: the high-frequency inversion must retain at least 30% of the starting grid-model error, demonstrating a failed baseline."
+    },
+    "half_cycle": {
+      "value": 0.5,
+      "reason": "Fixture validity: the initial direct-arrival travel-time error exceeds half the source peak-frequency period."
+    },
+    "baseline_stationarity": {
+      "value": 5e-06,
+      "reason": "Projected normalized-objective derivative per m/s; the 1 m/s single-scale uncertainty band has derivatives below 4e-6 in both saved sweeps, with 1e-6 margin for float32 arithmetic. Retains a convergence guard without demanding sub-resolution placement in the flat valley; endpoint parameter and objective parity also remain enforced."
+    },
+    "zero_objective": {
+      "value": 1e-08,
+      "reason": "Noiseless truth: squared float32 propagation noise divided by strongly suppressed 3 Hz observed energy; cancellation makes the absolute objective less accurate than unfiltered waveform parity."
+    },
+    "zero_gradient": {
+      "value": 1e-07,
+      "reason": "Absolute derivative per m/s at the noiseless truth, where relative gradient error has zero denominator."
+    },
+    "optimizer_stop": {
+      "value": 1e-10,
+      "reason": "Locked optimizer objective stopping threshold: freeze converged stages before normalized descent amplifies roundoff-sized gradients."
+    }
+  },
+  "cases": {
+    "case_0": {
+      "model_grid_l2_errors_m_per_s": {
+        "multi": 0.02885548481177549,
+        "single": 30150.99350935385,
+        "initial": 25956.69470483482
+      },
+      "error_ratio": 9.570326365140689e-07,
+      "initial_direct_arrival_error_cycles": 1.3399424105306454,
+      "single_projected_gradient": 0.0,
+      "receiver_peak": 32.3970270830171,
+      "oracle_fd_relative": [
+        8.645063682367172e-07,
+        4.070504060922709e-06,
+        8.82909017348619e-06
+      ],
+      "float32_cpu_audit": [
+        {
+          "cutoff": 3.0,
+          "objective_relative": 5.46009321053201e-07,
+          "gradient_relative": 1.2985476426994287e-06,
+          "waveform_relative": 1.7391697207913923e-06,
+          "fd_relative": 0.0005091941936064797,
+          "fd_component_relative": 0.0005091941936064797
+        },
+        {
+          "cutoff": 9.0,
+          "objective_relative": 9.441481553774082e-07,
+          "gradient_relative": 1.4895151880825954e-06,
+          "waveform_relative": 1.7391697207913923e-06,
+          "fd_relative": 6.84307011279441e-05,
+          "fd_component_relative": 6.84307011279441e-05
+        },
+        {
+          "cutoff": 18.0,
+          "objective_relative": 1.2311126257348152e-06,
+          "gradient_relative": 1.407341764133354e-06,
+          "waveform_relative": 1.7391697207913923e-06,
+          "fd_relative": 3.795191567970962e-05,
+          "fd_component_relative": 3.795191567970962e-05
+        }
+      ],
+      "float32_optimizer_audit": {
+        "multi": {
+          "parameters_relative": 7.341774122295628e-07,
+          "trajectory_relative": 4.335095364325937e-06,
+          "objective_history_relative": 9.19701649404071e-06
+        },
+        "single": {
+          "parameters_relative": 3.709527731774283e-05,
+          "parameters_absolute_m_per_s": 0.08328581546084024,
+          "trajectory_relative": 3.6530087347738774e-05,
+          "trajectory_absolute_m_per_s": 0.08328581546084024,
+          "objective_history_relative": 7.439054296699338e-07,
+          "projected_gradient": 3.03611159324646e-07
+        }
+      },
+      "float32_truth_audit": [
+        {
+          "cutoff": 3.0,
+          "objective": 2.5121743574274547e-10,
+          "gradient_max": 4.887262150532479e-09
+        },
+        {
+          "cutoff": 9.0,
+          "objective": 8.855399052931645e-12,
+          "gradient_max": 6.350827086443189e-10
+        },
+        {
+          "cutoff": 18.0,
+          "objective": 3.722781631576577e-12,
+          "gradient_max": 9.75602154618116e-10
+        }
+      ],
+      "single_resolution_audit": {
+        "free_coefficient": 0,
+        "first_relaxed_state": 11,
+        "offsets_m_per_s": [
+          -1.0,
+          -0.5,
+          -0.3,
+          -0.2,
+          0.0,
+          0.2,
+          0.3,
+          0.5,
+          1.0
+        ],
+        "float64_objective_relative_rise": [
+          2.849422103271046e-06,
+          7.124111208647079e-07,
+          2.5647598113414e-07,
+          1.1399109372105265e-07,
+          0.0,
+          1.1399817546271436e-07,
+          2.5649985444476477e-07,
+          7.125215910373467e-07,
+          2.850305655564396e-06
+        ],
+        "float32_objective_relative_noise": [
+          4.3791617438693925e-07,
+          6.186492489001759e-07,
+          6.088040267986616e-07,
+          2.855083913888684e-07,
+          3.063433883711194e-07,
+          3.786574283105799e-07,
+          6.087801534796263e-07,
+          6.185387787379073e-07,
+          6.233443517481151e-07
+        ],
+        "curvature_per_velocity_squared": 3.646888357433629e-06,
+        "max_projected_gradient_float64": 3.647736320999684e-06,
+        "max_projected_gradient_float32": 3.647495759651065e-06,
+        "noise_equivalent_velocity_m_per_s": 0.4676842358022718
+      }
+    },
+    "case_1": {
+      "model_grid_l2_errors_m_per_s": {
+        "multi": 0.03749732137393093,
+        "single": 31516.82286651404,
+        "initial": 27862.38503789652
+      },
+      "error_ratio": 1.1897557546566992e-06,
+      "initial_direct_arrival_error_cycles": 1.4821340485879881,
+      "single_projected_gradient": 1.3642420526593924e-12,
+      "receiver_peak": 32.10104423199471,
+      "oracle_fd_relative": [
+        9.525818106356072e-07,
+        3.679594475409631e-06,
+        8.576761188353441e-06
+      ],
+      "float32_cpu_audit": [
+        {
+          "cutoff": 3.0,
+          "objective_relative": 1.1615719562679064e-05,
+          "gradient_relative": 6.856206782222238e-06,
+          "waveform_relative": 1.359812555580238e-06,
+          "fd_relative": 0.0005328983646971052,
+          "fd_component_relative": 0.0005328983646971052
+        },
+        {
+          "cutoff": 9.0,
+          "objective_relative": 9.988135875559036e-07,
+          "gradient_relative": 2.1577377886364136e-07,
+          "waveform_relative": 1.359812555580238e-06,
+          "fd_relative": 0.00011657585718916426,
+          "fd_component_relative": 0.00011657585718916426
+        },
+        {
+          "cutoff": 18.0,
+          "objective_relative": 7.292415877772614e-07,
+          "gradient_relative": 7.387679535421651e-07,
+          "waveform_relative": 1.359812555580238e-06,
+          "fd_relative": 6.914125906016005e-05,
+          "fd_component_relative": 0.00011153350882670595
+        }
+      ],
+      "float32_optimizer_audit": {
+        "multi": {
+          "parameters_relative": 4.2774141795340927e-07,
+          "trajectory_relative": 6.620503327446137e-06,
+          "objective_history_relative": 4.898375366080193e-06
+        },
+        "single": {
+          "parameters_relative": 7.446011726652676e-07,
+          "parameters_absolute_m_per_s": 0.001707394483673852,
+          "trajectory_relative": 8.357077346254474e-07,
+          "trajectory_absolute_m_per_s": 0.0019163047661550081,
+          "objective_history_relative": 9.520084712980611e-07,
+          "projected_gradient": 4.598405212163925e-09
+        }
+      },
+      "float32_truth_audit": [
+        {
+          "cutoff": 3.0,
+          "objective": 1.3247303254360077e-10,
+          "gradient_max": 9.819429713786576e-10
+        },
+        {
+          "cutoff": 9.0,
+          "objective": 4.925131916883041e-12,
+          "gradient_max": 4.103901662944054e-10
+        },
+        {
+          "cutoff": 18.0,
+          "objective": 1.9976930266257797e-12,
+          "gradient_max": 1.926099002513837e-10
+        }
+      ],
+      "single_resolution_audit": {
+        "free_coefficient": 0,
+        "first_relaxed_state": 11,
+        "offsets_m_per_s": [
+          -1.0,
+          -0.5,
+          -0.3,
+          -0.2,
+          0.0,
+          0.2,
+          0.3,
+          0.5,
+          1.0
+        ],
+        "float64_objective_relative_rise": [
+          2.675297273079132e-06,
+          6.688657058276516e-07,
+          2.407977969759771e-07,
+          1.0702269691640337e-07,
+          0.0,
+          1.070270232229388e-07,
+          2.4081406790606387e-07,
+          6.689449958037639e-07,
+          2.6759449461344795e-06
+        ],
+        "float32_objective_relative_noise": [
+          -2.529352446505397e-07,
+          -1.5863739628727824e-07,
+          1.7382370718499843e-07,
+          -2.660410669221385e-07,
+          3.2194916353668705e-08,
+          -7.483209886021331e-08,
+          7.820080186350605e-08,
+          -6.31100927374056e-08,
+          -6.237011265203329e-08
+        ],
+        "curvature_per_velocity_squared": 3.3361572692433604e-06,
+        "max_projected_gradient_float64": 3.3367655305482913e-06,
+        "max_projected_gradient_float32": 3.336201189085841e-06,
+        "noise_equivalent_velocity_m_per_s": 0.31532767484996665
+      }
+    }
+  },
+  "limitations": [
+    "Two velocity parameters on a genuine 2D wave grid; no claim of resolved pixel-wise FWI or realistic survey coverage.",
+    "Single-scale can settle on the lower velocity bound; projected stationarity and >half-cycle initial phase error are checked.",
+    "The late single-scale free coordinate is unresolved at 1e-4 relative velocity parity: a saved float64/float32 objective sweep documents a 1 m/s absolute allowance there and a matching 5e-6 projected-stationarity bound. No optimizer or improvement threshold changed.",
+    "Same-grid solver parity; propagation convergence/PML validation belongs to dependency 13, not duplicated here.",
+    "Installed Deepwave is version 0.1.0; source and native-library hashes record the exact local build."
+  ],
+  "golden_bytes": 293246
+}

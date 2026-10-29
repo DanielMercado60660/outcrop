@@ -1,0 +1,5 @@
+# Exact versions from the pinned environment; repository uv.lock pins transitive deps.
+numpy==2.5.4
+torch==2.15.0
+deepwave==0.1.0
+pytest==9.2.0

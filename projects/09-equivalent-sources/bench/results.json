@@ -1,0 +1,81 @@
+{
+  "project": "09-equivalent-sources",
+  "sizes": {
+    "small": {
+      "observations": 768,
+      "sources": 64,
+      "evaluation": 1024
+    },
+    "medium": {
+      "observations": 2048,
+      "sources": 160,
+      "evaluation": 4096
+    },
+    "large": {
+      "observations": 4096,
+      "sources": 320,
+      "evaluation": 16384
+    }
+  },
+  "results": {
+    "judge": {
+      "small": {
+        "wall_s": 0.0028616250201594085,
+        "peak_mem_mb": 1.2430448532104492,
+        "mem_method": "tracemalloc peak during call; excludes untracked native allocations"
+      },
+      "medium": {
+        "wall_s": 0.0036857920058537275,
+        "peak_mem_mb": 7.86784553527832,
+        "mem_method": "tracemalloc peak during call; excludes untracked native allocations"
+      },
+      "large": {
+        "wall_s": 0.014100375003181398,
+        "peak_mem_mb": 31.166112899780273,
+        "mem_method": "tracemalloc peak during call; excludes untracked native allocations"
+      }
+    },
+    "mlx": {
+      "small": {
+        "wall_s": 0.011206666997168213,
+        "peak_mem_mb": 14.89447021484375,
+        "mem_method": "MLX reset_peak_memory/get_peak_memory; process RSS high-water also reported",
+        "process_peak_rss_mb": 301.34375
+      },
+      "medium": {
+        "wall_s": 0.018276792019605637,
+        "peak_mem_mb": 94.06569576263428,
+        "mem_method": "MLX reset_peak_memory/get_peak_memory; process RSS high-water also reported",
+        "process_peak_rss_mb": 315.1875
+      },
+      "large": {
+        "wall_s": 0.05520762500236742,
+        "peak_mem_mb": 365.019549369812,
+        "mem_method": "MLX reset_peak_memory/get_peak_memory; process RSS high-water also reported",
+        "process_peak_rss_mb": 360.796875
+      }
+    },
+    "metal": {
+      "small": {
+        "wall_s": 0.24339933402370661,
+        "peak_mem_mb": 0.0,
+        "mem_method": "RUSAGE_CHILDREN ru_maxrss high-water delta, macOS bytes; may be zero after earlier larger children"
+      },
+      "medium": {
+        "wall_s": 6.637489707994973,
+        "peak_mem_mb": 0.15625,
+        "mem_method": "RUSAGE_CHILDREN ru_maxrss high-water delta, macOS bytes; may be zero after earlier larger children"
+      },
+      "large": {
+        "wall_s": 47.36390312499134,
+        "peak_mem_mb": 0.0,
+        "mem_method": "RUSAGE_CHILDREN ru_maxrss high-water delta, macOS bytes; may be zero after earlier larger children"
+      }
+    }
+  },
+  "medium_max_rel_diff": {
+    "mlx": 1.593570629595146e-07,
+    "metal": 1.5599964078612905e-06
+  },
+  "notes": "Positive damping 0.03; deterministic standard fit. Wall times include harness conversion and Metal process startup and file I/O. Memory is MiB; methods differ and are not directly comparable. Child RSS is a cumulative high-water mark, so a delta is not a per-child peak. Relative difference is max absolute error divided by max absolute reference prediction. Large runtime is an unverified estimate."
+}

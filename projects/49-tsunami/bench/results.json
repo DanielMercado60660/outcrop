@@ -1,0 +1,84 @@
+{
+  "project": "49-tsunami",
+  "sizes": {
+    "small": {
+      "n": 65536,
+      "steps": 80,
+      "dx_m": 100.0,
+      "depth_m": 1000.0
+    },
+    "medium": {
+      "n": 262144,
+      "steps": 200,
+      "dx_m": 100.0,
+      "depth_m": 1000.0
+    },
+    "large": {
+      "n": 1048576,
+      "steps": 512,
+      "dx_m": 100.0,
+      "depth_m": 1000.0
+    }
+  },
+  "results": {
+    "judge": {
+      "small": {
+        "wall_s": 0.06737070801318623,
+        "peak_mem_mb": 9.569246292114258,
+        "mem_method": "tracemalloc peak traced bytes during call, including NumPy allocations"
+      },
+      "medium": {
+        "wall_s": 0.6168364170007408,
+        "peak_mem_mb": 38.074214935302734,
+        "mem_method": "tracemalloc peak traced bytes during call, including NumPy allocations"
+      },
+      "large": {
+        "wall_s": 6.135043374990346,
+        "peak_mem_mb": 152.07342147827148,
+        "mem_method": "tracemalloc peak traced bytes during call, including NumPy allocations"
+      }
+    },
+    "mlx": {
+      "small": {
+        "wall_s": 0.006852582999272272,
+        "peak_mem_mb": 69.25033187866211,
+        "mem_method": "MLX peak allocated bytes after reset; process RSS high-water also reported",
+        "process_peak_rss_mb": 112.0625
+      },
+      "medium": {
+        "wall_s": 0.021241334005026147,
+        "peak_mem_mb": 277.0003318786621,
+        "mem_method": "MLX peak allocated bytes after reset; process RSS high-water also reported",
+        "process_peak_rss_mb": 179.546875
+      },
+      "large": {
+        "wall_s": 0.28383870801189914,
+        "peak_mem_mb": 1108.000331878662,
+        "mem_method": "MLX peak allocated bytes after reset; process RSS high-water also reported",
+        "process_peak_rss_mb": 439.96875
+      }
+    },
+    "metal": {
+      "small": {
+        "wall_s": 0.03722429199842736,
+        "peak_mem_mb": 0.0,
+        "mem_method": "RUSAGE_CHILDREN ru_maxrss high-water delta, macOS bytes (not per-call RSS)"
+      },
+      "medium": {
+        "wall_s": 0.04168154200306162,
+        "peak_mem_mb": 0.09375,
+        "mem_method": "RUSAGE_CHILDREN ru_maxrss high-water delta, macOS bytes (not per-call RSS)"
+      },
+      "large": {
+        "wall_s": 0.05487254197942093,
+        "peak_mem_mb": 0.0,
+        "mem_method": "RUSAGE_CHILDREN ru_maxrss high-water delta, macOS bytes (not per-call RSS)"
+      }
+    }
+  },
+  "medium_max_rel_diff": {
+    "mlx": 8.692598241869169e-06,
+    "metal": 6.5753271208549464e-06
+  },
+  "notes": "Nonlinear periodic Rusanov propagation; seed 4901, CFL 0.25. Wall times include conversion and Metal process/IO startup. Memory is MiB; Metal child ru_maxrss is a cumulative high-water mark, so its delta can be zero after warm-up and is not an individual child peak. MLX RSS is the cumulative process high-water mark. Relative differences are maximum errors normalized by each reference component's maximum."
+}

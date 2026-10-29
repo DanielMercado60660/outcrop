@@ -1,0 +1,1438 @@
+{
+  "project": "43-phase-picker",
+  "tag": "M",
+  "paths": [
+    "mlx"
+  ],
+  "test_count": 41,
+  "lock_ready": true,
+  "status": "REVIEW_REQUIRED",
+  "dataset_kind": "licensed_heldout",
+  "blocker": null,
+  "gpu_probe": {
+    "command": [
+      ".venv/bin/python",
+      "judge/make_goldens.py",
+      "--probe-mlx-child"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"projects/43-phase-picker/judge/make_goldens.py\", line 482, in <module>\n    main()\n  File \"projects/43-phase-picker/judge/make_goldens.py\", line 306, in main\n    import mlx.core as mx\nImportError: [metal::load_device] No Metal device available. This typically occurs in headless, sandboxed, or virtualized macOS sessions where the GPU is not accessible.\n",
+    "mlx": "0.32.4"
+  },
+  "real_data_qualified": true,
+  "seeds": {
+    "training": 43043,
+    "reference_replicates": [
+      43043,
+      43044,
+      43045
+    ],
+    "loss": 43003
+  },
+  "dataset_license": "STEAD CC BY 4.0, Wave 0 README.md, accessed 2026-10-28",
+  "attribution": "Mousavi, Sheng, Zhu & Beroza (2019), IEEE Access 7, 179464-179476, doi:10.1109/ACCESS.2019.2947848; windowed, event-split subset for Outcrop 43. SeisBench mirror accessed by Wave 0.",
+  "data_root": "data/phasepicker",
+  "data_files": {
+    "train": {
+      "sha256": "b3761f94e11c49e1921300da9ee8344871eed21954a0275bc4a2e7f2e228e00f",
+      "bytes": 1095396380,
+      "records": 30000,
+      "events": 19799,
+      "absent_S": 211,
+      "P_sample_range": [
+        100,
+        1000
+      ],
+      "P_median_s": 3.45,
+      "S_median_s": 9.27,
+      "median_Z_post_pre_RMS": 7.9801647091581644
+    },
+    "val": {
+      "sha256": "fc1026565870fbc00de4503f572193017ee7f6656488a392fae454c676a1e29e",
+      "bytes": 109533380,
+      "records": 3000,
+      "events": 1993,
+      "absent_S": 21,
+      "P_sample_range": [
+        100,
+        993
+      ],
+      "P_median_s": 3.37,
+      "S_median_s": 9.16,
+      "median_Z_post_pre_RMS": 7.652151133298238
+    },
+    "test": {
+      "sha256": "72938647e303dde3b95548a2d30972fb235ca9d019ef7429e4dbee23fc9dd7e6",
+      "bytes": 109533380,
+      "records": 3000,
+      "events": 1978,
+      "absent_S": 26,
+      "P_sample_range": [
+        100,
+        983
+      ],
+      "P_median_s": 3.4050000000000002,
+      "S_median_s": 9.290000000000001,
+      "median_Z_post_pre_RMS": 8.093619074355422
+    }
+  },
+  "events_disjoint": true,
+  "reference": "STEAD manual P/S labels; float64 analytic categorical CE; hand-counted metrics; strengthened MLX GPU experiment pending",
+  "reference_training": {
+    "43043": {
+      "training": {
+        "seed": 43043,
+        "steps": 36000,
+        "planned_steps": 36000,
+        "last_loss": 0.019096482545137405,
+        "training_seconds": 326.8998585419904,
+        "chunks": [
+          {
+            "start_step": 0,
+            "end_step": 24219,
+            "setup_seconds": 0.7424188749864697,
+            "training_seconds": 220.00269762499374,
+            "checkpoint_seconds": 0.006835125008365139
+          },
+          {
+            "start_step": 24219,
+            "end_step": 36000,
+            "setup_seconds": 0.7843699170043692,
+            "training_seconds": 106.89716091699665,
+            "checkpoint_seconds": 0.006756124988896772
+          }
+        ],
+        "device": "Device(gpu, 0)",
+        "device_info": {
+          "device_name": "Apple M5 Max",
+          "max_recommended_working_set_size": 115448725504,
+          "memory_size": 137438953472,
+          "architecture": "applegpu_g17s",
+          "max_buffer_length": 86586540032,
+          "resource_limit": 499000
+        },
+        "mlx": "0.32.4",
+        "numpy": "2.5.4",
+        "dtype": "float32",
+        "parameters": 647971,
+        "contract": {
+          "steps": 36000,
+          "batch_size": 32,
+          "seed": 43043,
+          "schedule": "training_schedule_round4.npz",
+          "schedule_seed": 43043,
+          "shared_schedule_across_init_seeds": true,
+          "learning_rate": 0.001,
+          "final_learning_rate": 1e-05,
+          "warmup_steps": 1000,
+          "label_sigma_samples": 10.0,
+          "reference_widths": [
+            16,
+            32,
+            64,
+            128,
+            192
+          ],
+          "parameters": 647971,
+          "optimizer": {
+            "name": "Adam",
+            "betas": [
+              0.9,
+              0.999
+            ],
+            "eps": 1e-08,
+            "bias_correction": true,
+            "epsilon_outside_sqrt": true,
+            "weight_decay": 0.0,
+            "amsgrad": false,
+            "gradient_clipping": false,
+            "gradient_accumulation": false,
+            "initial_moments": "zero",
+            "first_update_index": 1
+          },
+          "initialization": {
+            "weights": "independent U(-1/sqrt(fan_in), +1/sqrt(fan_in))",
+            "biases": "independent U(-1/sqrt(fan_in), +1/sqrt(fan_in)); NOT zero",
+            "fan_in": "input_channels * kernel_size; groups=1",
+            "rng": "MLX 0.32.4; reset mx.random.seed(seed) AFTER layer construction",
+            "draw_order": "stem, down shallow-to-deep, up deep-to-shallow, head; weight then bias per layer",
+            "weight_layout": "out_channels,kernel_size,in_channels"
+          },
+          "normalization": "float32; per-component demean, joint RMS floor 1e-8 counts, clip [-10,10]",
+          "augmentation": "saved zero-filled shifts [-500,500], common +/- polarity, N/E rotation; before normalization",
+          "provenance": "Final model only; no early stopping, selection, test/validation inputs or external weights",
+          "budget": "Candidate requires measured GPU training <=1800 s per seed; unmeasured in builder sandbox",
+          "status": "CANDIDATE_PENDING_THREE_MLX_GPU_RUNS"
+        },
+        "source_sha256": {
+          "reference_mlx.py": "4066aa292a9a0c6632d48e7a7cccaaafd5d666ac34caa47396db3a0bc517f926",
+          "round4_config.py": "e963116fe19956869bf30db2d8a9e6818f2eeddf0f880ea26d5d377e41d007af"
+        },
+        "schedule_sha256": "30a5e5931905577c8bb792a15094ceff45d65dbc2729d66e826d39916f0bb00e",
+        "checkpoint_sha256": {
+          "model.npz": "301fb1ca82266be2dbca95cf36e712ac592dc6a7ef5641fa9529cd474df57cdd",
+          "optimizer.npz": "a5d5b0607300f7dd5b53f4abb9392832e4aacebdbdff11a37826b399fef1264e"
+        },
+        "status": "COMPLETE"
+      },
+      "val_metrics": {
+        "step": 36000,
+        "counts_P_S": [
+          [
+            2653,
+            251,
+            347
+          ],
+          [
+            2072,
+            479,
+            907
+          ]
+        ],
+        "matched_median_s_P_S": [
+          0.02,
+          0.03
+        ],
+        "f1_P_S": [
+          0.8987127371273713,
+          0.7493670886075949
+        ],
+        "f1_micro": 0.8264824208500962,
+        "inference_and_decode_seconds": 0.23974537500180304
+      },
+      "test_metrics": {
+        "step": 36000,
+        "counts_P_S": [
+          [
+            2626,
+            286,
+            374
+          ],
+          [
+            2053,
+            454,
+            921
+          ]
+        ],
+        "matched_median_s_P_S": [
+          0.02,
+          0.03
+        ],
+        "f1_P_S": [
+          0.8883626522327469,
+          0.749133369823025
+        ],
+        "f1_micro": 0.8213815500746072,
+        "inference_and_decode_seconds": 0.23479729201062582,
+        "inference_audit": {
+          "deterministic": true,
+          "batch_max_allowance_ratio": 0.0,
+          "gain_max_allowance_ratio": 0.0,
+          "constant_max_allowance_ratio": 0.0
+        }
+      },
+      "completion": {
+        "steps": 36000,
+        "evidence_sha256": {
+          "test_metrics.json": "12969706d82cb969fc9c1ae0ff892f3e05e6165ba65e1b836060cdb268332aa1",
+          "test_picks.json": "328c4290621b4b03d5aa68ad1e518f2fdefd5ec997455531dc4c3ba2dadc1d08",
+          "training.json": "010e9a424dbef63c7d3f0abb87cc823867ab1d41f5151c531a049ff9e9965763",
+          "untrained_picks.json": "d88d723201f842176409882d567f125116a9b22b494beb0b4b9a8f9dc4f10846",
+          "val_metrics.json": "56bbcfad80593ffe9532bd79c0449ad0f7ce4628a78f8a06a86052cae5068bdd",
+          "val_picks.json": "975d426294e51699c413e43e4c60aa4ceae6b6b4fde1a3e2164543a8d0e96516"
+        },
+        "source_sha256": {
+          "reference_mlx.py": "4066aa292a9a0c6632d48e7a7cccaaafd5d666ac34caa47396db3a0bc517f926",
+          "round4_config.py": "e963116fe19956869bf30db2d8a9e6818f2eeddf0f880ea26d5d377e41d007af"
+        },
+        "checkpoint_removed": true,
+        "note": "Reports and decoded picks only; no trained weights shipped"
+      }
+    },
+    "43044": {
+      "training": {
+        "seed": 43044,
+        "steps": 36000,
+        "planned_steps": 36000,
+        "last_loss": 0.019479883834719658,
+        "training_seconds": 326.55542045796756,
+        "chunks": [
+          {
+            "start_step": 0,
+            "end_step": 24233,
+            "setup_seconds": 0.7793974159867503,
+            "training_seconds": 220.0073278749769,
+            "checkpoint_seconds": 0.006966832996113226
+          },
+          {
+            "start_step": 24233,
+            "end_step": 36000,
+            "setup_seconds": 0.7812397090019658,
+            "training_seconds": 106.54809258299065,
+            "checkpoint_seconds": 0.007006832980550826
+          }
+        ],
+        "device": "Device(gpu, 0)",
+        "device_info": {
+          "device_name": "Apple M5 Max",
+          "max_recommended_working_set_size": 115448725504,
+          "memory_size": 137438953472,
+          "architecture": "applegpu_g17s",
+          "max_buffer_length": 86586540032,
+          "resource_limit": 499000
+        },
+        "mlx": "0.32.4",
+        "numpy": "2.5.4",
+        "dtype": "float32",
+        "parameters": 647971,
+        "contract": {
+          "steps": 36000,
+          "batch_size": 32,
+          "seed": 43043,
+          "schedule": "training_schedule_round4.npz",
+          "schedule_seed": 43043,
+          "shared_schedule_across_init_seeds": true,
+          "learning_rate": 0.001,
+          "final_learning_rate": 1e-05,
+          "warmup_steps": 1000,
+          "label_sigma_samples": 10.0,
+          "reference_widths": [
+            16,
+            32,
+            64,
+            128,
+            192
+          ],
+          "parameters": 647971,
+          "optimizer": {
+            "name": "Adam",
+            "betas": [
+              0.9,
+              0.999
+            ],
+            "eps": 1e-08,
+            "bias_correction": true,
+            "epsilon_outside_sqrt": true,
+            "weight_decay": 0.0,
+            "amsgrad": false,
+            "gradient_clipping": false,
+            "gradient_accumulation": false,
+            "initial_moments": "zero",
+            "first_update_index": 1
+          },
+          "initialization": {
+            "weights": "independent U(-1/sqrt(fan_in), +1/sqrt(fan_in))",
+            "biases": "independent U(-1/sqrt(fan_in), +1/sqrt(fan_in)); NOT zero",
+            "fan_in": "input_channels * kernel_size; groups=1",
+            "rng": "MLX 0.32.4; reset mx.random.seed(seed) AFTER layer construction",
+            "draw_order": "stem, down shallow-to-deep, up deep-to-shallow, head; weight then bias per layer",
+            "weight_layout": "out_channels,kernel_size,in_channels"
+          },
+          "normalization": "float32; per-component demean, joint RMS floor 1e-8 counts, clip [-10,10]",
+          "augmentation": "saved zero-filled shifts [-500,500], common +/- polarity, N/E rotation; before normalization",
+          "provenance": "Final model only; no early stopping, selection, test/validation inputs or external weights",
+          "budget": "Candidate requires measured GPU training <=1800 s per seed; unmeasured in builder sandbox",
+          "status": "CANDIDATE_PENDING_THREE_MLX_GPU_RUNS"
+        },
+        "source_sha256": {
+          "reference_mlx.py": "4066aa292a9a0c6632d48e7a7cccaaafd5d666ac34caa47396db3a0bc517f926",
+          "round4_config.py": "e963116fe19956869bf30db2d8a9e6818f2eeddf0f880ea26d5d377e41d007af"
+        },
+        "schedule_sha256": "30a5e5931905577c8bb792a15094ceff45d65dbc2729d66e826d39916f0bb00e",
+        "checkpoint_sha256": {
+          "model.npz": "3fd2254e19820c4f3e445c276a53d47caa73f98b945e503fb296531e5dd84e06",
+          "optimizer.npz": "83701cb280a390a77ea08bd33a3c6bb34518a0c8f0a226e5960ec0e43a787b93"
+        },
+        "status": "COMPLETE"
+      },
+      "val_metrics": {
+        "step": 36000,
+        "counts_P_S": [
+          [
+            2653,
+            242,
+            347
+          ],
+          [
+            2088,
+            481,
+            891
+          ]
+        ],
+        "matched_median_s_P_S": [
+          0.02,
+          0.02
+        ],
+        "f1_P_S": [
+          0.9000848176420696,
+          0.7527036770007209
+        ],
+        "f1_micro": 0.8286288560692127,
+        "inference_and_decode_seconds": 0.24095537498942576
+      },
+      "test_metrics": {
+        "step": 36000,
+        "counts_P_S": [
+          [
+            2632,
+            260,
+            368
+          ],
+          [
+            2077,
+            461,
+            897
+          ]
+        ],
+        "matched_median_s_P_S": [
+          0.02,
+          0.03
+        ],
+        "f1_P_S": [
+          0.8934147997284454,
+          0.7536284470246735
+        ],
+        "f1_micro": 0.8258505787443002,
+        "inference_and_decode_seconds": 0.2247223329904955,
+        "inference_audit": {
+          "deterministic": true,
+          "batch_max_allowance_ratio": 0.0,
+          "gain_max_allowance_ratio": 0.0,
+          "constant_max_allowance_ratio": 0.0
+        }
+      },
+      "completion": {
+        "steps": 36000,
+        "evidence_sha256": {
+          "test_metrics.json": "ace3f2ef7e331eb1c1af02f6cb82e20baad512717c2c5bd0f8a6e89329288291",
+          "test_picks.json": "b492fd8529e7cffc35ba89f6852f74958e3ef93304dcb5f73517a2f0d9ea0959",
+          "training.json": "ce28eab399025db2b2a90fd1cd364ced564d73ea61d8a56618162ab9a41f7ffa",
+          "untrained_picks.json": "4aee03adf5ce32a85bb2df9d232b24f92bd2bb4f79c26bb5b3f7b01abf415c63",
+          "val_metrics.json": "25f315b7d306f3d676a923d55d2f7c3e188d92ad5b43e400b2b2f1a28865c162",
+          "val_picks.json": "5e8da65ff11421a3f845b5c65da4e6cf294c915212385538d54489c78186c491"
+        },
+        "source_sha256": {
+          "reference_mlx.py": "4066aa292a9a0c6632d48e7a7cccaaafd5d666ac34caa47396db3a0bc517f926",
+          "round4_config.py": "e963116fe19956869bf30db2d8a9e6818f2eeddf0f880ea26d5d377e41d007af"
+        },
+        "checkpoint_removed": true,
+        "note": "Reports and decoded picks only; no trained weights shipped"
+      }
+    },
+    "43045": {
+      "training": {
+        "seed": 43045,
+        "steps": 36000,
+        "planned_steps": 36000,
+        "last_loss": 0.019694358110427856,
+        "training_seconds": 325.2601564999786,
+        "chunks": [
+          {
+            "start_step": 0,
+            "end_step": 24320,
+            "setup_seconds": 0.7782235409831628,
+            "training_seconds": 220.00085799998487,
+            "checkpoint_seconds": 0.006927292008185759
+          },
+          {
+            "start_step": 24320,
+            "end_step": 36000,
+            "setup_seconds": 0.7831349170010071,
+            "training_seconds": 105.25929849999375,
+            "checkpoint_seconds": 0.006727875006617978
+          }
+        ],
+        "device": "Device(gpu, 0)",
+        "device_info": {
+          "device_name": "Apple M5 Max",
+          "max_recommended_working_set_size": 115448725504,
+          "memory_size": 137438953472,
+          "architecture": "applegpu_g17s",
+          "max_buffer_length": 86586540032,
+          "resource_limit": 499000
+        },
+        "mlx": "0.32.4",
+        "numpy": "2.5.4",
+        "dtype": "float32",
+        "parameters": 647971,
+        "contract": {
+          "steps": 36000,
+          "batch_size": 32,
+          "seed": 43043,
+          "schedule": "training_schedule_round4.npz",
+          "schedule_seed": 43043,
+          "shared_schedule_across_init_seeds": true,
+          "learning_rate": 0.001,
+          "final_learning_rate": 1e-05,
+          "warmup_steps": 1000,
+          "label_sigma_samples": 10.0,
+          "reference_widths": [
+            16,
+            32,
+            64,
+            128,
+            192
+          ],
+          "parameters": 647971,
+          "optimizer": {
+            "name": "Adam",
+            "betas": [
+              0.9,
+              0.999
+            ],
+            "eps": 1e-08,
+            "bias_correction": true,
+            "epsilon_outside_sqrt": true,
+            "weight_decay": 0.0,
+            "amsgrad": false,
+            "gradient_clipping": false,
+            "gradient_accumulation": false,
+            "initial_moments": "zero",
+            "first_update_index": 1
+          },
+          "initialization": {
+            "weights": "independent U(-1/sqrt(fan_in), +1/sqrt(fan_in))",
+            "biases": "independent U(-1/sqrt(fan_in), +1/sqrt(fan_in)); NOT zero",
+            "fan_in": "input_channels * kernel_size; groups=1",
+            "rng": "MLX 0.32.4; reset mx.random.seed(seed) AFTER layer construction",
+            "draw_order": "stem, down shallow-to-deep, up deep-to-shallow, head; weight then bias per layer",
+            "weight_layout": "out_channels,kernel_size,in_channels"
+          },
+          "normalization": "float32; per-component demean, joint RMS floor 1e-8 counts, clip [-10,10]",
+          "augmentation": "saved zero-filled shifts [-500,500], common +/- polarity, N/E rotation; before normalization",
+          "provenance": "Final model only; no early stopping, selection, test/validation inputs or external weights",
+          "budget": "Candidate requires measured GPU training <=1800 s per seed; unmeasured in builder sandbox",
+          "status": "CANDIDATE_PENDING_THREE_MLX_GPU_RUNS"
+        },
+        "source_sha256": {
+          "reference_mlx.py": "4066aa292a9a0c6632d48e7a7cccaaafd5d666ac34caa47396db3a0bc517f926",
+          "round4_config.py": "e963116fe19956869bf30db2d8a9e6818f2eeddf0f880ea26d5d377e41d007af"
+        },
+        "schedule_sha256": "30a5e5931905577c8bb792a15094ceff45d65dbc2729d66e826d39916f0bb00e",
+        "checkpoint_sha256": {
+          "model.npz": "301a0e8d2e3af2682b7d02eb5b15fea59168737214c61920f6c37d8ae1c6e028",
+          "optimizer.npz": "071e10f1fea477ed47c17f43fb4473c47abcfb69fb2c9cfb890dc0a0f8da6084"
+        },
+        "status": "COMPLETE"
+      },
+      "val_metrics": {
+        "step": 36000,
+        "counts_P_S": [
+          [
+            2648,
+            241,
+            352
+          ],
+          [
+            2095,
+            471,
+            884
+          ]
+        ],
+        "matched_median_s_P_S": [
+          0.02,
+          0.03
+        ],
+        "f1_P_S": [
+          0.8993037867210053,
+          0.7556357078449053
+        ],
+        "f1_micro": 0.8296309253104776,
+        "inference_and_decode_seconds": 0.2436659169907216
+      },
+      "test_metrics": {
+        "step": 36000,
+        "counts_P_S": [
+          [
+            2613,
+            272,
+            387
+          ],
+          [
+            2068,
+            470,
+            906
+          ]
+        ],
+        "matched_median_s_P_S": [
+          0.02,
+          0.03
+        ],
+        "f1_P_S": [
+          0.8880203908241291,
+          0.7503628447024674
+        ],
+        "f1_micro": 0.8214442397122049,
+        "inference_and_decode_seconds": 0.226723875006428,
+        "inference_audit": {
+          "deterministic": true,
+          "batch_max_allowance_ratio": 0.0,
+          "gain_max_allowance_ratio": 0.0,
+          "constant_max_allowance_ratio": 0.0
+        }
+      },
+      "completion": {
+        "steps": 36000,
+        "evidence_sha256": {
+          "test_metrics.json": "b12a4874f580508683422124b5a6b6c75491c7f0c85cb08e8192c4194c0dd09c",
+          "test_picks.json": "5f29401aedec6c3c3c86f937140be9f07e475247e7b5c8e114a4095fd3d9bfa0",
+          "training.json": "3de90ba0c02f491942d0dc4383a9428e8086df59739491745957545aea7a06f7",
+          "untrained_picks.json": "905ef06f22957987b76f235ab3992b663e7ffbc7e03308300e71e7ab8a561e52",
+          "val_metrics.json": "55fa1c91d5bc202f3b6add05e1ec64ee058901988713a1431c575ede7b1fe8d8",
+          "val_picks.json": "76dec8d050d465f38bc4be7e257bd12fdc00aa4db10f7c460e7a964eb6f222aa"
+        },
+        "source_sha256": {
+          "reference_mlx.py": "4066aa292a9a0c6632d48e7a7cccaaafd5d666ac34caa47396db3a0bc517f926",
+          "round4_config.py": "e963116fe19956869bf30db2d8a9e6818f2eeddf0f880ea26d5d377e41d007af"
+        },
+        "checkpoint_removed": true,
+        "note": "Reports and decoded picks only; no trained weights shipped"
+      }
+    }
+  },
+  "historical_round3": {
+    "role": "Historical evidence only; NOT round-4 feasibility or active gate calibration",
+    "reports": {
+      "43043": {
+        "training": {
+          "seed": 43043,
+          "steps": 6000,
+          "planned_steps": 6000,
+          "batch_size": 32,
+          "training_seconds": 3307.8077235419187,
+          "device": "cpu",
+          "torch": "2.15.0",
+          "threads": 6,
+          "deterministic_algorithms": true,
+          "training_dtype": "float32",
+          "parameters": 162259,
+          "last_loss": 0.026174098253250122,
+          "widths": [
+            8,
+            16,
+            32,
+            64,
+            96
+          ],
+          "learning_rate_initial": 0.001,
+          "learning_rate_final": 0.0001,
+          "learning_rate_schedule": "saved float32 cosine, inclusive endpoints",
+          "schedule_sha256": "dd80cb6526839e3653d1c7784624a4737f1b7ed2ac3714d221be2f36cda8f84c",
+          "checkpoint_sha256": "d2bc47689f6e4e5fe3dcf7c175271a301019b717b9772c498575e7d3d287e256"
+        },
+        "val_metrics": {
+          "step": 6000,
+          "counts_P_S": [
+            [
+              2522,
+              340,
+              478
+            ],
+            [
+              1950,
+              536,
+              1029
+            ]
+          ],
+          "matched_median_s_P_S": [
+            0.02,
+            0.03
+          ],
+          "f1_P_S": [
+            0.8604571818491982,
+            0.7136322049405307
+          ],
+          "f1_micro": 0.7896177275536329
+        },
+        "test_metrics": {
+          "step": 6000,
+          "counts_P_S": [
+            [
+              2517,
+              355,
+              483
+            ],
+            [
+              1966,
+              467,
+              1008
+            ]
+          ],
+          "matched_median_s_P_S": [
+            0.02,
+            0.03
+          ],
+          "f1_P_S": [
+            0.8572888283378747,
+            0.7272054743850564
+          ],
+          "f1_micro": 0.7949286284245057,
+          "inference_audit": {
+            "deterministic": true,
+            "batch_max_allowance_ratio": 0.06879476767736645,
+            "gain_max_allowance_ratio": 0.0,
+            "constant_max_allowance_ratio": 0.0
+          }
+        },
+        "completion": {
+          "steps": 6000,
+          "evidence_sha256": {
+            "test_metrics.json": "026083116fbfd193a4bb3268067e6652f972ca6f85b161f8972efddbaf5403fe",
+            "test_picks.json": "cc9aae3d7f1b5f10f1fbe9eec2845ad0314c8fca5deb84a193f2d3f47d1156bf",
+            "training.json": "83aefbef782a70195a1b21c6eb69023c84734db45d92214a2dd831713f684a17",
+            "untrained_picks.json": "312be2b1eec00fabc20d695fb426798f1fc8323d0450de015bb70082facf31c1",
+            "val_metrics.json": "a3ba2e4cb9a5b282b10d6c519f8f4f92d7881b34774ad56ea5b9b062ae13f184",
+            "val_picks.json": "705b9e18a947c95f3814499b807d6d9c7aade0d404abe74f357a4d0309b5ec3e"
+          },
+          "reference_source_sha256": "ab2fe867d170effa11b0f156b3f110c856de106481ce5b01eed98f1f1dbbdab7",
+          "checkpoint_removed": true,
+          "note": "No trained weights are distributed to implementations; only reports and decoded picks remain."
+        }
+      },
+      "43044": {
+        "training": {
+          "seed": 43044,
+          "steps": 6000,
+          "planned_steps": 6000,
+          "batch_size": 32,
+          "training_seconds": 3339.8749485839217,
+          "device": "cpu",
+          "torch": "2.15.0",
+          "threads": 6,
+          "deterministic_algorithms": true,
+          "training_dtype": "float32",
+          "parameters": 162259,
+          "last_loss": 0.023124247789382935,
+          "widths": [
+            8,
+            16,
+            32,
+            64,
+            96
+          ],
+          "learning_rate_initial": 0.001,
+          "learning_rate_final": 0.0001,
+          "learning_rate_schedule": "saved float32 cosine, inclusive endpoints",
+          "schedule_sha256": "ffacb1ce73c98538fb7807c46878e5cd190ce4ff4e2522cfe49a898814731151",
+          "checkpoint_sha256": "6b54b1c8e8b782cd3446ac10989dfe4098275bbea8f3be79c7b5c6a6a9237dfa"
+        },
+        "val_metrics": {
+          "step": 6000,
+          "counts_P_S": [
+            [
+              2533,
+              299,
+              467
+            ],
+            [
+              1977,
+              514,
+              1002
+            ]
+          ],
+          "matched_median_s_P_S": [
+            0.02,
+            0.03
+          ],
+          "f1_P_S": [
+            0.8686556927297668,
+            0.7228519195612432
+          ],
+          "f1_micro": 0.7980888338347195
+        },
+        "test_metrics": {
+          "step": 6000,
+          "counts_P_S": [
+            [
+              2509,
+              308,
+              491
+            ],
+            [
+              1959,
+              483,
+              1015
+            ]
+          ],
+          "matched_median_s_P_S": [
+            0.02,
+            0.03
+          ],
+          "f1_P_S": [
+            0.862643974557332,
+            0.7234121122599705
+          ],
+          "f1_micro": 0.7955132199768539,
+          "inference_audit": {
+            "deterministic": true,
+            "batch_max_allowance_ratio": 0.05221298205669023,
+            "gain_max_allowance_ratio": 0.0,
+            "constant_max_allowance_ratio": 0.0
+          }
+        },
+        "completion": {
+          "steps": 6000,
+          "evidence_sha256": {
+            "test_metrics.json": "50712142b4788c5733499cb30e0653e2574bac06e5a24d6c120ea06e39d9ceec",
+            "test_picks.json": "6da4f96cb71315febeeece3fe6affb1e877ddf59c7b632ffb5c6baa3f31bc295",
+            "training.json": "9999d9edb61fc266e568b5634e85a64f0af7f8be5bd1162d26e5dea9d7dd6abb",
+            "untrained_picks.json": "3575293030c6d40563cae2f92ccc74f7a7d11b3b90db2d74a980cd153dd769fe",
+            "val_metrics.json": "a3f2d0f1bd403e3ffd909d36d48519e7f4cce7202b59036f20308c2d554514ef",
+            "val_picks.json": "2a64275d6de4a42242e9436789f73e655b5afc7933fe4bbaad04805d82816ab4"
+          },
+          "reference_source_sha256": "ab2fe867d170effa11b0f156b3f110c856de106481ce5b01eed98f1f1dbbdab7",
+          "checkpoint_removed": true,
+          "note": "No trained weights are distributed to implementations; only reports and decoded picks remain."
+        }
+      },
+      "43045": {
+        "training": {
+          "seed": 43045,
+          "steps": 6000,
+          "planned_steps": 6000,
+          "batch_size": 32,
+          "training_seconds": 3339.8524189999735,
+          "device": "cpu",
+          "torch": "2.15.0",
+          "threads": 6,
+          "deterministic_algorithms": true,
+          "training_dtype": "float32",
+          "parameters": 162259,
+          "last_loss": 0.023621320724487305,
+          "widths": [
+            8,
+            16,
+            32,
+            64,
+            96
+          ],
+          "learning_rate_initial": 0.001,
+          "learning_rate_final": 0.0001,
+          "learning_rate_schedule": "saved float32 cosine, inclusive endpoints",
+          "schedule_sha256": "02c44be156a7fbace46cbdb205b800977e3f8dfa5388137c95739e265d30cae3",
+          "checkpoint_sha256": "16a38dcf270ff9725a33e9507c845c1eef42219fa171f355265253d0fa001a67"
+        },
+        "val_metrics": {
+          "step": 6000,
+          "counts_P_S": [
+            [
+              2534,
+              296,
+              466
+            ],
+            [
+              1991,
+              535,
+              988
+            ]
+          ],
+          "matched_median_s_P_S": [
+            0.02,
+            0.03
+          ],
+          "f1_P_S": [
+            0.8692967409948542,
+            0.7233424159854678
+          ],
+          "f1_micro": 0.7984119982355536
+        },
+        "test_metrics": {
+          "step": 6000,
+          "counts_P_S": [
+            [
+              2512,
+              308,
+              488
+            ],
+            [
+              1991,
+              504,
+              983
+            ]
+          ],
+          "matched_median_s_P_S": [
+            0.02,
+            0.03
+          ],
+          "f1_P_S": [
+            0.8632302405498282,
+            0.7281038581093435
+          ],
+          "f1_micro": 0.7977677385065107,
+          "inference_audit": {
+            "deterministic": true,
+            "batch_max_allowance_ratio": 0.05797172923949239,
+            "gain_max_allowance_ratio": 0.0,
+            "constant_max_allowance_ratio": 0.0
+          }
+        },
+        "completion": {
+          "steps": 6000,
+          "evidence_sha256": {
+            "test_metrics.json": "3f5819f3dfee28df906abed85b9bb4dfb0a4a493e03f5c5e7f7b325aeead1075",
+            "test_picks.json": "07d9eb5e63bc214e07cb366241bdc88724f7399882d0d563b12ab62dd8948bac",
+            "training.json": "48b74dab0ed8806aa7b1cec970aa7b07bca082a04bd880f87c7944d4d9a3cfa7",
+            "untrained_picks.json": "b4706de2e0c6260df86fa23bee538b806e51dab43aa13954d7304c01624ddafd",
+            "val_metrics.json": "d5b6b3bfadb10e0e4e6c6b608a288c4db78e98358475659dcba8bbeff717526e",
+            "val_picks.json": "84de38edfd4d991ed4cb8c06ec507aab7e5a10f21c0e51ac897b212c80aeffd3"
+          },
+          "reference_source_sha256": "ab2fe867d170effa11b0f156b3f110c856de106481ce5b01eed98f1f1dbbdab7",
+          "checkpoint_removed": true,
+          "note": "No trained weights are distributed to implementations; only reports and decoded picks remain."
+        }
+      }
+    },
+    "broken_models": {
+      "43043": {
+        "reference": {
+          "f1_P_S": [
+            0.8572888283378747,
+            0.7272054743850564
+          ],
+          "f1_micro": 0.7949286284245057
+        },
+        "untrained": {
+          "f1_P_S": [
+            0.0,
+            0.0
+          ],
+          "f1_micro": 0.0
+        },
+        "swapped": {
+          "f1_P_S": [
+            0.0003681207436039021,
+            0.0006842285323297981
+          ],
+          "f1_micro": 0.0005319620533735261
+        },
+        "half_time_scale": {
+          "f1_P_S": [
+            0.0010217983651226157,
+            0.0
+          ],
+          "f1_micro": 0.0005319620533735261
+        },
+        "bias_0.15s": {
+          "f1_P_S": [
+            0.07561307901907358,
+            0.1631218790456815
+          ],
+          "f1_micro": 0.11756361379554925
+        }
+      },
+      "43044": {
+        "reference": {
+          "f1_P_S": [
+            0.862643974557332,
+            0.7234121122599705
+          ],
+          "f1_micro": 0.7955132199768539
+        },
+        "untrained": {
+          "f1_P_S": [
+            0.0,
+            0.0
+          ],
+          "f1_micro": 0.0
+        },
+        "swapped": {
+          "f1_P_S": [
+            0.0,
+            0.0
+          ],
+          "f1_micro": 0.0
+        },
+        "half_time_scale": {
+          "f1_P_S": [
+            0.0006876396768093519,
+            0.0
+          ],
+          "f1_micro": 0.00035609365263064184
+        },
+        "bias_0.15s": {
+          "f1_P_S": [
+            0.08904933814681107,
+            0.18870014771048743
+          ],
+          "f1_micro": 0.1370960562627971
+        }
+      },
+      "43045": {
+        "reference": {
+          "f1_P_S": [
+            0.8632302405498282,
+            0.7281038581093435
+          ],
+          "f1_micro": 0.7977677385065107
+        },
+        "untrained": {
+          "f1_P_S": [
+            0.0,
+            0.07425298461113795
+          ],
+          "f1_micro": 0.0672878494152961
+        },
+        "swapped": {
+          "f1_P_S": [
+            0.0,
+            0.0
+          ],
+          "f1_micro": 0.0
+        },
+        "half_time_scale": {
+          "f1_P_S": [
+            0.0003436426116838488,
+            0.0
+          ],
+          "f1_micro": 0.0001771636105943839
+        },
+        "bias_0.15s": {
+          "f1_P_S": [
+            0.07972508591065292,
+            0.14189065642713475
+          ],
+          "f1_micro": 0.10984143856851802
+        }
+      }
+    },
+    "retired_gates_P_S_micro": [
+      0.8372888283378747,
+      0.7034121122599705,
+      0.7749286284245057
+    ],
+    "reviewer_timing": {
+      "source": "SCIENCE_REVIEW-r3.md, independent reviewer; not remeasured by builder",
+      "device": "Apple M5 Max GPU",
+      "mlx": "0.32.4",
+      "steps": 6000,
+      "training_seconds": [
+        62,
+        66
+      ],
+      "test_inference_seconds_approx": 1,
+      "note": "Supersedes invalid 30-40 min estimate; ~2.3-2.4% of 45 min budget"
+    }
+  },
+  "feasibility": {
+    "reference_completed": true,
+    "reference_passes_active_gates": true,
+    "campaign_F1_min": 0.9,
+    "active_F1_min_P_S_micro": [
+      0.8680203908241291,
+      0.729133369823025,
+      0.8013815500746072
+    ],
+    "seed_order": [
+      43043,
+      43044,
+      43045
+    ],
+    "test_F1_P_S_micro": [
+      [
+        0.8883626522327469,
+        0.749133369823025,
+        0.8213815500746072
+      ],
+      [
+        0.8934147997284454,
+        0.7536284470246735,
+        0.8258505787443002
+      ],
+      [
+        0.8880203908241291,
+        0.7503628447024674,
+        0.8214442397122049
+      ]
+    ],
+    "worst_test_F1_P_S_micro": [
+      0.8880203908241291,
+      0.749133369823025,
+      0.8213815500746072
+    ],
+    "proposed_F1_min_P_S_micro": [
+      0.8680203908241291,
+      0.729133369823025,
+      0.8013815500746072
+    ],
+    "gates_calibrated": true,
+    "gate_rule": "If worst of three strengthened MLX GPU seeds >=.9 keep .9, else worst minus .02, independently P/S/micro. No automatic threshold edits.",
+    "calibration_caveat": "Test records are excluded from fitting but used to calibrate revised gates under the director's ruling; this is not a second blind validation of those gates.",
+    "campaign_deviation": true,
+    "authorization": "Round-4 director note: strengthen first within <=20-30 measured GPU min, at least three MLX seeds; retain .9 if reached, otherwise disclosed worst-seed-minus-margin deviation. Prior 30-40 minute estimate invalid.",
+    "broken_models": {
+      "43043": {
+        "reference": {
+          "f1_P_S": [
+            0.8883626522327469,
+            0.749133369823025
+          ],
+          "f1_micro": 0.8213815500746072
+        },
+        "untrained": {
+          "f1_P_S": [
+            0.0,
+            0.0
+          ],
+          "f1_micro": 0.0
+        },
+        "swapped": {
+          "f1_P_S": [
+            0.0,
+            0.0
+          ],
+          "f1_micro": 0.0
+        },
+        "half_time_scale": {
+          "f1_P_S": [
+            0.00033829499323410016,
+            0.0
+          ],
+          "f1_micro": 0.00017554638813306416
+        },
+        "bias_0.15s": {
+          "f1_P_S": [
+            0.09336941813261164,
+            0.17405582922824303
+          ],
+          "f1_micro": 0.13218643026419732
+        }
+      },
+      "43044": {
+        "reference": {
+          "f1_P_S": [
+            0.8934147997284454,
+            0.7536284470246735
+          ],
+          "f1_micro": 0.8258505787443002
+        },
+        "untrained": {
+          "f1_P_S": [
+            0.0006655574043261231,
+            0.0
+          ],
+          "f1_micro": 0.0003345040976751965
+        },
+        "swapped": {
+          "f1_P_S": [
+            0.0,
+            0.0
+          ],
+          "f1_micro": 0.0
+        },
+        "half_time_scale": {
+          "f1_P_S": [
+            0.00033944331296673454,
+            0.0
+          ],
+          "f1_micro": 0.00017537706068046299
+        },
+        "bias_0.15s": {
+          "f1_P_S": [
+            0.0913102511880516,
+            0.16545718432510886
+          ],
+          "f1_micro": 0.12714836899333568
+        }
+      },
+      "43045": {
+        "reference": {
+          "f1_P_S": [
+            0.8880203908241291,
+            0.7503628447024674
+          ],
+          "f1_micro": 0.8214442397122049
+        },
+        "untrained": {
+          "f1_P_S": [
+            0.0,
+            0.0995706586279346
+          ],
+          "f1_micro": 0.07814740464582735
+        },
+        "swapped": {
+          "f1_P_S": [
+            0.00036114120621162876,
+            0.0
+          ],
+          "f1_micro": 0.00017548477669562167
+        },
+        "half_time_scale": {
+          "f1_P_S": [
+            0.0003398470688190314,
+            0.0
+          ],
+          "f1_micro": 0.00017548477669562167
+        },
+        "bias_0.15s": {
+          "f1_P_S": [
+            0.09549702633814783,
+            0.16981132075471697
+          ],
+          "f1_micro": 0.13143809774502063
+        }
+      }
+    }
+  },
+  "dtypes": "Waveform/model inputs float32; analytic oracle and metrics float64; labels int32",
+  "python": "3.12.11",
+  "versions": {
+    "numpy": "2.5.4",
+    "pytest": "9.2.0",
+    "torch": "2.15.0",
+    "mlx": "0.32.4"
+  },
+  "sampling": {
+    "interval_s": 0.01,
+    "samples": 3000,
+    "components": [
+      "Z",
+      "N",
+      "E"
+    ]
+  },
+  "inputs": {
+    "train_records": 30000,
+    "validation_records": 3000,
+    "evaluation_records": 3000,
+    "phases": [
+      "noise",
+      "P",
+      "S"
+    ],
+    "labels": "One index per P/S per record, -1 means absent; sample 0 at trace start",
+    "split": "Wave 0 source_id-disjoint train/val/test; all 3000 test records, no selection or truth windows",
+    "counts": "Raw velocity counts; ZNE on disk (N,3,3000) -> API (N,3000,3); no filtering"
+  },
+  "training": {
+    "steps": 36000,
+    "batch_size": 32,
+    "seed": 43043,
+    "schedule": "training_schedule_round4.npz",
+    "schedule_seed": 43043,
+    "shared_schedule_across_init_seeds": true,
+    "learning_rate": 0.001,
+    "final_learning_rate": 1e-05,
+    "warmup_steps": 1000,
+    "label_sigma_samples": 10.0,
+    "reference_widths": [
+      16,
+      32,
+      64,
+      128,
+      192
+    ],
+    "parameters": 647971,
+    "optimizer": {
+      "name": "Adam",
+      "betas": [
+        0.9,
+        0.999
+      ],
+      "eps": 1e-08,
+      "bias_correction": true,
+      "epsilon_outside_sqrt": true,
+      "weight_decay": 0.0,
+      "amsgrad": false,
+      "gradient_clipping": false,
+      "gradient_accumulation": false,
+      "initial_moments": "zero",
+      "first_update_index": 1
+    },
+    "initialization": {
+      "weights": "independent U(-1/sqrt(fan_in), +1/sqrt(fan_in))",
+      "biases": "independent U(-1/sqrt(fan_in), +1/sqrt(fan_in)); NOT zero",
+      "fan_in": "input_channels * kernel_size; groups=1",
+      "rng": "MLX 0.32.4; reset mx.random.seed(seed) AFTER layer construction",
+      "draw_order": "stem, down shallow-to-deep, up deep-to-shallow, head; weight then bias per layer",
+      "weight_layout": "out_channels,kernel_size,in_channels"
+    },
+    "normalization": "float32; per-component demean, joint RMS floor 1e-8 counts, clip [-10,10]",
+    "augmentation": "saved zero-filled shifts [-500,500], common +/- polarity, N/E rotation; before normalization",
+    "provenance": "Final model only; no early stopping, selection, test/validation inputs or external weights",
+    "budget": "Candidate requires measured GPU training <=1800 s per seed; unmeasured in builder sandbox",
+    "status": "CANDIDATE_PENDING_THREE_MLX_GPU_RUNS"
+  },
+  "fd_validation": {
+    "step": 0.02,
+    "error_order": [
+      "float64",
+      "numpy_float32",
+      "torch_float32"
+    ],
+    "relative_L2": [
+      1.5948054938671179e-06,
+      4.737721349942106e-05,
+      9.606430418989772e-05
+    ]
+  },
+  "scoring": "Connected >=0.5 regions; earliest maximum per region; nearest one-to-one pick to each sole label within <=0.1s; all extra picks FP, missing truth FN. Median of matched absolute residuals; empty median infinity. Empty F1=1.",
+  "tolerances": {
+    "PARITY_RTOL": {
+      "value": 0.0001,
+      "reason": "Campaign float32 relative parity vs float64 analytic loss/gradient."
+    },
+    "PARITY_ATOL": {
+      "value": 1e-06,
+      "reason": "Absolute floor for near-zero probabilities and derivatives."
+    },
+    "GRAD_RTOL": {
+      "value": 0.001,
+      "reason": "Campaign centered finite-difference gradient relative L2 criterion."
+    },
+    "FD_STEP": {
+      "value": 0.02,
+      "reason": "h=.02: float32 loss differences resolve ~1e-3 signals; truncation <1e-4; float64, NumPy32 and Torch32 checked. Saved rounded endpoints define effective directions."
+    },
+    "P_MEDIAN_MAX_S": {
+      "value": 0.05,
+      "reason": "Literal campaign P error threshold, inclusive seconds."
+    },
+    "S_MEDIAN_MAX_S": {
+      "value": 0.1,
+      "reason": "Literal campaign S error threshold, inclusive seconds."
+    },
+    "F1_MIN": {
+      "value": 0.9,
+      "reason": "Campaign F1 baseline; retain until stronger MLX GPU calibration exists."
+    },
+    "P_F1_MIN": {
+      "value": 0.8680203908241291,
+      "reason": "Campaign .9 retained provisionally; old relaxed gate withdrawn after timing correction. Round 4 blocked pending MLX GPU runs."
+    },
+    "S_F1_MIN": {
+      "value": 0.729133369823025,
+      "reason": "Campaign .9 retained provisionally; no unsupported new deviation."
+    },
+    "MICRO_F1_MIN": {
+      "value": 0.8013815500746072,
+      "reason": "Campaign .9 retained provisionally, independently of per-phase gates."
+    },
+    "RETIRED_ROUND3_F1_GATES": {
+      "value": [
+        0.8372888283378747,
+        0.7034121122599705,
+        0.7749286284245057
+      ],
+      "reason": "Historical self-checks only; never implementation gates. Retained to reproduce the prior wide-margin broken-model audit."
+    },
+    "REFERENCE_F1_MARGIN": {
+      "value": 0.02,
+      "reason": "Round-4 director permits worst MLX seed minus .02 only where worst <.9; retain .9 if reached. Requires three stronger measured GPU runs."
+    },
+    "REFERENCE_MAX_TRAINING_S": {
+      "value": 1800.0,
+      "reason": "Director's <=20-30 min GPU budget per seed; synchronized training loop incl. augmentation, excluding separately recorded setup/checkpoint/inference."
+    },
+    "BROKEN_F1_GAP": {
+      "value": 0.2,
+      "reason": "Every broken-model F1 must be >=.20 below its active gate, an explicit wide-margin sensitivity audit."
+    },
+    "MATCH_TOLERANCE_S": {
+      "value": 0.1,
+      "reason": "Literal campaign association tolerance; inclusive, same phase/trace only."
+    },
+    "PICK_THRESHOLD": {
+      "value": 0.5,
+      "reason": "Fixed operating point, chosen before training; no label-assisted tuning."
+    },
+    "PROB_SUM_ATOL": {
+      "value": 0.0001,
+      "reason": "Float32 normalization error budget."
+    }
+  },
+  "files": {
+    "decoder.npz": {
+      "sha256": "0bc5ac04921ae2760f65282ee44ff8c2391ab7f0fa4ad5366cd0df78601e8d7a",
+      "bytes": 461
+    },
+    "loss.npz": {
+      "sha256": "e9a019cd5359c6daf79b65948cd48667c984dcf0e8ec8a4a89a15cfb14e66c6c",
+      "bytes": 5424
+    },
+    "normalization.npz": {
+      "sha256": "9d195cc17d0f8b3065bd57872f373c6ce3287372666d5854ba31cf5d7c4f6c52",
+      "bytes": 596
+    },
+    "reference_audit_43043.npz": {
+      "sha256": "6e7424f51f7d5aef8081cbdb7f17c18f9e5bc1889a9107de1bd6c3c6ce7be43c",
+      "bytes": 52558
+    },
+    "reference_audit_43044.npz": {
+      "sha256": "0e5c0a737bce3482254538f4be3cfcc6fc754ad9bca394596224d6cfb821ca58",
+      "bytes": 50933
+    },
+    "reference_audit_43045.npz": {
+      "sha256": "50d972b16c6e06dbe320997b3476e76a545efd6b9e932b97c6ad64b2ef56a5dd",
+      "bytes": 140058
+    },
+    "round4_reference_audit_43043.npz": {
+      "sha256": "2ee639d5cc32b12fd227b3cb772e9d3cebed8c476d58cd40b6dc8b5af9071700",
+      "bytes": 51372
+    },
+    "round4_reference_audit_43044.npz": {
+      "sha256": "2ce44dc0c4881f4d3027d5a0847727bf711e850aedd932cfcdfb42656e4d828c",
+      "bytes": 48656
+    },
+    "round4_reference_audit_43045.npz": {
+      "sha256": "bd0be2d9f5c7acdd3bc92379e4f62d70f96988e76f4e472c5726d68815be5738",
+      "bytes": 86399
+    },
+    "score_boundary.npz": {
+      "sha256": "bdd5b9462a28d9cec8cf05cb868d23765d4f69e8bf76cb13cf7e33db92c2c0c9",
+      "bytes": 660
+    },
+    "score_duplicates.npz": {
+      "sha256": "cf8398bf90f44f45376c4c5fd58f2269dd522d93de7c98b287e142662fde8a75",
+      "bytes": 682
+    },
+    "score_empty.npz": {
+      "sha256": "55e36fa95a0e3ed61cdb8a0abe7ab63ecd3bd84b416bd6224ba96f39509eecff",
+      "bytes": 633
+    },
+    "score_missed.npz": {
+      "sha256": "2fb507d7f6469b0365ccb2cbdde4a387bdb95aa53df6a1cb77459eaad770ff73",
+      "bytes": 646
+    },
+    "score_outside.npz": {
+      "sha256": "6d56c9d6a579b46e35861d16f910556e81183deb87b24fb9dfec931f2ed5b9ff",
+      "bytes": 654
+    },
+    "score_perfect.npz": {
+      "sha256": "dda107f7b448f11d13e2904cee27e4cbf4845f7c2c6fc666ee498a3989315eb7",
+      "bytes": 661
+    },
+    "score_swapped.npz": {
+      "sha256": "3d510daf0be085ab9a73d1241d898d530b4c27b510d585b6e79d0aa09e8c37fd",
+      "bytes": 651
+    },
+    "stead_test_labels.npz": {
+      "sha256": "daaba1398e10f2de71a31e100d92f51473bcea098d8de6ef4d978fa43ed8662a",
+      "bytes": 12395
+    },
+    "stead_train_labels.npz": {
+      "sha256": "adb8d2789f8ff3e52fce23c8aca6c04f07b654a9bcc7bed3653152625e3d586e",
+      "bytes": 113754
+    },
+    "stead_val_labels.npz": {
+      "sha256": "d2ac358651833bb1a41418fcfae045eb33f6b9358a1827fd1da1d681eb152e8e",
+      "bytes": 12384
+    },
+    "training_schedule.npz": {
+      "sha256": "dd80cb6526839e3653d1c7784624a4737f1b7ed2ac3714d221be2f36cda8f84c",
+      "bytes": 902022
+    },
+    "training_schedule_43044.npz": {
+      "sha256": "ffacb1ce73c98538fb7807c46878e5cd190ce4ff4e2522cfe49a898814731151",
+      "bytes": 901980
+    },
+    "training_schedule_43045.npz": {
+      "sha256": "02c44be156a7fbace46cbdb205b800977e3f8dfa5388137c95739e265d30cae3",
+      "bytes": 901648
+    },
+    "training_schedule_round4.npz": {
+      "sha256": "30a5e5931905577c8bb792a15094ceff45d65dbc2729d66e826d39916f0bb00e",
+      "bytes": 9647279
+    }
+  }
+}

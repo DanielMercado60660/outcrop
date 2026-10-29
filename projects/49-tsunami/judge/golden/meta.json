@@ -1,0 +1,36 @@
+{
+  "seed": 4901,
+  "versions": {
+    "python": "3.12.11",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1"
+  },
+  "scheme": "periodic finite-volume Rusanov, forward Euler, positive wet depths; SciPy correlate1d flux divergence",
+  "analytic": "linear right-going sinusoid and exact wet-bed Riemann rarefaction/shock; g=9.81 m/s^2",
+  "inputs": "Each npz stores initial state, dx, dt, steps, depth; float32-quantized inputs, float64 references. Dam at x=0; linear domain [0,1000), dam domain [-100,100).",
+  "tolerances": {
+    "parity": "1e-4 max error normalized by max reference magnitude per component, with scale floor 1e-30; float32 rounding",
+    "gradient": "1e-3 normalized max error, float32 autodiff/adjoint vs centered float64 FD, step 1e-5",
+    "objective": "1e-4 max(1, abs(reference)), to handle cancellation",
+    "linear_order": ">=0.85, first-order upwind/Euler",
+    "dam_order": ">=0.45, shock and rarefaction numerical diffusion yield sub-first-order L1 convergence",
+    "wave_speed": "<=1%, campaign requirement",
+    "mass": "1e-5 relative to initial total, float32 conservation",
+    "cross_path": "1e-4 normalized max error, float32 accumulation"
+  },
+  "deep_cases": {
+    "seed": 4901,
+    "n": 65536,
+    "dx_m": 100.0,
+    "steps": 80,
+    "depths_m": [
+      1000.0,
+      4000.0
+    ],
+    "dt_s": "0.25*dx/sqrt(9.81*(depth+3))",
+    "initial": "benchmark sinusoid plus uniform noise; linear eta or nonlinear total depth and identical q; inputs quantized to float32",
+    "tolerance": "1e-4 max error divided by peak reference surface perturbation or discharge; verified with float32 perturbation evolution, with output depth rounded once",
+    "cross_path_tolerance": "2e-4 of peak reference surface perturbation or discharge, triangle bound for two independently rounded float32 results",
+    "method": "avoid hydrostatic pressure cancellation and repeated rounding of total depth, e.g. evolve eta=h-H and subtract constant g*H^2/2 from momentum flux"
+  }
+}

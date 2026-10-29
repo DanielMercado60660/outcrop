@@ -1,0 +1,84 @@
+{
+  "project": "41-deconvolution",
+  "sizes": {
+    "small": {
+      "trace_length": 16384,
+      "wavelet_length": 3,
+      "inverse_length": 160
+    },
+    "medium": {
+      "trace_length": 65536,
+      "wavelet_length": 3,
+      "inverse_length": 320
+    },
+    "large": {
+      "trace_length": 262144,
+      "wavelet_length": 3,
+      "inverse_length": 768
+    }
+  },
+  "results": {
+    "judge": {
+      "small": {
+        "wall_s": 0.0004437500028871,
+        "peak_mem_mb": 0.824264,
+        "mem_method": "tracemalloc peak during three calls, bytes / 1e6"
+      },
+      "medium": {
+        "wall_s": 0.002541583002312109,
+        "peak_mem_mb": 2.477584,
+        "mem_method": "tracemalloc peak during three calls, bytes / 1e6"
+      },
+      "large": {
+        "wall_s": 0.02358629202353768,
+        "peak_mem_mb": 14.200848,
+        "mem_method": "tracemalloc peak during three calls, bytes / 1e6"
+      }
+    },
+    "mlx": {
+      "small": {
+        "wall_s": 0.001860749995103106,
+        "peak_mem_mb": 1.240408,
+        "mem_method": "MLX peak allocated bytes after reset, bytes / 1e6",
+        "process_peak_rss_mb": 63.504384
+      },
+      "medium": {
+        "wall_s": 0.0016740839928388596,
+        "peak_mem_mb": 4.479576,
+        "mem_method": "MLX peak allocated bytes after reset, bytes / 1e6",
+        "process_peak_rss_mb": 69.71392
+      },
+      "large": {
+        "wall_s": 0.005843665974680334,
+        "peak_mem_mb": 24.77884,
+        "mem_method": "MLX peak allocated bytes after reset, bytes / 1e6",
+        "process_peak_rss_mb": 109.60896
+      }
+    },
+    "metal": {
+      "small": {
+        "wall_s": 0.11623420799151063,
+        "peak_mem_mb": 0.0,
+        "child_peak_rss_mb": 15.351808,
+        "mem_method": "macOS RUSAGE_CHILDREN ru_maxrss high-water delta after warmup, bytes / 1e6"
+      },
+      "medium": {
+        "wall_s": 0.7228999169892631,
+        "peak_mem_mb": 0.0,
+        "child_peak_rss_mb": 16.351232,
+        "mem_method": "macOS RUSAGE_CHILDREN ru_maxrss high-water delta after warmup, bytes / 1e6"
+      },
+      "large": {
+        "wall_s": 9.795681291987421,
+        "peak_mem_mb": 0.376832,
+        "child_peak_rss_mb": 23.26528,
+        "mem_method": "macOS RUSAGE_CHILDREN ru_maxrss high-water delta after warmup, bytes / 1e6"
+      }
+    }
+  },
+  "medium_max_rel_diff": {
+    "mlx": 5.5911833029351575e-05,
+    "metal": 5.026747787914082e-07
+  },
+  "notes": "Spiking deconvolution, seed 4101, stabilization 1e-6. Wall times include harness conversion and Metal process startup, shader compilation and file I/O. Relative difference is the largest per-output max absolute error divided by that reference output's max absolute value. Metal child RSS is a cumulative high-water mark, so its delta can be zero after warmup or an earlier larger child; child_peak_rss_mb also reports the absolute high-water mark. MLX process RSS is the lifetime high-water mark. Memory units are decimal MB on macOS."
+}

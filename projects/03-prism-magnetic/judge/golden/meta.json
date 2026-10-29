@@ -1,0 +1,58 @@
+{
+  "seed": 20261028,
+  "versions": {
+    "numpy": "2.5.4",
+    "harmonica": "0.7.0",
+    "choclo": "0.3.2",
+    "numba": "0.68.1"
+  },
+  "python": "3.12.11",
+  "inputs": "All inputs are stored in each npz as float32; float64 Harmonica evaluates exactly those rounded values. ENU metres, A/m, unit inducing direction; outputs nT.",
+  "cases": {
+    "single": "24 seeded outside points, one asymmetric magnetized prism",
+    "translated": "same geometry translated by (100000,-200000,50000) m, with float32 quantization",
+    "multiple": "three unequal prisms, mixed magnetization, 24 points",
+    "axis": "three vertical-axis points, vertical magnetization",
+    "zero": "four points, zero magnetization",
+    "far": "axis and oblique points at approximately 8, 10, 12 maximum prism widths from center"
+  },
+  "tolerances": {
+    "NEAR_REL": [
+      0.0001,
+      "campaign float32 reference bound"
+    ],
+    "FAR_REL": [
+      0.02,
+      "proposed far-field float32 corner cancellation bound"
+    ],
+    "CROSS_NEAR_REL": [
+      0.0002,
+      "two near-field errors may have opposite signs"
+    ],
+    "CROSS_FAR_REL": [
+      0.04,
+      "two far-field errors may have opposite signs"
+    ],
+    "PROJECTION_REL": [
+      2e-06,
+      "float32 dot-product rounding"
+    ],
+    "ZERO_ABS_NT": [
+      2e-05,
+      "absolute floor for zero and cancellation"
+    ]
+  },
+  "dipole_axis_nT": [
+    0.625,
+    0.32,
+    0.18518518518518517
+  ],
+  "far_up_nT": [
+    0.6258520657104599,
+    0.32028237136042664,
+    0.18529935515626791,
+    0.1401227077957272,
+    0.07175975503638905,
+    0.041533142405208945
+  ]
+}

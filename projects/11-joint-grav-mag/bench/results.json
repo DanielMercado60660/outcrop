@@ -1,0 +1,75 @@
+{
+  "project": "11-joint-grav-mag",
+  "sizes": {
+    "small": {
+      "shape": [
+        4,
+        4,
+        3
+      ],
+      "observations_per_survey": 72,
+      "sweeps": 1
+    },
+    "medium": {
+      "shape": [
+        6,
+        6,
+        4
+      ],
+      "observations_per_survey": 180,
+      "sweeps": 8
+    },
+    "large": {
+      "shape": [
+        8,
+        8,
+        5
+      ],
+      "observations_per_survey": 320,
+      "sweeps": 60
+    }
+  },
+  "results": {
+    "judge": {
+      "small": {
+        "wall_s": 0.0004550409794319421,
+        "peak_mem_mb": 0.21600341796875,
+        "mem_method": "tracemalloc peak during call"
+      },
+      "medium": {
+        "wall_s": 0.006458290998125449,
+        "peak_mem_mb": 1.90869140625,
+        "mem_method": "tracemalloc peak during call"
+      },
+      "large": {
+        "wall_s": 0.1800656660052482,
+        "peak_mem_mb": 9.39471435546875,
+        "mem_method": "tracemalloc peak during call"
+      }
+    },
+    "mlx": {
+      "small": {
+        "wall_s": 0.0011152919905725867,
+        "peak_mem_mb": 0.2541770935058594,
+        "mem_method": "MLX reset_peak_memory/get_peak_memory; process RSS high-water mark separately",
+        "process_peak_rss_mb": 234.25
+      },
+      "medium": {
+        "wall_s": 0.004751959000714123,
+        "peak_mem_mb": 2.66314697265625,
+        "mem_method": "MLX reset_peak_memory/get_peak_memory; process RSS high-water mark separately",
+        "process_peak_rss_mb": 240.1875
+      },
+      "large": {
+        "wall_s": 0.06622695899568498,
+        "peak_mem_mb": 11.733428955078125,
+        "mem_method": "MLX reset_peak_memory/get_peak_memory; process RSS high-water mark separately",
+        "process_peak_rss_mb": 272.421875
+      }
+    }
+  },
+  "medium_max_rel_diff": {
+    "mlx": 1.5302355312122699e-06
+  },
+  "notes": "Inversion includes normal-matrix assembly and all alternating sweeps. Inputs are deterministic synthetic normalized matrices; reference uses float64. Timings include harness and output conversion. MLX inversion uses its CPU stream. tracemalloc may omit native allocations; MLX peak is allocator memory, and macOS process RSS is a lifetime high-water mark including earlier runs and inputs."
+}

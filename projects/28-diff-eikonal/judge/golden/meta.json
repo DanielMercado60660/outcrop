@@ -1,0 +1,334 @@
+{
+  "seed": 2801,
+  "python": "3.12.11",
+  "libraries": {
+    "numpy": "2.5.4",
+    "pytest": "9.2.0"
+  },
+  "oracle": "Float64 causal Godunov marching + discrete adjoint-state transpose solve; independent sweeping and centered FD",
+  "conventions": "See tests/api.py; source node fixed at zero; gradient with respect to nodal slowness; no regularization",
+  "precision": "Inputs rounded to float32 before float64 reference evaluation; binary FD increments exact for these inputs",
+  "required_root_evaluation": "Stable increment T=a+u with delta=b-a; see tests/api.py. Absolute-T quadratic expansion is excluded.",
+  "float32_audit": "Every local root, sweep, adjoint and objective operation is float32; sweeps stop at bitwise unchanged fields. Diagnostic only; goldens remain float64.",
+  "tolerances_source": "tests/tolerances.py",
+  "tolerances": {
+    "PARITY_REL": 0.0001,
+    "GRADIENT_COSINE_MIN": 0.999,
+    "FD_REL": 0.001,
+    "FD_STEPS": [
+      2.384185791015625e-07,
+      2.384185791015625e-07,
+      9.5367431640625e-07,
+      9.5367431640625e-07,
+      9.5367431640625e-07
+    ],
+    "ORACLE_FORWARD_REL": 2e-12,
+    "ORACLE_FD_REL": 5e-05,
+    "ORACLE_RESIDUAL_REL": 2e-12,
+    "ORACLE_SWEEP_ATOL": 1e-14,
+    "ZERO_ATOL": 0.0
+  },
+  "tolerance_reasons": "\"\"\"All numerical acceptance thresholds, including judge self-checks.\"\"\"\n\n# Campaign float32 parity at a matched discrete problem; global infinity norm.\nPARITY_REL = 1e-4\n# Campaign's explicit tomography gradient direction requirement.\nGRADIENT_COSINE_MIN = 0.999\n# Campaign centered finite differences, also checked using implementation loss.\nFD_REL = 1e-3\n# Absolute slowness increments (s/m), binary-exact: ~0.05% for dense probes,\n# ~0.2% for coordinate probes. Coordinates need larger steps because their\n# loss differences have less signal. These pass both the rounded-loss audit\n# and the full float32 stable-increment sweep/adjoint audit. The stable root\n# is REQUIRED in tests/api.py; absolute-time quadratic roots amplify FD noise.\nFD_STEPS = (2.0**-22, 2.0**-22, 2.0**-20, 2.0**-20, 2.0**-20)\n# Float64 independent heap-marching versus converged sweeping at the same stencil.\nORACLE_FORWARD_REL = 2e-12\n# Float64 adjoint vs centered differences; finite-step truncation is ~2.2e-5\n# for the signed dense layered probe. This remains 20x tighter than FD_REL.\nORACLE_FD_REL = 5e-5\n# Float64 nonlinear residual and analytic axis travel times, rounding only.\nORACLE_RESIDUAL_REL = 2e-12\n# Sweep stop in seconds, far below float32 requirements on these <2 s grids.\nORACLE_SWEEP_ATOL = 1e-14\n# Pure zero-loss case must be exact, including zero-weight observations.\nZERO_ATOL = 0.0\n",
+  "cases": {
+    "homogeneous": {
+      "shape": [
+        7,
+        9
+      ],
+      "spacing": [
+        40.0,
+        55.0
+      ],
+      "sources": [
+        [
+          0,
+          0
+        ]
+      ],
+      "receivers": [
+        [
+          0,
+          0
+        ],
+        [
+          6,
+          8
+        ],
+        [
+          0,
+          8
+        ],
+        [
+          6,
+          0
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          5,
+          2
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "slowness_range": [
+        0.0005000000237487257,
+        0.0005000000237487257
+      ],
+      "time_range": [
+        0.0,
+        0.2650356493101835
+      ],
+      "objective": 0.00021726399646051944,
+      "gradient_norm": 1.1773602934073482,
+      "sweep_relative_error": 0.0,
+      "residual_relative_error": 2.886579864025407e-15,
+      "fd_relative_errors": [
+        5.433544394615129e-14,
+        6.2376370086720535e-06,
+        4.622818646393916e-07,
+        1.0118785759126227e-08,
+        8.710604030995555e-07
+      ],
+      "float32_rounded_loss_fd_errors": [
+        4.846032835768088e-05,
+        5.580816690792518e-05,
+        0.00034437198911925606,
+        0.00021472635785701452,
+        4.0291259394175306e-05
+      ],
+      "float32_stable_sweep_parity": {
+        "traveltime": 6.884230636498978e-08,
+        "predicted": 3.684259033201385e-08,
+        "objective": 2.110035144954558e-07,
+        "gradient": 2.3644423558564937e-06
+      },
+      "float32_stable_sweep_fd_gradient_errors": [
+        3.076544218155023e-06,
+        7.08425039398294e-05,
+        0.000368446319850859,
+        0.0001922246588270441,
+        4.096788670368929e-05
+      ],
+      "float32_stable_sweep_fd_reference_errors": [
+        5.612258029416265e-06,
+        6.35709450040368e-05,
+        0.00036751648397622967,
+        0.00019268871670530586,
+        3.94201638949551e-05
+      ]
+    },
+    "smooth_multishot": {
+      "shape": [
+        11,
+        13
+      ],
+      "spacing": [
+        35.0,
+        50.0
+      ],
+      "sources": [
+        [
+          0,
+          1
+        ],
+        [
+          10,
+          11
+        ],
+        [
+          5,
+          6
+        ]
+      ],
+      "receivers": [
+        [
+          0,
+          0
+        ],
+        [
+          10,
+          12
+        ],
+        [
+          0,
+          12
+        ],
+        [
+          10,
+          0
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          2,
+          11
+        ],
+        [
+          9,
+          2
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "slowness_range": [
+        0.00039229344110935926,
+        0.0005304813967086375
+      ],
+      "time_range": [
+        0.0,
+        0.31503712377642923
+      ],
+      "objective": 0.0009982968941292473,
+      "gradient_norm": 4.336769751839577,
+      "sweep_relative_error": 0.0,
+      "residual_relative_error": 4.551914400963142e-15,
+      "fd_relative_errors": [
+        4.155350565877133e-08,
+        1.27440195591359e-07,
+        3.8483395514298333e-07,
+        4.121706892120377e-07,
+        7.463105913986205e-07
+      ],
+      "float32_rounded_loss_fd_errors": [
+        7.998108308209176e-05,
+        8.224537025412124e-06,
+        4.2352281600211706e-05,
+        5.3788185363003356e-05,
+        6.485162917755869e-05
+      ],
+      "float32_stable_sweep_parity": {
+        "traveltime": 9.510983836595242e-08,
+        "predicted": 4.449182478098728e-08,
+        "objective": 1.1940881170976799e-07,
+        "gradient": 6.314937544553267e-07
+      },
+      "float32_stable_sweep_fd_gradient_errors": [
+        0.00014755452891701006,
+        4.6854597140614166e-05,
+        0.0001349545410818925,
+        2.4938113194632918e-05,
+        2.962175880626223e-05
+      ],
+      "float32_stable_sweep_fd_reference_errors": [
+        0.00014809767265399612,
+        4.66726410731971e-05,
+        0.00013443405005694162,
+        2.5198226784474414e-05,
+        2.9158766176142656e-05
+      ]
+    },
+    "layered": {
+      "shape": [
+        13,
+        10
+      ],
+      "spacing": [
+        60.0,
+        30.0
+      ],
+      "sources": [
+        [
+          0,
+          0
+        ],
+        [
+          12,
+          9
+        ]
+      ],
+      "receivers": [
+        [
+          0,
+          0
+        ],
+        [
+          12,
+          9
+        ],
+        [
+          0,
+          9
+        ],
+        [
+          12,
+          0
+        ],
+        [
+          6,
+          5
+        ],
+        [
+          2,
+          8
+        ],
+        [
+          11,
+          2
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "slowness_range": [
+        0.0004300511791370809,
+        0.0005618254072032869
+      ],
+      "time_range": [
+        0.0,
+        0.3977926989329613
+      ],
+      "objective": 0.0006531269919866218,
+      "gradient_norm": 3.919752604328638,
+      "sweep_relative_error": 0.0,
+      "residual_relative_error": 3.4416913763379853e-15,
+      "fd_relative_errors": [
+        1.3764124807325287e-08,
+        2.1288226971174636e-05,
+        2.488211631704921e-06,
+        1.0129382782306157e-06,
+        2.112664678505122e-06
+      ],
+      "float32_rounded_loss_fd_errors": [
+        4.7562111173439666e-05,
+        4.9067885507509843e-05,
+        6.452209623571713e-05,
+        2.7850802556772615e-05,
+        7.502039570780095e-06
+      ],
+      "float32_stable_sweep_parity": {
+        "traveltime": 9.82852904290717e-08,
+        "predicted": 9.152646421290992e-08,
+        "objective": 9.16424819416812e-07,
+        "gradient": 1.2361352699276502e-06
+      },
+      "float32_stable_sweep_fd_gradient_errors": [
+        5.774267321740275e-05,
+        3.681512171671593e-05,
+        0.00016613814284753288,
+        9.914245798985415e-05,
+        0.0004926491478087477
+      ],
+      "float32_stable_sweep_fd_reference_errors": [
+        5.776382502719437e-05,
+        5.925752056988369e-05,
+        0.00016295494651538892,
+        9.797179426190638e-05,
+        0.0004956958089792111
+      ]
+    }
+  }
+}

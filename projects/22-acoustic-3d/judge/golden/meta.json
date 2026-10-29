@@ -1,0 +1,85 @@
+{
+  "seed": 22001,
+  "libraries": {
+    "python": "3.12.11",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "torch": "2.15.0",
+    "deepwave": "0.1.0"
+  },
+  "equation": "u_tt = v(x)^2 Laplacian(u); second order centered space and time; periodic faces",
+  "inputs": {
+    "heterogeneous": {
+      "shape": [
+        13,
+        15,
+        17
+      ],
+      "v_range": [
+        0.8,
+        1.2
+      ],
+      "spacing": 0.1,
+      "dt": 0.02,
+      "steps": 11
+    },
+    "invariant": {
+      "shape": [
+        7,
+        15,
+        17
+      ],
+      "independent_2d_shape": [
+        15,
+        17
+      ]
+    },
+    "plane": {
+      "n": [
+        12,
+        24,
+        48
+      ],
+      "domain_lengths": [
+        1,
+        1,
+        1
+      ],
+      "velocity": 1,
+      "final_time": 0.15,
+      "dt_over_spacing": 0.15
+    }
+  },
+  "tolerances": {
+    "parity": {
+      "value": 0.0001,
+      "reason": "float32 accumulated error against float64 Deepwave, normalized by maximum reference amplitude with an initial-amplitude floor for plane waves near a zero crossing"
+    },
+    "cross_path": {
+      "value": 0.0001,
+      "reason": "float32 implementation parity, normalized by maximum reference amplitude with the same plane-wave initial-amplitude floor"
+    },
+    "order_min": {
+      "value": 1.8,
+      "reason": "second order central stencil and time update, allowing 0.2 pre-asymptotic deviation"
+    },
+    "order_max": {
+      "value": 2.2,
+      "reason": "expected second order within 0.2"
+    },
+    "analytic_error_max": {
+      "value": 0.08,
+      "reason": "bounds coarse-grid phase error and prevents convergence to a wrong solution"
+    }
+  },
+  "analytic_max_errors": [
+    0.018793733960824233,
+    0.004519035999705594,
+    0.0011072801342962013
+  ],
+  "analytic_observed_orders": [
+    2.056164776541581,
+    2.0289947896337166
+  ],
+  "reference_notes": "Deepwave scalar float64, accuracy=2, no PML, explicitly periodic on all faces, one shot. 2D fixture is independently propagated using Deepwave; project 13 is not yet available."
+}

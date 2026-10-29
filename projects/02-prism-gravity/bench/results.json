@@ -1,0 +1,76 @@
+{
+  "project": "02-prism-gravity",
+  "sizes": {
+    "small": {
+      "observations": 256,
+      "prisms": 256
+    },
+    "medium": {
+      "observations": 2048,
+      "prisms": 512
+    },
+    "large": {
+      "observations": 8192,
+      "prisms": 800
+    }
+  },
+  "results": {
+    "judge": {
+      "small": {
+        "wall_s": 0.007531124982051551,
+        "peak_mem_mb": 0.05524444580078125,
+        "mem_method": "tracemalloc peak during call (Python-tracked allocations)"
+      },
+      "medium": {
+        "wall_s": 0.11417049998999573,
+        "peak_mem_mb": 0.1787567138671875,
+        "mem_method": "tracemalloc peak during call (Python-tracked allocations)"
+      },
+      "large": {
+        "skipped": "Large serial float64 reference may exceed 120 s."
+      }
+    },
+    "mlx": {
+      "small": {
+        "wall_s": 0.003776957979425788,
+        "peak_mem_mb": 43.76179885864258,
+        "mem_method": "MLX reset_peak_memory/get_peak_memory, bytes to MiB",
+        "process_peak_rss_mb": 294.671875
+      },
+      "medium": {
+        "wall_s": 0.010307541000656784,
+        "peak_mem_mb": 743.0460777282715,
+        "mem_method": "MLX reset_peak_memory/get_peak_memory, bytes to MiB",
+        "process_peak_rss_mb": 295.46875
+      },
+      "large": {
+        "wall_s": 0.06978737498866394,
+        "peak_mem_mb": 1800.0346336364746,
+        "mem_method": "MLX reset_peak_memory/get_peak_memory, bytes to MiB",
+        "process_peak_rss_mb": 296.515625
+      }
+    },
+    "metal": {
+      "small": {
+        "wall_s": 0.19251600001007318,
+        "peak_mem_mb": 19.09375,
+        "mem_method": "fresh worker RUSAGE_CHILDREN ru_maxrss delta, macOS bytes to MiB"
+      },
+      "medium": {
+        "wall_s": 0.21102204199996777,
+        "peak_mem_mb": 19.53125,
+        "mem_method": "fresh worker RUSAGE_CHILDREN ru_maxrss delta, macOS bytes to MiB"
+      },
+      "large": {
+        "wall_s": 0.23501375000341795,
+        "peak_mem_mb": 19.390625,
+        "mem_method": "fresh worker RUSAGE_CHILDREN ru_maxrss delta, macOS bytes to MiB"
+      }
+    }
+  },
+  "medium_max_rel_diff": {
+    "mlx": 7.448607695898722e-05,
+    "metal": 5.3049961413423604e-05
+  },
+  "notes": "g_z in mGal; deterministic seed 20261028. Wall time is the median of three calls after one warm-up, including harness serialization and Metal process startup, but excluding fresh measurement-worker startup. Memory is the largest of three peaks in MiB; process RSS is a lifetime high-water mark. Metal child RSS excludes GPU allocations; MLX peak measures MLX allocations, not total RSS. Reference tracemalloc excludes untracked native allocations. Relative difference is maximum absolute error divided by maximum absolute reference value. Timings and size estimates are unvalidated on the target GPU."
+}

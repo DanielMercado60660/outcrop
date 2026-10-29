@@ -1,0 +1,78 @@
+{
+  "project": "12-acoustic-1d",
+  "sizes": {
+    "small": {
+      "n": 4096,
+      "steps": 400
+    },
+    "medium": {
+      "n": 8192,
+      "steps": 1200
+    },
+    "large": {
+      "n": 32768,
+      "steps": 4096
+    }
+  },
+  "results": {
+    "judge": {
+      "small": {
+        "wall_s": 0.011683500022627413,
+        "peak_mem_mb": 25.26642417907715,
+        "mem_method": "tracemalloc peak in fresh worker"
+      },
+      "medium": {
+        "wall_s": 0.06054895799024962,
+        "peak_mem_mb": 150.63568878173828,
+        "mem_method": "tracemalloc peak in fresh worker"
+      },
+      "large": {
+        "wall_s": 0.49063429099624045,
+        "peak_mem_mb": 2050.3465995788574,
+        "mem_method": "tracemalloc peak in fresh worker"
+      }
+    },
+    "mlx": {
+      "small": {
+        "wall_s": 0.04831391599145718,
+        "peak_mem_mb": 12.937843322753906,
+        "mem_method": "MLX reset_peak_memory/get_peak_memory; process RSS high-water also reported",
+        "process_peak_rss_mb": 94.59375
+      },
+      "medium": {
+        "wall_s": 0.09100916699389927,
+        "peak_mem_mb": 75.46903228759766,
+        "mem_method": "MLX reset_peak_memory/get_peak_memory; process RSS high-water also reported",
+        "process_peak_rss_mb": 158.71875
+      },
+      "large": {
+        "wall_s": 0.2849400830164086,
+        "peak_mem_mb": 1024.25,
+        "mem_method": "MLX reset_peak_memory/get_peak_memory; process RSS high-water also reported",
+        "process_peak_rss_mb": 1115.953125
+      }
+    },
+    "metal": {
+      "small": {
+        "wall_s": 0.05729420797433704,
+        "peak_mem_mb": 41.625,
+        "mem_method": "fresh worker RUSAGE_CHILDREN ru_maxrss delta (Metal child high-water RSS)"
+      },
+      "medium": {
+        "wall_s": 0.07841108401771635,
+        "peak_mem_mb": 135.984375,
+        "mem_method": "fresh worker RUSAGE_CHILDREN ru_maxrss delta (Metal child high-water RSS)"
+      },
+      "large": {
+        "wall_s": 0.3012166250264272,
+        "peak_mem_mb": 1562.0,
+        "mem_method": "fresh worker RUSAGE_CHILDREN ru_maxrss delta (Metal child high-water RSS)"
+      }
+    }
+  },
+  "medium_max_rel_diff": {
+    "mlx": 3.7569018946197734e-06,
+    "metal": 3.7569018946197734e-06
+  },
+  "notes": "Wall times include output materialization and, for Metal, binary launch and file I/O. Each warmup and repeat uses a fresh Python process; startup is outside the timer. Memory values are medians of three peaks, in MiB. Metal child ru_maxrss is a high-water mark, not GPU allocation alone. MLX RSS is a process high-water mark. Relative difference is max absolute error divided by reference peak amplitude. Inputs use seed 1201, dx=5 m, c=1500 m/s and Courant number 0.5."
+}

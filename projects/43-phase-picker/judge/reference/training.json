@@ -1,0 +1,15 @@
+{
+  "seed": 43043,
+  "steps": 3000,
+  "planned_steps": 3000,
+  "batch_size": 32,
+  "training_seconds": 948.5080768739863,
+  "device": "cpu",
+  "torch": "2.15.0",
+  "threads": 6,
+  "deterministic_algorithms": true,
+  "training_dtype": "float32",
+  "parameters": 53267,
+  "last_loss": 0.022595051676034927,
+  "checkpoint_sha256": "ee3460a6729206ff058c21d370e94bc158094a30709a59b708bfc123489474ef"
+}

@@ -1,0 +1,6 @@
+# Exact versions used for generation and collection; the repository uv.lock pins transitives.
+numpy==2.5.4
+torch==2.15.0
+deepwave==0.1.0
+pytest==9.2.0
+ruff==0.17.3

@@ -1,0 +1,87 @@
+{
+  "project": "17-rtm",
+  "sizes": {
+    "small": {
+      "nz": 24,
+      "nx": 24,
+      "nt": 100,
+      "nshot": 1,
+      "nrec": 8
+    },
+    "medium": {
+      "nz": 48,
+      "nx": 48,
+      "nt": 300,
+      "nshot": 2,
+      "nrec": 20
+    },
+    "large": {
+      "nz": 96,
+      "nx": 96,
+      "nt": 700,
+      "nshot": 4,
+      "nrec": 44
+    }
+  },
+  "results": {
+    "judge": {
+      "small": {
+        "wall_s": 0.0063089170143939555,
+        "peak_mem_mb": 0.02969074249267578,
+        "mem_method": "tracemalloc peak (Python allocations; excludes native Torch allocations)"
+      },
+      "medium": {
+        "wall_s": 0.05560924997553229,
+        "peak_mem_mb": 0.035643577575683594,
+        "mem_method": "tracemalloc peak (Python allocations; excludes native Torch allocations)"
+      },
+      "large": {
+        "wall_s": 0.509494124999037,
+        "peak_mem_mb": 0.07343101501464844,
+        "mem_method": "tracemalloc peak (Python allocations; excludes native Torch allocations)"
+      }
+    },
+    "mlx": {
+      "small": {
+        "wall_s": 0.06688624998787418,
+        "peak_mem_mb": 2.9948081970214844,
+        "mem_method": "MLX peak allocated bytes after reset; process RSS high-water also reported",
+        "process_peak_rss_mb": 349.359375
+      },
+      "medium": {
+        "wall_s": 0.2864590419922024,
+        "peak_mem_mb": 32.944976806640625,
+        "mem_method": "MLX peak allocated bytes after reset; process RSS high-water also reported",
+        "process_peak_rss_mb": 434.265625
+      },
+      "large": {
+        "wall_s": 0.553135000023758,
+        "peak_mem_mb": 357.90217208862305,
+        "mem_method": "MLX peak allocated bytes after reset; process RSS high-water also reported",
+        "process_peak_rss_mb": 873.609375
+      }
+    },
+    "metal": {
+      "small": {
+        "wall_s": 0.06884470902150497,
+        "peak_mem_mb": 17.640625,
+        "mem_method": "fresh worker RUSAGE_CHILDREN ru_maxrss delta (macOS bytes), Metal child process RSS"
+      },
+      "medium": {
+        "wall_s": 0.07958004099782556,
+        "peak_mem_mb": 31.671875,
+        "mem_method": "fresh worker RUSAGE_CHILDREN ru_maxrss delta (macOS bytes), Metal child process RSS"
+      },
+      "large": {
+        "wall_s": 0.11209662500186823,
+        "peak_mem_mb": 192.875,
+        "mem_method": "fresh worker RUSAGE_CHILDREN ru_maxrss delta (macOS bytes), Metal child process RSS"
+      }
+    }
+  },
+  "medium_max_rel_diff": {
+    "mlx": 5.049904068568298e-06,
+    "metal": 1.9936526182935112e-06
+  },
+  "notes": "RTM image; median of three calls after one warm-up; fixed seed 170101. Metal timing includes harness file I/O and process startup. Memory is the maximum of three peaks; memory methods differ and do not measure the same allocations. MLX process RSS is a lifetime high-water mark; Metal RSS includes shared buffers only as reflected in OS process accounting. Relative difference is max absolute error divided by max absolute reference image."
+}

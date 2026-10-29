@@ -1,0 +1,1820 @@
+{
+  "project": "15-elastic-psv",
+  "seed": 150127,
+  "versions": {
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "torch": "2.15.0",
+    "deepwave": "0.1.0",
+    "pytest": "9.2.0"
+  },
+  "python": "3.12.11 (main, Jul 23 2025, 00:18:05) [Clang 20.1.4 ]",
+  "reference": "Deepwave elastic, CPU C, float64",
+  "source_sha256": {
+    "elastic.py": "880009ed3020cfd3c93b056b77c52aebb1714cc76ccfdd820f83fae355016aab",
+    "elastic.c": "55c12f4ffa2f390d1ab66be70b99a0590f4b61d3f04af8e15712c96a109ef065",
+    "elastic_kernels.h": "7dc47b164a461f9b1d8452440bce576451453994f45ab34f6b3103429eebb100",
+    "_staggered_grid.py": "e6f70ce4d1199315f61955e53d88938e524e9bf42d07986a4baf15e89ad5dc38",
+    "_common.py": "f68a299c4367ba11c57196e37425f53feefcaa21db0b8e13a94c76714d324f6a",
+    "libdeepwave_C.dylib": "305176361bae47d347abf1a274d3a52ef89bb52e5a0ec12cf053444ded0af182"
+  },
+  "golden_bytes": {
+    "free_surface.npz": 84944,
+    "plane_S_2.npz": 276912,
+    "gradient_surface.npz": 40463,
+    "gradient.npz": 45922,
+    "plane_S_1.npz": 90235,
+    "plane_S_0.npz": 35937,
+    "plane_P_2.npz": 295106,
+    "plane_P_0.npz": 39012,
+    "plane_P_1.npz": 98720,
+    "zero.npz": 2976,
+    "reflective.npz": 200052,
+    "pml.npz": 198740,
+    "lamb.npz": 117393,
+    "heterogeneous.npz": 100039
+  },
+  "golden_sha256": {
+    "free_surface.npz": "989fc312971e15ef88d8304efd44ffc3e25840f05bea935caad129c23091ddd8",
+    "gradient.npz": "288077c6a448c9f29fd9603eabaaefa6c80b6ac72dbd9d2c149965e6e6e6f711",
+    "gradient_surface.npz": "ae466cc230b36ebc9daa9460d38e2fa3f2d10e98e21a258fc284c6a792cd6616",
+    "heterogeneous.npz": "56d64cc5f08d73ec63b33dd5cc13038837344ab75058553e4aa012ee45b49e34",
+    "lamb.npz": "e5ff4a0a8938aea2eba1c551a4da3c6860b2a35f6549a0e6e572afbaecdbd29b",
+    "plane_P_0.npz": "18fcba3067a8d2fbabd5c2ec214f2c1a3050df1595cad9bde50bb19a9fc00303",
+    "plane_P_1.npz": "f210ad0e121ec4c4a8dd7609e712c85de8635dbd6611a28c63ddd7312b3fd3df",
+    "plane_P_2.npz": "9cbcc64f96d1b8a747621df6fbd41fa68beff1b338e7c98844147dc8dcd43eab",
+    "plane_S_0.npz": "a12b9cd2b67fd91c45b0b7032c1e17def27a8e831de5cf747dca67a91f504d0b",
+    "plane_S_1.npz": "a77feff0c71ae3293bbbe1ccde81c9b32b44d6fd4dbeebbc6f6e4a4c0128852f",
+    "plane_S_2.npz": "1b2f6607c34278e5ba69fa57833507206080a6e697c9858a32c27e8af7b9a935",
+    "pml.npz": "082ccc5c0f835cd936bcbb69d2b8fa29308bafd6884b4c5d0d85db3fcf501f14",
+    "reflective.npz": "e712adecb0c5799713afbb6e19b1583ee328039affdd62aa5fcd9f564637ff9f",
+    "zero.npz": "971fb735795b8f8d2e8900216706ec3a6de99d23a70bc33bebd0a17d4afe5f66"
+  },
+  "scheme": "2nd-order staggered space / leapfrog time, IVM free surface, CFS-C-PML kappa=1",
+  "scheme_sha256": {
+    "tests/SCHEME.md": "d7aa5cf6fa1b628c351eecb60d6418627f6378801d449e51a0845fd4b8b17fcb",
+    "tests/api.py": "122da10244175ba648c49e6e05d399566bbf60b7b077c8a9c9f93af218ed08a9"
+  },
+  "inputs": {
+    "heterogeneous": {
+      "vp": {
+        "shape": [
+          28,
+          34
+        ],
+        "dtype": "float64",
+        "min": 3000.0000027631695,
+        "max": 3375.738093062661
+      },
+      "vs": {
+        "shape": [
+          28,
+          34
+        ],
+        "dtype": "float64",
+        "min": 1450.0000899399604,
+        "max": 1729.9999900066684
+      },
+      "rho": {
+        "shape": [
+          28,
+          34
+        ],
+        "dtype": "float64",
+        "min": 1970.1859079539977,
+        "max": 2179.872070049479
+      },
+      "source_y": {
+        "shape": [
+          2,
+          2,
+          480
+        ],
+        "dtype": "float64",
+        "min": -4459458.787305834,
+        "max": 9992599.31854099
+      },
+      "source_x": {
+        "shape": [
+          2,
+          2,
+          480
+        ],
+        "dtype": "float64",
+        "min": -6000000.0,
+        "max": 2677560.100460376
+      },
+      "source_locations": [
+        [
+          [
+            5,
+            9
+          ],
+          [
+            9,
+            20
+          ]
+        ],
+        [
+          [
+            6,
+            23
+          ],
+          [
+            12,
+            10
+          ]
+        ]
+      ],
+      "receiver_locations": [
+        [
+          [
+            3,
+            5
+          ],
+          [
+            8,
+            16
+          ],
+          [
+            18,
+            25
+          ]
+        ],
+        [
+          [
+            4,
+            18
+          ],
+          [
+            15,
+            12
+          ],
+          [
+            22,
+            27
+          ]
+        ]
+      ],
+      "spacing": [
+        9.0,
+        11.0
+      ],
+      "dt": 0.0004,
+      "pml_width": [
+        8,
+        10,
+        12,
+        9
+      ],
+      "pml_freq": 25.0,
+      "max_vel": 5000.0
+    },
+    "free_surface": {
+      "vp": {
+        "shape": [
+          28,
+          34
+        ],
+        "dtype": "float64",
+        "min": 0.0,
+        "max": 3375.738093062661
+      },
+      "vs": {
+        "shape": [
+          28,
+          34
+        ],
+        "dtype": "float64",
+        "min": 0.0,
+        "max": 1729.9999900066684
+      },
+      "rho": {
+        "shape": [
+          28,
+          34
+        ],
+        "dtype": "float64",
+        "min": 0.0,
+        "max": 2179.903981244896
+      },
+      "source_y": {
+        "shape": [
+          2,
+          2,
+          480
+        ],
+        "dtype": "float64",
+        "min": -4459458.787305834,
+        "max": 9992599.31854099
+      },
+      "source_x": {
+        "shape": [
+          2,
+          2,
+          480
+        ],
+        "dtype": "float64",
+        "min": -6000000.0,
+        "max": 2677560.100460376
+      },
+      "source_locations": [
+        [
+          [
+            1,
+            9
+          ],
+          [
+            9,
+            20
+          ]
+        ],
+        [
+          [
+            6,
+            23
+          ],
+          [
+            12,
+            10
+          ]
+        ]
+      ],
+      "receiver_locations": [
+        [
+          [
+            1,
+            5
+          ],
+          [
+            8,
+            16
+          ],
+          [
+            18,
+            25
+          ]
+        ],
+        [
+          [
+            1,
+            18
+          ],
+          [
+            15,
+            12
+          ],
+          [
+            22,
+            27
+          ]
+        ]
+      ],
+      "spacing": [
+        9.0,
+        11.0
+      ],
+      "dt": 0.0004,
+      "pml_width": [
+        0,
+        10,
+        12,
+        9
+      ],
+      "pml_freq": 25.0,
+      "max_vel": 5000.0
+    },
+    "zero": {
+      "vp": {
+        "shape": [
+          9,
+          11
+        ],
+        "dtype": "float64",
+        "min": 3000.0,
+        "max": 3000.0
+      },
+      "vs": {
+        "shape": [
+          9,
+          11
+        ],
+        "dtype": "float64",
+        "min": 1500.0,
+        "max": 1500.0
+      },
+      "rho": {
+        "shape": [
+          9,
+          11
+        ],
+        "dtype": "float64",
+        "min": 2000.0,
+        "max": 2000.0
+      },
+      "source_y": [
+        [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ]
+      ],
+      "source_x": [
+        [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ]
+      ],
+      "source_locations": [
+        [
+          [
+            4,
+            5
+          ]
+        ]
+      ],
+      "receiver_locations": [
+        [
+          [
+            5,
+            6
+          ]
+        ]
+      ],
+      "spacing": [
+        10.0,
+        10.0
+      ],
+      "dt": 0.0004,
+      "pml_width": [
+        12,
+        12,
+        12,
+        12
+      ],
+      "pml_freq": 25.0,
+      "max_vel": 5000.0
+    },
+    "plane_P_0": {
+      "vp": {
+        "shape": [
+          82,
+          222
+        ],
+        "dtype": "float64",
+        "min": 3000.0,
+        "max": 3000.0
+      },
+      "vs": {
+        "shape": [
+          82,
+          222
+        ],
+        "dtype": "float64",
+        "min": 1500.0,
+        "max": 1500.0
+      },
+      "rho": {
+        "shape": [
+          82,
+          222
+        ],
+        "dtype": "float64",
+        "min": 2000.0,
+        "max": 2000.0
+      },
+      "source_y": {
+        "shape": [
+          1,
+          220,
+          800
+        ],
+        "dtype": "float64",
+        "min": -5950038.273614421,
+        "max": 13332054.26668783
+      },
+      "source_x": {
+        "shape": [
+          1,
+          220,
+          800
+        ],
+        "dtype": "float64",
+        "min": 0.0,
+        "max": 0.0
+      },
+      "source_locations": {
+        "shape": [
+          1,
+          220,
+          2
+        ],
+        "dtype": "int64",
+        "min": 1.0,
+        "max": 220.0
+      },
+      "receiver_locations": [
+        [
+          [
+            40,
+            110
+          ]
+        ]
+      ],
+      "spacing": [
+        7.5,
+        7.5
+      ],
+      "dt": 0.0003,
+      "pml_width": [
+        12,
+        12,
+        12,
+        12
+      ],
+      "pml_freq": 25.0,
+      "max_vel": 5000.0
+    },
+    "plane_P_1": {
+      "vp": {
+        "shape": [
+          163,
+          443
+        ],
+        "dtype": "float64",
+        "min": 3000.0,
+        "max": 3000.0
+      },
+      "vs": {
+        "shape": [
+          163,
+          443
+        ],
+        "dtype": "float64",
+        "min": 1500.0,
+        "max": 1500.0
+      },
+      "rho": {
+        "shape": [
+          163,
+          443
+        ],
+        "dtype": "float64",
+        "min": 2000.0,
+        "max": 2000.0
+      },
+      "source_y": {
+        "shape": [
+          1,
+          441,
+          1600
+        ],
+        "dtype": "float64",
+        "min": -11900267.445182806,
+        "max": 26666027.120562132
+      },
+      "source_x": {
+        "shape": [
+          1,
+          441,
+          1600
+        ],
+        "dtype": "float64",
+        "min": 0.0,
+        "max": 0.0
+      },
+      "source_locations": {
+        "shape": [
+          1,
+          441,
+          2
+        ],
+        "dtype": "int64",
+        "min": 1.0,
+        "max": 441.0
+      },
+      "receiver_locations": [
+        [
+          [
+            80,
+            220
+          ]
+        ]
+      ],
+      "spacing": [
+        3.75,
+        3.75
+      ],
+      "dt": 0.00015,
+      "pml_width": [
+        12,
+        12,
+        12,
+        12
+      ],
+      "pml_freq": 25.0,
+      "max_vel": 5000.0
+    },
+    "plane_P_2": {
+      "vp": {
+        "shape": [
+          325,
+          885
+        ],
+        "dtype": "float64",
+        "min": 3000.0,
+        "max": 3000.0
+      },
+      "vs": {
+        "shape": [
+          325,
+          885
+        ],
+        "dtype": "float64",
+        "min": 1500.0,
+        "max": 1500.0
+      },
+      "rho": {
+        "shape": [
+          325,
+          885
+        ],
+        "dtype": "float64",
+        "min": 2000.0,
+        "max": 2000.0
+      },
+      "source_y": {
+        "shape": [
+          1,
+          883,
+          3200
+        ],
+        "dtype": "float64",
+        "min": -23800534.89036561,
+        "max": 53333013.55868332
+      },
+      "source_x": {
+        "shape": [
+          1,
+          883,
+          3200
+        ],
+        "dtype": "float64",
+        "min": 0.0,
+        "max": 0.0
+      },
+      "source_locations": {
+        "shape": [
+          1,
+          883,
+          2
+        ],
+        "dtype": "int64",
+        "min": 1.0,
+        "max": 883.0
+      },
+      "receiver_locations": [
+        [
+          [
+            160,
+            440
+          ]
+        ]
+      ],
+      "spacing": [
+        1.875,
+        1.875
+      ],
+      "dt": 7.5e-05,
+      "pml_width": [
+        12,
+        12,
+        12,
+        12
+      ],
+      "pml_freq": 25.0,
+      "max_vel": 5000.0
+    },
+    "plane_S_0": {
+      "vp": {
+        "shape": [
+          82,
+          222
+        ],
+        "dtype": "float64",
+        "min": 3000.0,
+        "max": 3000.0
+      },
+      "vs": {
+        "shape": [
+          82,
+          222
+        ],
+        "dtype": "float64",
+        "min": 1500.0,
+        "max": 1500.0
+      },
+      "rho": {
+        "shape": [
+          82,
+          222
+        ],
+        "dtype": "float64",
+        "min": 2000.0,
+        "max": 2000.0
+      },
+      "source_y": {
+        "shape": [
+          1,
+          220,
+          800
+        ],
+        "dtype": "float64",
+        "min": 0.0,
+        "max": 0.0
+      },
+      "source_x": {
+        "shape": [
+          1,
+          220,
+          800
+        ],
+        "dtype": "float64",
+        "min": -5950133.556578615,
+        "max": 13332764.850852702
+      },
+      "source_locations": {
+        "shape": [
+          1,
+          220,
+          2
+        ],
+        "dtype": "int64",
+        "min": 1.0,
+        "max": 220.0
+      },
+      "receiver_locations": [
+        [
+          [
+            28,
+            110
+          ]
+        ]
+      ],
+      "spacing": [
+        7.5,
+        7.5
+      ],
+      "dt": 0.0003,
+      "pml_width": [
+        12,
+        12,
+        12,
+        12
+      ],
+      "pml_freq": 25.0,
+      "max_vel": 5000.0
+    },
+    "plane_S_1": {
+      "vp": {
+        "shape": [
+          163,
+          443
+        ],
+        "dtype": "float64",
+        "min": 3000.0,
+        "max": 3000.0
+      },
+      "vs": {
+        "shape": [
+          163,
+          443
+        ],
+        "dtype": "float64",
+        "min": 1500.0,
+        "max": 1500.0
+      },
+      "rho": {
+        "shape": [
+          163,
+          443
+        ],
+        "dtype": "float64",
+        "min": 2000.0,
+        "max": 2000.0
+      },
+      "source_y": {
+        "shape": [
+          1,
+          441,
+          1600
+        ],
+        "dtype": "float64",
+        "min": 0.0,
+        "max": 0.0
+      },
+      "source_x": {
+        "shape": [
+          1,
+          441,
+          1600
+        ],
+        "dtype": "float64",
+        "min": -11900267.11315723,
+        "max": 26666382.422901526
+      },
+      "source_locations": {
+        "shape": [
+          1,
+          441,
+          2
+        ],
+        "dtype": "int64",
+        "min": 1.0,
+        "max": 441.0
+      },
+      "receiver_locations": [
+        [
+          [
+            56,
+            220
+          ]
+        ]
+      ],
+      "spacing": [
+        3.75,
+        3.75
+      ],
+      "dt": 0.00015,
+      "pml_width": [
+        12,
+        12,
+        12,
+        12
+      ],
+      "pml_freq": 25.0,
+      "max_vel": 5000.0
+    },
+    "plane_S_2": {
+      "vp": {
+        "shape": [
+          325,
+          885
+        ],
+        "dtype": "float64",
+        "min": 3000.0,
+        "max": 3000.0
+      },
+      "vs": {
+        "shape": [
+          325,
+          885
+        ],
+        "dtype": "float64",
+        "min": 1500.0,
+        "max": 1500.0
+      },
+      "rho": {
+        "shape": [
+          325,
+          885
+        ],
+        "dtype": "float64",
+        "min": 2000.0,
+        "max": 2000.0
+      },
+      "source_y": {
+        "shape": [
+          1,
+          883,
+          3200
+        ],
+        "dtype": "float64",
+        "min": 0.0,
+        "max": 0.0
+      },
+      "source_x": {
+        "shape": [
+          1,
+          883,
+          3200
+        ],
+        "dtype": "float64",
+        "min": -23800534.22631446,
+        "max": 53333191.211135164
+      },
+      "source_locations": {
+        "shape": [
+          1,
+          883,
+          2
+        ],
+        "dtype": "int64",
+        "min": 1.0,
+        "max": 883.0
+      },
+      "receiver_locations": [
+        [
+          [
+            112,
+            440
+          ]
+        ]
+      ],
+      "spacing": [
+        1.875,
+        1.875
+      ],
+      "dt": 7.5e-05,
+      "pml_width": [
+        12,
+        12,
+        12,
+        12
+      ],
+      "pml_freq": 25.0,
+      "max_vel": 5000.0
+    },
+    "lamb": {
+      "vp": {
+        "shape": [
+          103,
+          481
+        ],
+        "dtype": "float64",
+        "min": 0.0,
+        "max": 3000.0
+      },
+      "vs": {
+        "shape": [
+          103,
+          481
+        ],
+        "dtype": "float64",
+        "min": 0.0,
+        "max": 1500.0
+      },
+      "rho": {
+        "shape": [
+          103,
+          481
+        ],
+        "dtype": "float64",
+        "min": 0.0,
+        "max": 2000.0
+      },
+      "source_y": {
+        "shape": [
+          1,
+          1,
+          4125
+        ],
+        "dtype": "float64",
+        "min": -44624575.80431951,
+        "max": 100000000.0
+      },
+      "source_x": {
+        "shape": [
+          1,
+          1,
+          4125
+        ],
+        "dtype": "float64",
+        "min": 0.0,
+        "max": 0.0
+      },
+      "source_locations": [
+        [
+          [
+            1,
+            40
+          ]
+        ]
+      ],
+      "receiver_locations": [
+        [
+          [
+            1,
+            200
+          ],
+          [
+            1,
+            280
+          ],
+          [
+            1,
+            360
+          ]
+        ]
+      ],
+      "spacing": [
+        2.5,
+        2.5
+      ],
+      "dt": 0.0002,
+      "pml_width": [
+        0,
+        24,
+        24,
+        24
+      ],
+      "pml_freq": 18.0,
+      "max_vel": 5000.0
+    },
+    "pml": {
+      "vp": {
+        "shape": [
+          31,
+          37
+        ],
+        "dtype": "float64",
+        "min": 3000.0,
+        "max": 3000.0
+      },
+      "vs": {
+        "shape": [
+          31,
+          37
+        ],
+        "dtype": "float64",
+        "min": 1500.0,
+        "max": 1500.0
+      },
+      "rho": {
+        "shape": [
+          31,
+          37
+        ],
+        "dtype": "float64",
+        "min": 2000.0,
+        "max": 2000.0
+      },
+      "source_y": {
+        "shape": [
+          2,
+          1,
+          1200
+        ],
+        "dtype": "float64",
+        "min": -4458016.502335061,
+        "max": 10000000.0
+      },
+      "source_x": {
+        "shape": [
+          2,
+          1,
+          1200
+        ],
+        "dtype": "float64",
+        "min": -4458016.502335061,
+        "max": 10000000.0
+      },
+      "source_locations": [
+        [
+          [
+            15,
+            18
+          ]
+        ],
+        [
+          [
+            15,
+            18
+          ]
+        ]
+      ],
+      "receiver_locations": [
+        [
+          [
+            15,
+            18
+          ],
+          [
+            12,
+            22
+          ]
+        ],
+        [
+          [
+            15,
+            18
+          ],
+          [
+            12,
+            22
+          ]
+        ]
+      ],
+      "spacing": [
+        10.0,
+        10.0
+      ],
+      "dt": 0.0004,
+      "pml_width": [
+        20,
+        20,
+        20,
+        20
+      ],
+      "pml_freq": 30.0,
+      "max_vel": 5000.0
+    },
+    "reflective": {
+      "vp": {
+        "shape": [
+          31,
+          37
+        ],
+        "dtype": "float64",
+        "min": 3000.0,
+        "max": 3000.0
+      },
+      "vs": {
+        "shape": [
+          31,
+          37
+        ],
+        "dtype": "float64",
+        "min": 1500.0,
+        "max": 1500.0
+      },
+      "rho": {
+        "shape": [
+          31,
+          37
+        ],
+        "dtype": "float64",
+        "min": 2000.0,
+        "max": 2000.0
+      },
+      "source_y": {
+        "shape": [
+          2,
+          1,
+          1200
+        ],
+        "dtype": "float64",
+        "min": -4458016.502335061,
+        "max": 10000000.0
+      },
+      "source_x": {
+        "shape": [
+          2,
+          1,
+          1200
+        ],
+        "dtype": "float64",
+        "min": -4458016.502335061,
+        "max": 10000000.0
+      },
+      "source_locations": [
+        [
+          [
+            15,
+            18
+          ]
+        ],
+        [
+          [
+            15,
+            18
+          ]
+        ]
+      ],
+      "receiver_locations": [
+        [
+          [
+            15,
+            18
+          ],
+          [
+            12,
+            22
+          ]
+        ],
+        [
+          [
+            15,
+            18
+          ],
+          [
+            12,
+            22
+          ]
+        ]
+      ],
+      "spacing": [
+        10.0,
+        10.0
+      ],
+      "dt": 0.0004,
+      "pml_width": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "pml_freq": 30.0,
+      "max_vel": 5000.0
+    },
+    "gradient": {
+      "vp": {
+        "shape": [
+          12,
+          14
+        ],
+        "dtype": "float64",
+        "min": 2925.678839898339,
+        "max": 3179.632636620141
+      },
+      "vs": {
+        "shape": [
+          12,
+          14
+        ],
+        "dtype": "float64",
+        "min": 1460.4003001359822,
+        "max": 1540.0
+      },
+      "rho": {
+        "shape": [
+          12,
+          14
+        ],
+        "dtype": "float64",
+        "min": 1950.2935161959726,
+        "max": 2050.0
+      },
+      "source_y": {
+        "shape": [
+          1,
+          1,
+          180
+        ],
+        "dtype": "float64",
+        "min": -4449468.139383149,
+        "max": 10000000.0
+      },
+      "source_x": {
+        "shape": [
+          1,
+          1,
+          180
+        ],
+        "dtype": "float64",
+        "min": -7000000.0,
+        "max": 3121621.151114084
+      },
+      "source_locations": [
+        [
+          [
+            4,
+            5
+          ]
+        ]
+      ],
+      "receiver_locations": [
+        [
+          [
+            4,
+            7
+          ],
+          [
+            7,
+            6
+          ],
+          [
+            8,
+            9
+          ]
+        ]
+      ],
+      "spacing": [
+        10.0,
+        10.0
+      ],
+      "dt": 0.0005,
+      "pml_width": [
+        5,
+        6,
+        4,
+        7
+      ],
+      "pml_freq": 25.0,
+      "max_vel": 5000.0
+    },
+    "gradient_surface": {
+      "vp": {
+        "shape": [
+          12,
+          14
+        ],
+        "dtype": "float64",
+        "min": 0.0,
+        "max": 3179.632636620141
+      },
+      "vs": {
+        "shape": [
+          12,
+          14
+        ],
+        "dtype": "float64",
+        "min": 0.0,
+        "max": 1531.4354904310778
+      },
+      "rho": {
+        "shape": [
+          12,
+          14
+        ],
+        "dtype": "float64",
+        "min": 0.0,
+        "max": 2048.008514332518
+      },
+      "source_y": {
+        "shape": [
+          1,
+          1,
+          180
+        ],
+        "dtype": "float64",
+        "min": -4449468.139383149,
+        "max": 10000000.0
+      },
+      "source_x": {
+        "shape": [
+          1,
+          1,
+          180
+        ],
+        "dtype": "float64",
+        "min": -7000000.0,
+        "max": 3121621.151114084
+      },
+      "source_locations": [
+        [
+          [
+            4,
+            5
+          ]
+        ]
+      ],
+      "receiver_locations": [
+        [
+          [
+            1,
+            7
+          ],
+          [
+            7,
+            6
+          ],
+          [
+            8,
+            9
+          ]
+        ]
+      ],
+      "spacing": [
+        10.0,
+        10.0
+      ],
+      "dt": 0.0005,
+      "pml_width": [
+        0,
+        6,
+        4,
+        7
+      ],
+      "pml_freq": 25.0,
+      "max_vel": 5000.0
+    }
+  },
+  "tolerances": {
+    "PARITY": 0.0001,
+    "CROSS": 0.0002,
+    "GRAD_FD": 0.001,
+    "FD_STEP": 0.001,
+    "ORACLE_FD_STEP": 0.0001,
+    "ORACLE_GRAD_FD": 2e-05,
+    "RAYLEIGH_TIME": 0.01,
+    "ORDER_MIN": 1.8,
+    "ORDER_MAX": 2.3,
+    "PLANE_FINE_ERROR": 0.0035,
+    "PML_REFLECTION": 0.01,
+    "REFLECTIVE_MIN": 0.1,
+    "PML_IMPROVEMENT": 20.0,
+    "RAYLEIGH_ROOT_RESIDUAL": 1e-10,
+    "RAYLEIGH_ROOT_XTOL": 1e-14,
+    "ZERO": 0.0,
+    "GOLDEN_BYTES_LIMIT": 20000000
+  },
+  "tolerance_reasons": "\"\"\"All numeric acceptance thresholds; changes after lock require Daniel.\"\"\"\n\n# Campaign float32 limit: global max-absolute error / reference max-absolute\n# amplitude PER component, with no pointwise relative errors near trace zeros.\n# For the nominally absent plane-wave channels, roundoff/finite-sheet tails\n# have no meaningful relative scale: normalize by dominant velocity amplitude,\n# or rho*vp times that amplitude for pressure (physical impedance conversion).\nPARITY = 1.0e-4\n# Two independently rounded float32 paths can each spend the parity budget.\nCROSS = 2.0e-4\n# Campaign centered FD limit; relative multiplicative perturbations avoid\n# incompatible physical scales among speeds, density and force density.\nGRAD_FD = 1.0e-3\nFD_STEP = 1.0e-3\n# Float64 oracle adjoint check: h=1e-4, truncation O(h^2), CPU rounding tiny.\nORACLE_FD_STEP = 1.0e-4\nORACLE_GRAD_FD = 2.0e-5\n# Explicit project pass criterion, applied to each measured Rayleigh arrival.\nRAYLEIGH_TIME = 0.01\n# O(h^2) expected; allow order >=1.8 for finite-grid pre-asymptotic effects\n# and <=2.3 to catch a broken analytic comparison/vanishing numerical errors.\nORDER_MIN = 1.8\nORDER_MAX = 2.3\n# Finest plane-wave relative L2 error <=0.35% includes discretization AND the\n# FULL allowed max-norm parity budget. By the triangle inequality its bound is\n# E_ref + PARITY*peak_ref*sqrt(nt)/norm(analytic). The oracle records this bound\n# for each mode and asserts it fits below 0.0035 (also checked by the integrity\n# test). Round 1's 0.003 sat only 0.8% above S's E_ref=0.002976, insufficient\n# for independently ordered float32 arithmetic. Convergence order is unchanged.\nPLANE_FINE_ERROR = 3.5e-3\n# C-PML late reflected L2 norm <=1% of incident full-record L2 norm vs a large\n# domain; approximate finite absorbing layers cannot have exact zero echo.\nPML_REFLECTION = 0.01\n# Negative control must reflect at least 10% and C-PML improve it >=20x.\nREFLECTIVE_MIN = 0.10\nPML_IMPROVEMENT = 20.0\n# Float64 analytic polynomial root and physical speed sanity (not GPU parity).\nRAYLEIGH_ROOT_RESIDUAL = 1.0e-10\n# Float64 Brent solver termination, far below the arrival-time error budget.\nRAYLEIGH_ROOT_XTOL = 1.0e-14\n# Output of a zero initial-state zero-source linear propagator is exactly zero.\nZERO = 0.0\n# Frozen contract requires total stored goldens under 20 MB (decimal bytes).\nGOLDEN_BYTES_LIMIT = 20_000_000\n",
+  "checks": {
+    "heterogeneous": {
+      "shape": [
+        28,
+        34
+      ],
+      "nt": 480,
+      "peaks": {
+        "vy": 2.4925102517743443,
+        "vx": 1.9837530289619112,
+        "p": 4847500.903854013
+      }
+    },
+    "free_surface": {
+      "shape": [
+        28,
+        34
+      ],
+      "nt": 480,
+      "peaks": {
+        "vy": 7.318725307641154,
+        "vx": 1.9957097300955444,
+        "p": 4181586.3995333756
+      }
+    },
+    "zero": {
+      "shape": [
+        9,
+        11
+      ],
+      "nt": 16,
+      "peaks": {
+        "vy": 0.0,
+        "vx": 0.0,
+        "p": 0.0
+      }
+    },
+    "plane_P_0": {
+      "shape": [
+        82,
+        222
+      ],
+      "nt": 800,
+      "peaks": {
+        "vy": 8.45671047942604,
+        "vx": 0.0,
+        "p": 38055120.996935286
+      }
+    },
+    "plane_P_1": {
+      "shape": [
+        163,
+        443
+      ],
+      "nt": 1600,
+      "peaks": {
+        "vy": 8.364436651730054,
+        "vx": 7.778401572745918e-20,
+        "p": 37638391.18856448
+      }
+    },
+    "plane_P_2": {
+      "shape": [
+        325,
+        885
+      ],
+      "nt": 3200,
+      "peaks": {
+        "vy": 8.34112619074879,
+        "vx": 0.0,
+        "p": 37535058.98619811
+      }
+    },
+    "convergence_P": {
+      "errors": [
+        0.04548768454971791,
+        0.011044374200120319,
+        0.0027414747032943657
+      ],
+      "orders": [
+        2.0421643247295544,
+        2.010287608086108
+      ],
+      "parity_l2_budgets": [
+        0.00038560167998264903,
+        0.00038139425877973984,
+        0.00038033136878990115
+      ],
+      "fine_error_with_full_parity_budget": 0.003121806072084267,
+      "fine_threshold_headroom": 0.00037819392791573316
+    },
+    "plane_S_0": {
+      "shape": [
+        82,
+        222
+      ],
+      "nt": 800,
+      "peaks": {
+        "vy": 6.928290778347903e-14,
+        "vx": 17.12937223550059,
+        "p": 3.871698941634287e-06
+      }
+    },
+    "plane_S_1": {
+      "shape": [
+        163,
+        443
+      ],
+      "nt": 1600,
+      "peaks": {
+        "vy": 3.4591794068720212e-18,
+        "vx": 16.778882739877282,
+        "p": 2.4848001278052918e-11
+      }
+    },
+    "plane_S_2": {
+      "shape": [
+        325,
+        885
+      ],
+      "nt": 3200,
+      "peaks": {
+        "vy": 0.0,
+        "vx": 16.694455711599584,
+        "p": 0.0
+      }
+    },
+    "convergence_S": {
+      "errors": [
+        0.050852471327683765,
+        0.012055260810570637,
+        0.0029762286297461793
+      ],
+      "orders": [
+        2.07665502447244,
+        2.018105601744135
+      ],
+      "parity_l2_budgets": [
+        0.0003188623826227679,
+        0.0003123380382268383,
+        0.00031076643321795584
+      ],
+      "fine_error_with_full_parity_budget": 0.0032869950629641352,
+      "fine_threshold_headroom": 0.00021300493703586484
+    },
+    "lamb": {
+      "shape": [
+        103,
+        481
+      ],
+      "nt": 4125,
+      "peaks": {
+        "vy": 2.7809458756772223,
+        "vx": 0.0,
+        "p": 0.0
+      }
+    },
+    "rayleigh": {
+      "speed": 1398.788858896732,
+      "analytic": [
+        0.37596167138154957,
+        0.5189425070723244,
+        0.661923342763099
+      ],
+      "measured": [
+        0.3782617103732289,
+        0.5221841941092054,
+        0.6661080024731781
+      ],
+      "relative_error": [
+        0.00611774860779659,
+        0.00624671710777626,
+        0.006321970294340816
+      ],
+      "lag_relative_error": [
+        0.0065858339731498785,
+        0.006595098347567238
+      ]
+    },
+    "pml": {
+      "shape": [
+        31,
+        37
+      ],
+      "nt": 1200,
+      "peaks": {
+        "vy": 12.207945662078737,
+        "vx": 12.20794566207874,
+        "p": 22644753.33907563
+      }
+    },
+    "reflective": {
+      "shape": [
+        31,
+        37
+      ],
+      "nt": 1200,
+      "peaks": {
+        "vy": 12.207945662078737,
+        "vx": 12.20794566207874,
+        "p": 22644753.33907563
+      }
+    },
+    "absorption": {
+      "pml": [
+        8.638649482885363e-05,
+        0.0001966869900258717
+      ],
+      "reflective": [
+        0.2893198194932235,
+        0.3302071726089218
+      ],
+      "improvement": [
+        3349.1325243189385,
+        1678.8460312778552
+      ]
+    },
+    "gradient": {
+      "shape": [
+        12,
+        14
+      ],
+      "nt": 180,
+      "peaks": {
+        "vy": 6.068493936770373,
+        "vx": 3.9670437915809837,
+        "p": 11267843.450285282,
+        "objective": 0.008466674907388129,
+        "grad_vp": 5.003391477022511e-07,
+        "grad_vs": 3.597139560021434e-05,
+        "grad_rho": 3.604690779453682e-06,
+        "grad_source_y": 1.8334060922351528e-10,
+        "grad_source_x": 1.5896540329819772e-10
+      }
+    },
+    "gradient_fd": {
+      "vp_0": {
+        "fd": 0.0028444350721676392,
+        "adjoint": 0.0028444405430717076,
+        "error": 1.9233673495617244e-06
+      },
+      "vp_1": {
+        "fd": -0.0008930288141438536,
+        "adjoint": -0.0008930251934988919,
+        "error": 4.05434282113034e-06
+      },
+      "vs_0": {
+        "fd": -0.4945537095944925,
+        "adjoint": -0.49455388275133955,
+        "error": 3.5012736340122854e-07
+      },
+      "vs_1": {
+        "fd": -0.07204262382280203,
+        "adjoint": -0.07204249887846952,
+        "error": 1.7343112436659715e-06
+      },
+      "rho_0": {
+        "fd": -0.02870629373847612,
+        "adjoint": -0.028706291743227245,
+        "error": 6.950562458597472e-08
+      },
+      "rho_1": {
+        "fd": 0.013959614191426037,
+        "adjoint": 0.013959616129770454,
+        "error": 1.3885370480437085e-07
+      },
+      "source_y_0": {
+        "fd": 0.010851408753526776,
+        "adjoint": 0.010851408753498113,
+        "error": 2.6413930803453684e-12
+      },
+      "source_y_1": {
+        "fd": 0.011211330053408769,
+        "adjoint": 0.011211330053464672,
+        "error": 4.986312816609359e-12
+      },
+      "source_x_0": {
+        "fd": 0.017854882989739793,
+        "adjoint": 0.01785488298972912,
+        "error": 5.977086957300102e-13
+      },
+      "source_x_1": {
+        "fd": 0.007005417580023543,
+        "adjoint": 0.007005417580047035,
+        "error": 3.3533511804617075e-12
+      }
+    },
+    "gradient_surface": {
+      "shape": [
+        12,
+        14
+      ],
+      "nt": 180,
+      "peaks": {
+        "vy": 4.2534454004102225,
+        "vx": 3.8231323294780806,
+        "p": 8941091.512164965,
+        "objective": 0.015953806823237972,
+        "grad_vp": 2.0322214775325848e-06,
+        "grad_vs": 7.539015247606583e-05,
+        "grad_rho": 5.253834607368723e-06,
+        "grad_source_y": 3.930973940930245e-10,
+        "grad_source_x": 2.05814504096814e-10
+      }
+    },
+    "gradient_surface_fd": {
+      "vp_0": {
+        "fd": 0.04756308813011478,
+        "adjoint": 0.047563135582489334,
+        "error": 9.976712840612322e-07
+      },
+      "vp_1": {
+        "fd": 0.02340973082225889,
+        "adjoint": 0.023409745256758097,
+        "error": 6.166021478960611e-07
+      },
+      "vs_0": {
+        "fd": -0.9698156075062594,
+        "adjoint": -0.9698160644221866,
+        "error": 4.711366866017122e-07
+      },
+      "vs_1": {
+        "fd": 0.1963128900320764,
+        "adjoint": 0.19631271839253936,
+        "error": 8.743161847378254e-07
+      },
+      "rho_0": {
+        "fd": -0.0347177271830916,
+        "adjoint": -0.03471772470572919,
+        "error": 7.135727518593621e-08
+      },
+      "rho_1": {
+        "fd": 0.07634394418958718,
+        "adjoint": 0.07634393469593195,
+        "error": 1.2435374310100717e-07
+      },
+      "source_y_0": {
+        "fd": 0.020096850156213486,
+        "adjoint": 0.020096850156204264,
+        "error": 4.588674307969371e-13
+      },
+      "source_y_1": {
+        "fd": -0.008292131607884334,
+        "adjoint": -0.008292131607887117,
+        "error": 3.355586460808471e-13
+      },
+      "source_x_0": {
+        "fd": 0.014620874549432783,
+        "adjoint": 0.014620874549524873,
+        "error": 6.298496723555936e-12
+      },
+      "source_x_1": {
+        "fd": -0.004470510053394827,
+        "adjoint": -0.004470510053431679,
+        "error": 8.243264800092568e-12
+      }
+    },
+    "float32_reference_audit": {
+      "free_surface": {
+        "vy": 5.190899790134614e-07,
+        "vx": 7.390852935685367e-07,
+        "p": 1.2264817149061418e-06
+      },
+      "gradient": {
+        "vy": 5.728052442803087e-07,
+        "vx": 5.091298591602673e-07,
+        "p": 4.0953090930144437e-07,
+        "objective": 2.4153798820068625e-06,
+        "grad_vp": 1.8381726539690007e-06,
+        "grad_vs": 1.3888930233705432e-06,
+        "grad_rho": 2.8950450859556566e-06,
+        "grad_source_y": 1.3941274430678527e-06,
+        "grad_source_x": 1.0636234394679282e-06,
+        "centered_fd": {
+          "vp_0": 8.15452359809158e-05,
+          "vp_1": 9.700039533872539e-05,
+          "vs_0": 3.291977450750435e-05,
+          "vs_1": 0.00015193401038609213,
+          "rho_0": 0.00011344021249288174,
+          "rho_1": 0.00021581640853250402,
+          "source_y_0": 6.045156919450842e-05,
+          "source_y_1": 0.00029946114887775165,
+          "source_x_0": 6.666746886524098e-06,
+          "source_x_1": 0.0002501039659432701
+        }
+      },
+      "gradient_surface": {
+        "vy": 1.3517440264664822e-06,
+        "vx": 5.896376169699922e-07,
+        "p": 8.533257473111337e-07,
+        "objective": 2.780932711028387e-06,
+        "grad_vp": 3.2650184065282014e-06,
+        "grad_vs": 1.5747192529398837e-06,
+        "grad_rho": 4.744360659447973e-06,
+        "grad_source_y": 2.04047349839589e-06,
+        "grad_source_x": 2.2881455828690136e-06,
+        "centered_fd": {
+          "vp_0": 6.145251026642816e-05,
+          "vp_1": 0.00011244364953663388,
+          "vs_0": 4.8279539430050646e-05,
+          "vs_1": 0.0001003869690921665,
+          "rho_0": 0.00012774950472504705,
+          "rho_1": 1.191298966304365e-05,
+          "source_y_0": 1.7327525951310907e-05,
+          "source_y_1": 0.00016463907612316084,
+          "source_x_0": 0.00028146765357758266,
+          "source_x_1": 6.2595653804764064e-06
+        }
+      },
+      "heterogeneous": {
+        "vy": 4.932823158935403e-07,
+        "vx": 5.723901088056882e-07,
+        "p": 1.013533060703626e-06
+      },
+      "lamb": {
+        "vy": 1.1408749794625138e-06,
+        "vx": 0.0,
+        "p": 0.0
+      },
+      "plane_P_0": {
+        "vy": 6.858549128564529e-07,
+        "vx": 0.0,
+        "p": 7.134718312665381e-07
+      },
+      "plane_P_1": {
+        "vy": 1.1566619032745486e-06,
+        "vx": 9.299372924459982e-21,
+        "p": 1.1299616829950116e-06
+      },
+      "plane_P_2": {
+        "vy": 1.5527378289613205e-06,
+        "vx": 0.0,
+        "p": 1.835947520761031e-06
+      },
+      "plane_S_0": {
+        "vy": 4.044684582187451e-15,
+        "vx": 3.587508787603167e-07,
+        "p": 3.7671150353175223e-14
+      },
+      "plane_S_1": {
+        "vy": 2.0616267843929882e-19,
+        "vx": 7.672993354733131e-07,
+        "p": 2.468181946643988e-19
+      },
+      "plane_S_2": {
+        "vy": 0.0,
+        "vx": 1.2824548876659722e-06,
+        "p": 0.0
+      },
+      "pml": {
+        "vy": 2.0295881073509125e-07,
+        "vx": 1.3295065680355348e-07,
+        "p": 2.4521383807237596e-07
+      },
+      "reflective": {
+        "vy": 2.411664217968713e-07,
+        "vx": 2.0295035860842083e-07,
+        "p": 4.696548991243916e-07
+      },
+      "zero": {
+        "vy": 0.0,
+        "vx": 0.0,
+        "p": 0.0
+      }
+    }
+  },
+  "analytic": [
+    "1-D d'Alembert P/S force-sheet Green function",
+    "Lamb half-space vertical surface load: Rayleigh secular polynomial q^3-8q^2+(24-16 beta)q-16(1-beta)=0, q=(cR/vs)^2, beta=(vs/vp)^2"
+  ],
+  "papers": [
+    "Komatitsch and Martin (2007), An unsplit convolutional perfectly matched layer improved at grazing incidence for the seismic wave equation, Geophysics 72(5), SM155-SM167, doi:10.1190/1.2757586",
+    "Lamb (1904), On the propagation of tremors over the surface of an elastic solid, Phil. Trans. R. Soc. A 203, 1-42, doi:10.1098/rsta.1904.0013",
+    "Zeng et al. (2012), Improved vacuum formulation for 2D finite-difference modeling of Rayleigh waves including surface topography and internal discontinuities, Geophysics 77(1), T1-T9, doi:10.1190/geo2011-0067.1"
+  ],
+  "elapsed_seconds": 18.701332457974786
+}

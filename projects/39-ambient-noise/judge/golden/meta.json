@@ -1,0 +1,64 @@
+{
+  "seed": 39001,
+  "numpy": "2.5.4",
+  "reference": "NumPy float64 FFT and analytic 1D bidirectional impulse Green function",
+  "cases": {
+    "diffuse": {
+      "shape": [
+        128,
+        256
+      ],
+      "dt_s": 0.01,
+      "band_hz": [
+        3,
+        25
+      ],
+      "eps": 1e-10,
+      "delay_samples": 17,
+      "green_correlation": 1.0
+    },
+    "edge": {
+      "shape": [
+        4,
+        63
+      ],
+      "dt_s": 0.02,
+      "band_hz": [
+        0,
+        18
+      ],
+      "eps": 0.1
+    },
+    "nyquist": {
+      "shape": [
+        3,
+        64
+      ],
+      "dt_s": 0.02,
+      "band_hz": [
+        0,
+        25
+      ],
+      "eps": 0.1
+    }
+  },
+  "cutoff_magnitudes": {
+    "diffuse": {
+      "largest_rejected": null,
+      "smallest_retained": 0.05982237945128781
+    },
+    "edge": {
+      "largest_rejected": 2.9699228817969095e-07,
+      "smallest_retained": 0.1621937700547278
+    },
+    "nyquist": {
+      "largest_rejected": 0.04081246866806868,
+      "smallest_retained": 0.3736438741226466
+    }
+  },
+  "tolerances": {
+    "fft_relative": "1e-4 peak normalized for float32 FFT roundoff",
+    "cross_path_relative": "1e-4 peak normalized for float32 backend parity",
+    "green_correlation": "at least 0.9, project criterion"
+  }
+}

@@ -1,0 +1,291 @@
+{
+  "generator": "judge/make_goldens.py",
+  "seed": "none; deterministic analytic grids",
+  "versions": {
+    "python": "3.12.11",
+    "numpy": "2.5.4",
+    "scikit-fmm": "2025.06.23"
+  },
+  "inputs": "Cartesian axes start at -1 m with scalar spacing; square and cubic grids span [-1,1] m, rectangular grids extend farther along longer axes. phi=distance from source minus 0.01 grid spacings. Analytic cases use the origin; heterogeneous cases use (-0.4, 0.2[, -0.2]) m. Homogeneous speed 2 m/s; gradient speed 2+0.6*x0 m/s; heterogeneous speed is documented in generator. skfmm.travel_time uses order=1 and scalar dx.",
+  "analytic": "Homogeneous r/v; linear speed v0+g*x0: acosh(1+g^2*r^2/(2*v0*v))/g. Point-source comparison excludes r<0.25 m; sampled source sphere shrinks with h.",
+  "tolerances": {
+    "reference_relative_max": {
+      "value": 0.0001,
+      "reason": "Campaign float32 same-discretization parity, normalized by maximum reference travel time."
+    },
+    "min_observed_order": {
+      "value": 0.65,
+      "reason": "Finite-grid allowance for point-source singularity and logarithmic corrections; the oracle's pairwise rates are approximately 0.67-0.72."
+    },
+    "max_observed_order": {
+      "value": 1.35,
+      "reason": "Finite-grid allowance around first order; guards accidental fixture or metric errors."
+    }
+  },
+  "cases": {
+    "homogeneous_2d_21": {
+      "shape": [
+        21,
+        21
+      ],
+      "spacing_m": 0.1,
+      "speed_range_m_per_s": [
+        2.0,
+        2.0
+      ],
+      "travel_range_s": [
+        0.0003535533905932735,
+        0.7476625768611893
+      ],
+      "mean_analytic_error_s_radius_ge_0.25_m": 0.022934982677282306
+    },
+    "homogeneous_2d_41": {
+      "shape": [
+        41,
+        41
+      ],
+      "spacing_m": 0.05,
+      "speed_range_m_per_s": [
+        2.0,
+        2.0
+      ],
+      "travel_range_s": [
+        0.00017677669529663674,
+        0.7324764907331691
+      ],
+      "mean_analytic_error_s_radius_ge_0.25_m": 0.014422502415790397
+    },
+    "homogeneous_2d_81": {
+      "shape": [
+        81,
+        81
+      ],
+      "spacing_m": 0.025,
+      "speed_range_m_per_s": [
+        2.0,
+        2.0
+      ],
+      "travel_range_s": [
+        8.838834764831798e-05,
+        0.7225125119807733
+      ],
+      "mean_analytic_error_s_radius_ge_0.25_m": 0.008855642592939606
+    },
+    "gradient_2d_21": {
+      "shape": [
+        21,
+        21
+      ],
+      "spacing_m": 0.1,
+      "speed_range_m_per_s": [
+        1.4,
+        2.6
+      ],
+      "travel_range_s": [
+        0.0003535533905932735,
+        0.8861044749253013
+      ],
+      "mean_analytic_error_s_radius_ge_0.25_m": 0.02385748348477475
+    },
+    "gradient_2d_41": {
+      "shape": [
+        41,
+        41
+      ],
+      "spacing_m": 0.05,
+      "speed_range_m_per_s": [
+        1.4,
+        2.6
+      ],
+      "travel_range_s": [
+        0.00017677669529663674,
+        0.8659725561033893
+      ],
+      "mean_analytic_error_s_radius_ge_0.25_m": 0.01480396693990818
+    },
+    "gradient_2d_81": {
+      "shape": [
+        81,
+        81
+      ],
+      "spacing_m": 0.025,
+      "speed_range_m_per_s": [
+        1.4,
+        2.6
+      ],
+      "travel_range_s": [
+        8.838834764831798e-05,
+        0.8537087217803258
+      ],
+      "mean_analytic_error_s_radius_ge_0.25_m": 0.00901948836073696
+    },
+    "heterogeneous_2d_31": {
+      "shape": [
+        31,
+        31
+      ],
+      "spacing_m": 0.06666666666666667,
+      "speed_range_m_per_s": [
+        1.7001422508183563,
+        2.2998577491816437
+      ],
+      "travel_range_s": [
+        0.00026344348249540244,
+        0.9396540480971017
+      ],
+      "mean_analytic_error_s_radius_ge_0.25_m": null
+    },
+    "homogeneous_3d_21": {
+      "shape": [
+        21,
+        21,
+        21
+      ],
+      "spacing_m": 0.1,
+      "speed_range_m_per_s": [
+        2.0,
+        2.0
+      ],
+      "travel_range_s": [
+        0.0002886751345948127,
+        0.9380668492488156
+      ],
+      "mean_analytic_error_s_radius_ge_0.25_m": 0.043972588283396445
+    },
+    "homogeneous_3d_41": {
+      "shape": [
+        41,
+        41,
+        41
+      ],
+      "spacing_m": 0.05,
+      "speed_range_m_per_s": [
+        2.0,
+        2.0
+      ],
+      "travel_range_s": [
+        0.00014433756729740634,
+        0.9105325232162087
+      ],
+      "mean_analytic_error_s_radius_ge_0.25_m": 0.02742348711435824
+    },
+    "homogeneous_3d_81": {
+      "shape": [
+        81,
+        81,
+        81
+      ],
+      "spacing_m": 0.025,
+      "speed_range_m_per_s": [
+        2.0,
+        2.0
+      ],
+      "travel_range_s": [
+        7.216878364870285e-05,
+        0.8927857132047241
+      ],
+      "mean_analytic_error_s_radius_ge_0.25_m": 0.01667417190260271
+    },
+    "gradient_3d_21": {
+      "shape": [
+        21,
+        21,
+        21
+      ],
+      "spacing_m": 0.1,
+      "speed_range_m_per_s": [
+        1.4,
+        2.6
+      ],
+      "travel_range_s": [
+        0.0002886751345948127,
+        1.099237281085255
+      ],
+      "mean_analytic_error_s_radius_ge_0.25_m": 0.04459478039604619
+    },
+    "gradient_3d_41": {
+      "shape": [
+        41,
+        41,
+        41
+      ],
+      "spacing_m": 0.05,
+      "speed_range_m_per_s": [
+        1.4,
+        2.6
+      ],
+      "travel_range_s": [
+        0.00014433756729740634,
+        1.0670059516839154
+      ],
+      "mean_analytic_error_s_radius_ge_0.25_m": 0.027641074957961385
+    },
+    "gradient_3d_81": {
+      "shape": [
+        81,
+        81,
+        81
+      ],
+      "spacing_m": 0.025,
+      "speed_range_m_per_s": [
+        1.4,
+        2.6
+      ],
+      "travel_range_s": [
+        7.216878364870285e-05,
+        1.0472313428960067
+      ],
+      "mean_analytic_error_s_radius_ge_0.25_m": 0.016739256537136062
+    },
+    "heterogeneous_3d_31": {
+      "shape": [
+        31,
+        31,
+        31
+      ],
+      "spacing_m": 0.06666666666666667,
+      "speed_range_m_per_s": [
+        1.5030523048206643,
+        2.496947695179336
+      ],
+      "travel_range_s": [
+        0.0002219565318919765,
+        1.1105724125525498
+      ],
+      "mean_analytic_error_s_radius_ge_0.25_m": null
+    },
+    "heterogeneous_2d_rect": {
+      "shape": [
+        21,
+        27
+      ],
+      "spacing_m": 0.1,
+      "speed_range_m_per_s": [
+        1.7015226950667257,
+        2.2984773049332743
+      ],
+      "travel_range_s": [
+        0.0003951652237430578,
+        1.0808184763644781
+      ],
+      "mean_analytic_error_s_radius_ge_0.25_m": null
+    },
+    "heterogeneous_3d_rect": {
+      "shape": [
+        21,
+        25,
+        29
+      ],
+      "spacing_m": 0.1,
+      "speed_range_m_per_s": [
+        1.5044327490690337,
+        2.49838247105437
+      ],
+      "travel_range_s": [
+        0.0003329347978379351,
+        1.3912777543216464
+      ],
+      "mean_analytic_error_s_radius_ge_0.25_m": null
+    }
+  }
+}

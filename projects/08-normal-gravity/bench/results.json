@@ -1,0 +1,60 @@
+{
+  "project": "08-normal-gravity",
+  "sizes": {
+    "small": {
+      "points_per_batch": 1048576,
+      "batches": 1
+    },
+    "medium": {
+      "points_per_batch": 1048576,
+      "batches": 16
+    },
+    "large": {
+      "points_per_batch": 1048576,
+      "batches": 128
+    }
+  },
+  "results": {
+    "judge": {
+      "small": {
+        "wall_s": 0.060729249991709366,
+        "peak_mem_mb": 120.00189208984375,
+        "mem_method": "tracemalloc peak allocated bytes during a separate run"
+      },
+      "medium": {
+        "wall_s": 1.0304980840010103,
+        "peak_mem_mb": 128.0020751953125,
+        "mem_method": "tracemalloc peak allocated bytes during a separate run"
+      },
+      "large": {
+        "wall_s": 8.347581792011624,
+        "peak_mem_mb": 128.0020751953125,
+        "mem_method": "tracemalloc peak allocated bytes during a separate run"
+      }
+    },
+    "mlx": {
+      "small": {
+        "wall_s": 0.003994250000687316,
+        "peak_mem_mb": 142.00011825561523,
+        "mem_method": "MLX peak allocated bytes during a separate run; process RSS is lifetime high-water mark",
+        "process_peak_rss_mb": 277.09375
+      },
+      "medium": {
+        "wall_s": 0.04421541598276235,
+        "peak_mem_mb": 142.00011825561523,
+        "mem_method": "MLX peak allocated bytes during a separate run; process RSS is lifetime high-water mark",
+        "process_peak_rss_mb": 349.140625
+      },
+      "large": {
+        "wall_s": 0.28937066698563285,
+        "peak_mem_mb": 142.00011825561523,
+        "mem_method": "MLX peak allocated bytes during a separate run; process RSS is lifetime high-water mark",
+        "process_peak_rss_mb": 349.140625
+      }
+    }
+  },
+  "medium_max_rel_diff": {
+    "mlx": 8.640165247817085e-07
+  },
+  "notes": "Seed 82026; each size repeats the same float32 batch of uniformly sampled latitudes and heights (0\u20132000 km). Times include input conversion and output materialization through the harness; memory is measured in an additional run. MLX peak includes live MLX allocations at reset. RSS is macOS process lifetime high-water, not a per-run delta. Large timing is hardware-dependent."
+}

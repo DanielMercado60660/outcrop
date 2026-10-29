@@ -1,0 +1,72 @@
+{
+  "seed": 1301,
+  "versions": {
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "torch": "2.15.0",
+    "deepwave": "0.1.0"
+  },
+  "parity": {
+    "shape": [
+      37,
+      43
+    ],
+    "spacing_m": 10.0,
+    "dt_s": 0.001,
+    "nt": 300,
+    "pml_width": [
+      9,
+      12,
+      10,
+      11
+    ],
+    "pml_freq_hz": 18.0,
+    "max_vel_m_s": 1900.0,
+    "description": "heterogeneous two-shot model, random seed 1301, asymmetric PML"
+  },
+  "convergence": {
+    "spacing_m": [
+      20,
+      10,
+      5
+    ],
+    "dt_s": [
+      0.005333333333333333,
+      0.0026666666666666666,
+      0.0013333333333333333
+    ],
+    "velocity_m_s": 1500,
+    "offset_m": 240,
+    "domain_width_m": 1600,
+    "pml_width": [
+      10,
+      10,
+      10,
+      10
+    ],
+    "pml_freq_hz": 5.0,
+    "description": "Gaussian pulse centered at 0.15 s, sigma 0.025 s, point source scaled by inverse cell area; causal 2D Green convolution"
+  },
+  "tolerances": {
+    "PARITY": {
+      "value": 0.0001,
+      "reason": "float32 time-stepping error relative to reference peak"
+    },
+    "CROSS_PATH": {
+      "value": 0.0002,
+      "reason": "independent accumulated float32 rounding"
+    },
+    "CONVERGENCE_COARSE_MIN": {
+      "value": 1.25,
+      "reason": "combined order 2 minus 0.75, coarse cancellation"
+    },
+    "CONVERGENCE_FINE_MIN": {
+      "value": 1.65,
+      "reason": "combined order 2 minus 0.35"
+    },
+    "CONVERGENCE_MAX": {
+      "value": 2.75,
+      "reason": "combined order 2 plus 0.75"
+    }
+  }
+}

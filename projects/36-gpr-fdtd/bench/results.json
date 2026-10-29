@@ -1,0 +1,79 @@
+{
+  "project": "36-gpr-fdtd",
+  "sizes": {
+    "small": {
+      "nx": 256,
+      "nz": 256,
+      "steps": 240
+    },
+    "medium": {
+      "nx": 512,
+      "nz": 512,
+      "steps": 350
+    },
+    "large": {
+      "nx": 1536,
+      "nz": 1536,
+      "steps": 700
+    }
+  },
+  "results": {
+    "judge": {
+      "small": {
+        "wall_s": 0.08965016700676642,
+        "peak_mem_mb": 4.301692,
+        "mem_method": "tracemalloc peak Python/NumPy allocations during call (MB)"
+      },
+      "medium": {
+        "wall_s": 0.6065148749912623,
+        "peak_mem_mb": 16.906332,
+        "mem_method": "tracemalloc peak Python/NumPy allocations during call (MB)"
+      },
+      "large": {
+        "skipped": "Large float64 sparse reference may exceed 120 seconds; medium provides the parity check."
+      }
+    },
+    "mlx": {
+      "small": {
+        "wall_s": 0.041363833006471395,
+        "peak_mem_mb": 2.621448,
+        "mem_method": "MLX peak allocated memory after reset (MB); process RSS high-water mark separately",
+        "process_peak_rss_mb": 84.246528
+      },
+      "medium": {
+        "wall_s": 0.06852895798510872,
+        "peak_mem_mb": 12.58292,
+        "mem_method": "MLX peak allocated memory after reset (MB); process RSS high-water mark separately",
+        "process_peak_rss_mb": 126.042112
+      },
+      "large": {
+        "wall_s": 0.4933447499934118,
+        "peak_mem_mb": 132.120584,
+        "mem_method": "MLX peak allocated memory after reset (MB); process RSS high-water mark separately",
+        "process_peak_rss_mb": 352.813056
+      }
+    },
+    "metal": {
+      "small": {
+        "wall_s": 0.042929874995024875,
+        "peak_mem_mb": 0.0,
+        "mem_method": "delta of RUSAGE_CHILDREN ru_maxrss high-water mark (macOS bytes, MB); may be zero after an earlier larger child"
+      },
+      "medium": {
+        "wall_s": 0.04932566700153984,
+        "peak_mem_mb": 0.032768,
+        "mem_method": "delta of RUSAGE_CHILDREN ru_maxrss high-water mark (macOS bytes, MB); may be zero after an earlier larger child"
+      },
+      "large": {
+        "wall_s": 0.14969958399888128,
+        "peak_mem_mb": 0.0,
+        "mem_method": "delta of RUSAGE_CHILDREN ru_maxrss high-water mark (macOS bytes, MB); may be zero after an earlier larger child"
+      }
+    }
+  },
+  "medium_max_rel_diff": {
+    "mlx": 4.899003421980043e-06,
+    "metal": 4.472548757987554e-06
+  },
+  "notes": "Seed 3601; dx=dz=0.05 m, dt=0.4*dx/c. Median of three calls after one warmup; includes harness conversion, file I/O and Metal process startup. Relative error is the largest field-wise max-norm error. Memory is decimal MB; child ru_maxrss is a cumulative high-water mark, so its delta is not a reliable per-call peak. MLX RSS is the process lifetime high-water mark, not an incremental allocation. Timing and size estimates are unverified on M5 Max."
+}

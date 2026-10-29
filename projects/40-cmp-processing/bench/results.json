@@ -1,0 +1,87 @@
+{
+  "project": "40-cmp-processing",
+  "sizes": {
+    "small": {
+      "n_offsets": 32,
+      "n_time": 384,
+      "n_velocities": 16,
+      "dt_s": 0.002,
+      "half_window": 5
+    },
+    "medium": {
+      "n_offsets": 64,
+      "n_time": 1024,
+      "n_velocities": 64,
+      "dt_s": 0.002,
+      "half_window": 5
+    },
+    "large": {
+      "n_offsets": 192,
+      "n_time": 3072,
+      "n_velocities": 256,
+      "dt_s": 0.002,
+      "half_window": 5
+    }
+  },
+  "results": {
+    "judge": {
+      "small": {
+        "wall_s": 0.047065624996321276,
+        "peak_mem_mb": 0.591976,
+        "mem_method": "tracemalloc peak traced allocations during call (MB)"
+      },
+      "medium": {
+        "wall_s": 0.61161983301281,
+        "peak_mem_mb": 3.206256,
+        "mem_method": "tracemalloc peak traced allocations during call (MB)"
+      },
+      "large": {
+        "wall_s": 8.515529958996922,
+        "peak_mem_mb": 30.070672,
+        "mem_method": "tracemalloc peak traced allocations during call (MB)"
+      }
+    },
+    "mlx": {
+      "small": {
+        "wall_s": 0.00298250000923872,
+        "peak_mem_mb": 4.461632,
+        "mem_method": "MLX reset_peak_memory/get_peak_memory (MB); process RSS is lifetime high-water mark",
+        "process_peak_rss_mb": 67.616768
+      },
+      "medium": {
+        "wall_s": 0.01030437502777204,
+        "peak_mem_mb": 19.45714,
+        "mem_method": "MLX reset_peak_memory/get_peak_memory (MB); process RSS is lifetime high-water mark",
+        "process_peak_rss_mb": 79.167488
+      },
+      "large": {
+        "wall_s": 0.050125749985454604,
+        "peak_mem_mb": 213.44038,
+        "mem_method": "MLX reset_peak_memory/get_peak_memory (MB); process RSS is lifetime high-water mark",
+        "process_peak_rss_mb": 155.97568
+      }
+    },
+    "metal": {
+      "small": {
+        "wall_s": 0.040144958009477705,
+        "peak_mem_mb": 0.0,
+        "mem_method": "RUSAGE_CHILDREN ru_maxrss high-water delta in macOS bytes (MB); may be zero after warmup"
+      },
+      "medium": {
+        "wall_s": 0.04361266701016575,
+        "peak_mem_mb": 0.262144,
+        "mem_method": "RUSAGE_CHILDREN ru_maxrss high-water delta in macOS bytes (MB); may be zero after warmup"
+      },
+      "large": {
+        "wall_s": 0.04807862499728799,
+        "peak_mem_mb": 0.049152,
+        "mem_method": "RUSAGE_CHILDREN ru_maxrss high-water delta in macOS bytes (MB); may be zero after warmup"
+      }
+    }
+  },
+  "medium_max_rel_diff": {
+    "mlx": 3.392103551946381e-06,
+    "metal": 3.4530557747448057e-06
+  },
+  "notes": "Semblance, including harness I/O and synchronization; median of three calls after one warmup. Relative difference is max absolute difference divided by max absolute reference value. RSS and MLX memory are high-water measurements, not additive; child RSS deltas can be zero after warmup. MB = 10^6 bytes. Fixed RNG seed 40."
+}

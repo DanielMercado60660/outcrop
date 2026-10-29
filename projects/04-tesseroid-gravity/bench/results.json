@@ -1,0 +1,78 @@
+{
+  "project": "04-tesseroid-gravity",
+  "sizes": {
+    "small": {
+      "observations": 8,
+      "sources": 1
+    },
+    "medium": {
+      "observations": 64,
+      "sources": 2
+    },
+    "large": {
+      "observations": 256,
+      "sources": 4
+    }
+  },
+  "results": {
+    "judge": {
+      "small": {
+        "wall_s": 0.000522666989127174,
+        "peak_mem_mb": 4.818977,
+        "mem_method": "tracemalloc peak Python allocations during call"
+      },
+      "medium": {
+        "wall_s": 0.0007065419922582805,
+        "peak_mem_mb": 4.823529,
+        "mem_method": "tracemalloc peak Python allocations during call"
+      },
+      "large": {
+        "wall_s": 0.001914833002956584,
+        "peak_mem_mb": 4.838897,
+        "mem_method": "tracemalloc peak Python allocations during call"
+      }
+    },
+    "mlx": {
+      "small": {
+        "wall_s": 0.0038040000072214752,
+        "peak_mem_mb": 0.023804,
+        "mem_method": "MLX reset_peak_memory/get_peak_memory; process peak RSS also reported",
+        "process_peak_rss_mb": 357.777408
+      },
+      "medium": {
+        "wall_s": 0.045066332997521386,
+        "peak_mem_mb": 0.160504,
+        "mem_method": "MLX reset_peak_memory/get_peak_memory; process peak RSS also reported",
+        "process_peak_rss_mb": 375.554048
+      },
+      "large": {
+        "wall_s": 0.37263541598804295,
+        "peak_mem_mb": 1.362396,
+        "mem_method": "MLX reset_peak_memory/get_peak_memory; process peak RSS also reported",
+        "process_peak_rss_mb": 516.25984
+      }
+    },
+    "metal": {
+      "small": {
+        "wall_s": 0.06960845901630819,
+        "peak_mem_mb": 0.180224,
+        "mem_method": "RUSAGE_CHILDREN ru_maxrss high-water delta (macOS bytes)"
+      },
+      "medium": {
+        "wall_s": 0.06882387498626485,
+        "peak_mem_mb": 0.0,
+        "mem_method": "RUSAGE_CHILDREN ru_maxrss high-water delta (macOS bytes)"
+      },
+      "large": {
+        "wall_s": 0.0763886249915231,
+        "peak_mem_mb": 0.0,
+        "mem_method": "RUSAGE_CHILDREN ru_maxrss high-water delta (macOS bytes)"
+      }
+    }
+  },
+  "medium_max_rel_diff": {
+    "mlx": 3.7294514282843864e-07,
+    "metal": 3.0186920700753687e-07
+  },
+  "notes": "g_z in mGal; radial adaptive subdivision; seed 20261028. Wall time includes harness I/O and Metal process startup. Memory values are decimal MB. Child ru_maxrss is a cumulative high-water mark, so its delta can be zero after warmup and is not the child's actual peak. tracemalloc excludes native allocations; process RSS is a lifetime high-water mark. MLX peak includes its live allocation baseline."
+}

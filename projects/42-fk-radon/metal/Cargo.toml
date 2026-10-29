@@ -1,0 +1,12 @@
+[package]
+name = "outcrop-42"
+edition.workspace = true
+version.workspace = true
+license.workspace = true
+
+[[bin]]
+name = "outcrop-42"
+path = "src/main.rs"
+
+[dependencies]
+outcrop-common = { workspace = true }

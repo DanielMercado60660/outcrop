@@ -1,0 +1,61 @@
+{
+  "project": "33-mt-occam",
+  "sizes": {
+    "small": {
+      "layers": 16,
+      "frequencies": 8192
+    },
+    "medium": {
+      "layers": 48,
+      "frequencies": 32768
+    },
+    "large": {
+      "layers": 128,
+      "frequencies": 131072
+    }
+  },
+  "results": {
+    "judge": {
+      "small": {
+        "wall_s": 0.07408370901248418,
+        "peak_mem_mb": 6.317897796630859,
+        "mem_method": "tracemalloc peak during call, MiB"
+      },
+      "medium": {
+        "wall_s": 2.236492875003023,
+        "peak_mem_mb": 73.27582931518555,
+        "mem_method": "tracemalloc peak during call, MiB"
+      },
+      "large": {
+        "skipped": "Centered finite-difference Jacobian scales quadratically with layer count and is expected to exceed 120 s at this size."
+      }
+    },
+    "mlx": {
+      "small": {
+        "wall_s": 0.006595375016331673,
+        "peak_mem_mb": 19.34536361694336,
+        "mem_method": "MLX reset_peak_memory/get_peak_memory, MiB",
+        "process_peak_rss_mb": 113.265625,
+        "process_rss_method": "RUSAGE_SELF ru_maxrss, macOS lifetime high-water mark, MiB"
+      },
+      "medium": {
+        "wall_s": 0.015526208007941023,
+        "peak_mem_mb": 169.37782669067383,
+        "mem_method": "MLX reset_peak_memory/get_peak_memory, MiB",
+        "process_peak_rss_mb": 194.28125,
+        "process_rss_method": "RUSAGE_SELF ru_maxrss, macOS lifetime high-water mark, MiB"
+      },
+      "large": {
+        "wall_s": 0.04611420800210908,
+        "peak_mem_mb": 1779.0058898925781,
+        "mem_method": "MLX reset_peak_memory/get_peak_memory, MiB",
+        "process_peak_rss_mb": 725.234375,
+        "process_rss_method": "RUSAGE_SELF ru_maxrss, macOS lifetime high-water mark, MiB"
+      }
+    }
+  },
+  "medium_max_rel_diff": {
+    "mlx": 0.00016917174712349298
+  },
+  "notes": "Objective and gradient, alpha=0.7; deterministic float32 inputs, seed 330101. Times are median of three calls after one warm-up, including harness conversion; judge timing includes tracemalloc overhead. Peak is the maximum of three runs in MiB. MLX RSS is process-lifetime high-water, not per-call incremental memory. Medium relative difference is componentwise with denominator floor 1e-8. Large timing is an unverified estimate; frequencies are dense to scale the workload."
+}

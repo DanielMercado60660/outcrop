@@ -1,0 +1,26 @@
+{
+  "seed": 43045,
+  "steps": 6000,
+  "planned_steps": 6000,
+  "batch_size": 32,
+  "training_seconds": 3339.8524189999735,
+  "device": "cpu",
+  "torch": "2.15.0",
+  "threads": 6,
+  "deterministic_algorithms": true,
+  "training_dtype": "float32",
+  "parameters": 162259,
+  "last_loss": 0.023621320724487305,
+  "widths": [
+    8,
+    16,
+    32,
+    64,
+    96
+  ],
+  "learning_rate_initial": 0.001,
+  "learning_rate_final": 0.0001,
+  "learning_rate_schedule": "saved float32 cosine, inclusive endpoints",
+  "schedule_sha256": "02c44be156a7fbace46cbdb205b800977e3f8dfa5388137c95739e265d30cae3",
+  "checkpoint_sha256": "16a38dcf270ff9725a33e9507c845c1eef42219fa171f355265253d0fa001a67"
+}

@@ -1,0 +1,60 @@
+{
+  "project": "37-sta-lta",
+  "sizes": {
+    "small": {
+      "samples": 640000,
+      "nsta": 40,
+      "nlta": 400
+    },
+    "medium": {
+      "samples": 6400000,
+      "nsta": 40,
+      "nlta": 400
+    },
+    "large": {
+      "samples": 64000000,
+      "nsta": 40,
+      "nlta": 400
+    }
+  },
+  "results": {
+    "judge": {
+      "small": {
+        "wall_s": 0.0005047500017099082,
+        "peak_mem_mb": 9.768482208251953,
+        "mem_method": "tracemalloc peak during call; input allocated before tracing"
+      },
+      "medium": {
+        "wall_s": 0.005050459003541619,
+        "peak_mem_mb": 97.65900039672852,
+        "mem_method": "tracemalloc peak during call; input allocated before tracing"
+      },
+      "large": {
+        "wall_s": 0.052259416988817975,
+        "peak_mem_mb": 976.5651893615723,
+        "mem_method": "tracemalloc peak during call; input allocated before tracing"
+      }
+    },
+    "metal": {
+      "small": {
+        "wall_s": 0.08239945900277235,
+        "peak_mem_mb": 42.953125,
+        "mem_method": "max child ru_maxrss delta across three fresh workers (macOS bytes)"
+      },
+      "medium": {
+        "wall_s": 0.13292508301674388,
+        "peak_mem_mb": 264.5,
+        "mem_method": "max child ru_maxrss delta across three fresh workers (macOS bytes)"
+      },
+      "large": {
+        "wall_s": 0.3706125000026077,
+        "peak_mem_mb": 2259.140625,
+        "mem_method": "max child ru_maxrss delta across three fresh workers (macOS bytes)"
+      }
+    }
+  },
+  "medium_max_rel_diff": {
+    "metal": 2.4554696712215674e-07
+  },
+  "notes": "Classic STA/LTA only; fixed-seed float32 Gaussian trace. Wall time includes harness file I/O, subprocess startup, Metal compilation and output loading for Metal, and float64 conversion for ObsPy. Metal memory is the child process RSS high-water mark, not GPU allocations or parent RSS; fresh workers avoid prior-child high-water marks. Judge tracemalloc includes NumPy allocations tracked by Python, but may omit native allocations. Sizes and runtimes are estimates until measured on the target machine. Relative difference is max absolute error divided by max absolute reference value."
+}

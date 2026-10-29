@@ -1,0 +1,29 @@
+[project]
+name = "outcrop"
+version = "0.1.0"
+description = "Classic geophysics methods on Apple Silicon, three ways each: judge, MLX, Rust+Metal"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "numpy",
+    "scipy",
+    "matplotlib",
+    "pytest",
+    "mlx",
+    "harmonica",
+    "boule",
+    "verde",
+    "torch",
+    "deepwave",
+    "simpeg",
+    "discretize",
+    "obspy",
+    "scikit-fmm",
+    "xarray",
+    "ruff",
+]
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+addopts = "-p no:cacheprovider"

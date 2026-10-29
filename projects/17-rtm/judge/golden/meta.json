@@ -1,0 +1,570 @@
+{
+  "project": "17-rtm",
+  "seed": 170101,
+  "versions": {
+    "numpy": "2.5.4",
+    "torch": "2.15.0",
+    "deepwave": "0.1.0"
+  },
+  "python": "3.12.11",
+  "device": "cpu",
+  "reference_dtype": "float64",
+  "reference": "Known-depth synthetic layers; Deepwave scalar full data, scalar_born forward and autograd adjoint",
+  "discretization": {
+    "space_order": 4,
+    "time_order": 2,
+    "pml": "Deepwave CFS-PML",
+    "max_vel": "max(velocity)",
+    "substeps": 1,
+    "scatter_padding": "edge replicate, adjoint folds padding",
+    "normalization": "Euclidean transpose, summed shots, no dt or area weights"
+  },
+  "tolerances": {
+    "REFERENCE_RTOL": 0.0001,
+    "CROSS_RTOL": 0.0002,
+    "DEPTH_CELLS": 2,
+    "GRADIENT_RTOL": 0.001,
+    "FD_STEP": 0.5,
+    "ORACLE_RTOL": 1e-08,
+    "ZERO_ATOL": 0.0,
+    "MIN_LAYER_FRACTION": 0.001
+  },
+  "tolerance_reasons": "\"\"\"All numerical pass thresholds, with CAMPAIGN reasons.\"\"\"\n\n# Same discrete operator as the float64 judge: float32 accumulation only.\nREFERENCE_RTOL = 1.0e-4\n# Each backend must independently meet 1e-4; triangle inequality allows 2e-4.\nCROSS_RTOL = 2.0e-4\n# CAMPAIGN's exact imaging requirement, in vertical grid cells.\nDEPTH_CELLS = 2\n# Centered FD on a quadratic objective; float32 subtraction sets the limit.\nGRADIENT_RTOL = 1.0e-3\n# Binary-exact half m/s step and dyadic directions avoid input rounding;\n# a quadratic Born objective has no centered-difference truncation error.\nFD_STEP = 0.5\n# Independent float64 oracle self-checks, well above double roundoff.\nORACLE_RTOL = 1.0e-8\n# A zero input has exactly zero output in this linear system.\nZERO_ATOL = 0.0\n# A global amplitude floor prevents accepting a zero image at a known layer.\n# This is only an anti-degeneracy gate; full-image parity remains mandatory.\nMIN_LAYER_FRACTION = 1.0e-3\n",
+  "inputs": "All source, velocity, scatter, data arrays quantized once to float32 before the float64 solve; int64 locations; float64 Python scalars",
+  "synthetic": "layers_uniform: full scalar piecewise-constant layers (2000/2060/1990 m/s), direct-wave subtracted, migrated in homogeneous 2000 m/s; layers_variable: Born thin signed sheets in smooth heterogeneous background",
+  "fd": "3 saved dyadic directions, centered difference, step 0.5 m/s; quadratic loss has zero truncation error",
+  "interface_depth_convention": "First grid node of the deeper piecewise-constant layer; sheet depths are their grid rows",
+  "full_scalar_data_pml_max_vel_m_s": 2060.0,
+  "cases": {
+    "layers_uniform": {
+      "arrays": {
+        "velocity": {
+          "shape": [
+            65,
+            65
+          ],
+          "dtype": "float32",
+          "min": 2000.0,
+          "max": 2000.0
+        },
+        "source_amplitudes": {
+          "shape": [
+            3,
+            1,
+            600
+          ],
+          "dtype": "float32",
+          "min": -0.446260005235672,
+          "max": 1.0
+        },
+        "source_locations": {
+          "shape": [
+            3,
+            1,
+            2
+          ],
+          "dtype": "int64",
+          "min": 3.0,
+          "max": 48.0
+        },
+        "receiver_locations": {
+          "shape": [
+            3,
+            28,
+            2
+          ],
+          "dtype": "int64",
+          "min": 3.0,
+          "max": 59.0
+        },
+        "grid_spacing": {
+          "shape": [
+            2
+          ],
+          "dtype": "float64",
+          "min": 8.0,
+          "max": 10.0
+        },
+        "dt": {
+          "shape": [],
+          "dtype": "float64",
+          "min": 0.001,
+          "max": 0.001
+        },
+        "pml_width": {
+          "shape": [],
+          "dtype": "int64",
+          "min": 12.0,
+          "max": 12.0
+        },
+        "pml_freq": {
+          "shape": [],
+          "dtype": "float64",
+          "min": 30.0,
+          "max": 30.0
+        },
+        "data": {
+          "shape": [
+            3,
+            28,
+            600
+          ],
+          "dtype": "float32",
+          "min": -0.11160323023796082,
+          "max": 0.054345060139894485
+        },
+        "truth": {
+          "shape": [
+            65,
+            65
+          ],
+          "dtype": "float32",
+          "min": -10.0,
+          "max": 60.0
+        },
+        "image": {
+          "shape": [
+            65,
+            65
+          ],
+          "dtype": "float64",
+          "min": -0.002525321052278006,
+          "max": 0.0020036316901797875
+        },
+        "reflector_rows": {
+          "shape": [
+            2
+          ],
+          "dtype": "int64",
+          "min": 22.0,
+          "max": 42.0
+        },
+        "depth_zones": {
+          "shape": [
+            2,
+            2
+          ],
+          "dtype": "int64",
+          "min": 8.0,
+          "max": 60.0
+        },
+        "lateral_roi": {
+          "shape": [
+            2
+          ],
+          "dtype": "int64",
+          "min": 21.0,
+          "max": 44.0
+        },
+        "reference_peaks": {
+          "shape": [
+            2
+          ],
+          "dtype": "int64",
+          "min": 20.0,
+          "max": 40.0
+        }
+      },
+      "sanity": {
+        "float32_image_relative_error": 1.6798726507993426e-06,
+        "peak_rows": [
+          20,
+          40
+        ],
+        "float32_peak_rows": [
+          20,
+          40
+        ],
+        "true_depths_m": [
+          176.0,
+          336.0
+        ],
+        "depth_zones_half_open": [
+          [
+            8,
+            32
+          ],
+          [
+            32,
+            60
+          ]
+        ],
+        "lateral_roi": [
+          21,
+          44
+        ],
+        "data_generation": "full scalar layered minus full scalar background",
+        "layer_velocity_jumps_or_sheet_dv_m_s": [
+          60.0,
+          -70.0
+        ]
+      },
+      "sha256": "da2e2a6e71e7663c221daf77739825ab761f83d0e1167e6b2b25b6aaf70c8175"
+    },
+    "layers_variable": {
+      "arrays": {
+        "velocity": {
+          "shape": [
+            69,
+            61
+          ],
+          "dtype": "float32",
+          "min": 1815.010986328125,
+          "max": 2157.0
+        },
+        "source_amplitudes": {
+          "shape": [
+            3,
+            1,
+            680
+          ],
+          "dtype": "float32",
+          "min": -0.44493451714515686,
+          "max": 1.0
+        },
+        "source_locations": {
+          "shape": [
+            3,
+            1,
+            2
+          ],
+          "dtype": "int64",
+          "min": 3.0,
+          "max": 45.0
+        },
+        "receiver_locations": {
+          "shape": [
+            3,
+            26,
+            2
+          ],
+          "dtype": "int64",
+          "min": 3.0,
+          "max": 55.0
+        },
+        "grid_spacing": {
+          "shape": [
+            2
+          ],
+          "dtype": "float64",
+          "min": 10.0,
+          "max": 12.0
+        },
+        "dt": {
+          "shape": [],
+          "dtype": "float64",
+          "min": 0.001,
+          "max": 0.001
+        },
+        "pml_width": {
+          "shape": [],
+          "dtype": "int64",
+          "min": 12.0,
+          "max": 12.0
+        },
+        "pml_freq": {
+          "shape": [],
+          "dtype": "float64",
+          "min": 25.0,
+          "max": 25.0
+        },
+        "data": {
+          "shape": [
+            3,
+            26,
+            680
+          ],
+          "dtype": "float32",
+          "min": -0.06700260192155838,
+          "max": 0.07513123750686646
+        },
+        "truth": {
+          "shape": [
+            69,
+            61
+          ],
+          "dtype": "float32",
+          "min": -25.0,
+          "max": 35.0
+        },
+        "image": {
+          "shape": [
+            69,
+            61
+          ],
+          "dtype": "float64",
+          "min": -0.004873814897160016,
+          "max": 0.006609087397154026
+        },
+        "reflector_rows": {
+          "shape": [
+            3
+          ],
+          "dtype": "int64",
+          "min": 19.0,
+          "max": 50.0
+        },
+        "depth_zones": {
+          "shape": [
+            3,
+            2
+          ],
+          "dtype": "int64",
+          "min": 8.0,
+          "max": 64.0
+        },
+        "lateral_roi": {
+          "shape": [
+            2
+          ],
+          "dtype": "int64",
+          "min": 20.0,
+          "max": 41.0
+        },
+        "reference_peaks": {
+          "shape": [
+            3
+          ],
+          "dtype": "int64",
+          "min": 19.0,
+          "max": 50.0
+        }
+      },
+      "sanity": {
+        "float32_image_relative_error": 1.477881960759258e-06,
+        "peak_rows": [
+          19,
+          35,
+          50
+        ],
+        "float32_peak_rows": [
+          19,
+          35,
+          50
+        ],
+        "true_depths_m": [
+          190.0,
+          350.0,
+          500.0
+        ],
+        "depth_zones_half_open": [
+          [
+            8,
+            27
+          ],
+          [
+            27,
+            42
+          ],
+          [
+            42,
+            64
+          ]
+        ],
+        "lateral_roi": [
+          20,
+          41
+        ],
+        "data_generation": "Born thin sheets",
+        "layer_velocity_jumps_or_sheet_dv_m_s": [
+          30.0,
+          -25.0,
+          35.0
+        ]
+      },
+      "sha256": "222f031c4f1cb36e35384ec28074fcc805a19727baec228a57868ac5b57d90b1"
+    },
+    "adjoint": {
+      "arrays": {
+        "velocity": {
+          "shape": [
+            27,
+            31
+          ],
+          "dtype": "float32",
+          "min": 1880.0208740234375,
+          "max": 1997.949951171875
+        },
+        "source_amplitudes": {
+          "shape": [
+            2,
+            2,
+            320
+          ],
+          "dtype": "float32",
+          "min": -0.5,
+          "max": 1.0
+        },
+        "source_locations": {
+          "shape": [
+            2,
+            2,
+            2
+          ],
+          "dtype": "int64",
+          "min": 3.0,
+          "max": 23.0
+        },
+        "receiver_locations": {
+          "shape": [
+            2,
+            11,
+            2
+          ],
+          "dtype": "int64",
+          "min": 3.0,
+          "max": 25.0
+        },
+        "grid_spacing": {
+          "shape": [
+            2
+          ],
+          "dtype": "float64",
+          "min": 10.0,
+          "max": 12.0
+        },
+        "dt": {
+          "shape": [],
+          "dtype": "float64",
+          "min": 0.001,
+          "max": 0.001
+        },
+        "pml_width": {
+          "shape": [],
+          "dtype": "int64",
+          "min": 12.0,
+          "max": 12.0
+        },
+        "pml_freq": {
+          "shape": [],
+          "dtype": "float64",
+          "min": 25.0,
+          "max": 25.0
+        },
+        "data": {
+          "shape": [
+            2,
+            11,
+            320
+          ],
+          "dtype": "float32",
+          "min": -0.09406868368387222,
+          "max": 0.08492366969585419
+        },
+        "scatter": {
+          "shape": [
+            27,
+            31
+          ],
+          "dtype": "float32",
+          "min": -4.0,
+          "max": 4.0
+        },
+        "image": {
+          "shape": [
+            27,
+            31
+          ],
+          "dtype": "float64",
+          "min": -0.0051879392505616295,
+          "max": 0.00504145284072667
+        },
+        "predicted": {
+          "shape": [
+            2,
+            11,
+            320
+          ],
+          "dtype": "float64",
+          "min": -0.10140328020547568,
+          "max": 0.0969314725522609
+        },
+        "loss": {
+          "shape": [],
+          "dtype": "float64",
+          "min": 1.6831770410156888,
+          "max": 1.6831770410156888
+        },
+        "gradient": {
+          "shape": [
+            27,
+            31
+          ],
+          "dtype": "float64",
+          "min": -0.029683395316465428,
+          "max": 0.012329097751551572
+        },
+        "directions": {
+          "shape": [
+            3,
+            27,
+            31
+          ],
+          "dtype": "float32",
+          "min": -1.0,
+          "max": 1.0
+        },
+        "fd_derivatives": {
+          "shape": [
+            3
+          ],
+          "dtype": "float64",
+          "min": -0.23663625880565875,
+          "max": 0.4904820269798824
+        },
+        "fd_losses": {
+          "shape": [
+            3,
+            2
+          ],
+          "dtype": "float64",
+          "min": 1.460111263663951,
+          "max": 1.9505932906438335
+        },
+        "jdirection": {
+          "shape": [
+            2,
+            11,
+            320
+          ],
+          "dtype": "float64",
+          "min": -0.029337309620863464,
+          "max": 0.034939280010097676
+        },
+        "dot_product": {
+          "shape": [],
+          "dtype": "float64",
+          "min": -0.05305629770604965,
+          "max": -0.05305629770604965
+        }
+      },
+      "sanity": {
+        "float32_relative_errors": {
+          "predicted": 3.142158107765528e-06,
+          "loss": 1.1390757842449383e-07,
+          "gradient": 1.3572687389378184e-06,
+          "image": 2.4351685976792017e-06
+        },
+        "float64_fd_relative_errors": [
+          2.3458430044250787e-15,
+          6.1947323240189654e-15,
+          3.3953018568120553e-16
+        ],
+        "float32_fd_relative_errors": [
+          9.3847957098197e-08,
+          6.556488408128028e-06,
+          1.3236734621430343e-07
+        ],
+        "dot_relative_error": 5.231344216553605e-16
+      },
+      "sha256": "2f673b97a33e3d569d01f2b99f294fbb69610018c58dc30fd121f61d29b094c9"
+    }
+  },
+  "deepwave_file_hashes": {
+    "scalar.py": "68b90b7303c2eaad0558be0d4b9405339c026685b35e81685acb2fac8982c8c0",
+    "scalar_kernels.h": "b90fee2bbf6db774f705e442e0a5555ca86eb6d1d2ea861651c4e3adab90a76e",
+    "scalar_born.py": "f2830e3815ce6ac304858567c772fccd63f7cf1efe3e1eacd7ca7718fc4b5943",
+    "scalar_born_kernels.h": "aff72fdb8522c760f10994eafee7428e6405b2c6147345e1f4b60b13efdf383d",
+    "libdeepwave_C.dylib": "305176361bae47d347abf1a274d3a52ef89bb52e5a0ec12cf053444ded0af182"
+  }
+}

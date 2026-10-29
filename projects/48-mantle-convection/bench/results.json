@@ -1,0 +1,84 @@
+{
+  "project": "48-mantle-convection",
+  "sizes": {
+    "small": {
+      "n": 32,
+      "steps": 30,
+      "dt": 1e-05,
+      "rayleigh": 10000.0
+    },
+    "medium": {
+      "n": 64,
+      "steps": 250,
+      "dt": 1e-05,
+      "rayleigh": 10000.0
+    },
+    "large": {
+      "n": 128,
+      "steps": 1500,
+      "dt": 1e-05,
+      "rayleigh": 10000.0
+    }
+  },
+  "results": {
+    "judge": {
+      "small": {
+        "wall_s": 0.003270874993177131,
+        "peak_mem_mb": 0.16467666625976562,
+        "mem_method": "tracemalloc peak, separate untimed call (MiB)"
+      },
+      "medium": {
+        "wall_s": 0.05707029200857505,
+        "peak_mem_mb": 0.6106224060058594,
+        "mem_method": "tracemalloc peak, separate untimed call (MiB)"
+      },
+      "large": {
+        "wall_s": 1.0396622919943184,
+        "peak_mem_mb": 2.4055004119873047,
+        "mem_method": "tracemalloc peak, separate untimed call (MiB)"
+      }
+    },
+    "mlx": {
+      "small": {
+        "wall_s": 0.007517166988691315,
+        "peak_mem_mb": 0.883819580078125,
+        "process_peak_rss_mb": 92.828125,
+        "mem_method": "MLX reset_peak_memory/get_peak_memory; process lifetime peak RSS also reported (MiB, macOS)"
+      },
+      "medium": {
+        "wall_s": 0.05498775001615286,
+        "peak_mem_mb": 6.796878814697266,
+        "process_peak_rss_mb": 97.171875,
+        "mem_method": "MLX reset_peak_memory/get_peak_memory; process lifetime peak RSS also reported (MiB, macOS)"
+      },
+      "large": {
+        "wall_s": 0.3225990420032758,
+        "peak_mem_mb": 13.906726837158203,
+        "process_peak_rss_mb": 110.28125,
+        "mem_method": "MLX reset_peak_memory/get_peak_memory; process lifetime peak RSS also reported (MiB, macOS)"
+      }
+    },
+    "metal": {
+      "small": {
+        "wall_s": 0.043208250019233674,
+        "peak_mem_mb": 0.0,
+        "mem_method": "RUSAGE_CHILDREN ru_maxrss high-water delta (MiB, macOS)"
+      },
+      "medium": {
+        "wall_s": 0.041506666981149465,
+        "peak_mem_mb": 0.0,
+        "mem_method": "RUSAGE_CHILDREN ru_maxrss high-water delta (MiB, macOS)"
+      },
+      "large": {
+        "wall_s": 0.09305024999775924,
+        "peak_mem_mb": 0.078125,
+        "mem_method": "RUSAGE_CHILDREN ru_maxrss high-water delta (MiB, macOS)"
+      }
+    }
+  },
+  "medium_max_rel_diff": {
+    "mlx": 3.907545279296999e-06,
+    "metal": 3.7490744034261468e-06
+  },
+  "notes": "Wall times are medians of three calls after one warm-up, including harness conversion and Metal process startup. N is the number of intervals per dimension. Relative differences are the maximum across outputs of max absolute error divided by each reference output's maximum absolute value (absolute error for zero reference). Memory is in MiB. macOS child ru_maxrss is a cumulative high-water mark, so its delta after warm-up can be zero and is not a per-call allocation peak; GPU allocations may not be represented. MLX peak is its device allocator high-water mark and process RSS is a lifetime high-water mark."
+}

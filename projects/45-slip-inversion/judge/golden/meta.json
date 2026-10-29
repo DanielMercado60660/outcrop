@@ -1,0 +1,1161 @@
+{
+  "status": "READY FOR ROUND-2 SCIENCE REVIEW; finite-fault oracle validated",
+  "reference": "Okada (1985) rectangular surface solution + scipy.linalg.lstsq (gelsd), float64",
+  "okada_validation": {
+    "citation": "Okada, Y. (1985). Surface deformation due to shear and tensile faults in a half-space. BSSA 75(4), 1135-1154. Table 2 'Checklist for numerical calculations', p. 1149.",
+    "count": 81,
+    "checks": {
+      "case2_strike": {
+        "ux": {
+          "computed": -0.008689165004255761,
+          "printed": "-8.689E-3",
+          "abs_error": 1.6500425576056188e-07,
+          "allowance": 5.009999999999999e-07
+        },
+        "uy": {
+          "computed": -0.0042975821897417235,
+          "printed": "-4.298E-3",
+          "abs_error": 4.178102582762244e-07,
+          "allowance": 5.009999999999999e-07
+        },
+        "uz": {
+          "computed": -0.002747405827638827,
+          "printed": "-2.747E-3",
+          "abs_error": 4.0582763882702697e-07,
+          "allowance": 5.009999999999999e-07
+        },
+        "duxdx": {
+          "computed": -0.0012204386723446703,
+          "printed": "-1.220E-3",
+          "abs_error": 4.3867234467034714e-07,
+          "allowance": 5.009999999999999e-07
+        },
+        "duxdy": {
+          "computed": 0.000246969739103875,
+          "printed": "+2.470E-4",
+          "abs_error": 3.026089612500086e-08,
+          "allowance": 5.1e-08
+        },
+        "duydx": {
+          "computed": -0.008191372873889158,
+          "printed": "-8.191E-3",
+          "abs_error": 3.728738891574379e-07,
+          "allowance": 5.009999999999999e-07
+        },
+        "duydy": {
+          "computed": -0.0005813975253662895,
+          "printed": "-5.814E-4",
+          "abs_error": 2.47463371051259e-09,
+          "allowance": 5.1e-08
+        },
+        "duzdx": {
+          "computed": -0.005174968689160286,
+          "printed": "-5.175E-3",
+          "abs_error": 3.131083971350673e-08,
+          "allowance": 5.009999999999999e-07
+        },
+        "duzdy": {
+          "computed": 0.00029453895624559356,
+          "printed": "+2.945E-4",
+          "abs_error": 3.895624559356126e-08,
+          "allowance": 5.1e-08
+        }
+      },
+      "case2_dip": {
+        "ux": {
+          "computed": -0.004682348762835464,
+          "printed": "-4.682E-3",
+          "abs_error": 3.4876283546390885e-07,
+          "allowance": 5.009999999999999e-07
+        },
+        "uy": {
+          "computed": -0.03526726796871793,
+          "printed": "-3.527E-2",
+          "abs_error": 2.7320312820725e-06,
+          "allowance": 5.001e-06
+        },
+        "uz": {
+          "computed": -0.03563855767326857,
+          "printed": "-3.564E-2",
+          "abs_error": 1.4423267314309096e-06,
+          "allowance": 5.001e-06
+        },
+        "duxdx": {
+          "computed": -0.008867245519586509,
+          "printed": "-8.867E-3",
+          "abs_error": 2.455195865086468e-07,
+          "allowance": 5.009999999999999e-07
+        },
+        "duxdy": {
+          "computed": -0.00015185823890040417,
+          "printed": "-1.519E-4",
+          "abs_error": 4.176109959583155e-08,
+          "allowance": 5.1e-08
+        },
+        "duydx": {
+          "computed": 0.004056585612421948,
+          "printed": "+4.057E-3",
+          "abs_error": 4.1438757805191406e-07,
+          "allowance": 5.009999999999999e-07
+        },
+        "duydy": {
+          "computed": -0.010354876562312931,
+          "printed": "-1.035E-2",
+          "abs_error": 4.876562312931473e-06,
+          "allowance": 5.001e-06
+        },
+        "duzdx": {
+          "computed": 0.004088128485457698,
+          "printed": "+4.088E-3",
+          "abs_error": 1.2848545769862663e-07,
+          "allowance": 5.009999999999999e-07
+        },
+        "duzdy": {
+          "computed": 0.002626254734378053,
+          "printed": "+2.626E-3",
+          "abs_error": 2.547343780530398e-07,
+          "allowance": 5.009999999999999e-07
+        }
+      },
+      "case2_tensile": {
+        "ux": {
+          "computed": -0.00026599600964410247,
+          "printed": "-2.660E-4",
+          "abs_error": 3.9903558975433635e-09,
+          "allowance": 5.1e-08
+        },
+        "uy": {
+          "computed": 0.010564074876983076,
+          "printed": "+1.056E-2",
+          "abs_error": 4.074876983076181e-06,
+          "allowance": 5.001e-06
+        },
+        "uz": {
+          "computed": 0.003214193114220998,
+          "printed": "+3.214E-3",
+          "abs_error": 1.931142209980058e-07,
+          "allowance": 5.009999999999999e-07
+        },
+        "duxdx": {
+          "computed": -0.0005654954749606533,
+          "printed": "-5.655E-4",
+          "abs_error": 4.52503934669779e-09,
+          "allowance": 5.1e-08
+        },
+        "duxdy": {
+          "computed": 0.001992743608424108,
+          "printed": "+1.993E-3",
+          "abs_error": 2.5639157589206485e-07,
+          "allowance": 5.009999999999999e-07
+        },
+        "duydx": {
+          "computed": -0.0010662137972516916,
+          "printed": "-1.066E-3",
+          "abs_error": 2.1379725169152347e-07,
+          "allowance": 5.009999999999999e-07
+        },
+        "duydy": {
+          "computed": 0.012297109844849885,
+          "printed": "+1.230E-2",
+          "abs_error": 2.8901551501151618e-06,
+          "allowance": 5.001e-06
+        },
+        "duzdx": {
+          "computed": -0.0003730219333419882,
+          "printed": "-3.730E-4",
+          "abs_error": 2.1933341988174346e-08,
+          "allowance": 5.1e-08
+        },
+        "duzdy": {
+          "computed": 0.010400955550160518,
+          "printed": "+1.040E-2",
+          "abs_error": 9.55550160518237e-07,
+          "allowance": 5.001e-06
+        }
+      },
+      "case3_strike": {
+        "ux": {
+          "computed": 0.0,
+          "printed": "0",
+          "abs_error": 0.0,
+          "allowance": 1e-09
+        },
+        "uy": {
+          "computed": 0.005253097376910015,
+          "printed": "+5.253E-3",
+          "abs_error": 9.737691001546894e-08,
+          "allowance": 5.009999999999999e-07
+        },
+        "uz": {
+          "computed": 0.0,
+          "printed": "0",
+          "abs_error": 0.0,
+          "allowance": 1e-09
+        },
+        "duxdx": {
+          "computed": 0.0,
+          "printed": "0",
+          "abs_error": 0.0,
+          "allowance": 1e-09
+        },
+        "duxdy": {
+          "computed": -0.018637227883200325,
+          "printed": "-1.864E-2",
+          "abs_error": 2.772116799675678e-06,
+          "allowance": 5.001e-06
+        },
+        "duydx": {
+          "computed": -0.0023251283072511786,
+          "printed": "-2.325E-3",
+          "abs_error": 1.2830725117877334e-07,
+          "allowance": 5.009999999999999e-07
+        },
+        "duydy": {
+          "computed": 0.0,
+          "printed": "0",
+          "abs_error": 0.0,
+          "allowance": 1e-09
+        },
+        "duzdx": {
+          "computed": 0.0,
+          "printed": "0",
+          "abs_error": 0.0,
+          "allowance": 1e-09
+        },
+        "duzdy": {
+          "computed": 0.022885150119815924,
+          "printed": "+2.289E-2",
+          "abs_error": 4.849880184076144e-06,
+          "allowance": 5.001e-06
+        }
+      },
+      "case3_dip": {
+        "ux": {
+          "computed": 0.0,
+          "printed": "0",
+          "abs_error": 0.0,
+          "allowance": 1e-09
+        },
+        "uy": {
+          "computed": 0.0,
+          "printed": "0",
+          "abs_error": 0.0,
+          "allowance": 1e-09
+        },
+        "uz": {
+          "computed": 0.0,
+          "printed": "0",
+          "abs_error": 0.0,
+          "allowance": 1e-09
+        },
+        "duxdx": {
+          "computed": 0.0,
+          "printed": "0",
+          "abs_error": 0.0,
+          "allowance": 1e-09
+        },
+        "duxdy": {
+          "computed": 0.027478085233281657,
+          "printed": "+2.748E-2",
+          "abs_error": 1.9147667183437578e-06,
+          "allowance": 5.001e-06
+        },
+        "duydx": {
+          "computed": 0.0,
+          "printed": "0",
+          "abs_error": 0.0,
+          "allowance": 1e-09
+        },
+        "duydy": {
+          "computed": 0.0,
+          "printed": "0",
+          "abs_error": 0.0,
+          "allowance": 1e-09
+        },
+        "duzdx": {
+          "computed": 0.0,
+          "printed": "0",
+          "abs_error": 0.0,
+          "allowance": 1e-09
+        },
+        "duzdy": {
+          "computed": -0.07166487532295207,
+          "printed": "-7.166E-2",
+          "abs_error": 4.875322952069272e-06,
+          "allowance": 5.001e-06
+        }
+      },
+      "case3_tensile": {
+        "ux": {
+          "computed": 0.012228482299821077,
+          "printed": "+1.223E-2",
+          "abs_error": 1.5177001789230121e-06,
+          "allowance": 5.001e-06
+        },
+        "uy": {
+          "computed": 0.0,
+          "printed": "0",
+          "abs_error": 0.0,
+          "allowance": 1e-09
+        },
+        "uz": {
+          "computed": -0.01606274646428264,
+          "printed": "-1.606E-2",
+          "abs_error": 2.746464282638028e-06,
+          "allowance": 5.001e-06
+        },
+        "duxdx": {
+          "computed": -0.004181651077315995,
+          "printed": "-4.182E-3",
+          "abs_error": 3.4892268400456283e-07,
+          "allowance": 5.009999999999999e-07
+        },
+        "duxdy": {
+          "computed": 0.0,
+          "printed": "0",
+          "abs_error": 0.0,
+          "allowance": 1e-09
+        },
+        "duydx": {
+          "computed": 0.0,
+          "printed": "0",
+          "abs_error": 0.0,
+          "allowance": 1e-09
+        },
+        "duydy": {
+          "computed": -0.0023251281994207673,
+          "printed": "-2.325E-3",
+          "abs_error": 1.2819942076750662e-07,
+          "allowance": 5.009999999999999e-07
+        },
+        "duzdx": {
+          "computed": -0.009146107519970165,
+          "printed": "-9.146E-3",
+          "abs_error": 1.0751997016507364e-07,
+          "allowance": 5.009999999999999e-07
+        },
+        "duzdy": {
+          "computed": 0.0,
+          "printed": "0",
+          "abs_error": 0.0,
+          "allowance": 1e-09
+        }
+      },
+      "case4_strike": {
+        "ux": {
+          "computed": 0.0,
+          "printed": "0",
+          "abs_error": 0.0,
+          "allowance": 1e-09
+        },
+        "uy": {
+          "computed": -0.001303097451419516,
+          "printed": "-1.303E-3",
+          "abs_error": 9.745141951603489e-08,
+          "allowance": 5.009999999999999e-07
+        },
+        "uz": {
+          "computed": 0.0,
+          "printed": "0",
+          "abs_error": 0.0,
+          "allowance": 1e-09
+        },
+        "duxdx": {
+          "computed": 0.0,
+          "printed": "0",
+          "abs_error": 0.0,
+          "allowance": 1e-09
+        },
+        "duxdy": {
+          "computed": 0.0027260363957837264,
+          "printed": "+2.726E-3",
+          "abs_error": 3.639578372623825e-08,
+          "allowance": 5.009999999999999e-07
+        },
+        "duydx": {
+          "computed": 0.0007345401309422073,
+          "printed": "+7.345E-4",
+          "abs_error": 4.0130942207251656e-08,
+          "allowance": 5.1e-08
+        },
+        "duydy": {
+          "computed": 0.0,
+          "printed": "0",
+          "abs_error": 0.0,
+          "allowance": 1e-09
+        },
+        "duzdx": {
+          "computed": 0.0,
+          "printed": "0",
+          "abs_error": 0.0,
+          "allowance": 1e-09
+        },
+        "duzdy": {
+          "computed": -0.004421657129645815,
+          "printed": "-4.422E-3",
+          "abs_error": 3.4287035418495426e-07,
+          "allowance": 5.009999999999999e-07
+        }
+      },
+      "case4_dip": {
+        "ux": {
+          "computed": 0.0,
+          "printed": "0",
+          "abs_error": 0.0,
+          "allowance": 1e-09
+        },
+        "uy": {
+          "computed": 0.0,
+          "printed": "0",
+          "abs_error": 0.0,
+          "allowance": 1e-09
+        },
+        "uz": {
+          "computed": 0.0,
+          "printed": "0",
+          "abs_error": 0.0,
+          "allowance": 1e-09
+        },
+        "duxdx": {
+          "computed": 0.0,
+          "printed": "0",
+          "abs_error": 0.0,
+          "allowance": 1e-09
+        },
+        "duxdy": {
+          "computed": 0.00515734141483165,
+          "printed": "+5.157E-3",
+          "abs_error": 3.4141483164999015e-07,
+          "allowance": 5.009999999999999e-07
+        },
+        "duydx": {
+          "computed": 0.0,
+          "printed": "0",
+          "abs_error": 0.0,
+          "allowance": 1e-09
+        },
+        "duydy": {
+          "computed": 0.0,
+          "printed": "0",
+          "abs_error": 0.0,
+          "allowance": 1e-09
+        },
+        "duzdx": {
+          "computed": 0.0,
+          "printed": "0",
+          "abs_error": 0.0,
+          "allowance": 1e-09
+        },
+        "duzdy": {
+          "computed": -0.019011546724401196,
+          "printed": "-1.901E-2",
+          "abs_error": 1.5467244011968528e-06,
+          "allowance": 5.001e-06
+        }
+      },
+      "case4_tensile": {
+        "ux": {
+          "computed": 0.0035067178446850644,
+          "printed": "+3.507E-3",
+          "abs_error": 2.8215531493571214e-07,
+          "allowance": 5.009999999999999e-07
+        },
+        "uy": {
+          "computed": 0.0,
+          "printed": "0",
+          "abs_error": 0.0,
+          "allowance": 1e-09
+        },
+        "uz": {
+          "computed": -0.007740131086250292,
+          "printed": "-7.740E-3",
+          "abs_error": 1.3108625029206733e-07,
+          "allowance": 5.009999999999999e-07
+        },
+        "duxdx": {
+          "computed": -0.00177021890340745,
+          "printed": "-1.770E-3",
+          "abs_error": 2.1890340744993957e-07,
+          "allowance": 5.009999999999999e-07
+        },
+        "duxdy": {
+          "computed": 0.0,
+          "printed": "0",
+          "abs_error": 0.0,
+          "allowance": 1e-09
+        },
+        "duydx": {
+          "computed": 0.0,
+          "printed": "0",
+          "abs_error": 0.0,
+          "allowance": 1e-09
+        },
+        "duydy": {
+          "computed": -0.0007345401231706461,
+          "printed": "-7.345E-4",
+          "abs_error": 4.012317064607928e-08,
+          "allowance": 5.1e-08
+        },
+        "duzdx": {
+          "computed": -0.0018429864229001225,
+          "printed": "-1.843E-3",
+          "abs_error": 1.3577099877530585e-08,
+          "allowance": 5.009999999999999e-07
+        },
+        "duzdy": {
+          "computed": 0.0,
+          "printed": "0",
+          "abs_error": 0.0,
+          "allowance": 1e-09
+        }
+      }
+    },
+    "source_sha256": "82b619a369917e79136d166f48551933226a81e79efde141c009e74eb5cfd1fb",
+    "scope": "All finite-source cases 2-4; no point-source or internal-depth API. Negative vertical dip uses geometric equivalence."
+  },
+  "dependency": "Offline campaign Table 2 values; no project-44 code or goldens used",
+  "python": "3.12.11",
+  "versions": {
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "pytest": "9.2.0"
+  },
+  "cases": {
+    "joint_noiseless": {
+      "seed": 450101,
+      "shapes": {
+        "green": [
+          207,
+          6
+        ],
+        "data": [
+          207
+        ],
+        "sigma": [
+          207
+        ],
+        "regularizer": [
+          13,
+          6
+        ],
+        "damping": [],
+        "areas": [
+          6
+        ],
+        "shear_modulus": [],
+        "true_slip": [
+          6
+        ],
+        "clean_data": [
+          207
+        ],
+        "noise": [
+          207
+        ],
+        "slip": [
+          6
+        ],
+        "predicted": [
+          207
+        ],
+        "moment": [],
+        "true_moment": [],
+        "trial": [
+          6
+        ],
+        "objective": [],
+        "gradient": [
+          6
+        ],
+        "fd_gradient": [
+          6
+        ],
+        "optimum_objective": [],
+        "optimum_gradient": [
+          6
+        ],
+        "zero_data": [
+          207
+        ],
+        "zero_slip": [
+          6
+        ],
+        "zero_predicted": [
+          207
+        ],
+        "zero_moment": [],
+        "negative_data": [
+          207
+        ],
+        "negative_slip": [
+          6
+        ],
+        "negative_predicted": [
+          207
+        ],
+        "negative_moment": [],
+        "strong_damping": [],
+        "strong_slip": [
+          6
+        ],
+        "strong_predicted": [
+          207
+        ],
+        "strong_moment": [],
+        "patch_origin_enu": [
+          6,
+          3
+        ],
+        "top_depth": [
+          6
+        ],
+        "bottom_depth": [
+          6
+        ],
+        "patch_length": [],
+        "patch_width": [],
+        "strike_dip_rake_deg": [
+          3
+        ],
+        "poisson_ratio": [],
+        "rotation_local_to_enu": [
+          3,
+          3
+        ],
+        "observation_xyz_enu": [
+          207,
+          3
+        ],
+        "insar_xyz_enu": [
+          49,
+          3
+        ],
+        "gps_xyz_enu": [
+          20,
+          3
+        ],
+        "los_unit_vectors_enu": [
+          3,
+          3
+        ],
+        "unit_slip_enu": [
+          207,
+          6,
+          3
+        ],
+        "projections_enu": [
+          207,
+          3
+        ],
+        "penalty_green": [
+          207,
+          6
+        ],
+        "penalty_data": [
+          207
+        ],
+        "penalty_objective": [],
+        "penalty_gradient": [
+          6
+        ],
+        "permuted_green": [
+          207,
+          6
+        ],
+        "permuted_data": [
+          207
+        ],
+        "permuted_sigma": [
+          207
+        ],
+        "permuted_regularizer": [
+          13,
+          6
+        ],
+        "permuted_areas": [
+          6
+        ],
+        "permuted_slip": [
+          6
+        ],
+        "permuted_predicted": [
+          207
+        ],
+        "permuted_moment": []
+      },
+      "damping": 0.0,
+      "rank": 6,
+      "condition": 5.361636437127491,
+      "correlation": 0.999999999999999,
+      "moment_rel_error": 2.8416773378836524e-09,
+      "true_moment_Nm": 1.3733072876930237e+18,
+      "recovered_moment_Nm": 1.3733072837905275e+18,
+      "slip_range_m": [
+        0.4035775334158988,
+        1.1397157874751174
+      ],
+      "displacement_range_m": [
+        -0.09759390309167769,
+        0.2462996242741139
+      ],
+      "zero_green_rows": 0,
+      "los_block_rank": 3,
+      "gps_component_max_m": [
+        0.07671920689562202,
+        0.07401615158840037,
+        0.17404128527682686
+      ],
+      "objective": 2.476075271056475e-11,
+      "fd_relative_error": 2.9031911108562476e-14,
+      "float32_lstsq_slip_relative_error": 6.180837354526591e-07,
+      "strong_damping": 40.0,
+      "omitted_penalty_slip_relative_error": 0.12785948739799619,
+      "float32_fd_diagnostic": {
+        "data_and_penalty": 4.921368898080413e-06,
+        "penalty": 0.0
+      }
+    },
+    "joint_noisy": {
+      "seed": 450102,
+      "shapes": {
+        "green": [
+          207,
+          6
+        ],
+        "data": [
+          207
+        ],
+        "sigma": [
+          207
+        ],
+        "regularizer": [
+          13,
+          6
+        ],
+        "damping": [],
+        "areas": [
+          6
+        ],
+        "shear_modulus": [],
+        "true_slip": [
+          6
+        ],
+        "clean_data": [
+          207
+        ],
+        "noise": [
+          207
+        ],
+        "slip": [
+          6
+        ],
+        "predicted": [
+          207
+        ],
+        "moment": [],
+        "true_moment": [],
+        "trial": [
+          6
+        ],
+        "objective": [],
+        "gradient": [
+          6
+        ],
+        "fd_gradient": [
+          6
+        ],
+        "optimum_objective": [],
+        "optimum_gradient": [
+          6
+        ],
+        "zero_data": [
+          207
+        ],
+        "zero_slip": [
+          6
+        ],
+        "zero_predicted": [
+          207
+        ],
+        "zero_moment": [],
+        "negative_data": [
+          207
+        ],
+        "negative_slip": [
+          6
+        ],
+        "negative_predicted": [
+          207
+        ],
+        "negative_moment": [],
+        "strong_damping": [],
+        "strong_slip": [
+          6
+        ],
+        "strong_predicted": [
+          207
+        ],
+        "strong_moment": [],
+        "patch_origin_enu": [
+          6,
+          3
+        ],
+        "top_depth": [
+          6
+        ],
+        "bottom_depth": [
+          6
+        ],
+        "patch_length": [],
+        "patch_width": [],
+        "strike_dip_rake_deg": [
+          3
+        ],
+        "poisson_ratio": [],
+        "rotation_local_to_enu": [
+          3,
+          3
+        ],
+        "observation_xyz_enu": [
+          207,
+          3
+        ],
+        "insar_xyz_enu": [
+          49,
+          3
+        ],
+        "gps_xyz_enu": [
+          20,
+          3
+        ],
+        "los_unit_vectors_enu": [
+          3,
+          3
+        ],
+        "unit_slip_enu": [
+          207,
+          6,
+          3
+        ],
+        "projections_enu": [
+          207,
+          3
+        ],
+        "penalty_green": [
+          207,
+          6
+        ],
+        "penalty_data": [
+          207
+        ],
+        "penalty_objective": [],
+        "penalty_gradient": [
+          6
+        ],
+        "permuted_green": [
+          207,
+          6
+        ],
+        "permuted_data": [
+          207
+        ],
+        "permuted_sigma": [
+          207
+        ],
+        "permuted_regularizer": [
+          13,
+          6
+        ],
+        "permuted_areas": [
+          6
+        ],
+        "permuted_slip": [
+          6
+        ],
+        "permuted_predicted": [
+          207
+        ],
+        "permuted_moment": []
+      },
+      "damping": 0.8,
+      "rank": 6,
+      "condition": 5.408708476372305,
+      "correlation": 0.9994692506585318,
+      "moment_rel_error": 0.005136943371781499,
+      "true_moment_Nm": 1.3784889578819274e+18,
+      "recovered_moment_Nm": 1.371407738166662e+18,
+      "slip_range_m": [
+        0.3793983444167329,
+        1.651596972797886
+      ],
+      "displacement_range_m": [
+        -0.0813351867776893,
+        0.21367598714065572
+      ],
+      "zero_green_rows": 0,
+      "los_block_rank": 3,
+      "gps_component_max_m": [
+        0.07644009786554488,
+        0.06694648238664966,
+        0.15610539688708946
+      ],
+      "objective": 104.29467385959701,
+      "fd_relative_error": 1.3659404690197608e-14,
+      "float32_lstsq_slip_relative_error": 5.356496828496817e-07,
+      "strong_damping": 40.0,
+      "omitted_penalty_slip_relative_error": 0.21809480898369663,
+      "float32_fd_diagnostic": {
+        "data_and_penalty": 1.0743090175488672e-05,
+        "penalty": 5.5736960513968475e-06
+      }
+    },
+    "joint_alternate": {
+      "seed": 450103,
+      "shapes": {
+        "green": [
+          207,
+          6
+        ],
+        "data": [
+          207
+        ],
+        "sigma": [
+          207
+        ],
+        "regularizer": [
+          13,
+          6
+        ],
+        "damping": [],
+        "areas": [
+          6
+        ],
+        "shear_modulus": [],
+        "true_slip": [
+          6
+        ],
+        "clean_data": [
+          207
+        ],
+        "noise": [
+          207
+        ],
+        "slip": [
+          6
+        ],
+        "predicted": [
+          207
+        ],
+        "moment": [],
+        "true_moment": [],
+        "trial": [
+          6
+        ],
+        "objective": [],
+        "gradient": [
+          6
+        ],
+        "fd_gradient": [
+          6
+        ],
+        "optimum_objective": [],
+        "optimum_gradient": [
+          6
+        ],
+        "zero_data": [
+          207
+        ],
+        "zero_slip": [
+          6
+        ],
+        "zero_predicted": [
+          207
+        ],
+        "zero_moment": [],
+        "negative_data": [
+          207
+        ],
+        "negative_slip": [
+          6
+        ],
+        "negative_predicted": [
+          207
+        ],
+        "negative_moment": [],
+        "strong_damping": [],
+        "strong_slip": [
+          6
+        ],
+        "strong_predicted": [
+          207
+        ],
+        "strong_moment": [],
+        "patch_origin_enu": [
+          6,
+          3
+        ],
+        "top_depth": [
+          6
+        ],
+        "bottom_depth": [
+          6
+        ],
+        "patch_length": [],
+        "patch_width": [],
+        "strike_dip_rake_deg": [
+          3
+        ],
+        "poisson_ratio": [],
+        "rotation_local_to_enu": [
+          3,
+          3
+        ],
+        "observation_xyz_enu": [
+          207,
+          3
+        ],
+        "insar_xyz_enu": [
+          49,
+          3
+        ],
+        "gps_xyz_enu": [
+          20,
+          3
+        ],
+        "los_unit_vectors_enu": [
+          3,
+          3
+        ],
+        "unit_slip_enu": [
+          207,
+          6,
+          3
+        ],
+        "projections_enu": [
+          207,
+          3
+        ],
+        "penalty_green": [
+          207,
+          6
+        ],
+        "penalty_data": [
+          207
+        ],
+        "penalty_objective": [],
+        "penalty_gradient": [
+          6
+        ],
+        "permuted_green": [
+          207,
+          6
+        ],
+        "permuted_data": [
+          207
+        ],
+        "permuted_sigma": [
+          207
+        ],
+        "permuted_regularizer": [
+          13,
+          6
+        ],
+        "permuted_areas": [
+          6
+        ],
+        "permuted_slip": [
+          6
+        ],
+        "permuted_predicted": [
+          207
+        ],
+        "permuted_moment": []
+      },
+      "damping": 1.5,
+      "rank": 6,
+      "condition": 4.365833038118078,
+      "correlation": 0.9999506865063927,
+      "moment_rel_error": 0.0014720354378441325,
+      "true_moment_Nm": 2.1970170736312865e+18,
+      "recovered_moment_Nm": 2.1937829866413527e+18,
+      "slip_range_m": [
+        0.3951564318704395,
+        1.8067758272739907
+      ],
+      "displacement_range_m": [
+        -0.19109793499164668,
+        0.3806481598079199
+      ],
+      "zero_green_rows": 0,
+      "los_block_rank": 3,
+      "gps_component_max_m": [
+        0.19109793499164668,
+        0.09113312520613373,
+        0.14808681861198258
+      ],
+      "objective": 105.83195841647597,
+      "fd_relative_error": 1.3665594849576082e-14,
+      "float32_lstsq_slip_relative_error": 2.9657375616758783e-07,
+      "strong_damping": 40.0,
+      "omitted_penalty_slip_relative_error": 0.1349331828948663,
+      "float32_fd_diagnostic": {
+        "data_and_penalty": 6.156598953232697e-06,
+        "penalty": 5.8577218348260384e-06
+      }
+    }
+  },
+  "conventions": "ENU; strike clockwise from north; local y up-dip; bottom-edge depth; rake from +U1 toward +U2; toward-satellite LOS; look-major pixels then station-major GPS E,N,U; dip-band-major patch order",
+  "inputs": "Each npz contains the inputs. Implementation array inputs G,d,sigma,L,areas,trial are float32-rounded then promoted to float64 for the oracle; scalar inputs, diagnostic geometry and reference outputs are float64.",
+  "tolerances": {
+    "PARITY_RTOL": {
+      "value": 0.0001,
+      "reason": "Campaign float32 max-norm parity against float64, including zeros."
+    },
+    "GRADIENT_RTOL": {
+      "value": 0.001,
+      "reason": "Campaign centered finite-difference relative gradient error."
+    },
+    "FD_STEP_M": {
+      "value": 0.01,
+      "reason": "0.01 m: quadratic centered FD has no truncation error; avoids float32 cancellation."
+    },
+    "MIN_SLIP_CORRELATION": {
+      "value": 0.8,
+      "reason": "Project pass: Pearson slip correlation >= 0.8."
+    },
+    "MAX_MOMENT_REL_ERROR": {
+      "value": 0.1,
+      "reason": "Project pass: scalar seismic moment within 10% of truth."
+    },
+    "OBJECTIVE_RTOL": {
+      "value": 0.0001,
+      "reason": "Float32 roundoff allowance when comparing minimized objectives."
+    },
+    "OBJECTIVE_FLOOR": {
+      "value": 1.0,
+      "reason": "Unit whitened-residual scale for a nearly zero noiseless optimum."
+    },
+    "OKADA_PRINTED_HALF_UNIT": {
+      "value": 0.5,
+      "reason": "Half the last printed unit of each four-significant-digit Table 2 value."
+    },
+    "OKADA_CHECK_ATOL": {
+      "value": 1e-09,
+      "reason": "Float64 numerical derivative/corner cancellation allowance; also for exact symmetry zeros."
+    },
+    "OKADA_CHECK_FD_STEP": {
+      "value": 0.0001,
+      "reason": "Dimensionless central derivative step for published surface checklist validation."
+    }
+  },
+  "judge_source_sha256": {
+    "make_goldens.py": "25b6dab9f8f46e1dad39a9c8b65b055a8bb4ccf727a516eaed22af5bf82bbd91",
+    "okada_surface.py": "4cbd14ca9ca96689272bdb1bd438cdbd5b36ab1ec6bc73e3925a28053ccdf98f",
+    "tolerances.py": "160ce16751ce8b3d05f981d38a10c89180f619d19e9429b189ef206d971922df"
+  },
+  "sha256": {
+    "joint_alternate.npz": "e531f9345816de665f3620bfd6cfeb62ac6521bb9a16a1d0887e77f8934416fa",
+    "joint_noiseless.npz": "bc48ef0f5afbb9320cc30da11f1eee46c15a71b1b653041bd73cf8b8451d8373",
+    "joint_noisy.npz": "45ec29cc7611509aa5371afd364fbf08d0e52287f5fbe3cc5b88d4c6cd51953d"
+  }
+}

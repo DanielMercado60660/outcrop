@@ -1,0 +1,201 @@
+{
+  "reference": "Harmonica prism_gravity (Nagy et al. 2000; Fukushima 2020)",
+  "versions": {
+    "python": "3.12.11",
+    "numpy": "2.5.4",
+    "harmonica": "v0.7.0",
+    "choclo": "v0.3.2"
+  },
+  "seed": 20261028,
+  "inputs": {
+    "single": "one 200 x 160 x 120 m prism; 8 special points and 24 fixed-seed points",
+    "mixed": "three prisms, positive, negative and zero density; 25 fixed-seed points",
+    "distance": "single prism, three directions at 2, 4, 8, 16 times 200 m from center",
+    "translation": "same geometry at origin and translated by (16384, -8192, 4096) m",
+    "gradient": "three exterior points; central finite difference step 2 m"
+  },
+  "input_storage": "float32, promoted exactly to float64 for reference",
+  "output_storage": "float64",
+  "ranges": {
+    "single": {
+      "potential": [
+        0.002174565649542157,
+        0.01018384624135097
+      ],
+      "g_e": [
+        -7.006143679202633,
+        1.9935150310659775
+      ],
+      "g_n": [
+        -4.008129342266717,
+        3.193357898278535
+      ],
+      "g_z": [
+        -3.340874947597267,
+        2.828076082168659
+      ]
+    },
+    "mixed": {
+      "potential": [
+        9.412269863099103e-05,
+        0.0007994026319292484
+      ],
+      "g_e": [
+        -0.5057357128729132,
+        0.17342066513960094
+      ],
+      "g_n": [
+        -0.15262301544486032,
+        0.3200709127796702
+      ],
+      "g_z": [
+        -0.2836355372893327,
+        0.4559285459023255
+      ]
+    },
+    "distance": {
+      "potential": [
+        0.00021382573960988907,
+        0.0017095342525080101
+      ],
+      "g_e": [
+        -0.2492589927086962,
+        0.1665928968374396
+      ],
+      "g_n": [
+        -0.3416673250890492,
+        0.2498780142234652
+      ],
+      "g_z": [
+        0.00298928103475292,
+        0.32836627360214293
+      ]
+    },
+    "translation": {
+      "potential": [
+        0.0023692262148771546,
+        0.003950926563189009
+      ],
+      "g_e": [
+        -0.7399279799238372,
+        0.4016867092524047
+      ],
+      "g_n": [
+        -0.3456157219618544,
+        0.33555740935480594
+      ],
+      "g_z": [
+        0.28588479458353155,
+        2.1108664296477664
+      ]
+    },
+    "translated": {
+      "potential": [
+        0.0023692262148771546,
+        0.003950926563189009
+      ],
+      "g_e": [
+        -0.7399279799238372,
+        0.4016867092524047
+      ],
+      "g_n": [
+        -0.3456157219618544,
+        0.33555740935480594
+      ],
+      "g_z": [
+        0.28588479458353155,
+        2.1108664296477664
+      ]
+    },
+    "gradient": {
+      "potential": [
+        0.002677991672294853,
+        0.003356569183264782
+      ],
+      "g_e": [
+        -0.7126445677502221,
+        0.8542578515011038
+      ],
+      "g_n": [
+        -0.3919458029859305,
+        0.5396468599054509
+      ],
+      "g_z": [
+        0.5668081932932474,
+        1.5405831416387912
+      ]
+    }
+  },
+  "distance_float32_measurement": {
+    "provenance": "Round 1 independent science review: float32 Nagy/choclo port with safe log/atan and source-local corner-minus-observation coordinates; NumPy float32 and MLX GPU float32. These are reviewer-reported maxima, not measurements made by this script.",
+    "widths": [
+      2,
+      4,
+      8,
+      16
+    ],
+    "max_rel_by_field_over_backends": {
+      "potential": [
+        1.9e-05,
+        0.00011,
+        0.00098,
+        0.0083
+      ],
+      "g_e": [
+        2.6e-05,
+        0.00036,
+        0.0024,
+        0.016
+      ],
+      "g_n": [
+        2.1e-05,
+        0.00023,
+        0.0016,
+        0.01
+      ],
+      "g_z": [
+        1.4e-05,
+        0.00022,
+        0.00096,
+        0.017
+      ]
+    },
+    "normalization": "maximum absolute float64 reference in each field and distance group"
+  },
+  "tolerances": {
+    "near_rel": [
+      0.0001,
+      "float32 near-field parity"
+    ],
+    "translation_rel": [
+      0.0001,
+      "float32 translation invariance"
+    ],
+    "cross_rel": [
+      0.0002,
+      "two independent rounding errors"
+    ],
+    "distance_rel": [
+      [
+        0.0001,
+        0.0007,
+        0.005,
+        0.04
+      ],
+      "growing corner-term cancellation; at least 1.9x reviewer-measured worst float32 error at each distance"
+    ],
+    "distance_cross_rel": [
+      [
+        0.0002,
+        0.0014,
+        0.01,
+        0.08
+      ],
+      "two independent distance-dependent errors"
+    ],
+    "gradient_rel": [
+      0.001,
+      "float64 centered-difference truncation and float32 field rounding"
+    ]
+  }
+}

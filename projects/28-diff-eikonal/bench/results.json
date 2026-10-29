@@ -1,0 +1,82 @@
+{
+  "project": "28-diff-eikonal",
+  "sizes": {
+    "small": {
+      "nz": 10,
+      "nx": 10,
+      "ns": 1,
+      "nr": 10
+    },
+    "medium": {
+      "nz": 32,
+      "nx": 32,
+      "ns": 2,
+      "nr": 32
+    },
+    "large": {
+      "nz": 100,
+      "nx": 100,
+      "ns": 2,
+      "nr": 100
+    }
+  },
+  "results": {
+    "judge": {
+      "small": {
+        "wall_s": 0.0055922500032465905,
+        "peak_mem_mb": 0.01074981689453125,
+        "mem_method": "tracemalloc peak traced allocations (MiB)"
+      },
+      "medium": {
+        "wall_s": 0.12417529101367109,
+        "peak_mem_mb": 0.05486297607421875,
+        "mem_method": "tracemalloc peak traced allocations (MiB)"
+      },
+      "large": {
+        "skipped": "Reference marching constructs a full-grid mask per update; large case may exceed 120 s."
+      }
+    },
+    "mlx": {
+      "small": {
+        "wall_s": 0.1326332500029821,
+        "peak_mem_mb": 0.08951282501220703,
+        "mem_method": "MLX peak allocated memory (MiB); process RSS is lifetime high-water mark",
+        "process_peak_rss_mb": 116.46875
+      },
+      "medium": {
+        "wall_s": 0.7515602089988533,
+        "peak_mem_mb": 1.7163190841674805,
+        "mem_method": "MLX peak allocated memory (MiB); process RSS is lifetime high-water mark",
+        "process_peak_rss_mb": 310.9375
+      },
+      "large": {
+        "wall_s": 3.224380583007587,
+        "peak_mem_mb": 21.311479568481445,
+        "mem_method": "MLX peak allocated memory (MiB); process RSS is lifetime high-water mark",
+        "process_peak_rss_mb": 1107.15625
+      }
+    },
+    "metal": {
+      "small": {
+        "wall_s": 0.039687916985712945,
+        "peak_mem_mb": 0.0,
+        "mem_method": "RUSAGE_CHILDREN ru_maxrss high-water delta (MiB, macOS); cumulative high-water, may be zero"
+      },
+      "medium": {
+        "wall_s": 0.05209270800696686,
+        "peak_mem_mb": 0.0,
+        "mem_method": "RUSAGE_CHILDREN ru_maxrss high-water delta (MiB, macOS); cumulative high-water, may be zero"
+      },
+      "large": {
+        "wall_s": 0.16556150000542402,
+        "peak_mem_mb": 0.0,
+        "mem_method": "RUSAGE_CHILDREN ru_maxrss high-water delta (MiB, macOS); cumulative high-water, may be zero"
+      }
+    }
+  },
+  "medium_max_rel_diff": {
+    "mlx": 2.0308631450937635e-06,
+    "metal": 2.462536165309526e-06
+  },
+  "notes": "Median of three end-to-end calls after one warmup; memory is the maximum of three measurements in MiB. Metal includes subprocess and file I/O. Child ru_maxrss is a cumulative high-water mark, so its delta is not an individual child peak and can be zero. MLX RSS is the Python process lifetime high-water mark. Medium relative difference is the maximum across output fields of infinity-norm error divided by reference infinity norm."
+}

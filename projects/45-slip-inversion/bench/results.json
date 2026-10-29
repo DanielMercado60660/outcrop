@@ -1,0 +1,61 @@
+{
+  "project": "45-slip-inversion",
+  "sizes": {
+    "small": {
+      "npatch": 224,
+      "nobs": 448,
+      "nreg": 224
+    },
+    "medium": {
+      "npatch": 512,
+      "nobs": 1024,
+      "nreg": 512
+    },
+    "large": {
+      "npatch": 1024,
+      "nobs": 2048,
+      "nreg": 1024
+    }
+  },
+  "results": {
+    "judge": {
+      "small": {
+        "wall_s": 0.003937625006074086,
+        "peak_mem_mb": 3.620648,
+        "mem_method": "tracemalloc peak during call; native allocations may be omitted"
+      },
+      "medium": {
+        "wall_s": 0.02687962498748675,
+        "peak_mem_mb": 18.891536,
+        "mem_method": "tracemalloc peak during call; native allocations may be omitted"
+      },
+      "large": {
+        "skipped": "Float64 SVD may exceed 120 seconds at this size."
+      }
+    },
+    "mlx": {
+      "small": {
+        "wall_s": 0.00375220799469389,
+        "peak_mem_mb": 3.3531,
+        "mem_method": "MLX peak allocation after reset; process RSS is lifetime high-water mark",
+        "process_peak_rss_mb": 83.443712
+      },
+      "medium": {
+        "wall_s": 0.012515917012933642,
+        "peak_mem_mb": 16.999052,
+        "mem_method": "MLX peak allocation after reset; process RSS is lifetime high-water mark",
+        "process_peak_rss_mb": 128.876544
+      },
+      "large": {
+        "wall_s": 0.05758150000474416,
+        "peak_mem_mb": 67.553292,
+        "mem_method": "MLX peak allocation after reset; process RSS is lifetime high-water mark",
+        "process_peak_rss_mb": 223.264768
+      }
+    }
+  },
+  "medium_max_rel_diff": {
+    "mlx": 1.529268872252453e-06
+  },
+  "notes": "Fixed-seed synthetic full-rank weighted inverse; one warmup, median of three calls. Relative difference is the largest per-output max absolute error divided by that output's maximum absolute reference value. MLX uses CPU QR; its peak allocator statistic can exclude CPU allocations. MB uses 1e6 bytes."
+}

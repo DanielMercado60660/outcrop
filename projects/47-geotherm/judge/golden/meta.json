@@ -1,0 +1,80 @@
+{
+  "model": "T=Ts+(Tm-Ts) erf(z/(2 sqrt(kappa t))); upward q=k dT/dz",
+  "seconds_per_myr": 31557600000000.0,
+  "parameters_forward_and_gradient": {
+    "surface_temp_c": 0.0,
+    "mantle_temp_c": 1350.0,
+    "diffusivity_m2_s": 1e-06,
+    "conductivity_w_m_k": 3.3
+  },
+  "parameters_alternate_and_inversion": {
+    "surface_temp_c": 12.0,
+    "mantle_temp_c": 1275.0,
+    "diffusivity_m2_s": 8e-07,
+    "conductivity_w_m_k": 2.7
+  },
+  "depth_m": [
+    0.0,
+    100.0,
+    1000.0,
+    5000.0,
+    15000.0,
+    30000.0,
+    60000.0,
+    100000.0,
+    200000.0
+  ],
+  "forward_age_myr": [
+    1.0,
+    5.0,
+    20.0,
+    50.0,
+    100.0,
+    200.0
+  ],
+  "alternate_age_myr": [
+    3.0,
+    17.0,
+    73.0,
+    160.0
+  ],
+  "inversion_truth_myr": [
+    2.0,
+    8.0,
+    25.0,
+    80.0,
+    180.0
+  ],
+  "gradient_trial_myr": [
+    4.0,
+    12.0,
+    35.0,
+    110.0
+  ],
+  "gradient_target_age_myr": [
+    6,
+    8,
+    55,
+    70
+  ],
+  "flux_scale_w_m2": 0.1,
+  "finite_difference_step_myr": 0.01,
+  "random_seed": null,
+  "versions": {
+    "python": "3.12.11",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1"
+  },
+  "tolerances": {
+    "FORWARD_RTOL": 0.0001,
+    "TEMPERATURE_ATOL_C": 1e-05,
+    "FLUX_ATOL_W_M2": 1e-09,
+    "AGE_RECOVERY_RTOL": 0.05,
+    "AGE_EXACT_RTOL": 0.0001,
+    "GRADIENT_RTOL": 0.001,
+    "OBJECTIVE_ATOL": 1e-07,
+    "GRADIENT_ATOL_PER_MYR": 0.0,
+    "AGE_ATOL_MYR": 1e-05
+  },
+  "tolerance_reasons": "See comments in tests/tolerances.py; forward and gradient relative limits follow campaign, the 5% age limit is the project pass criterion, and the 1e-4 age limit checks the noise-free analytic inverse."
+}

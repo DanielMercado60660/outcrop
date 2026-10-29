@@ -1,0 +1,342 @@
+{
+  "reference": "Okada (1985) Table 2 and NIED DC3D manual Appendix 2",
+  "source_data": "data/okada/test_values.json",
+  "determinism": {
+    "random_data": false,
+    "seed": null
+  },
+  "citations": [
+    "Okada, Y. (1985). Surface deformation due to shear and tensile faults in a half-space. BSSA 75(4), 1135-1154. Table 2 'Checklist for numerical calculations', p. 1149.",
+    "Okada, Y. (1992). Internal deformation due to shear and tensile faults in a half-space. BSSA 82(2), 1018-1040. doi:10.1785/BSSA0820021018; NIED 'Manual for subroutines DC3D0 and DC3D' (Apr. 16, 2012), Appendix-2 'Test routine to check displacement calculation by DC3D'."
+  ],
+  "inputs": {
+    "table_cases": [
+      {
+        "source": "point",
+        "x": 2,
+        "y": 3,
+        "d": 4,
+        "dip_deg": 70,
+        "U1": 1,
+        "U2": 0,
+        "U3": 0,
+        "lame": "lambda=mu",
+        "nu": 0.25,
+        "z": 0,
+        "units_note": "point source at (0,0,-d); outputs per unit potency U*dSigma (U_i*dSigma = 1); lengths dimensionless"
+      },
+      {
+        "source": "point",
+        "x": 2,
+        "y": 3,
+        "d": 4,
+        "dip_deg": 70,
+        "U1": 0,
+        "U2": 1,
+        "U3": 0,
+        "lame": "lambda=mu",
+        "nu": 0.25,
+        "z": 0,
+        "units_note": "point source at (0,0,-d); outputs per unit potency U*dSigma (U_i*dSigma = 1); lengths dimensionless"
+      },
+      {
+        "source": "point",
+        "x": 2,
+        "y": 3,
+        "d": 4,
+        "dip_deg": 70,
+        "U1": 0,
+        "U2": 0,
+        "U3": 1,
+        "lame": "lambda=mu",
+        "nu": 0.25,
+        "z": 0,
+        "units_note": "point source at (0,0,-d); outputs per unit potency U*dSigma (U_i*dSigma = 1); lengths dimensionless"
+      },
+      {
+        "source": "finite_rectangle",
+        "x": 2,
+        "y": 3,
+        "d": 4,
+        "dip_deg": 70,
+        "L": 3,
+        "W": 2,
+        "U1": 1,
+        "U2": 0,
+        "U3": 0,
+        "lame": "lambda=mu",
+        "nu": 0.25,
+        "z": 0,
+        "units_note": "outputs per unit dislocation U (displacements in units of U, derivatives in U per unit length)"
+      },
+      {
+        "source": "finite_rectangle",
+        "x": 2,
+        "y": 3,
+        "d": 4,
+        "dip_deg": 70,
+        "L": 3,
+        "W": 2,
+        "U1": 0,
+        "U2": 1,
+        "U3": 0,
+        "lame": "lambda=mu",
+        "nu": 0.25,
+        "z": 0,
+        "units_note": "outputs per unit dislocation U (displacements in units of U, derivatives in U per unit length)"
+      },
+      {
+        "source": "finite_rectangle",
+        "x": 2,
+        "y": 3,
+        "d": 4,
+        "dip_deg": 70,
+        "L": 3,
+        "W": 2,
+        "U1": 0,
+        "U2": 0,
+        "U3": 1,
+        "lame": "lambda=mu",
+        "nu": 0.25,
+        "z": 0,
+        "units_note": "outputs per unit dislocation U (displacements in units of U, derivatives in U per unit length)"
+      },
+      {
+        "source": "finite_rectangle",
+        "x": 0,
+        "y": 0,
+        "d": 4,
+        "dip_deg": 90,
+        "L": 3,
+        "W": 2,
+        "U1": 1,
+        "U2": 0,
+        "U3": 0,
+        "lame": "lambda=mu",
+        "nu": 0.25,
+        "z": 0,
+        "units_note": "outputs per unit dislocation U (displacements in units of U, derivatives in U per unit length)"
+      },
+      {
+        "source": "finite_rectangle",
+        "x": 0,
+        "y": 0,
+        "d": 4,
+        "dip_deg": 90,
+        "L": 3,
+        "W": 2,
+        "U1": 0,
+        "U2": 1,
+        "U3": 0,
+        "lame": "lambda=mu",
+        "nu": 0.25,
+        "z": 0,
+        "units_note": "outputs per unit dislocation U (displacements in units of U, derivatives in U per unit length)"
+      },
+      {
+        "source": "finite_rectangle",
+        "x": 0,
+        "y": 0,
+        "d": 4,
+        "dip_deg": 90,
+        "L": 3,
+        "W": 2,
+        "U1": 0,
+        "U2": 0,
+        "U3": 1,
+        "lame": "lambda=mu",
+        "nu": 0.25,
+        "z": 0,
+        "units_note": "outputs per unit dislocation U (displacements in units of U, derivatives in U per unit length)"
+      },
+      {
+        "source": "finite_rectangle",
+        "x": 0,
+        "y": 0,
+        "d": 4,
+        "dip_deg": -90,
+        "L": 3,
+        "W": 2,
+        "U1": 1,
+        "U2": 0,
+        "U3": 0,
+        "lame": "lambda=mu",
+        "nu": 0.25,
+        "z": 0,
+        "units_note": "outputs per unit dislocation U (displacements in units of U, derivatives in U per unit length)"
+      },
+      {
+        "source": "finite_rectangle",
+        "x": 0,
+        "y": 0,
+        "d": 4,
+        "dip_deg": -90,
+        "L": 3,
+        "W": 2,
+        "U1": 0,
+        "U2": 1,
+        "U3": 0,
+        "lame": "lambda=mu",
+        "nu": 0.25,
+        "z": 0,
+        "units_note": "outputs per unit dislocation U (displacements in units of U, derivatives in U per unit length)"
+      },
+      {
+        "source": "finite_rectangle",
+        "x": 0,
+        "y": 0,
+        "d": 4,
+        "dip_deg": -90,
+        "L": 3,
+        "W": 2,
+        "U1": 0,
+        "U2": 0,
+        "U3": 1,
+        "lame": "lambda=mu",
+        "nu": 0.25,
+        "z": 0,
+        "units_note": "outputs per unit dislocation U (displacements in units of U, derivatives in U per unit length)"
+      }
+    ],
+    "manual": {
+      "ALPHA": "2./3.",
+      "ALPHA_float": 0.6666666666666666,
+      "X": 10.0,
+      "Y": 20.0,
+      "Z": -30.0,
+      "DEPTH": 50.0,
+      "DIP": 70.0,
+      "AL1": -80.0,
+      "AL2": 120.0,
+      "AW1": -30.0,
+      "AW2": 25.0,
+      "DISL1": 200.0,
+      "DISL2": -150.0,
+      "DISL3": 100.0
+    },
+    "alpha": 0.6666666666666666,
+    "finite_difference_steps": [
+      0.01,
+      0.05
+    ],
+    "finite_difference_cases": [
+      "case1_strike",
+      "case2_strike"
+    ]
+  },
+  "versions": {
+    "python": "3.12.11",
+    "numpy": "2.5.4",
+    "pytest": "9.2.0",
+    "reference": "published decimal transcription",
+    "source_sha256": "82b619a369917e79136d166f48551933226a81e79efde141c009e74eb5cfd1fb",
+    "precision_audit_reference": "data/okada/reviewer/dc3d.py",
+    "precision_audit_sha256": "f067b5cb1b19a66b58fd46df5cd1b1b98eebf07e47ce9362ee8fcdfe6be77f2a"
+  },
+  "tolerances": {
+    "status": "round-3 threshold proposal; requires reviewer acceptance before lock",
+    "constants": {
+      "FLOAT32_EPS": 1.1920928955078125e-07,
+      "TABLE_CANCELLATION_ULPS": 8.0,
+      "TABLE_ZERO_ABS": 1e-06,
+      "MANUAL_PRINTED_HALF_UNIT": 5e-05,
+      "MANUAL_REFERENCE_ABS": 5e-05,
+      "MANUAL_CANCELLATION_ULPS": 4.0,
+      "PARITY_REL": 0.0001,
+      "PARITY_ABS": 1e-06,
+      "FD_STEPS": [
+        0.01,
+        0.05
+      ],
+      "FD_REL": 0.001,
+      "FD_ABS": [
+        1e-06,
+        2e-06
+      ],
+      "FD_CANCELLATION_ULPS": [
+        0.0,
+        2.0
+      ],
+      "FD_SPACING_ABS": 2e-07
+    },
+    "table": "Nonzeros: printed half-unit + 8*eps32*L1(slip)*corner_scale; zeros: 1e-6. Absolute cancellation, not relative to cancelled output.",
+    "manual": "5e-5 printed half-unit + 5e-5 REAL*4 reference allowance + 4*eps32*L1(slip)*corner_scale. Componentwise absolute limits.",
+    "corner_scale": "Sum absolute pre-Chinnery UA/UB/z*UC blocks, with absolute coordinate rotation, per unit L1 slip/potency. Saved independently of implementation.",
+    "parity": "1e-4 relative plus 1e-6 absolute; unchanged, independently reviewed as feasible.",
+    "finite_difference": "1e-3 relative plus absolute truncation/noise intervals (1e-6 point, 2e-6 rectangle); rectangle adds 2*eps32*L1(slip)*fd_corner_scale. h=0.01 point, h=0.05 rectangle; float64 truncation and both float32 trig variants audited."
+  },
+  "precision_audit": {
+    "table_float32_vs_float64_max_abs": 3.436834408176992e-07,
+    "table_error_over_eps_slip_corner_scale": 6.216983078519053,
+    "table_cancellation_floor_range": [
+      0.0,
+      7.301015345942407e-06
+    ],
+    "table_max_nonzero_relative_allowance": 0.0027965548589431806,
+    "table_worst_allowance_ratio": 0.9374571877092747,
+    "manual_float64_displacement": [
+      -37.898142816868926,
+      63.17893518026267,
+      14.960684757864257
+    ],
+    "manual_float32_vs_float64_max_abs": 0.0002547603407947463,
+    "manual_error_over_eps_slip_corner_scale": 1.9196541801212414,
+    "manual_printed_error_each_variant": [
+      [
+        -9.33593750005457e-05,
+        0.00010085449218877329,
+        -3.7158203124221245e-05
+      ],
+      [
+        -1.8066406255456968e-06,
+        -0.0002195800781237267,
+        8.618164063278755e-06
+      ]
+    ],
+    "manual_cancellation_floor": [
+      0.000809082485894086,
+      0.0005308463231198364,
+      0.0002829793448212035
+    ],
+    "manual_total_abs_limit": [
+      0.000909082485894086,
+      0.0006308463231198365,
+      0.00038297934482120347
+    ],
+    "finite_difference": [
+      {
+        "case": "case1_strike",
+        "step": 0.01,
+        "float64_truncation_max_abs": 7.529929899199135e-09,
+        "float32_fd_noise_max_abs": 1.420676943209194e-08,
+        "combined_noise_over_eps_slip_corner_scale": 0.8858210511570321,
+        "cancellation_floor_range": [
+          0.0,
+          0.0
+        ],
+        "worst_allowance_ratio_both_variants": 0.009311762521376492
+      },
+      {
+        "case": "case2_strike",
+        "step": 0.05,
+        "float64_truncation_max_abs": 1.8416895635996189e-06,
+        "float32_fd_noise_max_abs": 4.96073218418544e-06,
+        "combined_noise_over_eps_slip_corner_scale": 1.1775656351814594,
+        "cancellation_floor_range": [
+          2.370839193330862e-06,
+          3.3590407260107286e-05
+        ],
+        "worst_allowance_ratio_both_variants": 0.3059044876130247
+      }
+    ],
+    "wrong_convention_error_over_allowance": {
+      "reversed_slip_min_row_ratio": 9013.431952459348,
+      "reversed_derivatives_min_row_ratio": 8747.548331453896,
+      "top_edge_depth_min_case2_ratio": 12844.290379285056,
+      "negative_dip_replaced_with_positive_min_row_ratio": 12888.45298618745,
+      "missing_point_source_min_row_ratio": 15734.177923175515,
+      "point_replaced_by_unit_rectangle_min_row_ratio": 7094.891562600267
+    }
+  },
+  "notes": "No random data, hence no seed. Numeric oracle arrays float64. Printed decimals supply no extra reference precision. Reviewer outputs used only for allowance sizing. Column order: ux, uy, uz, duxdx, duxdy, duydx, duydy, duzdx, duzdy"
+}

@@ -1,0 +1,4 @@
+# Exact direct dependencies for generation and pytest collection; Python 3.12.11.
+numpy==2.5.4
+scipy==1.18.1
+pytest==9.2.0

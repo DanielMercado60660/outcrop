@@ -1,0 +1,13 @@
+# Build output
+target/
+.target/
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Raw downloads (see data/*/README.md)
+/data/raw/
+
+.DS_Store

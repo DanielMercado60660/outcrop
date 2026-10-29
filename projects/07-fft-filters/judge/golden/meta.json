@@ -1,0 +1,129 @@
+{
+  "seed": 7142026,
+  "versions": {
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "harmonica": "0.7.0",
+    "xarray": "2026.9.0",
+    "xrft": "1.0.1"
+  },
+  "inputs": {
+    "periodic": {
+      "shape": [
+        32,
+        40
+      ],
+      "dx_m": 120.0,
+      "dy_m": 80.0,
+      "height_m": 175.0,
+      "inclination_deg": 50.0,
+      "declination_deg": -23.0,
+      "magnetization_inclination_deg": 50.0,
+      "magnetization_declination_deg": -23.0,
+      "input_range": [
+        1.2999999523162842,
+        6.699999809265137
+      ],
+      "output_ranges": {
+        "upward": [
+          3.1452098095204275,
+          4.854790188797669
+        ],
+        "rtp": [
+          -3.6431898899273243,
+          3.6431899064089115
+        ],
+        "vertical": [
+          -0.017807492305243613,
+          0.017807497393939307
+        ],
+        "tilt": [
+          -1.5707963267948966,
+          1.5168093826609075
+        ]
+      }
+    },
+    "localized": {
+      "shape": [
+        33,
+        39
+      ],
+      "dx_m": 140.0,
+      "dy_m": 90.0,
+      "height_m": 175.0,
+      "inclination_deg": 50.0,
+      "declination_deg": -23.0,
+      "magnetization_inclination_deg": 35.0,
+      "magnetization_declination_deg": 37.0,
+      "input_range": [
+        -0.9552993774414062,
+        3.224667549133301
+      ],
+      "output_ranges": {
+        "upward": [
+          -0.2993765291271179,
+          2.159223997815581
+        ],
+        "rtp": [
+          -1.9334785267614545,
+          3.386425261877725
+        ],
+        "vertical": [
+          -0.008162544804325104,
+          0.005366470795360115
+        ],
+        "tilt": [
+          -1.5580350228882311,
+          1.539498480004087
+        ]
+      }
+    },
+    "rough": {
+      "shape": [
+        24,
+        32
+      ],
+      "dx_m": 75.0,
+      "dy_m": 125.0,
+      "height_m": 0.0,
+      "inclination_deg": 90.0,
+      "declination_deg": 0.0,
+      "magnetization_inclination_deg": 90.0,
+      "magnetization_declination_deg": 0.0,
+      "input_range": [
+        -3.013012170791626,
+        3.0400898456573486
+      ],
+      "output_ranges": {
+        "upward": [
+          -3.013012170791626,
+          3.0400898456573486
+        ],
+        "rtp": [
+          -3.1002261120290004,
+          2.9528759044199733
+        ],
+        "vertical": [
+          -0.0953922916816077,
+          0.08936529520180325
+        ],
+        "tilt": [
+          -1.5623221575057964,
+          1.5577785597781286
+        ]
+      }
+    }
+  },
+  "input_units": "arbitrary field units; magnetic field for RTP",
+  "reference": "Harmonica high-level transformations, float64; float32-quantized input",
+  "padding": "none; periodic FFT",
+  "taper": "none",
+  "edge_band_cells": 2,
+  "relative_error": "maximum absolute error divided by maximum absolute reference in the interior",
+  "tolerances": {
+    "reference_relative": {
+      "value": 0.0001,
+      "reason": "campaign float32 parity limit"
+    }
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "reference": "Analytic hyperbolic arrivals and Ricker wavelets; NumPy float64 interpolation and explicit semblance sums",
+  "numpy_version": "2.5.4",
+  "seed": "no randomness",
+  "dt_seconds": 0.002,
+  "samples": 751,
+  "offsets_m": [
+    0.0,
+    1500.0,
+    31
+  ],
+  "event_times_s": [
+    0.35,
+    0.72,
+    1.08
+  ],
+  "true_velocities_m_per_s": [
+    1800.0,
+    2400.0,
+    3000.0
+  ],
+  "picked_velocities_m_per_s": [
+    1800.0,
+    2400.0,
+    3000.0
+  ],
+  "trial_velocity_m_per_s": [
+    1500,
+    3300,
+    25
+  ],
+  "half_window_samples": 5,
+  "ricker_frequency_hz": 25,
+  "semblance_comparison_mask": "Reference window denominator greater than 0.01 and time greater than 0.2 s; silent windows are ill-conditioned",
+  "boundary_fixture": {
+    "dt_seconds": 0.25,
+    "offsets_m": [
+      -1.0,
+      0.0,
+      1.0,
+      3.0
+    ],
+    "velocity_m_per_s": 2.0,
+    "trace": [
+      0.125,
+      0.25,
+      -0.5,
+      0.75,
+      -0.25,
+      1.0
+    ],
+    "last_sample_nonzero": true
+  },
+  "tolerances": {
+    "array_relative": [
+      0.0001,
+      "float32 arithmetic versus float64"
+    ],
+    "nmo_index_ulp_factor": [
+      4,
+      "float32 sample-index ulps times maximum trace slope, allowing moveout and interpolation rounding"
+    ],
+    "cross_index_ulp_factor": [
+      8,
+      "sum of two independent four-ulp index error budgets"
+    ],
+    "semblance_absolute": [
+      1e-05,
+      "float32 reductions in energetic windows, validated against simulations"
+    ],
+    "cross_semblance_absolute": [
+      2e-05,
+      "sum of two independent semblance error budgets"
+    ],
+    "velocity_relative": [
+      0.03,
+      "campaign velocity criterion; velocity grid spacing 25 m/s"
+    ]
+  }
+}

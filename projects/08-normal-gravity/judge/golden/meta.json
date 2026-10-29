@@ -1,0 +1,75 @@
+{
+  "reference": "Boule WGS84.normal_gravity, geodetic, si_units=True",
+  "versions": {
+    "boule": "v0.6.0",
+    "numpy": "2.5.4",
+    "python": "3.12.11"
+  },
+  "seed": 82026,
+  "inputs": "Arrays are stored in each npz as float32, promoted to float64 before evaluating Boule; latitude degrees and nonnegative height meters. Gravity is float64 m/s^2.",
+  "cases": {
+    "surface": {
+      "shape": [
+        13
+      ],
+      "latitude_degrees": [
+        -90.0,
+        90.0
+      ],
+      "height_m": [
+        0.0,
+        0.0
+      ],
+      "gravity_m_per_s2": [
+        9.78032533590406,
+        9.832184937863067
+      ]
+    },
+    "near_earth": {
+      "shape": [
+        3,
+        6
+      ],
+      "latitude_degrees": [
+        -90.0,
+        90.0
+      ],
+      "height_m": [
+        0.0,
+        10000000.0
+      ],
+      "gravity_m_per_s2": [
+        1.489118334818708,
+        9.832184937863067
+      ]
+    },
+    "orbital": {
+      "shape": [
+        40
+      ],
+      "latitude_degrees": [
+        -90.0,
+        90.0
+      ],
+      "height_m": [
+        863189.625,
+        20000000.0
+      ],
+      "gravity_m_per_s2": [
+        0.43265017975325587,
+        7.598668756616542
+      ]
+    }
+  },
+  "tolerances": {
+    "gravity_relative": {
+      "value": 0.0001,
+      "reason": "Campaign float32 pointwise relative error limit against float64 reference."
+    },
+    "surface_sanity_absolute_m_per_s2": {
+      "value": 1e-09,
+      "reason": "Sanity check against rounded WGS84 values; not an implementation tolerance."
+    }
+  },
+  "reference_caveat": "Boule warns that negative heights are outside its validity. Its implementation computes a signed ellipsoidal-harmonic u component, despite documenting a magnitude; high altitudes may expose float64 cancellation in its auxiliary function."
+}

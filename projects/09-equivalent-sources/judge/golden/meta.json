@@ -1,0 +1,103 @@
+{
+  "reference": "Harmonica EquivalentSources and EquivalentSourcesGB",
+  "versions": {
+    "harmonica": "0.7.0",
+    "verde": "1.9.0",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "scikit-learn": "1.9.1",
+    "numba": "0.68.1"
+  },
+  "seed_data": 93421,
+  "input_precision": "float32, promoted exactly to float64 for fitting",
+  "observation_count": 72,
+  "source_count": 30,
+  "grid_shape": [
+    9,
+    11
+  ],
+  "coordinates": "metres, easting northing upward",
+  "synthetic_field": "two buried point-source 1/r fields, strengths 1800 and -1050",
+  "sample_weights": "uniform 0.6 to 1.8, fixed seed",
+  "cases": {
+    "standard_weak": {
+      "method": "standard",
+      "damping": 0.001,
+      "seed": 7,
+      "window_size_m": 600.0,
+      "prediction_min": 0.17789770842199282,
+      "prediction_max": 2.4894819989483397,
+      "train_rmse": 0.0029186830459236326,
+      "windows": 0,
+      "window_data_counts": [],
+      "window_source_counts": []
+    },
+    "standard_damped": {
+      "method": "standard",
+      "damping": 0.2,
+      "seed": 7,
+      "window_size_m": 600.0,
+      "prediction_min": 0.17792861920746308,
+      "prediction_max": 2.4836694207496204,
+      "train_rmse": 0.0042687296694277795,
+      "windows": 0,
+      "window_data_counts": [],
+      "window_source_counts": []
+    },
+    "boosted_seed7": {
+      "method": "boosted",
+      "damping": 0.03,
+      "seed": 7,
+      "window_size_m": 600.0,
+      "prediction_min": 0.17132977262817162,
+      "prediction_max": 2.468307959857629,
+      "train_rmse": 0.053704631608830676,
+      "windows": 4,
+      "window_data_counts": [
+        30,
+        30,
+        30,
+        30
+      ],
+      "window_source_counts": [
+        9,
+        9,
+        9,
+        9
+      ]
+    },
+    "boosted_seed19": {
+      "method": "boosted",
+      "damping": 0.03,
+      "seed": 19,
+      "window_size_m": 600.0,
+      "prediction_min": 0.171621488281982,
+      "prediction_max": 2.4950572409906293,
+      "train_rmse": 0.028725859810066135,
+      "windows": 4,
+      "window_data_counts": [
+        30,
+        30,
+        30,
+        30
+      ],
+      "window_source_counts": [
+        9,
+        9,
+        9,
+        9
+      ]
+    }
+  },
+  "window_inputs": "ordered zero-based int32 membership indices and CSR-style offsets extracted from the fitted Harmonica model; seed and size are provenance only",
+  "tolerances": {
+    "grid_max_relative_error": {
+      "value": 0.001,
+      "reason": "campaign threshold; float32 regularized inverse and boosted sequential updates"
+    },
+    "cross_path_max_relative_error": {
+      "value": 0.001,
+      "reason": "same campaign prediction threshold for two float32 paths"
+    }
+  }
+}
